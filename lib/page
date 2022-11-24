@@ -37,11 +37,7 @@
         </header>
 
         <main>
-[% IF content %]
-            <section>
-    [% content %]
-            </section>
-[% END %]
+[% content %]
 
 [% IF sketch %]
             <section id="sketch-container">

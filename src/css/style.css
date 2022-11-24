@@ -1,6 +1,5 @@
 :root {
-    --hue: 208;
-    --maincolor: #63B6AE;
+    --maincolor: #de600c;
     --sans-serif: Candara, Ubuntu, system-ui, "Segoe UI", sans-serif;
 }
 
@@ -11,12 +10,6 @@ body {
 }
 
 main {
-    font-family: var(--sans-serif)
-}
-
-h1,
-h2,
-.sans-serif {
     font-family: var(--sans-serif)
 }
 
@@ -44,31 +37,11 @@ header>h1.site-title {
     margin-bottom: 12px;
 }
 
-section>h2 {
-    color: var(--maincolor);
-    text-align: center;
-    padding: 0.5em;
-}
-
 main {
     margin-left: 0;
     margin-right: 0;
     margin-top: 1em;
-    padding-left: 0;
-    padding-right: 0
-}
-
-section {
-    margin: var(--line-height) 0
-}
-
-section>* {
-    max-width: 100%
-}
-
-img {
-    max-width: 100%;
-    height: auto;
+    padding: 0;
 }
 
 .subheading a,
@@ -80,7 +53,7 @@ img {
 
 a,
 a:visited {
-    color: red;
+    color: var(--maincolor);
     text-decoration: none
 }
 
@@ -88,7 +61,8 @@ a:hover {
     text-decoration: underline
 }
 
-p, ul {
+p,
+ul {
     margin: var(--line-height) 0
 }
 
@@ -132,11 +106,16 @@ div.slider-wrapper div:nth-child(2) {
     text-align: left;
 }
 
-section .wide {
-  width: auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+section.wide {
+    margin: var(--line-height) 0 width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+section.text {
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 form {
@@ -148,60 +127,60 @@ form {
  */
 
 ul.imageCheckboxes {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 ul.imageCheckboxes li {
-  display: inline-block;
+    display: inline-block;
 }
 
 ul.imageCheckboxes input[type="checkbox"] {
-  display: none;
+    display: none;
 }
 
 ul.imageCheckboxes label {
-  display: block;
-  position: relative;
-  cursor: pointer;
+    display: block;
+    position: relative;
+    cursor: pointer;
 }
 
 ul.imageCheckboxes label:before {
-  background-color: white;
-  color: white;
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  transition-duration: 0.4s;
-  transform: scale(0);
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    transition-duration: 0.4s;
+    transform: scale(0);
 }
 
 ul.imageCheckboxes label img {
-  height: 50px;
-  width: 50px;
-  transition-duration: 0.2s;
-  transform-origin: 50% 50%;
+    height: 50px;
+    width: 50px;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
 }
 
-ul.imageCheckboxes :checked + label {
-  border-color: #ddd;
+ul.imageCheckboxes :checked+label {
+    border-color: #ddd;
 }
 
-ul.imageCheckboxes :checked + label:before {
-  content: "✓";
-  background-color: grey;
-  transform: scale(1);
+ul.imageCheckboxes :checked+label:before {
+    content: "✓";
+    background-color: grey;
+    transform: scale(1);
 }
 
-ul.imageCheckboxes :checked + label img {
-  transform: scale(0.9);
-  /* box-shadow: 0 0 5px #333; */
-  z-index: -1;
+ul.imageCheckboxes :checked+label img {
+    transform: scale(0.9);
+    /* box-shadow: 0 0 5px #333; */
+    z-index: -1;
 }
 
 #sketchTitle {

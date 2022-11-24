@@ -1,12 +1,12 @@
 [% WRAPPER page depth = 1 %]
 
-<div class="wide">
+<section class="wide">
 [%
     USE Tools;
     FOR spec IN Tools.make_list().reverse;
         INCLUDE exhibit dir = spec.dir name = spec.name;
     END;
 %]
-</div>
+</section>
 
 [% END %]
