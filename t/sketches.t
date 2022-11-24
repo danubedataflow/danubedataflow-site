@@ -7,11 +7,6 @@ use Path::Tiny;
 my $iter = path('src')->iterator({ recurse => 1 });
 while (my $next = $iter->()) {
     next unless $next =~ m!/sketch.js$!;
-
-    # Read the corresponding HTML page. If it has " old = 1 ", skip the checks.
-    my $index = $next =~ s!/sketch.js$!/index.html!r;
-    my $html  = path($index)->slurp;
-    next if $html =~ / old = 1 /;
     subtest $next, sub {
         my $js = $next->slurp;
         ok $js =~ /^'use strict';\n/,                "starts with 'use strict'";

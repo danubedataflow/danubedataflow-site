@@ -18,13 +18,11 @@
 [% IF sketch %]
         <link href="[% prefix %]deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
         <script src="[% prefix %]deps/p5.min.js"></script>
-    [% Tools.add_dependencies %]
-    [% IF NOT old %]
+[% Tools.add_dependencies %]
         <script src="[% prefix %]js/frame.js"></script>
         <script src="[% prefix %]js/numbers.js"></script>
         <!-- geometry.js depends on frame.js -->
         <script src="[% prefix %]js/geometry.js"></script>
-    [% END %]
 [% END %]
     </head>
 
