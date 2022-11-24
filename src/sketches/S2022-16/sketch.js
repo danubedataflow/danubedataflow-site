@@ -37,8 +37,6 @@ function drawSketch() {
     });
     path.closePath();
     drawingContext.fill(path, "evenodd");
-
-    noLoop();
 }
 
 function randomPoint() {

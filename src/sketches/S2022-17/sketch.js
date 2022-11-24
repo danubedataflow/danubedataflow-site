@@ -7,7 +7,7 @@ const config = new Config()
     .title('S2022-17');
 
 makeForm(
-    makeSlider('numFrames', 'Number of frames', 100, 2000, 500),
+    makeSlider('numIterations', 'Number of iterations', 100, 2000, 500),
     makeSlider('randomDelta', 'Random delta', 1, 20, 5),
 );
 
@@ -27,7 +27,7 @@ function initSketch() {
 }
 
 function drawSketch() {
-    if (frameCount % ctrl.numFrames == 0) background("black");
+    if (currentIteration % ctrl.numIterations == 0) background("black");
 
     line(x1, y1, x2, y2);
     if (x1 > width) x1d = -rnd(2);
