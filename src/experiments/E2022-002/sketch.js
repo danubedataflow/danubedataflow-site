@@ -6,8 +6,8 @@ const config = new Config()
 
 makeForm(
     makeSlider('xFactor', 'Horizontal factor', 1, 5, 2.5, 0.1),
-    makeSlider('alpha', 'Alpha', 1, 255, 10),
-    makeSlider('angleStep', 'Angle Step', 0.1, 10, 0.5, 0.1),
+    makeSlider('alpha', 'Alpha', 1, 255, 70),
+    makeSlider('angleStep', 'Angle step', 0.1, 10, 0.5, 0.1),
     makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
 );
 
