@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = $(WWW)/deps
 
-.PHONY: default site deps watch deploy nginx icons beauty clean test
+.PHONY: default site deps watch deploy icons beauty clean test
 
 default:
 	$(error Specify a Makefile target)
@@ -27,10 +27,6 @@ watch:
 deploy:
 	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
 	ssh hetzner 'sudo bin/fix-permissions'
-
-nginx:
-	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
-	nginx -s reload
 
 icons:
 	bin/make-favicon
