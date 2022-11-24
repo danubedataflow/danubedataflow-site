@@ -61,9 +61,10 @@ sub dirs_to_exhibit_specs {
 }
 
 sub source_link {
-    my $self   = shift;
+    my $self = shift;
     my $link = $self->get_dir->child('sketch.js');
-    $link = 'https://github.com/danubedataflow/danubedataflow-site/blob/master/' . $link;
+    $link =
+      'https://github.com/danubedataflow/danubedataflow-site/blob/master/' . $link;
     return $link;
 }
 
@@ -84,27 +85,11 @@ sub add_dependencies {
             qr/\bmakeSlider\(/ => [ 'deps/nouislider.min.css', 'deps/nouislider.min.js' ]
         ],
         [ qr/\bchroma\./       => 'deps/chroma.min.js' ],
-        [ qr/\bp5\.Ease\(/     => 'deps-manual/p5.func.min.js' ],
-
-        # https://github.com/kgolid/chromotome
-        # https://unpkg.com/chromotome@1.19.1/dist/index.umd.js
-        [ qr/\bchromotome\b/ => 'deps-manual/chromotome.js' ],
-
-        # https://github.com/SYM380/p5.pattern
-        # https://cdn.jsdelivr.net/gh/SYM380/p5.pattern@latest/p5.pattern.js
-        [ qr/new Transformer\(/    => 'deps-manual/transformer.js' ],
-        [ qr/\brough.canvas\b/     => 'deps/rough.js' ],
-        [   [   qr/\bmatter\.(init|makeBarrier)\(/,
-                qr/\bMatter\.(Engine|Render|World|Bodies|Composite)/
-            ] => [ 'deps-manual/mattermin.js', 'deps-manual/p5-mattermin.js' ]
-        ],
-
-        # takawo-specific
-        [ qr/\bMetPalettes\b/ => 'deps-manual/takawo-metpalettes.js' ],
+        [ qr/\brough.canvas\b/ => 'deps/rough.js' ],
     );
 
-    # Preserve the order given in the indicators. For example,
-    # 'rhill-voronoi-core.js' needs to be included before 'p5voronoimin.js'.
+    # Preserve the order given in the indicators in case those libraries depend
+    # on each other.
     my %did_include_lib;
     my $html = '';
     for my $spec (@dependency_indicators) {
