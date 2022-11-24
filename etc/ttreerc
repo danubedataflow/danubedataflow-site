@@ -1,0 +1,16 @@
+verbose
+recurse
+trim
+
+src  = src
+dest = ~/www/danubedataflow
+lib  = lib
+perl5lib = perl5lib
+
+copy = \.(gif|png|jpg|pdf|css|json|js|mp3)$
+
+ignore = ^#
+ignore = \.swp$
+ignore = ~$
+ignore = \.DS_Store
+

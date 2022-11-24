@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Only watch JavaScript files. On any change, regenerate the site and reload
+# the frontmost Chrome tab. This assumes that your frontmost Chrome tab shows
+# the sketch you are working on.
+
+fswatch -E -e ".*" -i "\\.(js|css|html)$" --batch-marker=EOF -xn src | while read file event;
+do
+    if [ $file = "EOF" ]; then
+        date
+        printf '%s\n' "${list[@]}"
+        list=()
+
+        make site
+        osascript -e 'tell application "Chrome" to tell the active tab of its first window to reload'
+    else
+        # echo $file $event
+        list+=($file)
+    fi
+done

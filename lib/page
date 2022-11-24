@@ -1,0 +1,79 @@
+[%
+    USE Tools;
+    DEFAULT depth = 0;
+    up = "../";
+    SET prefix = up.repeat(depth);
+%]
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>[% title %]</title>
+        <meta name="author" content="Marcel Gruenauer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="icon" href="[% prefix %]favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="[% prefix %]apple-touch-icon.png">
+        <link href="[% prefix %]css/style.css" rel="stylesheet">
+[% IF sketch %]
+        <link href="[% prefix %]deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
+        <script src="[% prefix %]deps/p5.min.js"></script>
+        <link rel="stylesheet" href="[% prefix %]js/highlight-js/default.min.css">
+        <script src="[% prefix %]js/highlight-js/highlight.min.js"></script>
+    [% Tools.add_dependencies %]
+    [% IF NOT old %]
+        <script src="[% prefix %]js/frame.js"></script>
+        <script src="[% prefix %]js/numbers.js"></script>
+        <!-- geometry.js depends on frame.js -->
+        <script src="[% prefix %]js/geometry.js"></script>
+    [% END %]
+[% END %]
+    </head>
+
+    <body>
+        <header>
+            <h1 class="site-title">Danube Dataflow</h1>
+            <div class="subheading">
+                <a href="[% prefix %]index.html">Sketches</a>
+                | <a href="[% prefix %]techniques/index.html">Techniques</a>
+                | <a href="[% prefix %]experiments/index.html">Experiments</a>
+            </div>
+        </header>
+
+        <main>
+[% IF content %]
+            <section>
+    [% content %]
+            </section>
+[% END %]
+
+[% IF sketch %]
+            <section id="sketch-container">
+                <div id="sketch"></div>
+
+    [% IF NOT old %]
+                <div id="controls">
+                    <p>
+                        <span id="sketchTitle"></span> <span id="sketchAuthor"></span> |
+                        <span id="canvasSize"></span> |
+
+                        <!-- windowResized() also calls init() again -->
+                        <!-- return false to prevent the page reload -->
+                        <button onclick="windowResized(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
+                        <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
+                    </p>
+                        <form id="controls-form">
+                        </form>
+                    </div>
+    [% END %]
+            </section>
+<script src="sketch.js"></script>
+            <section id="source-code">
+                <pre><code>[%- Tools.sketch_source -%]</code></pre>
+            </section>
+<script>hljs.highlightAll();</script>
+[% END %]
+        </main>
+    </body>
+
+</html>
