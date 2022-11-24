@@ -1,26 +1,17 @@
-/* This stylesheet has been taken from redblobgames.com. The original author
- * explicitly allows copying the stylesheet. I have simplified and somewhat
- * changed it. -- Marcel
- */
-
-/*! CSS Copyright 2007-2020 by amitp@cs.stanford.edu (Amit J. Patel)  */
-
 :root {
     --hue: 208;
+    --maincolor: #63B6AE;
+    --sans-serif: Candara, Ubuntu, system-ui, "Segoe UI", sans-serif;
 }
 
 body {
-    --serif: Cambria, Georgia, serif;
-    --sans-serif: Candara, Ubuntu, system-ui, "Segoe UI", sans-serif;
-    --monospace: Consolas, monospace, "Segoe UI Symbol", Symbol;
     font-family: var(--sans-serif);
     font-size: var(--font-size);
     line-height: 1.5em;
-    min-height: 95%
 }
 
 main {
-    font-family: var(--serif)
+    font-family: var(--sans-serif)
 }
 
 h1,
@@ -29,30 +20,16 @@ h2,
     font-family: var(--sans-serif)
 }
 
-* {
-    box-sizing: border-box
-}
-
-html,
 body {
     margin: 0;
     padding: 0;
-    background-color: #f3f3f3;
-}
-
-html {
-    color: #000;
-}
-
-body {
-    color: #333;
+    background-color: #eee;
 }
 
 header {
     display: block;
     text-align: center;
-    color: white;
-    background-color: hsl(var(--hue), 50%, 45%);
+    color: var(--maincolor);
     padding-top: 20px;
 }
 
@@ -68,8 +45,7 @@ header>h1.site-title {
 }
 
 section>h2 {
-    color: #fff;
-    background-color: hsl(var(--hue), 50%, 55%);
+    color: var(--maincolor);
     text-align: center;
     padding: 0.5em;
 }
@@ -97,13 +73,14 @@ img {
 
 .subheading a,
 .subheading a:visited {
-    color: white;
+    color: var(--maincolor);
+    font-weight: bold;
     text-decoration: none
 }
 
 a,
 a:visited {
-    color: hsl(var(--hue), 50%, 45%);
+    color: red;
     text-decoration: none
 }
 
@@ -111,40 +88,8 @@ a:hover {
     text-decoration: underline
 }
 
-p,
-figure,
-ul,
-ol {
+p, ul {
     margin: var(--line-height) 0
-}
-
-table.standard {
-    font-family: var(--sans-serif);
-    font-size: 0.875em;
-    border: 2px solid white;
-    border-collapse: collapse;
-    overflow-x: auto
-}
-
-table.standard th {
-    background-color: #e8e8e3;
-    border: 2px solid white;
-    padding: 0 0.5em
-}
-
-table.standard td {
-    background-color: #fff;
-    border: 1px solid #f3f3f2;
-    border-right-color: #babaab;
-    padding: 0 0.5em
-}
-
-table.standard thead {
-    border-bottom: 2px solid #babaab
-}
-
-table.standard thead th {
-    background: linear-gradient(to top, #e8e8e3, #f4f4f1, #fafaf9)
 }
 
 #sketch-container {
@@ -187,8 +132,6 @@ div.slider-wrapper div:nth-child(2) {
     text-align: left;
 }
 
-/* Homepage-specific styles */
-
 section .wide {
   width: auto;
   display: flex;
@@ -196,50 +139,13 @@ section .wide {
   justify-content: center;
 }
 
-.exhibit {
-    clear: both;
-    font-family: var(--sans-serif);
-    display: inline-block;
-    flex: 0 1 auto;
-    text-align: center;
-    width: 12.5rem;
-    max-width: 12.5rem;
-    width: calc(25vw);
-    height: calc(12.5 + 6em);
-    margin: 0.625rem;
-    vertical-align: top;
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 0.5rem -0.4rem hsla(240, 20%, 20%, 0.5);
-    overflow: hidden;
-}
-
-.exhibit:hover {
-    box-shadow: 0 10px 10px -8px hsla(240, 20%, 20%, 0.5);
-}
-
-.exhibit a {
-    font-weight: bold;
-}
-
-.exhibit img {
-    margin: 0;
-    float: none;
-    width: 12.5rem;
-    display: block;
-}
-
-.exhibit .also {
-    display: block;
-    font-size: 60%;
-    line-height: 1.1;
-}
-
 form {
     margin-top: 1rem;
 }
 
-/* Image checkboxes via https://codepen.io/echosoft/pen/RaVEvG */
+/* Image checkboxes from
+ * https://codepen.io/echosoft/pen/RaVEvG
+ */
 
 ul.imageCheckboxes {
   list-style-type: none;
@@ -305,4 +211,55 @@ ul.imageCheckboxes :checked + label img {
 i.bi {
     font-size: 150%;
     -webkit-text-stroke: 1px;
+}
+
+/* Image frame CSS (.frame classes) from
+ * https://codepen.io/chris22smith/pen/PbBwjp
+ */
+
+.frame img {
+    border: solid 2px;
+    border-bottom-color: #ffe;
+    border-left-color: #eed;
+    border-right-color: #eed;
+    border-top-color: #ccb;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.frame {
+    background-color: #ebebe2;
+    border: solid 2vmin #222;
+    border-bottom-color: #111;
+    border-left-color: #222;
+    border-radius: 2px;
+    border-right-color: #222;
+    border-top-color: #333;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25) inset, 0 5px 10px 5px rgba(0, 0, 0, .25);
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 5vh 5vw;
+    padding: 5vmin;
+    position: relative;
+    text-align: center;
+    &:before {
+        border-radius: 2px;
+        bottom: -2vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25) inset;
+        content: "";
+        left: -2vmin;
+        position: absolute;
+        right: -2vmin;
+        top: -2vmin;
+    }
+    &:after {
+        border-radius: 2px;
+        bottom: -2.5vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25);
+        content: "";
+        left: -2.5vmin;
+        position: absolute;
+        right: -2.5vmin;
+        top: -2.5vmin;
+    }
 }

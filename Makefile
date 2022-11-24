@@ -6,11 +6,7 @@ DEPS = $(WWW)/deps
 default:
 	$(error Specify a Makefile target)
 
-# touch index pages so if we add or remove a sketch it is reflected in the index
-index:
-	ack -l '<h2>' src/ | xargs touch
-
-site: index
+site: clean
 	ttree -f etc/ttreerc
 	make deps
 

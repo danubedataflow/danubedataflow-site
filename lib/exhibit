@@ -1,3 +1,3 @@
-<div class="exhibit">
-    <a href="[% dir %]/index.html"><img src="[% dir %]/thumbnail.png">[% name %]</a>
+<div class="frame">
+    <a href="[% dir %]/index.html"><img src="[% dir %]/thumbnail.png"></a>
 </div>
