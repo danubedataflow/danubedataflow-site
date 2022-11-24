@@ -8,14 +8,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>[% title %]</title>
+        <title>Danube Dataflow</title>
         <meta name="author" content="Marcel Gruenauer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="icon" href="[% prefix %]favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" href="[% prefix %]apple-touch-icon.png">
         <link href="[% prefix %]css/style.css" rel="stylesheet">
-[% IF sketch %]
         <link href="[% prefix %]deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
         <script src="[% prefix %]deps/p5.min.js"></script>
 [% Tools.add_dependencies %]
@@ -23,7 +22,6 @@
         <script src="[% prefix %]js/numbers.js"></script>
         <!-- geometry.js depends on frame.js -->
         <script src="[% prefix %]js/geometry.js"></script>
-[% END %]
     </head>
 
     <body>
@@ -37,13 +35,10 @@
         </header>
 
         <main>
-[% content %]
 
-[% IF sketch %]
             <section id="sketch-container">
                 <div id="sketch"></div>
 
-    [% IF NOT old %]
                 <div id="controls">
                     <p>
                         <span id="sketchTitle"></span> <span id="sketchAuthor"></span> |
@@ -55,13 +50,16 @@
                         <button onclick="windowResized(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
                         <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
                     </p>
-                        <form id="controls-form">
-                        </form>
-                    </div>
-    [% END %]
+
+                    <form id="controls-form">
+                    </form>
+
+                    [% content %]
+
+                </div>
             </section>
-<script src="sketch.js"></script>
-[% END %]
+
+            <script src="sketch.js"></script>
         </main>
     </body>
 

@@ -1,0 +1,35 @@
+[%
+    USE Tools;
+    DEFAULT depth = 0;
+    up = "../";
+    SET prefix = up.repeat(depth);
+%]
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>[% title %]</title>
+        <meta name="author" content="Marcel Gruenauer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="icon" href="[% prefix %]favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="[% prefix %]apple-touch-icon.png">
+        <link href="[% prefix %]css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1 class="site-title">Danube Dataflow</h1>
+            <div class="subheading">
+                <a href="[% prefix %]index.html">Sketches</a>
+                | <a href="[% prefix %]techniques/index.html">Techniques</a>
+                | <a href="[% prefix %]experiments/index.html">Experiments</a>
+            </div>
+        </header>
+
+        <main>
+[% content %]
+        </main>
+    </body>
+
+</html>

@@ -61,11 +61,6 @@ a:hover {
     text-decoration: underline
 }
 
-p,
-ul {
-    margin: var(--line-height) 0
-}
-
 #sketch-container {
     display: inline-flex;
     flex-flow: row wrap;
@@ -113,12 +108,7 @@ section.wide {
     justify-content: center;
 }
 
-section.text {
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-section.text pre {
+pre {
     font-size: 120%;
     line-height: 1em;
 }
