@@ -52,7 +52,7 @@
                     <p>
                         <span id="sketchTitle"></span> <span id="sketchAuthor"></span> |
                         <span id="canvasSize"></span> |
-                        <span id="source-code"><a href="[% Tools.source_link %]">Code</a></span> |
+                        <span id="source-code"><a href="[% Tools.source_link %]">Code</a></span>
 
                         <!-- windowResized() also calls init() again -->
                         <!-- return false to prevent the page reload -->
