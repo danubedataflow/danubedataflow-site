@@ -6,7 +6,7 @@ const config = new Config()
 
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
-    makeSlider('power', 'Power', 0, 5, 2, 0.1),
+    makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
 );
 
 function initSketch() {
@@ -28,10 +28,10 @@ function drawSketch() {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             let centerX = map(x, 1, ctrl.numTiles, marginX, width - marginX);
 
-            /* yPercent is < 1, so the higher the power the more likely a
+            /* yPercent is < 1, so the higher the exponent the more likely a
              * rectangle will be drawn.
              */
-            if (random() > pow(yPercent, ctrl.power)) rect(centerX, centerY, dim, dim);
+            if (random() > pow(yPercent, ctrl.exponent)) rect(centerX, centerY, dim, dim);
         }
     }
 }
