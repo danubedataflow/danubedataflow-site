@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = $(WWW)/deps
 
-.PHONY: default site deps watch deploy icons beauty clean test
+.PHONY: default site deps watch deploy icons clean test
 
 default:
 	$(error Specify a Makefile target)
@@ -30,9 +30,6 @@ deploy:
 
 icons:
 	bin/make-favicon
-
-beauty:
-	find src -name sketch.js -exec js-beautify -r {} +
 
 clean:
 	rm -rf $(WWW) build
