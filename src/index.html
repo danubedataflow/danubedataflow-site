@@ -1,12 +1,5 @@
-[% WRAPPER gallery title = 'Danube Dataflow' depth = 0 %]
-
-<section class="wide">
-[%
-    USE Tools;
-    FOR spec IN Tools.make_list('sketches').reverse;
-        INCLUDE exhibit dir = spec.dir name = spec.name;
-    END;
+[% INCLUDE gallery
+    title = 'Danube Dataflow'
+    dir = 'sketches'
+    depth = 0
 %]
-</section>
-
-[% END %]

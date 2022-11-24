@@ -35,7 +35,6 @@
         </header>
 
         <main>
-
             <section id="sketch-container">
                 <div id="sketch"></div>
 
@@ -55,10 +54,8 @@
                     </form>
 
                     [% content %]
-
                 </div>
             </section>
-
             <script src="sketch.js"></script>
         </main>
     </body>

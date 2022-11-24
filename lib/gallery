@@ -28,7 +28,13 @@
         </header>
 
         <main>
-[% content %]
+            <section class="wide">
+            [%
+                FOR spec IN Tools.make_list(dir).reverse;
+                    INCLUDE exhibit dir = spec.dir name = spec.name;
+                END;
+            %]
+            </section>
         </main>
     </body>
 

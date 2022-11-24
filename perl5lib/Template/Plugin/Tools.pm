@@ -18,7 +18,7 @@ sub get_dir {
 sub make_list {
     my ($self, $subdir) = @_;
     my $this_dir = my $target_dir = $self->get_dir;
-    if (defined $subdir) { $target_dir = $this_dir->child($subdir) }
+    if (defined $subdir && length $subdir) { $target_dir = $this_dir->child($subdir) }
 
     # We want the list of directories in the target_dir, but relative to
     # this_dir.
