@@ -118,6 +118,11 @@ section.text {
     margin-right: 20%;
 }
 
+section.text pre {
+    font-size: 120%;
+    line-height: 1em;
+}
+
 form {
     margin-top: 1rem;
 }

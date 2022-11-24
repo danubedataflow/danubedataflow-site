@@ -1,1 +1,14 @@
-[% INCLUDE page sketch = 1 depth = 2 %]
+[% WRAPPER page sketch = 1 depth = 2 %]
+<section class="text">
+<p>The key idea is a recursive drawing function that draws on a smaller scale
+than in the previous recursion level:</p>
+
+<pre><code>function drawSomething() {
+    push();
+    scale(0.4);
+    drawSomething();
+    pop();
+}</code></pre>
+
+</section>
+[% END %]
