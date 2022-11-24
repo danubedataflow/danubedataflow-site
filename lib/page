@@ -18,8 +18,6 @@
 [% IF sketch %]
         <link href="[% prefix %]deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
         <script src="[% prefix %]deps/p5.min.js"></script>
-        <link rel="stylesheet" href="[% prefix %]js/highlight-js/default.min.css">
-        <script src="[% prefix %]js/highlight-js/highlight.min.js"></script>
     [% Tools.add_dependencies %]
     [% IF NOT old %]
         <script src="[% prefix %]js/frame.js"></script>
@@ -56,6 +54,7 @@
                     <p>
                         <span id="sketchTitle"></span> <span id="sketchAuthor"></span> |
                         <span id="canvasSize"></span> |
+                        <span id="source-code"><a href="[% Tools.source_link %]">Code</a></span> |
 
                         <!-- windowResized() also calls init() again -->
                         <!-- return false to prevent the page reload -->
@@ -68,10 +67,6 @@
     [% END %]
             </section>
 <script src="sketch.js"></script>
-            <section id="source-code">
-                <pre><code>[%- Tools.sketch_source -%]</code></pre>
-            </section>
-<script>hljs.highlightAll();</script>
 [% END %]
         </main>
     </body>

@@ -60,11 +60,11 @@ sub dirs_to_exhibit_specs {
     return @spec;
 }
 
-sub sketch_source {
+sub source_link {
     my $self   = shift;
-    my $script = $self->get_dir->child('sketch.js')->slurp;
-    1 while chomp $script;
-    return $script;
+    my $link = $self->get_dir->child('sketch.js');
+    $link = 'https://github.com/danubedataflow/danubedataflow-site/blob/master/' . $link;
+    return $link;
 }
 
 sub add_dependencies {

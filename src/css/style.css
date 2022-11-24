@@ -147,13 +147,6 @@ table.standard thead th {
     background: linear-gradient(to top, #e8e8e3, #f4f4f1, #fafaf9)
 }
 
-#source-code {
-    display: inline-flex;
-    flex-flow: row wrap;
-    min-width: 100%;
-    line-height: 1em;
-}
-
 #sketch-container {
     display: inline-flex;
     flex-flow: row wrap;
