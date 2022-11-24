@@ -1,8 +1,6 @@
 [%
     USE Tools;
-    DEFAULT depth = 0;
-    up = "../";
-    SET prefix = up.repeat(depth);
+    SET prefix = Tools.get_up_path();
 %]
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +27,11 @@
 
         <main>
             <section class="wide">
-            [%
-                FOR spec IN Tools.make_list(dir).reverse;
-                    INCLUDE exhibit dir = spec.dir name = spec.name;
-                END;
-            %]
+            [% FOR spec IN Tools.make_list(dir).reverse %]
+                <div class="frame">
+                    <a href="[% spec.dir %]/index.html"><img src="[% spec.dir %]/thumbnail.png"></a>
+                </div>
+            [% END %]
             </section>
         </main>
     </body>

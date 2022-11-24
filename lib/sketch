@@ -1,8 +1,6 @@
 [%
     USE Tools;
-    DEFAULT depth = 0;
-    up = "../";
-    SET prefix = up.repeat(depth);
+    SET prefix = Tools.get_up_path();
 %]
 <!DOCTYPE html>
 <html lang="en">

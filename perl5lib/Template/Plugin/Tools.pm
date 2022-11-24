@@ -15,6 +15,11 @@ sub get_dir {
     return path('src/' . $self->{name})->parent;
 }
 
+sub get_up_path {
+    my $self = shift;
+    return '../' x length($self->{name} =~ s![^/]!!gr);
+}
+
 sub make_list {
     my ($self, $subdir) = @_;
     my $this_dir = my $target_dir = $self->get_dir;
@@ -72,11 +77,7 @@ sub add_dependencies {
     my $self = shift;
     my $dir  = $self->get_dir;
 
-    # JavaScript lib paths (starting with 'deps/' etc.) are relative to the
-    # root. We want to have relativ links to the libs so determine how many
-    # directories we need to go up. It is '../' times the number of slashes in
-    # $dir.
-    my $prefix = '../' x length($dir =~ s![^/]!!gr);
+    my $up_path = $self->get_up_path;
     my $script = $dir->child('sketch.js')->slurp;
 
     # Try to detect some libraries.
@@ -103,9 +104,9 @@ sub add_dependencies {
                 for my $dependency (@$deps_spec) {
                     next if $did_include_lib{$dependency};
                     if ($dependency =~ /\.js$/) {
-                        $html .= qq!<script src="$prefix$dependency"></script>\n!;
+                        $html .= qq!<script src="$up_path$dependency"></script>\n!;
                     } elsif ($dependency =~ /\.css$/) {
-                        $html .= qq!<link href="$prefix$dependency" rel="stylesheet">\n!;
+                        $html .= qq!<link href="$up_path$dependency" rel="stylesheet">\n!;
                     }
                     $did_include_lib{$dependency}++;
                 }
