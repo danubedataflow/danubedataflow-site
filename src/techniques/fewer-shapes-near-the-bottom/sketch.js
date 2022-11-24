@@ -17,21 +17,21 @@ function initSketch() {
 }
 
 function drawSketch() {
+    simpleGrid({
+        numTiles: ctrl.numTiles,
+        margin: width / 10,
+        callback: (config) => {
+            let {
+                dim,
+                y
+            } = config;
 
-    let marginY = int(height / (2 * ctrl.numTiles));
-    let marginX = int(width / (2 * ctrl.numTiles));
-    let dim = width * 0.9 / ctrl.numTiles; // and width == height
-
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        let centerY = map(y, 1, ctrl.numTiles, marginY, height - marginY);
-        let yPercent = map(y, 1, ctrl.numTiles, 0, 1);
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            let centerX = map(x, 1, ctrl.numTiles, marginX, width - marginX);
-
-            /* yPercent is < 1, so the higher the exponent the more likely a
-             * rectangle will be drawn.
+            /* 0 < yPercent < 1, so the higher the exponent the more
+             * likely a rectangle will be drawn.
              */
-            if (random() > pow(yPercent, ctrl.exponent)) rect(centerX, centerY, dim, dim);
+            let yPercent = map(y, 1, ctrl.numTiles, 0, 1);
+            scale(0.9);
+            if (random() > pow(yPercent, ctrl.exponent)) rect(0, 0, dim, dim);
         }
-    }
+    });
 }

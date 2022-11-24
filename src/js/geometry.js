@@ -68,7 +68,7 @@ class Tile {
      * Shape objects or nested Grid objects. So the tile background can be a
      * separate shape. Shapes are drawn on top of each other. Each shape has
      * its own rotation, sizeFactor etc.
-    */
+     */
 
     contents = [];
 
@@ -292,3 +292,30 @@ class Rectangle extends Shape {
     }
 }
 
+// ==================================================================
+
+function simpleGrid(config) {
+    let {
+        callback,
+        numTiles,
+        w = width,
+        h = height,
+        margin = 0
+    } = config;
+    let dim = (w - 2 * margin) / numTiles;
+
+    for (let y = 1; y <= numTiles; y++) {
+        let centerY = map(y, 1, numTiles, dim / 2 + margin, h - dim / 2 - margin);
+        for (let x = 1; x <= numTiles; x++) {
+            let centerX = map(x, 1, numTiles, dim / 2 + margin, w - dim / 2 - margin);
+            push();
+            translate(centerX, centerY);
+            callback({
+                dim: dim,
+                x: x,
+                y: y
+            });
+            pop();
+        }
+    }
+}
