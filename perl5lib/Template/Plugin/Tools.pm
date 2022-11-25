@@ -23,13 +23,16 @@ sub get_up_path {
 sub make_list {
     my ($self, $subdir) = @_;
     my $this_dir = my $target_dir = $self->get_dir;
-    if (defined $subdir && length $subdir) { $target_dir = $this_dir->child($subdir) }
+    if (defined $subdir && length $subdir) {
+        $target_dir = $this_dir->child($subdir);
+    }
 
     # We want the list of directories in the target_dir, but relative to
     # this_dir.
     my @wanted =
-      map { substr($_, length($this_dir) + 1) }
-      grep { $_->is_dir } path($target_dir)->children;
+      map  { substr($_, length($this_dir) + 1) }
+      grep { $_->is_dir && $_->child('sketch.js')->exists }
+      path($target_dir)->children;
     my @spec = $self->dirs_to_exhibit_specs(@wanted);
 
     # sort case-independent
@@ -74,11 +77,10 @@ sub source_link {
 }
 
 sub add_dependencies {
-    my $self = shift;
-    my $dir  = $self->get_dir;
-
+    my $self    = shift;
+    my $dir     = $self->get_dir;
     my $up_path = $self->get_up_path;
-    my $script = $dir->child('sketch.js')->slurp;
+    my $script  = $dir->child('sketch.js')->slurp;
 
     # Try to detect some libraries.
     my @dependency_indicators = (
