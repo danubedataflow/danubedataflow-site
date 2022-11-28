@@ -1,25 +1,46 @@
 'use strict';
 
-function getSeesaw(min, max) {
-    // returns a function that returns the next value in the seesaw.
-    let value;
+// infinite sequences with generator functions
+
+function* seesawSequence(min, max) {
+    let value = min;
     let direction = 1; // or -1
-    return () => {
-        if (!value) {
-            value = min;
-            return value;
-        }
+    while (1) {
+        yield value;
         value += direction;
-        if (value <= min) {
-            direction *= -1;
-            value = min;
-        }
-        if (value >= max) {
-            direction *= -1;
-            value = max;
-        }
-        return value;
+        if (value >= max) direction = -1;
+        if (value <= min) direction = 1;
     };
+}
+
+// can be used to cycle through a palette
+function* moduloSequence(max) {
+    let value = 0;
+    while (1) {
+        value++;
+        if (value > max) value = 0;
+        yield value;
+    }
+}
+
+function* fibonacciSequence(prev = 1, value = 1) {
+    yield prev;
+    yield value;
+    while (1) {
+        let old = prev;
+        prev = value;
+        value += old;
+        yield value;
+    }
+}
+
+// like for James Siena's "2-256"
+function* powerSequence(exponent = 2) {
+    let value = 1;
+    while (1) {
+        yield value;
+        value *= exponent;
+    }
 }
 
 function randomIntRange(lowerBound, upperBound) {
