@@ -9,6 +9,7 @@ makeForm(
     makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
     makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
     makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
+    makeSlider('alpha', 'Alpha', 0, 255, 255),
 );
 
 let palette;
@@ -16,7 +17,6 @@ let palette;
 function initSketch() {
     background('white');
     noFill();
-    stroke('black');
     strokeWeight(ctrl.strokeWeight);
 }
 
@@ -27,6 +27,7 @@ function drawSketch() {
     scale(ctrl.scale);
     translate(-dim / 2, -dim / 2);
 
+    stroke(0, ctrl.alpha);
     let tileDim = width / ctrl.numTiles;
 
     for (let i = 0; i <= ctrl.numRects; i++) {
