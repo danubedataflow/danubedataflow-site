@@ -1,7 +1,7 @@
 'use strict';
 
 const config = new Config()
-    .title('E2022-001')
+    .title('E999')
     .maxIterations(1);
 
 let palette;
