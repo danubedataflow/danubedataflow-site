@@ -6,22 +6,11 @@ const config = new Config()
 
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
-    makeFieldset('Rotation',
-        makeSlider('rotationChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('rotationAmount', 'Angles', -45, 45, [-10, 10]),
-    ),
-    makeFieldset('Scale',
-        makeSlider('scaleChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('scaleAmount', 'Amount (%)', 50, 150, [80, 120]),
-    ),
-    makeFieldset('Translation',
-        makeSlider('translationChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('translationAmount', 'Amount (%)', -50, 50, [-20, 20]),
-    ),
-    makeFieldset('Stroke',
-        makeSlider('strokeChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('strokeAmount', 'Weight', 1, 4, [2, 3]),
-    ),
+    makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
+    makeSlider('chanceVertical', 'Chance for a vertical line (%)', 0, 100, 30),
+    makeSlider('chanceDiagoalUp', 'Chance for an upwards diagonal line (%)', 0, 100, 30),
+    makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
+    makeCheckbox('tileBorder', 'Tile border'),
 );
 
 function initSketch() {
@@ -41,13 +30,11 @@ function drawSketch() {
             let {
                 dim
             } = config;
-            if (random(100) < ctrl.rotationChance) rotate(int(random(...ctrl.rotationAmount)));
-            if (random(100) < ctrl.scaleChance) scale(random(...ctrl.scaleAmount) / 100);
-            if (random(100) < ctrl.translationChance) translate(
-                dim * random(...ctrl.translationAmount) / 100,
-                dim * random(...ctrl.translationAmount) / 100);
-            if (random(100) < ctrl.strokeChance) strokeWeight(random(...ctrl.strokeAmount));
-            rect(0, 0, dim, dim);
+            if (ctrl.tileBorder) rect(0, 0, dim, dim);
+            if (random(100) < ctrl.chanceHorizontal) line(-dim / 2, 0, dim / 2, 0);
+            if (random(100) < ctrl.chanceVertical) line(0, -dim / 2, 0, dim / 2);
+            if (random(100) < ctrl.chanceDiagoalUp) line(dim / 2, -dim / 2, -dim / 2, dim / 2);
+            if (random(100) < ctrl.chanceDiagoalDown) line(-dim / 2, -dim / 2, dim / 2, dim / 2);
         }
     });
 }

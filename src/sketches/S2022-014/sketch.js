@@ -1,49 +1,59 @@
 'use strict';
 
+/* based on the Mathologer video
+ * "Times Tables, Mandelbrot and the Heart of Mathematics"
+ * https://www.youtube.com/watch?v=qhbuKbxJsk8
+ */
+
 const config = new Config()
     .title('S2022-014')
     .maxIterations(1);
 
 makeForm(
     makeSelectColorMap(),
-    makeSlider('numColors', 'Number of colors', 2, 32, 16),
-    makeSlider('numSides', 'Number of sides', 3, 10, 5),
-    makeFieldset('Scale',
-        makeSlider('scaleRange', 'Range (%)', 1, 100, [5, 80]),
-        makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
-    ),
+    makeSelectBlendMode(),
+    // the modulus is the number of points on the circle
+    makeSlider('modulus', 'Modulus', 10, 300, 100),
+    makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
 );
 
-let roughCanvas, palette;
+let palette;
 
 function initSketch() {
-    if (roughCanvas === undefined) {
-        roughCanvas = rough.canvas(canvas.elt);
-    }
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    angleMode(DEGREES);
+    fill('white');
+    strokeWeight(1);
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 }
 
 function drawSketch() {
-    background('white');
-    noFill();
-    translate(width / 2, height / 2);
+    blendMode(BLEND); // so background() actually clears the canvas
+    background('#cccccc');
 
-    let colorIndex = 0;
-    let [minScale, maxScale] = ctrl.scaleRange;
-    // for some reason roughCanvas.polygon() and .linearPoath() don't do anything
-    for (let f = minScale / 100; f < maxScale / 100; f += ctrl.scaleDelta / 100) {
-        pairwise(getPointsForPolygon(ctrl.numSides, width * f, 180), (current, next) => {
-            roughCanvas.line(current.x, current.y, next.x, next.y, {
-                stroke: palette[colorIndex],
-                strokeWidth: 2
-            });
-            colorIndex = (colorIndex + 1) % palette.length;
-        });
+    push();
+    translate(width / 2, height / 2);
+    circle(0, 0, width);
+
+    blendMode(ctrl.blendMode);
+    const radius = width / 2;
+    for (let i = 0; i < ctrl.modulus; i++) {
+
+        // cycle through all colors in the palette; wrap around
+        const colorIndex = (i + palette.length) % palette.length;
+        stroke(palette[colorIndex]);
+
+        line(
+            ...pointOnCircle(angle(i), radius),
+            ...pointOnCircle(angle(i * ctrl.timesTable), radius)
+        );
     }
+    pop();
 }
 
-function pairwise(arr, func) {
-    for (let i = 0; i < arr.length - 1; i++) {
-        func(arr[i], arr[i + 1])
-    }
+function angle(n) {
+    return n * 360 / ctrl.modulus;
+}
+
+function pointOnCircle(angle, radius) {
+    return [sin(angle) * radius, cos(angle) * radius];
 }

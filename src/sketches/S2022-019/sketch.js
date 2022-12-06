@@ -5,36 +5,33 @@ const config = new Config()
     .maxIterations(1);
 
 makeForm(
-    makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
-    makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
-    makeSlider('chanceVertical', 'Chance for a vertical line (%)', 0, 100, 30),
-    makeSlider('chanceDiagoalUp', 'Chance for an upwards diagonal line (%)', 0, 100, 30),
-    makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
-    makeCheckbox('tileBorder', 'Tile border'),
+    makeSlider('xFactor', 'Horizontal factor', 1, 5, 2.5, 0.1),
+    makeSlider('alpha', 'Alpha', 1, 255, 70),
+    makeSlider('angleStep', 'Angle step', 0.1, 10, 0.5, 0.1),
+    makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
 );
 
 function initSketch() {
-    background('white');
+    stroke(0, ctrl.alpha);
     strokeWeight(1);
-    stroke('black');
     noFill();
     rectMode(CENTER);
-    angleMode(DEGREES);
 }
 
 function drawSketch() {
-    simpleGrid({
-        numTiles: ctrl.numTiles,
-        margin: width / 10,
-        callback: (config) => {
-            let {
-                dim
-            } = config;
-            if (ctrl.tileBorder) rect(0, 0, dim, dim);
-            if (random(100) < ctrl.chanceHorizontal) line(-dim / 2, 0, dim / 2, 0);
-            if (random(100) < ctrl.chanceVertical) line(0, -dim / 2, 0, dim / 2);
-            if (random(100) < ctrl.chanceDiagoalUp) line(dim / 2, -dim / 2, -dim / 2, dim / 2);
-            if (random(100) < ctrl.chanceDiagoalDown) line(-dim / 2, -dim / 2, dim / 2, dim / 2);
-        }
-    });
+    background(255);
+    translate(width / 2, height / 2);
+    for (let i = 0; i < 360; i += ctrl.angleStep) {
+
+        // x-factor 2 produces the "infinity sign"
+
+        let x = sin(i * ctrl.xFactor) * (width / 3);
+        let y = sin(i) * (height / 3);
+
+        // Draw random squares around each point, drawn at 10% alpha, produces
+        // a fuzzy shape.
+
+        let dim = random(...ctrl.squareSize);
+        rect(x, y, dim, dim);
+    }
 }

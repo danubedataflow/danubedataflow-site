@@ -21,7 +21,6 @@
             <div class="subheading">
                 <a href="[% prefix %]index.html">Sketches</a>
                 | <a href="[% prefix %]techniques/index.html">Techniques</a>
-                | <a href="[% prefix %]experiments/index.html">Experiments</a>
             </div>
         </header>
 

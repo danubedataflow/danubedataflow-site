@@ -1,44 +1,146 @@
 'use strict';
 
+/* Note: You can get outlines only (no fills) if you set the background color
+ * and/or shape color's alpha to 0.
+ */
+
 const config = new Config()
     .title('S2022-016')
     .maxIterations(1);
 
-/* Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
- * See https://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
- * Also see https://openprocessing.org/sketch/1626688 ("0576_2" by kusakari)
- */
+let roughCanvas, grid, palette;
 
 makeForm(
-    makeSlider('numCurves', 'Number of curves', 2, 100, 30),
+    makeSelectColorMap(),
+    makeSlider('numColors', 'Number of colors', 1, 12, 6),
+    makeSlider('numTiles', 'Number of tiles', 2, 10, 4),
+    makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
 );
 
-let curves;
-
 function initSketch() {
-    curves = [];
-
-    // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
-    for (let i = 0; i < ctrl.numCurves; i++) {
-        curves.push([randomPoint(), randomPoint(), randomPoint()]);
+    if (roughCanvas === undefined) {
+        roughCanvas = rough.canvas(canvas.elt);
     }
 
-    drawingContext.fillStyle = color(0);
-    drawingContext.lineWidth = 1;
-    drawingContext.strokeStyle = color(100);
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+
+    angleMode(DEGREES);
+    rectMode(CENTER);
+
+    grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
 }
 
 function drawSketch() {
-    background("white");
-
-    let path = new Path2D();
-    curves.forEach((c) => {
-        path.bezierCurveTo(...c[0], ...c[1], ...c[2]);
-    });
-    path.closePath();
-    drawingContext.fill(path, "evenodd");
+    /* Draw tiles in random order so if sizeFactor > 1 they overlap each other
+     * randomly. If we just used `grid.draw()`, the tiles would be drawn from
+     * the top left corner to the bottom right corner.
+     */
+    background("black");
+    grid
+        .getTiles()
+        .shuffle()
+        .forEach((t) => t.draw());
 }
 
-function randomPoint() {
-    return [int(random(width)), int(random(width))];
+// make square grids
+function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
+    return new Grid()
+        .numRows(numTiles)
+        .numCols(numTiles)
+        .centerX(centerX)
+        .centerY(centerY)
+        .gridWidth(dim)
+        .gridHeight(dim)
+        .initTiles()
+        .iterate((tile) => {
+            if (depth < maxDepth && random() > 0.6) {
+                // make a sub-grid that is as big as the tile
+                tile.contents.push(
+                    makeGrid(
+                        int(random(3)) + 1,
+                        tile.centerX(),
+                        tile.centerY(),
+                        tile.tileWidth(),
+                        maxDepth,
+                        depth + 1
+                    )
+                );
+            } else {
+
+                let shapeMaker = random([
+                    _ => new RoughRectangle(),
+                    _ => new RoughCircle(),
+                    _ => new RoughTriangle(),
+                ]);
+                let fillStyle = random([{
+                        fillStyle: 'hachure',
+                        hachureAngle: int(random(120, 150))
+                    },
+                    {
+                        fillStyle: 'zigzag'
+                    },
+                    {
+                        fillStyle: 'cross-hatch'
+                    }
+                ]);
+                let shape = shapeMaker()
+                    .roughCanvas(roughCanvas)
+                    .sizeFactor(0.85)
+                    .fillColor(random(palette))
+                    .fillStyle(fillStyle)
+                    .roughness(random(1, 1.5))
+                    .strokeColor('white')
+                    .strokeWeight(int(random(1, 3)));
+                tile.contents.push(shape);
+            }
+        });
+}
+
+class RoughShape extends Shape {
+    _roughness = 1;
+    _fillStyle = {
+        fillStyle: 'hachure',
+        fillWeight: 1,
+        hachureAngle: 135
+    };
+
+    getRoughOptions() {
+        return {
+            roughness: this.roughness(),
+            fill: this.fillColor(),
+            stroke: this.strokeColor(),
+            strokeWidth: this.strokeWeight(),
+            ...this.fillStyle(),
+        };
+    }
+}
+
+createAccessors(RoughShape, [
+    "roughCanvas",
+    "roughness",
+    "fillStyle"
+]);
+
+class RoughRectangle extends RoughShape {
+    drawShape(w, h) {
+        this.roughCanvas().rectangle(-w / 2, -h / 2, w, h, this.getRoughOptions());
+    }
+}
+
+class RoughCircle extends RoughShape {
+    drawShape(w, h) {
+        this.roughCanvas().circle(0, 0, min(w, h), this.getRoughOptions());
+    }
+}
+
+class RoughTriangle extends RoughShape {
+    drawShape(w, h) {
+        this.roughCanvas().polygon(
+            [
+                [-w / 2, h / 2],
+                [w / 2, h / 2],
+                [0, -h / 2]
+            ],
+            this.getRoughOptions());
+    }
 }

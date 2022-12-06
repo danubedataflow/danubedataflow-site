@@ -1,57 +1,35 @@
 'use strict';
 
-// polygons at points of polygons at points of polygons etc.
-
 const config = new Config()
     .title('S2022-012')
     .maxIterations(1);
 
-makeForm(
-    makeSlider('sides', 'Number of sides', 3, 10, 5),
-    makeSlider('diameter', 'Diameter', 1, 100, 30),
-    makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
-    makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
-);
-
-const colors = ['#000000', '#ff0000', '#00ff00',
-    '#0000ff', '#ffff00', '#ff00ff'
-];
-
 let palette;
 
+makeForm(
+    makeSelectColorMap(),
+    makeSlider('numColors', 'Number of colors', 2, 32, 16),
+    makeSlider('numSides', 'Number of sides', 3, 50, 10),
+);
+
 function initSketch() {
-    palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
-    strokeWeight(1);
-    stroke('black');
+    background("black");
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 }
 
 function drawSketch() {
     translate(width / 2, height / 2);
-    background('white');
 
-    drawPolygons(0, 0, ctrl.sides, ctrl.diameter * width / 100,
-        0, ctrl.rotDelta, ctrl.maxDepth);
-}
+    let points = getPointsForPolygon(ctrl.numSides, width * 0.9, 0);
 
-function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, depth = 0) {
-    let points = getPointsForPolygon(sides, diameter, rotation);
-    points.forEach(p => {
-        push();
-        translate(p.x, p.y);
-
-        let fillColor = color(palette[depth]);
-        fillColor.setAlpha(25 - 5 * depth);
-        fill(fillColor);
-
-        beginShape();
-        points.forEach(p => vertex(p.x, p.y));
-        endShape(CLOSE);
-
-        if (depth < maxDepth) {
-            drawPolygons(p.x, p.y, sides, diameter,
-                rotation + rotDelta / sides, rotDelta, maxDepth, depth + 1);
-        }
-
-        pop();
+    // draw a line from each point to each point
+    let colorIndex = 0;
+    points.forEach((p, i) => {
+        points.forEach((p2, j) => {
+            if (i == j) return;
+            stroke(palette[colorIndex]);
+            colorIndex = (colorIndex + 1 + palette.length) % palette.length;
+            line(p.x, p.y, p2.x, p2.y);
+        });
     });
 }

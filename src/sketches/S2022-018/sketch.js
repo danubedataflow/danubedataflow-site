@@ -1,37 +1,50 @@
 'use strict';
 
+// based on Jon Stanley's program "lines" for the Tektronix 4052
+// https://www.electronixandmore.com/resources/teksystem/
+
 const config = new Config()
-    .title('S2022-018')
-    .maxIterations(1);
+    .title('S2022-018');
 
 makeForm(
-    makeSlider('xFactor', 'Horizontal factor', 1, 5, 2.5, 0.1),
-    makeSlider('alpha', 'Alpha', 1, 255, 70),
-    makeSlider('angleStep', 'Angle step', 0.1, 10, 0.5, 0.1),
-    makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
+    makeSlider('numIterations', 'Number of iterations', 100, 2000, 500),
+    makeSlider('randomDelta', 'Random delta', 1, 20, 5),
 );
 
+let x1, y1, x2, y2, x1d, y1d, x2d, y2d;
+
 function initSketch() {
-    stroke(0, ctrl.alpha);
-    strokeWeight(1);
-    noFill();
-    rectMode(CENTER);
+    x1 = int(random(width / 2));
+    y1 = int(random(height / 2));
+    x2 = int(random(width / 2)) + width / 2;
+    y2 = int(random(height / 2)) + height / 2;
+    x1d = rnd(6);
+    y1d = rnd(5);
+    x2d = rnd(2);
+    y2d = rnd(7);
+    stroke("white");
+    background("black");
 }
 
 function drawSketch() {
-    background(255);
-    translate(width / 2, height / 2);
-    for (let i = 0; i < 360; i += ctrl.angleStep) {
+    if (currentIteration % ctrl.numIterations == 0) background("black");
 
-        // x-factor 2 produces the "infinity sign"
+    line(x1, y1, x2, y2);
+    if (x1 > width) x1d = -rnd(2);
+    if (y1 > height) y1d = -rnd(8);
+    if (x2 < 0) x2d = rnd(6);
+    if (y2 < 0) y2d = -rnd(5);
+    if (x1 < 0) x1d = rnd(2);
+    if (y1 < 0) y1d = rnd(3);
+    if (x2 > width) x2d = rnd(8);
+    if (y2 > height) y2d = rnd(2);
 
-        let x = sin(i * ctrl.xFactor) * (width / 3);
-        let y = sin(i) * (height / 3);
+    x1 += x1d;
+    y1 += y1d;
+    x2 -= x2d;
+    y2 -= y2d;
+}
 
-        // Draw random squares around each point, drawn at 10% alpha, produces
-        // a fuzzy shape.
-
-        let dim = random(...ctrl.squareSize);
-        rect(x, y, dim, dim);
-    }
+function rnd(mid) {
+    return int(random(mid - ctrl.randomDelta, mid + ctrl.randomDelta + 1));
 }

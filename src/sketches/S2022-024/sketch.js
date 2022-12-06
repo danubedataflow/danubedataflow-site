@@ -1,7 +1,7 @@
 'use strict';
 
 const config = new Config()
-    .title('E997')
+    .title('S2022-024')
     .maxIterations(1);
 
 makeForm(

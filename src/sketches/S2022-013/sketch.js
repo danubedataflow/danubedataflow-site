@@ -1,59 +1,57 @@
 'use strict';
 
-/* based on the Mathologer video
- * "Times Tables, Mandelbrot and the Heart of Mathematics"
- * https://www.youtube.com/watch?v=qhbuKbxJsk8
- */
+// polygons at points of polygons at points of polygons etc.
 
 const config = new Config()
     .title('S2022-013')
     .maxIterations(1);
 
 makeForm(
-    makeSelectColorMap(),
-    makeSelectBlendMode(),
-    // the modulus is the number of points on the circle
-    makeSlider('modulus', 'Modulus', 10, 300, 100),
-    makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
+    makeSlider('sides', 'Number of sides', 3, 10, 5),
+    makeSlider('diameter', 'Diameter', 1, 100, 30),
+    makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
+    makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
 );
+
+const colors = ['#000000', '#ff0000', '#00ff00',
+    '#0000ff', '#ffff00', '#ff00ff'
+];
 
 let palette;
 
 function initSketch() {
-    angleMode(DEGREES);
-    fill('white');
+    palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
     strokeWeight(1);
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
+    stroke('black');
 }
 
 function drawSketch() {
-    blendMode(BLEND); // so background() actually clears the canvas
-    background('#cccccc');
-
-    push();
     translate(width / 2, height / 2);
-    circle(0, 0, width);
+    background('white');
 
-    blendMode(ctrl.blendMode);
-    const radius = width / 2;
-    for (let i = 0; i < ctrl.modulus; i++) {
-
-        // cycle through all colors in the palette; wrap around
-        const colorIndex = (i + palette.length) % palette.length;
-        stroke(palette[colorIndex]);
-
-        line(
-            ...pointOnCircle(angle(i), radius),
-            ...pointOnCircle(angle(i * ctrl.timesTable), radius)
-        );
-    }
-    pop();
+    drawPolygons(0, 0, ctrl.sides, ctrl.diameter * width / 100,
+        0, ctrl.rotDelta, ctrl.maxDepth);
 }
 
-function angle(n) {
-    return n * 360 / ctrl.modulus;
-}
+function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, depth = 0) {
+    let points = getPointsForPolygon(sides, diameter, rotation);
+    points.forEach(p => {
+        push();
+        translate(p.x, p.y);
 
-function pointOnCircle(angle, radius) {
-    return [sin(angle) * radius, cos(angle) * radius];
+        let fillColor = color(palette[depth]);
+        fillColor.setAlpha(25 - 5 * depth);
+        fill(fillColor);
+
+        beginShape();
+        points.forEach(p => vertex(p.x, p.y));
+        endShape(CLOSE);
+
+        if (depth < maxDepth) {
+            drawPolygons(p.x, p.y, sides, diameter,
+                rotation + rotDelta / sides, rotDelta, maxDepth, depth + 1);
+        }
+
+        pop();
+    });
 }
