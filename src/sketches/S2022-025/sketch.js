@@ -12,10 +12,8 @@ makeForm(
 let palette;
 
 function initSketch() {
-    background('white');
     noStroke();
     rectMode(CENTER);
-    angleMode(DEGREES);
     palette = ['white', '#777777', 'black'];
 }
 
