@@ -25,5 +25,5 @@ function drawSketch() {
     let c = color(colorScale(random()).toString());
     stroke(c);
 
-    line(0, 0, point.x, point.y);
+    line(0, 0, ...point);
 }

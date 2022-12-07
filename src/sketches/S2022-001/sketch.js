@@ -43,7 +43,7 @@ function drawSketch() {
 
             beginShape();
             let points = getPointsForPolygon(6, diameter, 30);
-            points.forEach(p => vertex(p.x, p.y));
+            points.forEach(p => vertex(...p));
             endShape(CLOSE);
 
             pop();

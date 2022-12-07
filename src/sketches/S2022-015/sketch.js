@@ -33,7 +33,7 @@ function drawSketch() {
     // for some reason roughCanvas.polygon() and .linearPoath() don't do anything
     for (let f = minScale / 100; f < maxScale / 100; f += ctrl.scaleDelta / 100) {
         pairwise(getPointsForPolygon(ctrl.numSides, width * f, 180), (current, next) => {
-            roughCanvas.line(current.x, current.y, next.x, next.y, {
+            roughCanvas.line(...current, ...next, {
                 stroke: palette[colorIndex],
                 strokeWidth: 2
             });

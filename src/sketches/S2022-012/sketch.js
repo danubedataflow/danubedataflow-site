@@ -29,7 +29,7 @@ function drawSketch() {
             if (i == j) return;
             stroke(palette[colorIndex]);
             colorIndex = (colorIndex + 1 + palette.length) % palette.length;
-            line(p.x, p.y, p2.x, p2.y);
+            line(...p, ...p2);
         });
     });
 }

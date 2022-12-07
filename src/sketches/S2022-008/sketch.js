@@ -79,9 +79,10 @@ function drawSketch() {
     let offset = int(width / ctrl.numTiles); // assume width == height
 
     for (let i = 0; i < ctrl.numObjects; i++) {
-        let centerPoint = new Point()
-            .setX((int(random(ctrl.numTiles)) + 0.5) * offset)
-            .setY((int(random(ctrl.numTiles)) + 0.5) * offset);
+        let centerPoint = [
+            (int(random(ctrl.numTiles)) + 0.5) * offset,
+            (int(random(ctrl.numTiles)) + 0.5) * offset
+        ];
         let [minRotation, maxRotation] = ctrl.rotation;
         new myShape()
             .setType(random(activeShapes))
@@ -107,9 +108,7 @@ function createCheckboxImages() {
     resizeCanvas(imageSize, imageSize);
     myShape.types.forEach(i => {
         clear(); // transparent background
-        let centerPoint = new Point()
-            .setX(imageSize / 2)
-            .setY(imageSize / 2);
+        let centerPoint = [ imageSize / 2, imageSize / 2 ];
 
         new myShape()
             .setType(i)
@@ -165,7 +164,7 @@ class myShape {
 
     display() {
         push();
-        translate(this.center.x, this.center.y);
+        translate(...this.center);
         strokeWeight(this.strokeWeight);
         stroke(this.color);
         noFill();

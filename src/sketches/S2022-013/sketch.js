@@ -37,14 +37,14 @@ function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, d
     let points = getPointsForPolygon(sides, diameter, rotation);
     points.forEach(p => {
         push();
-        translate(p.x, p.y);
+        translate(...p);
 
         let fillColor = color(palette[depth]);
         fillColor.setAlpha(25 - 5 * depth);
         fill(fillColor);
 
         beginShape();
-        points.forEach(p => vertex(p.x, p.y));
+        points.forEach(p => vertex(...p));
         endShape(CLOSE);
 
         if (depth < maxDepth) {

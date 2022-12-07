@@ -1,41 +1,24 @@
 'use strict';
 
-class Point {
-
-    constructor() {}
-
-    setX(x) {
-        this.x = x;
-        return this;
-    }
-
-    setY(y) {
-        this.y = y;
-        return this;
-    }
-}
-
-// ==================================================================
-
 function getPointsForPolygon(sides, diameter, rotation) {
     // the polygon center is (0, 0)
     let points = [];
     for (let i = 0; i < sides + 1; i++) {
         let angle = 2 * Math.PI / sides * i + 2 * Math.PI * rotation / 360;
-        points.push(new Point()
-            .setX(Math.sin(angle) * diameter / 2)
-            .setY(Math.cos(angle) * diameter / 2)
-        );
+        points.push([
+            Math.sin(angle) * diameter / 2,
+            Math.cos(angle) * diameter / 2
+        ]);
     }
     return points;
 }
 
 function getRandomPointOnCircle(radius) {
     let angle = random() * 2 * Math.PI;
-    return (new Point()
-        .setX(sin(angle) * radius)
-        .setY(cos(angle) * radius)
-    );
+    return ([
+        sin(angle) * radius,
+        cos(angle) * radius
+    ]);
 }
 
 // ==================================================================
