@@ -28,6 +28,10 @@ function drawSketch() {
                 dim
             } = config;
             let p = [...palette]; // clone
+            let ul = [-dim / 2, -dim / 2];
+            let ur = [dim / 2, -dim / 2];
+            let ll = [-dim / 2, dim / 2];
+            let lr = [dim / 2, dim / 2];
 
             // choose two different random colors
             let c1 = random(p);
@@ -39,16 +43,16 @@ function drawSketch() {
             if (random(100) < ctrl.chanceDiagonal) {
                 // upper left to lower right
                 fill(c1);
-                triangle(-dim / 2, -dim / 2, dim / 2, dim / 2, -dim / 2, dim / 2);
+                triangle(...ul, ...lr, ...ll);
                 fill(c2);
-                triangle(-dim / 2, -dim / 2, dim / 2, dim / 2, dim / 2, -dim / 2);
+                triangle(...ul, ...lr, ...ur);
 
             } else {
                 // upper right to lower left
                 fill(c1);
-                triangle(dim / 2, -dim / 2, -dim / 2, dim / 2, dim / 2, dim / 2);
+                triangle(...ur, ...ll, ...lr);
                 fill(c2);
-                triangle(dim / 2, -dim / 2, -dim / 2, dim / 2, -dim / 2, -dim / 2);
+                triangle(...ur, ...ll, ...ul);
             }
         }
     });
