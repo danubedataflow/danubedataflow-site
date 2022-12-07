@@ -4,12 +4,6 @@ const config = new Config()
     .title('S2022-008')
     .maxIterations(1);
 
-/* This code is based on a piece that Saskia Freeke showed in the video
- * "Code/Art Show with Saskia Freeke"
- * (https://www.youtube.com/watch?v=bepWMux1M44) in January 2021. I have
- * refactored the code and added control elements for various parameters.
- */
-
 // FIXME refactor this using the grid and shape objects in geometry.js
 
 function createImageCheckboxControl() {
