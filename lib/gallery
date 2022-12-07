@@ -9,9 +9,9 @@
 
 [% WRAPPER body %]
     <section class="wide">
-    [% FOR spec IN Tools.make_list(dir).reverse %]
+    [% FOR dir IN Tools.make_list(dir).reverse %]
         <div class="frame">
-            <a href="[% spec.dir %]/index.html"><img src="[% spec.dir %]/thumbnail.png"></a>
+            <a href="[% dir %]/index.html"><img src="[% dir %]/thumbnail.png"></a>
         </div>
     [% END %]
     </section>

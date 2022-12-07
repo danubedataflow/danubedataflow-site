@@ -33,39 +33,9 @@ sub make_list {
       map  { substr($_, length($this_dir) + 1) }
       grep { $_->is_dir && $_->child('sketch.js')->exists }
       path($target_dir)->children;
-    my @spec = $self->dirs_to_exhibit_specs(@wanted);
 
     # sort case-independent
-    return [ sort { uc($a->{name}) cmp uc($b->{name}) } @spec ];
-}
-
-sub dirs_to_exhibit_specs {
-    my ($self, @dirs) = @_;
-    my @spec = map { { dir => $_, name => $_ } } @dirs;
-
-    # For each of those directories, look into the sketch.js file and try to
-    # find a title.
-    for (@spec) {
-        my $js = $self->get_dir->child($_->{dir})->child('sketch.js')->slurp;
-        my ($title, $author);
-        if ($js =~ /\.title\('(.*?)'/)  { $title  = $1 }
-        if ($js =~ /\.author\('(.*?)'/) { $author = $1 }
-        if ($title) {
-            $_->{name} = $title;
-            if ($author) {
-                $_->{name} .= " by $author";
-            }
-        } else {
-
-            # Try to clean up the name a bit: change dashes to spaces; add
-            # spaces around slashes (subdirs).
-            for ($_->{name}) {
-                s!/! / !g;
-                s/\w\K-(?=\w)/ /g;
-            }
-        }
-    }
-    return @spec;
+    return [ sort @wanted ];
 }
 
 sub source_link {

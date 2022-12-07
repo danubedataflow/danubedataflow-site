@@ -62,7 +62,6 @@ class Config {
 
 createAccessors(Config, [
     "title",
-    "author",
     "renderer",
     "maxIterations"
 ]);
@@ -428,10 +427,6 @@ function controlsDidChange() {
 
 function setSketchInformation() {
     document.getElementById('sketchTitle').innerText = config.title();
-    let author = config.author();
-    if (author !== undefined) {
-        document.getElementById('sketchAuthor').innerText = author;
-    }
 }
 
 function getCanvasDimension() {
