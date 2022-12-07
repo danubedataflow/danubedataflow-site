@@ -4,35 +4,17 @@
 %]
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>[% title %]</title>
-        <meta name="author" content="Marcel Gruenauer">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="icon" href="[% prefix %]favicon.ico" type="image/x-icon">
-        <link rel="apple-touch-icon" href="[% prefix %]apple-touch-icon.png">
-        <link href="[% prefix %]css/style.css" rel="stylesheet">
-    </head>
 
-    <body>
-        <header>
-            <h1 class="site-title">Danube Dataflow</h1>
-            <div class="subheading">
-                <a href="[% prefix %]index.html">Sketches</a>
-                | <a href="[% prefix %]techniques/index.html">Techniques</a>
-            </div>
-        </header>
+[% INCLUDE head %]
 
-        <main>
-            <section class="wide">
-            [% FOR spec IN Tools.make_list(dir).reverse %]
-                <div class="frame">
-                    <a href="[% spec.dir %]/index.html"><img src="[% spec.dir %]/thumbnail.png"></a>
-                </div>
-            [% END %]
-            </section>
-        </main>
-    </body>
+[% WRAPPER body %]
+    <section class="wide">
+    [% FOR spec IN Tools.make_list(dir).reverse %]
+        <div class="frame">
+            <a href="[% spec.dir %]/index.html"><img src="[% spec.dir %]/thumbnail.png"></a>
+        </div>
+    [% END %]
+    </section>
+[% END %]
 
 </html>

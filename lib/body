@@ -1,0 +1,14 @@
+<body>
+    <header>
+        <h1 class="site-title">Danube Dataflow</h1>
+        <div class="subheading">
+            <a href="[% prefix %]index.html">Sketches</a>
+            | <a href="[% prefix %]techniques/index.html">Techniques</a>
+            | <a href="[% prefix %]text/index.html">Text</a>
+        </div>
+    </header>
+
+    <main>
+[% content %]
+    </main>
+</body>
