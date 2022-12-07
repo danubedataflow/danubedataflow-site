@@ -11,6 +11,7 @@ makeForm(
 function initSketch() {
     blendMode(BLEND); // so background() actually clears the canvas
     background('black');
+    angleMode(DEGREES);
 }
 
 function drawSketch() {
@@ -19,11 +20,11 @@ function drawSketch() {
     if (currentIteration % 2000 == 1) background('black'); // run on first frame as well
 
     let radius = width * 0.4;
-    let point = getRandomPointOnCircle(radius);
+    let angle = random(360);
 
     let colorScale = chroma.scale(ctrl.colorMap);
     let c = color(colorScale(random()).toString());
     stroke(c);
 
-    line(0, 0, ...point);
+    line(0, 0, sin(angle) * radius, cos(angle) * radius);
 }

@@ -13,8 +13,10 @@ makeForm(
 function initSketch() {
     blendMode(BLEND); // so background() actually clears the canvas
     background('black');
+    angleMode(DEGREES);
     radius = width * 0.4;
-    p = getRandomPointOnCircle(radius);
+    let angle = random(360);
+    p = [ sin(angle) * radius, cos(angle) * radius ];
 }
 
 function drawSketch() {
@@ -26,7 +28,8 @@ function drawSketch() {
     let c = color(colorScale(random()).toString());
     stroke(c);
 
-    let p2 = getRandomPointOnCircle(radius);
+    let angle = random(360);
+    let p2 = [ sin(angle) * radius, cos(angle) * radius ];
     line(...p, ...p2);
     p = p2;
 }

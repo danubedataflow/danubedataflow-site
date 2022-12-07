@@ -13,14 +13,6 @@ function getPointsForPolygon(sides, diameter, rotation) {
     return points;
 }
 
-function getRandomPointOnCircle(radius) {
-    let angle = random() * 2 * Math.PI;
-    return ([
-        sin(angle) * radius,
-        cos(angle) * radius
-    ]);
-}
-
 // ==================================================================
 
 /* See https://math.stackexchange.com/a/4128516
