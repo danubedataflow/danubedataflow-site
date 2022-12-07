@@ -4,9 +4,6 @@
  * outside setup() etc. Kludge.
  */
 let P5C = {
-    P2D: 'p2d',
-    WEBGL: 'webgl',
-
     // blend mode constants
     BLEND: 'source-over',
     REMOVE: 'destination-out',
@@ -56,13 +53,11 @@ function createAccessors(theClass, props) {
 }
 
 class Config {
-    _renderer = P5C.P2D; // hm, P2D is not defined yet?
     _maxIterations = -1;
 }
 
 createAccessors(Config, [
     "title",
-    "renderer",
     "maxIterations"
 ]);
 
@@ -439,10 +434,10 @@ function showCanvasSize(dim) {
     document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
 }
 
-function createSquareCanvas(renderer = P2D) {
+function createSquareCanvas() {
     let dim = getCanvasDimension();
     showCanvasSize(dim);
-    return createCanvas(dim, dim, renderer).parent('sketch');
+    return createCanvas(dim, dim).parent('sketch');
 }
 
 function resizeSquareCanvas() {
@@ -508,7 +503,7 @@ function keyPressed() {
 
 function setup() {
     if (typeof setupSketch == 'function') setupSketch();
-    canvas = createSquareCanvas(config.renderer());
+    canvas = createSquareCanvas();
     canvas.mouseClicked(toggleLooping);
     setSketchInformation();
     setupFinished = true;
