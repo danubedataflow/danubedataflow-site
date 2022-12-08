@@ -19,16 +19,13 @@ function initSketch() {
 
 function drawSketch() {
     blendMode(ctrl.blendMode);
-    p.push({
-        x: random(width),
-        y: random(height)
-    });
+    p.push([ random(width), random(height) ]);
     if (p.length == 3) {
         let colorScale = chroma.scale(ctrl.colorMap);
         let c = color(colorScale(random()).toString());
         c.setAlpha(random(128));
         fill(c);
-        triangle(p[0].x, p[0].y, p[1].x, p[1].y, p[2].x, p[2].y);
+        triangle(...p[0], ...p[1], ...p[2]);
         p.shift();
     }
 }
