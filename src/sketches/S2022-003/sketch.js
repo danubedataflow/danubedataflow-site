@@ -1,7 +1,7 @@
 'use strict';
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -17,4 +17,13 @@ function draw() {
     img.resize(width * pixelDensity(), height * pixelDensity());
     image(img, 0, 0);
     noLoop();
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

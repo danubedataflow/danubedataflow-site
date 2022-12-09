@@ -10,8 +10,10 @@ makeForm(
     ),
 );
 
+let canvas;
+
 function setup() {
-    initCanvas();
+    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -43,4 +45,13 @@ function pairwise(arr, func) {
     for (let i = 0; i < arr.length - 1; i++) {
         func(arr[i], arr[i + 1])
     }
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

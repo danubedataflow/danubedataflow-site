@@ -5,8 +5,10 @@ makeForm(
     makeSlider('lineDensity', 'Line density', 1, 10, 5),
 );
 
+let canvas;
+
 function setup() {
-    initCanvas();
+    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -30,4 +32,13 @@ function draw() {
     imageMode(CORNER);
     image(pg, 0, 0, width, height);
     noLoop();
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

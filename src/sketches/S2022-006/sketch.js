@@ -7,7 +7,7 @@ makeForm(
 );
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -29,4 +29,13 @@ function draw() {
         line(0, 0, sin(angle) * radius, cos(angle) * radius);
     }
     noLoop();
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

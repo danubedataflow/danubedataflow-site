@@ -22,7 +22,6 @@ let P5C = {
 };
 
 let controls = {};
-let canvas;
 
 /* Generate class accessors that can take a value or a function. When the
  * accessor is called as a getter and there is a function, it is evaluated.
@@ -410,10 +409,6 @@ function controlsDidChange() {
     if (typeof redraw == 'function') redraw();
 }
 
-function initCanvas() {
-    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
-}
-
 // also show the canvas size on the web page
 function getCanvasDimension() {
     let headerHeight = 100 * pixelDensity();
@@ -422,16 +417,7 @@ function getCanvasDimension() {
     return [ dim, dim ];
 }
 
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
 function saveCanvasAsPNG() {
     let name = location.href.split('/').slice(-3, -1).join("--");
     saveCanvas(decodeURI(name) + '.png');
-}
-
-function keyPressed() {
-    if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redraw();
 }

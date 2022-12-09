@@ -10,7 +10,7 @@ makeForm(
 );
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -86,4 +86,13 @@ function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
                 tile.contents.push(shape);
             }
         });
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

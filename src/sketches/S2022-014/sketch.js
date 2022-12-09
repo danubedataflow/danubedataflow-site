@@ -14,7 +14,7 @@ makeForm(
 );
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -54,4 +54,13 @@ function angle(n) {
 
 function pointOnCircle(angle, radius) {
     return [sin(angle) * radius, cos(angle) * radius];
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

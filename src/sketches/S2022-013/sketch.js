@@ -16,7 +16,7 @@ const colors = ['#000000', '#ff0000', '#00ff00',
 let palette;
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -54,4 +54,13 @@ function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, d
 
         pop();
     });
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

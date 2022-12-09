@@ -12,7 +12,7 @@ makeForm(
 let palette, c1, c2;
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -74,4 +74,13 @@ function chooseColors() {
     } else {
         console.log('invalid color strategy ' + ctrl.colorStrategy);
     }
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

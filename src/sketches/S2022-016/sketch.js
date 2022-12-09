@@ -11,10 +11,10 @@ makeForm(
     makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
 );
 
-let roughCanvas, palette;
+let canvas, roughCanvas, palette;
 
 function setup() {
-    initCanvas();
+    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -141,4 +141,13 @@ class RoughTriangle extends RoughShape {
             ],
             this.getRoughOptions());
     }
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

@@ -34,7 +34,7 @@ makeForm(
 );
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -58,4 +58,13 @@ function draw() {
         rect(0, y1, width, h);
     }
     noLoop();
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }

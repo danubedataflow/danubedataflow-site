@@ -12,10 +12,10 @@ makeForm(
     makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
 );
 
-let palette
+let palette;
 
 function setup() {
-    initCanvas();
+    createCanvas(...getCanvasDimension()).parent('sketch');
 }
 
 function draw() {
@@ -44,4 +44,13 @@ function drawCircles(depth) {
         if (depth < ctrl.maxDepth) drawCircles(depth + 1);
         pop();
     }
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    if (key == 's') saveCanvasAsPNG();
+    if (key == 'r') redraw();
 }
