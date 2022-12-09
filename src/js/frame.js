@@ -47,47 +47,48 @@ function createAccessors(theClass, props) {
 
 class SliderControl {
 
-    constructor() {}
+    constructor(_id, _element) {
+        this.id = _id;
+        this.element = _element;
+    }
 
     // Only assign the new value if it has changed to avoid excessive
     // repainting.
     getValue() {
-        let value = this.element().get();
+        let value = this.element.get();
 
         // support multiple handles
         if (Array.isArray(value)) {
             return value.map(numStr => parseFloat(numStr))
         } else {
-            return parseFloat(this.element().get());
+            return parseFloat(this.element.get());
         }
     }
 
     setValue(value) {
         let v = parseFloat(value);
         if (isNaN(v)) {
-            console.log(`${this.id()}: value "${value}" is not a number`);
+            console.log(`${this.id}: value "${value}" is not a number`);
         } else {
-            let range = this.element().options.range;
+            let range = this.element.options.range;
             if (v < range.min || v > range.max) {
-                console.log(`${this.id()}: value "${value}" is outside the range [${range.min}, ${range.max}]`);
+                console.log(`${this.id}: value "${value}" is outside the range [${range.min}, ${range.max}]`);
             } else {
-                this.element().set(value);
+                this.element.set(value);
             }
         }
     }
 }
 
-createAccessors(SliderControl, [
-    "element",
-    "id",
-]);
-
 class CheckboxControl {
 
-    constructor() {}
+    constructor(_id, _element) {
+        this.id = _id;
+        this.element = _element;
+    }
 
     getValue() {
-        return this.element().checked;
+        return this.element.checked;
     }
 
     setValue(value) {
@@ -98,42 +99,35 @@ class CheckboxControl {
 
         // validate
         if (typeof value === 'boolean') {
-            this.element().checked = value;
+            this.element.checked = value;
         } else {
-            console.log(`${this.id()}: value "${value}" is not boolean`);
+            console.log(`${this.id}: value "${value}" is not boolean`);
         }
     }
 }
 
-createAccessors(CheckboxControl, [
-    "element",
-    "id",
-]);
-
 class SelectControl {
 
-    constructor() {}
+    constructor(_id, _element) {
+        this.id = _id;
+        this.element = _element;
+    }
 
     getValue() {
-        return this.element().value;
+        return this.element.value;
     }
 
     setValue(value) {
         // The spread syntax (`...`) turns the HTMLOptionsCollection into a
         // standard array.
-        let optionValues = [...this.element().options].map(o => o.value)
+        let optionValues = [...this.element.options].map(o => o.value)
         if (optionValues.includes(value)) {
-            this.element().value = value;
+            this.element.value = value;
         } else {
-            console.log(`${this.id()}: value "${value}" is not a valid option`);
+            console.log(`${this.id}: value "${value}" is not a valid option`);
         }
     }
 }
-
-createAccessors(SelectControl, [
-    "element",
-    "id",
-]);
 
 function elementWithChildren(el, ...contents) {
     contents.forEach(child => el.appendChild(child));
@@ -215,10 +209,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
         valueSpan.innerHTML = values.map(numStr => parseFloat(numStr)).join('-');
         controlsDidChange();
     });
-    controls[id] = new SliderControl()
-        .id(id)
-        .element(slider);
-
+    controls[id] = new SliderControl(id, slider);
     return containerDiv;
 }
 
@@ -236,9 +227,7 @@ function makeCheckbox(id, label, defaultValue = true) {
     checkboxEl.oninput = controlsDidChange;
     containerDiv.appendChild(checkboxEl);
 
-    controls[id] = new CheckboxControl()
-        .id(id)
-        .element(checkboxEl);
+    controls[id] = new CheckboxControl(id, checkboxEl);
     controls[id].setValue(defaultValue);
 
     return containerDiv;
@@ -273,10 +262,7 @@ function makeSelect(id, label, ...contents) {
     selectEl.onchange = controlsDidChange;
     containerDiv.appendChild(selectEl);
 
-    controls[id] = new SelectControl()
-        .id(id)
-        .element(selectEl);
-
+    controls[id] = new SelectControl(id, selectEl);
     return containerDiv;
 }
 
