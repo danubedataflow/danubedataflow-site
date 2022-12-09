@@ -4,8 +4,8 @@ makeForm(
     makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
     makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
     makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
-    makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
-    makeSlider('alpha', 'Alpha', 0, 255, 255),
+    makeSlider('strokeWeight', 'Stroke weight', 1, 20, [10, 12]),
+    makeSlider('alpha', 'Alpha', 0, 255, [200, 255]),
 );
 
 function setup() {
@@ -17,7 +17,6 @@ function draw() {
 
     background('white');
     noFill();
-    strokeWeight(ctrl.strokeWeight);
 
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = width;  // width == height because of square canvas
@@ -25,7 +24,6 @@ function draw() {
     scale(ctrl.scale);
     translate(-dim / 2, -dim / 2);
 
-    stroke(0, ctrl.alpha);
     let tileDim = width / ctrl.numTiles;
 
     for (let i = 0; i <= ctrl.numRects; i++) {
@@ -34,6 +32,8 @@ function draw() {
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
 
+        strokeWeight(randomIntRange(...ctrl.strokeWeight));
+        stroke(0, randomIntRange(...ctrl.alpha));
         rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
     noLoop();
