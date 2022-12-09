@@ -9,6 +9,10 @@ makeForm(
     makeCheckbox('tileBorder', 'Tile border'),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

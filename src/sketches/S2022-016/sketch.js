@@ -13,6 +13,10 @@ makeForm(
 
 let roughCanvas, palette;
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

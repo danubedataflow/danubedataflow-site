@@ -1,5 +1,9 @@
 'use strict';
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     pixelDensity(1);
     readControls();

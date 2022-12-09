@@ -5,6 +5,10 @@ makeForm(
     makeSlider('lineDensity', 'Line density', 1, 10, 5),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

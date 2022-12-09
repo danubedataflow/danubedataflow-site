@@ -8,6 +8,10 @@ makeForm(
     makeSlider('alpha', 'Alpha', 0, 255, 255),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

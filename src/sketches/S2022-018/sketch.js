@@ -8,6 +8,10 @@ makeForm(
     makeSlider('randomDelta', 'Random delta', 1, 20, 5),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

@@ -15,6 +15,10 @@ makeForm(
 
 let theta;
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

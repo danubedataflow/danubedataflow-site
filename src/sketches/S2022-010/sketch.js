@@ -11,6 +11,10 @@ makeForm(
     makeSlider('size', 'Size (%)', 1, 100, [5, 30]),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);

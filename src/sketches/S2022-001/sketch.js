@@ -14,6 +14,10 @@ makeForm(
     makeSlider('margin', 'Margin', 0, 200, 15, 5),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     background('black');

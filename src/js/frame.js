@@ -409,20 +409,21 @@ function controlsDidChange() {
     if (typeof redraw == 'function') redraw();
 }
 
+function initCanvas() {
+    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+}
+
+// also show the canvas size on the web page
 function getCanvasDimension() {
     let headerHeight = 100 * pixelDensity();
     let effectiveHeight = windowHeight - headerHeight;
-    return min(windowWidth, effectiveHeight);
-}
-
-function showCanvasSize(dim) {
+    let dim = min(windowWidth, effectiveHeight);
     document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
+    return [ dim, dim ];
 }
 
 function windowResized() {
-    let dim = getCanvasDimension();
-    showCanvasSize(dim);
-    resizeCanvas(dim, dim);
+    resizeCanvas(...getCanvasDimension());
 }
 
 /**
@@ -461,11 +462,4 @@ function keyPressed() {
         saveCanvas(decodeURI(name) + '.png');
     }
     if (key == 'r') redraw();
-}
-
-function setup() {
-    if (typeof setupSketch == 'function') setupSketch();
-    let dim = getCanvasDimension();
-    showCanvasSize(dim);
-    canvas = createCanvas(dim, dim).parent('sketch');
 }

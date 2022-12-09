@@ -9,6 +9,10 @@ makeForm(
     makeSlider('numCurves', 'Number of curves', 2, 100, 30),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

@@ -13,6 +13,10 @@ makeForm(
     makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     angleMode(DEGREES);

@@ -5,6 +5,10 @@ makeForm(
     makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

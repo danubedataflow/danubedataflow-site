@@ -6,6 +6,10 @@ makeForm(
     makeSlider('numSides', 'Number of sides', 3, 50, 10),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     background("black");

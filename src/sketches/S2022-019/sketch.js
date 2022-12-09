@@ -7,6 +7,10 @@ makeForm(
     makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

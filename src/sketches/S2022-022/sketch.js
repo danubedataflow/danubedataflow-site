@@ -33,6 +33,10 @@ makeForm(
     ),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

@@ -6,6 +6,10 @@ makeForm(
     makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     blendMode(BLEND); // so background() actually clears the canvas

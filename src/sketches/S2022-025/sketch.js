@@ -11,6 +11,10 @@ makeForm(
 
 let palette, c1, c2;
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

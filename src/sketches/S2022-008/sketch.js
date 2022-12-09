@@ -47,11 +47,10 @@ makeForm(
     makeSlider('rotation', 'Maximum rotation', 0, 270, [0, 90], 90),
 );
 
-function setupSketch() {
-    /* Activate a random set of shapes. Only do this the very first time -
-     * not even in init() because that's also called when the canvas is
-     * resized.
-     */
+function setup() {
+    initCanvas();
+
+    // activate a random set of shapes
 
     let activeShapes = myShape.types.filter(i => controls['shape' + i].getValue());
     if (activeShapes.length === 0) {

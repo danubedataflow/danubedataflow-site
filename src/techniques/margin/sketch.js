@@ -5,6 +5,10 @@ makeForm(
     makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     let dim = width;  // square canvas

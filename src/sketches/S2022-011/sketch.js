@@ -9,6 +9,10 @@ makeForm(
     makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     colorMode(HSB, 360, 100, 100, 100);

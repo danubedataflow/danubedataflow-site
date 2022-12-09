@@ -5,6 +5,10 @@ makeForm(
     makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
 );
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
 

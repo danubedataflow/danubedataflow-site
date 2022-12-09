@@ -15,6 +15,10 @@ const colors = ['#000000', '#ff0000', '#00ff00',
 
 let palette;
 
+function setup() {
+    initCanvas();
+}
+
 function draw() {
     readControls();
     palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
