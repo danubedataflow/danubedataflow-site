@@ -398,19 +398,33 @@ function updateURL() {
     window.history.replaceState(null, '', currentURL);
 }
 
+// a sketch can define the init() function to reset parameters
+
 function controlsDidChange() {
     readControls();
     updateURL();
+    redrawSketch();
+}
+
+function redrawSketch() {
 
     /* Form elements should be defined in the global scope so p5.js didn't yet
      * define redraw(). And we don't want to call redraw anyway before the
      * first draw to call() has finished.
      */
-    if (typeof redraw == 'function') redraw();
+
+    if (typeof redraw == 'function') {
+        if (typeof init == 'function') init();
+        redraw();
+    }
 }
 
 function initCanvas() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+    if (typeof init == 'function') {
+        readControls();   // so init() can use the controls
+        init();
+    }
 }
 
 // also show the canvas size on the web page
@@ -433,5 +447,5 @@ function saveCanvasAsPNG() {
 
 function keyPressed() {
     if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redraw();
+    if (key == 'r') redrawSketch();
 }
