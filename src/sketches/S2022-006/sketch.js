@@ -1,11 +1,12 @@
 'use strict';
 
 const config = new Config()
-    .maxIterations(-1);
+    .maxIterations(1);
 
 makeForm(
     makeSelectColorMap(),
     makeSelectBlendMode(),
+    makeSlider('numLines', 'Number of lines', 1, 1500, 500),
 );
 
 function initSketch() {
@@ -16,15 +17,16 @@ function initSketch() {
 
 function drawSketch() {
     blendMode(ctrl.blendMode);
-    translate(width / 2, height / 2);
-    if (currentIteration % 2000 == 1) background('black'); // run on first frame as well
-
-    let radius = width * 0.4;
-    let angle = random(360);
-
     let colorScale = chroma.scale(ctrl.colorMap);
-    let c = color(colorScale(random()).toString());
-    stroke(c);
+    translate(width / 2, height / 2);
 
-    line(0, 0, sin(angle) * radius, cos(angle) * radius);
+    for (let i = 1; i <= ctrl.numLines; i++) {
+        let radius = width * 0.4;
+        let angle = random(360);
+
+        let c = color(colorScale(random()).toString());
+        stroke(c);
+
+        line(0, 0, sin(angle) * radius, cos(angle) * radius);
+    }
 }

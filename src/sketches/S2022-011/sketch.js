@@ -5,7 +5,7 @@
  */
 
 const config = new Config()
-    .maxIterations(-1);
+    .maxIterations(1);
 
 let grid;
 
