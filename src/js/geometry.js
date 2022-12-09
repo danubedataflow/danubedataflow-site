@@ -203,37 +203,12 @@ class Circle extends Shape {
     }
 }
 
-class Arc extends Shape {
-    _startAngle = 0;
-    _endAngle = 90;
-
-    drawShape(w, h) {
-        arc(-w / 2, -h / 2, w * 2, h * 2, this.startAngle(), this.endAngle());
-    }
-}
-createAccessors(Arc, ["startAngle", "endAngle"]);
-
 class Triangle extends Shape {
     drawShape(w, h) {
         triangle(-w / 2, -h / 2, w / 2, -h / 2, 0, h / 2);
     }
 }
 
-class Arrow extends Shape {
-    drawShape(w, h) {
-        beginShape();
-        // upper part
-        let vertices = new Vertices([
-            [-w / 2, -h / 4],
-            [0, -h / 4],
-            [0, -h / 2],
-        ]).draw();
-        vertex(w / 2, 0);
-        vertices.reversed().mirroredVertically().draw();
-
-        endShape(CLOSE);
-    }
-}
 class Cross extends Shape {
     drawShape(w, h) {
         /* FIXME: use height as well */

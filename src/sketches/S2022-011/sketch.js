@@ -62,29 +62,22 @@ function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
                 // background rectangle for each tile
                 tile.contents.push(
                     new Rectangle()
-                    .fillColor(color(random(255), random(255), random(255), 30))
+                    .fillColor(color(random(255), random(100)))
                     .strokeWeight(1)
                 );
 
                 let maker = random([
-                    _ => new Arc().endAngle((obj) => {
-                            return 50 + 40 *
-                                noise(obj.config.noiseOffset + currentIteration / 100);
-                        }),
                     _ => new Triangle(),
                     _ => new Circle(),
-                    _ => new Arrow(),
                     _ => new Cross(),
                     _ => new Rectangle(),
                 ]);
                 let shape = maker()
-                    .fillColor(color(random(255), random(255), random(255), 40 + random(60)))
+                    .fillColor(color(random(255), 100 + random(155)))
                     .rotation(90 * int(random(4)))
                     .flipHorizontally(random() > 0.5 ? true : false)
                     .flipVertically(random() > 0.5 ? true : false)
-                    .sizeFactor((obj) => {
-                        return 0.3 + 0.7 * noise(obj.config.noiseOffset + currentIteration / 100);
-                    })
+                    .sizeFactor((30 + random(70)) / 100)
                     .strokeWeight(1);
                 /* Using this noise offset each shape starts the perlin noise
                  * at a different point so all shapes can animate their
