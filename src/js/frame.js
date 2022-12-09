@@ -426,40 +426,12 @@ function windowResized() {
     resizeCanvas(...getCanvasDimension());
 }
 
-/**
- * Returns neatly formated timestamp e.g. "151025_172441_790".
- * From the book "Generative Design".
- *
- * @method timestamp
- * @return {String} formated timestamp
- */
-function timestamp() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var second = date.getSeconds();
-    var millis = date.getMilliseconds();
-
-    year = year.toString().substr(2);
-    month = ("00" + month).substr(-2, 2);
-    day = ("00" + day).substr(-2, 2);
-    minute = ("00" + minute).substr(-2, 2);
-    second = ("00" + second).substr(-2, 2);
-
-    return [year, month, day, "_", hour, minute, second, "_", millis].join('');
-};
-
 function saveCanvasAsPNG() {
-    saveCanvas(timestamp(), 'png');
+    let name = location.href.split('/').slice(-3, -1).join("--");
+    saveCanvas(decodeURI(name) + '.png');
 }
 
 function keyPressed() {
-    if (key == 's') {
-        let name = location.href.split('/').slice(-3, -1).join("--");
-        saveCanvas(decodeURI(name) + '.png');
-    }
+    if (key == 's') saveCanvasAsPNG();
     if (key == 'r') redraw();
 }
