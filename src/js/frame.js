@@ -22,11 +22,7 @@ let P5C = {
 };
 
 let controls = {};
-
-/* makeSlider() triggers controlsDidChange(), which eventually calls
- * initSketch(); this variable avoids running initSketch() before its time.
- */
-let setupFinished = false;
+let canvas;
 
 /* Generate class accessors that can take a value or a function. When the
  * accessor is called as a getter and there is a function, it is evaluated.
@@ -403,10 +399,14 @@ function updateURL() {
 }
 
 function controlsDidChange() {
-    if (!setupFinished) return;
     readControls();
     updateURL();
-    redraw();
+
+    /* Form elements should be defined in the global scope so p5.js didn't yet
+     * define redraw(). And we don't want to call redraw anyway before the
+     * first draw to call() has finished.
+     */
+    if (typeof redraw == 'function') redraw();
 }
 
 function getCanvasDimension() {
@@ -419,21 +419,10 @@ function showCanvasSize(dim) {
     document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
 }
 
-function createSquareCanvas() {
-    let dim = getCanvasDimension();
-    showCanvasSize(dim);
-    return createCanvas(dim, dim).parent('sketch');
-}
-
-function resizeSquareCanvas() {
-    let dim = getCanvasDimension();
-    showCanvasSize(dim);
-    resizeCanvas(dim, dim, true); // don't call redraw() immediately
-}
-
 function windowResized() {
-    resizeSquareCanvas();
-    redraw();
+    let dim = getCanvasDimension();
+    showCanvasSize(dim);
+    resizeCanvas(dim, dim);
 }
 
 /**
@@ -476,8 +465,7 @@ function keyPressed() {
 
 function setup() {
     if (typeof setupSketch == 'function') setupSketch();
-    createSquareCanvas();
-    setupFinished = true;
-    readControls(); // so initSketch() can use them
-    if (typeof initSketch == 'function') initSketch();
+    let dim = getCanvasDimension();
+    showCanvasSize(dim);
+    canvas = createCanvas(dim, dim).parent('sketch');
 }

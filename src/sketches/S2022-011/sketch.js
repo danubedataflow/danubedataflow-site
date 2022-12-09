@@ -4,24 +4,20 @@
  * and/or shape color's alpha to 0.
  */
 
-let grid;
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 2, 10, 4),
     makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
     colorMode(HSB, 360, 100, 100, 100);
     angleMode(DEGREES);
     rectMode(CENTER);
     noStroke();
 
-    grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
-}
+    let grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
 
-function draw() {
-    readControls();
     /* Draw tiles in random order so if sizeFactor > 1 they overlap each other
      * randomly. If we just used `grid.draw()`, the tiles would be drawn from
      * the top left corner to the bottom right corner.

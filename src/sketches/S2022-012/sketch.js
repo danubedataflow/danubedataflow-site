@@ -1,20 +1,16 @@
 'use strict';
 
-let palette;
-
 makeForm(
     makeSelectColorMap(),
     makeSlider('numColors', 'Number of colors', 2, 32, 16),
     makeSlider('numSides', 'Number of sides', 3, 50, 10),
 );
 
-function initSketch() {
-    background("black");
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-}
-
 function draw() {
     readControls();
+    background("black");
+    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+
     translate(width / 2, height / 2);
 
     let points = getPointsForPolygon(ctrl.numSides, width * 0.9, 0);

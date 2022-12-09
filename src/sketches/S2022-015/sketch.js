@@ -10,17 +10,12 @@ makeForm(
     ),
 );
 
-let roughCanvas, palette;
-
-function initSketch() {
-    if (roughCanvas === undefined) {
-        roughCanvas = rough.canvas(canvas.elt);
-    }
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-}
-
 function draw() {
     readControls();
+
+    let roughCanvas = rough.canvas(canvas.elt);
+    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+
     background('white');
     noFill();
     translate(width / 2, height / 2);

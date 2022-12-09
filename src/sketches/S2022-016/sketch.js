@@ -4,8 +4,6 @@
  * and/or shape color's alpha to 0.
  */
 
-let roughCanvas, grid, palette;
-
 makeForm(
     makeSelectColorMap(),
     makeSlider('numColors', 'Number of colors', 1, 12, 6),
@@ -13,21 +11,19 @@ makeForm(
     makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
 );
 
-function initSketch() {
-    if (roughCanvas === undefined) {
-        roughCanvas = rough.canvas(canvas.elt);
-    }
+let roughCanvas, palette;
 
+function draw() {
+    readControls();
+
+    roughCanvas = rough.canvas(canvas.elt);
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     angleMode(DEGREES);
     rectMode(CENTER);
 
-    grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
-}
+    let grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
 
-function draw() {
-    readControls();
     /* Draw tiles in random order so if sizeFactor > 1 they overlap each other
      * randomly. If we just used `grid.draw()`, the tiles would be drawn from
      * the top left corner to the bottom right corner.

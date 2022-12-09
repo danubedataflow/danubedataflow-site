@@ -13,17 +13,13 @@ makeForm(
     makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
 );
 
-let palette;
-
-function initSketch() {
+function draw() {
+    readControls();
     angleMode(DEGREES);
     fill('white');
     strokeWeight(1);
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
-}
+    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 
-function draw() {
-    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('#cccccc');
 

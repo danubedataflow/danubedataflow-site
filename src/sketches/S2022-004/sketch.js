@@ -6,14 +6,11 @@ makeForm(
     makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     noStroke();
-}
-
-function draw() {
-    readControls();
     blendMode(ctrl.blendMode);
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration

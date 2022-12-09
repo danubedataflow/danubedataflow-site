@@ -15,14 +15,12 @@ const colors = ['#000000', '#ff0000', '#00ff00',
 
 let palette;
 
-function initSketch() {
+function draw() {
+    readControls();
     palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
     strokeWeight(1);
     stroke('black');
-}
 
-function draw() {
-    readControls();
     translate(width / 2, height / 2);
     background('white');
 

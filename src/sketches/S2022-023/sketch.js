@@ -5,16 +5,13 @@ makeForm(
     makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
 );
 
-let palette;
-
-function initSketch() {
-    background('#777777');
-    palette = ['white', '#aaaaaa', 'black'];
-    noStroke();
-}
-
 function draw() {
     readControls();
+
+    background('#777777');
+    let palette = ['white', '#aaaaaa', 'black'];
+    noStroke();
+
     let tileDim = width / ctrl.numTiles; // square canvas
 
     for (let i = 0; i <= ctrl.numRects; i++) {

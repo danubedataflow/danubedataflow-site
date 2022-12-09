@@ -8,23 +8,20 @@ makeForm(
     makeSlider('randomDelta', 'Random delta', 1, 20, 5),
 );
 
-let x1, y1, x2, y2, x1d, y1d, x2d, y2d;
-
-function initSketch() {
-    x1 = int(random(width / 2));
-    y1 = int(random(height / 2));
-    x2 = int(random(width / 2)) + width / 2;
-    y2 = int(random(height / 2)) + height / 2;
-    x1d = rnd(6);
-    y1d = rnd(5);
-    x2d = rnd(2);
-    y2d = rnd(7);
-    stroke("white");
-    background("black");
-}
-
 function draw() {
     readControls();
+
+    let x1 = int(random(width / 2));
+    let y1 = int(random(height / 2));
+    let x2 = int(random(width / 2)) + width / 2;
+    let y2 = int(random(height / 2)) + height / 2;
+    let x1d = rnd(6);
+    let y1d = rnd(5);
+    let x2d = rnd(2);
+    let y2d = rnd(7);
+    stroke("white");
+    background("black");
+
     for (let i = 1; i <= ctrl.numLines; i++) {
         line(x1, y1, x2, y2);
         if (x1 > width) x1d = -rnd(2);

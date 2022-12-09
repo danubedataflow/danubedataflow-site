@@ -33,15 +33,14 @@ makeForm(
     ),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
+
     background('white');
     noStroke();
     fill('black');
     rectMode(CORNER);
-}
 
-function draw() {
-    readControls();
     for (let i = 0; i <= ctrl.horizontalBars; i++) {
         let x1 = int(random(width));
         let w = int(random(...ctrl.size.map(x => x * width / 100)));

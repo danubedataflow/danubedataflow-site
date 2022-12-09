@@ -20,17 +20,16 @@ makeForm(
     ),
 );
 
-function initSketch() {
-    background('white');
+function draw() {
+    readControls();
+
     strokeWeight(1);
     stroke('black');
     noFill();
     rectMode(CENTER);
     angleMode(DEGREES);
-}
 
-function draw() {
-    readControls();
+    background('white');
     simpleGrid({
         numTiles: ctrl.numTiles,
         margin: width / 10,

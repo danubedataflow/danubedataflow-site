@@ -9,10 +9,10 @@ makeForm(
     makeSlider('numCurves', 'Number of curves', 2, 100, 30),
 );
 
-let curves;
+function draw() {
+    readControls();
 
-function initSketch() {
-    curves = [];
+    let curves = [];
 
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
     for (let i = 0; i < ctrl.numCurves; i++) {
@@ -22,10 +22,7 @@ function initSketch() {
     drawingContext.fillStyle = color(0);
     drawingContext.lineWidth = 1;
     drawingContext.strokeStyle = color(100);
-}
 
-function draw() {
-    readControls();
     background("white");
 
     let path = new Path2D();

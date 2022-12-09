@@ -5,11 +5,11 @@ makeForm(
     makeSlider('lineDensity', 'Line density', 1, 10, 5),
 );
 
-let pg;
+function draw() {
+    readControls();
 
-function initSketch() {
     let pgDim = width / ctrl.resolutionFactor;
-    pg = createGraphics(pgDim, pgDim);
+    let pg = createGraphics(pgDim, pgDim);
     // frameRate(24);
 
     canvas.imageSmoothingEnabled = false;
@@ -17,11 +17,8 @@ function initSketch() {
     pg.strokeWeight(1);
     pg.stroke(0, 255, 0);
     pg.pixelDensity(1);
-}
-
-function draw() {
-    readControls();
     pg.background('black');
+
     for (let y = 0; y <= 2 * pg.height; y += pg.height / ctrl.lineDensity) {
         pg.line(0, 0, pg.width, y);
         pg.line(pg.width, 0, 0, y);

@@ -5,15 +5,14 @@ makeForm(
     makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
+
     background('white');
     noStroke();
     fill('black');
     rectMode(CENTER);
-}
 
-function draw() {
-    readControls();
     simpleGrid({
         numTiles: ctrl.numTiles,
         margin: width / 10,

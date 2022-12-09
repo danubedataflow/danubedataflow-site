@@ -11,8 +11,8 @@ while (my $next = $iter->()) {
         my $js = $next->slurp;
         ok $js =~ /^'use strict';\n/, "starts with 'use strict'";
 
-        # Avoid `let foo = ...` in the global scope; assign in initSketch(). Or
-        # use `const`.
+        # Avoid `let foo = ...` in the global scope; assign in draw(), or use
+        # `const`.
         ok $js !~ /^let \w+\s*=/m,
           'does not assign variable values in the global scope';
         ok $js !~ /^function draw\(\) \{/, 'defines function draw()';

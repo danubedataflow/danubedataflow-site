@@ -1,10 +1,7 @@
 'use strict';
 
-function initSketch() {
-    pixelDensity(1);
-}
-
 function draw() {
+    pixelDensity(1);
     readControls();
     let img = createImage(width, height);
     for (let x = 0; x < img.width; x++) {

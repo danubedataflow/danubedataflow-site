@@ -60,14 +60,11 @@ function setupSketch() {
     }
 }
 
-function initSketch() {
+function draw() {
+    readControls();
     rectMode(CENTER);
     strokeCap(ROUND);
     strokeJoin(ROUND);
-}
-
-function draw() {
-    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);

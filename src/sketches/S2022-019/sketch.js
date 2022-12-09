@@ -7,15 +7,14 @@ makeForm(
     makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
+
     stroke(0, ctrl.alpha);
     strokeWeight(1);
     noFill();
     rectMode(CENTER);
-}
 
-function draw() {
-    readControls();
     background(255);
     translate(width / 2, height / 2);
     for (let i = 0; i < 360; i += ctrl.angleStep) {

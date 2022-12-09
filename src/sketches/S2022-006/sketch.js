@@ -6,14 +6,11 @@ makeForm(
     makeSlider('numLines', 'Number of lines', 1, 1500, 500),
 );
 
-function initSketch() {
+function draw() {
+    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('black');
     angleMode(DEGREES);
-}
-
-function draw() {
-    readControls();
     blendMode(ctrl.blendMode);
     let colorScale = chroma.scale(ctrl.colorMap);
     translate(width / 2, height / 2);

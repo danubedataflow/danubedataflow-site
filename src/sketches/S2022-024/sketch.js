@@ -8,16 +8,13 @@ makeForm(
     makeSlider('alpha', 'Alpha', 0, 255, 255),
 );
 
-let palette;
+function draw() {
+    readControls();
 
-function initSketch() {
     background('white');
     noFill();
     strokeWeight(ctrl.strokeWeight);
-}
 
-function draw() {
-    readControls();
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = width;  // width == height because of square canvas
     translate(dim / 2, dim / 2);

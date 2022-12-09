@@ -11,14 +11,13 @@ makeForm(
 
 let palette, c1, c2;
 
-function initSketch() {
+function draw() {
+    readControls();
+
     noStroke();
     rectMode(CENTER);
     palette = ['white', '#777777', 'black'];
-}
 
-function draw() {
-    readControls();
     simpleGrid({
         numTiles: ctrl.numTiles,
         margin: width / 10,

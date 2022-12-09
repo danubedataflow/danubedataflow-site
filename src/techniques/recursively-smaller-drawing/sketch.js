@@ -13,17 +13,16 @@ makeForm(
     makeSlider('speed', 'Speed', 0.1, 2, 0.8, 0.05),
 );
 
-let palette, theta;
-
-function initSketch() {
-    theta = 0;
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1).shuffle();
-    angleMode(DEGREES);
-    noStroke();
-}
+let theta;
 
 function draw() {
     readControls();
+
+    theta = 0;
+    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1).shuffle();
+    angleMode(DEGREES);
+    noStroke();
+
     background('#cccccc');
     translate(width / 2, height / 2);
     scale(width * 0.45);
