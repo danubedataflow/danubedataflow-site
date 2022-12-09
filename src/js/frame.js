@@ -403,20 +403,13 @@ function updateURL() {
 function controlsDidChange() {
     readControls();
     updateURL();
-    redrawSketch();
-}
-
-function redrawSketch() {
 
     /* Form elements should be defined in the global scope so p5.js didn't yet
      * define redraw(). And we don't want to call redraw anyway before the
      * first draw to call() has finished.
      */
 
-    if (typeof redraw == 'function') {
-        if (typeof init == 'function') init();
-        redraw();
-    }
+    if (typeof redraw == 'function') redraw();
 }
 
 function initCanvas() {
@@ -446,5 +439,5 @@ function saveCanvasAsPNG() {
 
 function keyPressed() {
     if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redrawSketch();
+    if (key == 'r') redraw();
 }

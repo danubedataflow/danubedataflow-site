@@ -10,23 +10,21 @@ makeForm(
     makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
     makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
     makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
-    makeSlider('speed', 'Speed', 0.1, 2, 0.8, 0.05),
 );
 
-let palette, theta;
+let palette
 
 function setup() {
     initCanvas();
 }
 
 function init() {
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1).shuffle();
-    theta = 0;
 }
 
 function draw() {
     readControls();
 
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1);
     angleMode(DEGREES);
     noStroke();
 
@@ -34,7 +32,7 @@ function draw() {
     translate(width / 2, height / 2);
     scale(width * 0.45);
     drawCircles(0);
-    theta += ctrl.speed;
+    noLoop();
 }
 
 function drawCircles(depth) {
@@ -43,7 +41,7 @@ function drawCircles(depth) {
 
     for (let i = 0; i < ctrl.numCircles; i++) {
         push();
-        rotate(theta + (i * 360) / ctrl.numCircles);
+        rotate((i * 360) / ctrl.numCircles);
         translate(0, ctrl.translation);
         scale(ctrl.scaleFactor);
         if (depth < ctrl.maxDepth) drawCircles(depth + 1);
