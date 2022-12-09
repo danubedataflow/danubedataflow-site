@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use v5.10;
+use Path::Tiny;
+my $n = shift // 10;
+my @s =
+  map { substr($_, 0, 3) }
+  path("$ENV{HOME}/Downloads/eff_short_wordlist_2_0.txt")
+  ->lines({ chomp => 1 });
+for (1..$n) {
+    say join '.', map { $s[rand @s] } 1..3;
+}
+
+__END__
+
+The "eff_short_wordlist_2_0" contains 1296 words whose first three letters are
+unique. This program reads the word list and extracts the first three letters.
+It then generates a name by choosing three random words and concatenating them
+with a dot.
+
+These random names are better than numbering the sketches because if you delete
+a sketch you won't get obvious gaps in the numbering.
+
