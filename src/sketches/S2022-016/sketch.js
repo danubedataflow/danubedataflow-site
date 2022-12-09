@@ -5,7 +5,6 @@
  */
 
 const config = new Config()
-    .title('S2022-016')
     .maxIterations(1);
 
 let roughCanvas, grid, palette;

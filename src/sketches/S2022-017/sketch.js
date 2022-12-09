@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('S2022-017')
     .maxIterations(1);
 
 /* Shows 'evenodd' filling of CanvasRenderingContext2D.fill()

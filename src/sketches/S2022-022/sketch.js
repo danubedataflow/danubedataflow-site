@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('S2022-022')
     .maxIterations(1);
 
 function makeSelectColor() {

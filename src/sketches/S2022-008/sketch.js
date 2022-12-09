@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('S2022-008')
     .maxIterations(1);
 
 // FIXME refactor this using the grid and shape objects in geometry.js

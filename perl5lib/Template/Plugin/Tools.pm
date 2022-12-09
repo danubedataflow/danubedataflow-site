@@ -15,6 +15,12 @@ sub get_dir {
     return path('src/' . $self->{name})->parent;
 }
 
+# the sketch title is the final directory name
+sub get_sketch_title {
+    my $self = shift;
+    return $self->get_dir =~ s!.*/!!r;
+}
+
 sub get_up_path {
     my $self = shift;
     return '../' x length($self->{name} =~ s![^/]!!gr);

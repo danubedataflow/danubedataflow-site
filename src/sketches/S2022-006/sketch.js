@@ -1,7 +1,6 @@
 'use strict';
 
-const config = new Config()
-    .title('S2022-006');
+const config = new Config();
 
 makeForm(
     makeSelectColorMap(),

@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('Margin')
     .maxIterations(1);
 
 makeForm(

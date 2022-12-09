@@ -1,7 +1,6 @@
 'use strict';
 
-const config = new Config()
-    .title('S2022-002');
+const config = new Config();
 
 makeForm(
     makeSlider('xyMultiplier', 'X/Y multiplier', 1, 300, 150),

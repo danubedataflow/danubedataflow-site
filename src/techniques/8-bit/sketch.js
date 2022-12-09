@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('8-bit')
     .maxIterations(1);
 
 makeForm(

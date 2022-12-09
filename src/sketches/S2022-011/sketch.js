@@ -4,8 +4,7 @@
  * and/or shape color's alpha to 0.
  */
 
-const config = new Config()
-    .title('S2022-011');
+const config = new Config();
 
 let grid;
 

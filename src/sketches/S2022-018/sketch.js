@@ -3,8 +3,7 @@
 // based on Jon Stanley's program "lines" for the Tektronix 4052
 // https://www.electronixandmore.com/resources/teksystem/
 
-const config = new Config()
-    .title('S2022-018');
+const config = new Config();
 
 makeForm(
     makeSlider('numIterations', 'Number of iterations', 100, 2000, 500),

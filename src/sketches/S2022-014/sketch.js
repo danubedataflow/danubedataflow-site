@@ -6,7 +6,6 @@
  */
 
 const config = new Config()
-    .title('S2022-014')
     .maxIterations(1);
 
 makeForm(

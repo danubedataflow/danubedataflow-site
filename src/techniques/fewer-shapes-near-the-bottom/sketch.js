@@ -1,7 +1,6 @@
 'use strict';
 
 const config = new Config()
-    .title('Fewer shapes near the bottom')
     .maxIterations(1);
 
 makeForm(

@@ -57,7 +57,6 @@ class Config {
 }
 
 createAccessors(Config, [
-    "title",
     "maxIterations"
 ]);
 
@@ -420,10 +419,6 @@ function controlsDidChange() {
     restart();
 }
 
-function setSketchInformation() {
-    document.getElementById('sketchTitle').innerText = config.title();
-}
-
 function getCanvasDimension() {
     let headerHeight = 100 * pixelDensity();
     let effectiveHeight = windowHeight - headerHeight;
@@ -505,7 +500,6 @@ function setup() {
     if (typeof setupSketch == 'function') setupSketch();
     canvas = createSquareCanvas();
     canvas.mouseClicked(toggleLooping);
-    setSketchInformation();
     setupFinished = true;
     readControls();    // so initSketch() can use them
     if (typeof initSketch == 'function') initSketch();

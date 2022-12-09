@@ -3,7 +3,6 @@
 // polygons at points of polygons at points of polygons etc.
 
 const config = new Config()
-    .title('S2022-013')
     .maxIterations(1);
 
 makeForm(

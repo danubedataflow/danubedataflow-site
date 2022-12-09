@@ -21,7 +21,7 @@
 
         <div id="controls">
             <p>
-                <span id="sketchTitle"></span> |
+                <span id="sketchTitle">[% Tools.get_sketch_title %]</span> |
                 <span id="canvasSize"></span> |
                 <span id="source-code"><a href="[% Tools.source_link %]">Code</a></span>
 

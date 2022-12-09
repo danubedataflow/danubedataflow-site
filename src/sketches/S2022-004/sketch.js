@@ -1,7 +1,6 @@
 'use strict';
 
-const config = new Config()
-    .title('S2022-004');
+const config = new Config();
 
 let p;
 

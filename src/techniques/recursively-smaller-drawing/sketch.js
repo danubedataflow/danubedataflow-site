@@ -1,23 +1,10 @@
 'use strict';
 
 /* from the book "Processing for Visual Artists"
- * https://github.com/codigo42/processing-glassner
- * Ch10-recursion/sketches/spinners7/spinners7.pde
- *
- * Key idea:
- *
- * function drawSomething() {
- *     push();
- *     scale(0.4);
- *     drawSomething();
- *     pop();
- * }
- *
- * so each recursion draws on a smaller scale than the previous level.
+ * https://github.com/codigo42/processing-glassner/Ch10-recursion/sketches/spinners7/spinners7.pde
  */
 
-const config = new Config()
-    .title('Recursively smaller drawing');
+const config = new Config();
 
 makeForm(
     makeSelectColorMap(),
