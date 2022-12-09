@@ -430,8 +430,7 @@ function initCanvas() {
 // also show the canvas size on the web page
 function getCanvasDimension() {
     let headerHeight = 100 * pixelDensity();
-    let effectiveHeight = windowHeight - headerHeight;
-    let dim = min(windowWidth, effectiveHeight);
+    let dim = min(windowWidth, windowHeight - headerHeight);
     document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
     return [ dim, dim ];
 }
