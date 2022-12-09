@@ -12,7 +12,6 @@
     <script src="[% prefix %]js/frame.js"></script>
     <script src="[% prefix %]js/controls.js"></script>
     <script src="[% prefix %]js/math.js"></script>
-    <!-- geometry.js depends on frame.js -->
     <script src="[% prefix %]js/geometry.js"></script>
 [% END %]
 
