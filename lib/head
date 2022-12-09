@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>[% title %]</title>
+    <title>[% Tools.get_sketch_title %]</title>
     <meta name="author" content="Marcel Gruenauer">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
