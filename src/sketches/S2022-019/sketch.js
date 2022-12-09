@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('xFactor', 'Horizontal factor', 1, 5, 2.5, 0.1),
     makeSlider('alpha', 'Alpha', 1, 255, 70),
@@ -33,4 +30,5 @@ function drawSketch() {
         let dim = random(...ctrl.squareSize);
         rect(x, y, dim, dim);
     }
+    noLoop();
 }

@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSelectColorMap(),
     makeSelectBlendMode(),
@@ -29,4 +26,5 @@ function drawSketch() {
 
         line(0, 0, sin(angle) * radius, cos(angle) * radius);
     }
+    noLoop();
 }

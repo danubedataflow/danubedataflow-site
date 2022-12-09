@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
     makeFieldset('Rotation',
@@ -49,4 +46,5 @@ function drawSketch() {
             rect(0, 0, dim, dim);
         }
     });
+    noLoop();
 }

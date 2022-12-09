@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 let radius, p;
 
 makeForm(
@@ -34,4 +31,5 @@ function drawSketch() {
         line(...p, ...p2);
         p = p2;
     }
+    noLoop();
 }

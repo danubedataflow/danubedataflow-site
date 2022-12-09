@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeFieldset('Tiles',
         makeSlider('tileCountX', 'Horizontal tiles', 1, 100, 30),
@@ -48,4 +45,5 @@ function drawSketch() {
             pop();
         }
     }
+    noLoop();
 }

@@ -5,9 +5,6 @@
  * https://www.youtube.com/watch?v=qhbuKbxJsk8
  */
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSelectColorMap(),
     makeSelectBlendMode(),
@@ -47,6 +44,7 @@ function drawSketch() {
         );
     }
     pop();
+    noLoop();
 }
 
 function angle(n) {

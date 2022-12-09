@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 /* Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
  * See https://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
  * Also see https://openprocessing.org/sketch/1626688 ("0576_2" by kusakari)
@@ -36,6 +33,7 @@ function drawSketch() {
     });
     path.closePath();
     drawingContext.fill(path, "evenodd");
+    noLoop();
 }
 
 function randomPoint() {

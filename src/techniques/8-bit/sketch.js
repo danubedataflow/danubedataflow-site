@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('resolutionFactor', 'Resolution factor', 1, 16, 8),
     makeSlider('lineDensity', 'Line density', 1, 10, 5),
@@ -30,4 +27,5 @@ function drawSketch() {
     }
     imageMode(CORNER);
     image(pg, 0, 0, width, height);
+    noLoop();
 }

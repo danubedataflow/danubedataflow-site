@@ -10,20 +10,16 @@ while (my $next = $iter->()) {
     subtest $next, sub {
         my $js = $next->slurp;
         ok $js =~ /^'use strict';\n/,                "starts with 'use strict'";
-        ok $js =~ /^const config = new Config\(\)/m, 'defines a config object';
 
         # Avoid `let foo = ...` in the global scope; assign in initSketch(). Or
         # use `const`.
         ok $js !~ /^let \w+\s*=/m,
           'does not assign variable values in the global scope';
-        ok $js =~ /^\s*\.title\('.*?'\)/m, 'sets a title';
         ok $js !~ /^function drawSketch\(\) \{/, 'defines function drawSketch()';
         ok $js !~ /\bframeCount\b/,              'does not use frameCount';
 
         # check for forbidden function calls
         my @forbidden_calls = qw(
-          noLoop
-          loop
           loadImage
           loadFont
           createWriter);

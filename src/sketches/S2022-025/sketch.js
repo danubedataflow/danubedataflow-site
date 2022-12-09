@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
     makeSlider('chanceDiagonal', 'Chance for orientation of the diagonal (%)', 0, 100, 50),
@@ -52,6 +49,7 @@ function drawSketch() {
             c1 = c2;
         }
     });
+    noLoop();
 }
 
 function chooseColors() {

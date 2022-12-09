@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
     makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
@@ -33,4 +30,5 @@ function drawSketch() {
             if (random() > pow(yPercent, ctrl.exponent)) rect(0, 0, dim, dim);
         }
     });
+    noLoop();
 }

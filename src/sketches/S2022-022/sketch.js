@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 function makeSelectColor() {
     let containerDiv = makeSelect(
         'color',
@@ -56,4 +53,5 @@ function drawSketch() {
         fill(controlColorWithAlpha());
         rect(0, y1, width, h);
     }
+    noLoop();
 }

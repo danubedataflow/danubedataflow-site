@@ -4,9 +4,6 @@
  * https://github.com/codigo42/processing-glassner/Ch10-recursion/sketches/spinners7/spinners7.pde
  */
 
-const config = new Config()
-    .maxIterations(-1);
-
 makeForm(
     makeSelectColorMap(),
     makeSlider('numCircles', 'Number of circles', 2, 8, 3),

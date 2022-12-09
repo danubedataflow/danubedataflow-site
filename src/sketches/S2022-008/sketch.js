@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 // FIXME refactor this using the grid and shape objects in geometry.js
 
 function createImageCheckboxControl() {
@@ -92,6 +89,7 @@ function drawSketch() {
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
     }
+    noLoop();
 }
 
 // function keyPressed() {

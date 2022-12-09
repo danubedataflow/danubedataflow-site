@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 let palette;
 
 makeForm(
@@ -31,4 +28,5 @@ function drawSketch() {
             line(...p, ...p2);
         });
     });
+    noLoop();
 }

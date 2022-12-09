@@ -23,7 +23,6 @@ let P5C = {
 
 let canvas;
 let controls = {};
-let currentIteration = 0;
 
 /* makeSlider() triggers controlsDidChange(), which eventually calls
  * initSketch(); this variable avoids running initSketch() before its time.
@@ -51,14 +50,6 @@ function createAccessors(theClass, props) {
         };
     });
 }
-
-class Config {
-    _maxIterations = -1;
-}
-
-createAccessors(Config, [
-    "maxIterations"
-]);
 
 class SliderControl {
 
@@ -416,7 +407,7 @@ function controlsDidChange() {
     if (!setupFinished) return;
     readControls();
     updateURL();
-    restart();
+    redraw();
 }
 
 function getCanvasDimension() {
@@ -443,18 +434,7 @@ function resizeSquareCanvas() {
 
 function windowResized() {
     resizeSquareCanvas();
-    restart();
-}
-
-function restart() {
-    if (typeof initSketch == 'function') initSketch();
-    currentIteration = 0;
-    loop(); // also calls draw()
-}
-
-function toggleLooping() {
-    if (didFinishDrawing()) return;
-    (isLooping()) ? noLoop(): loop();
+    redraw();
 }
 
 /**
@@ -492,52 +472,18 @@ function keyPressed() {
         let name = location.href.split('/').slice(-3, -1).join("--");
         saveCanvas(decodeURI(name) + '.png');
     }
-    if (key == 'r') restart();
-    if (key == 'l') toggleLooping();
+    if (key == 'r') redraw();
 }
 
 function setup() {
     if (typeof setupSketch == 'function') setupSketch();
     canvas = createSquareCanvas();
-    canvas.mouseClicked(toggleLooping);
     setupFinished = true;
-    readControls();    // so initSketch() can use them
+    readControls(); // so initSketch() can use them
     if (typeof initSketch == 'function') initSketch();
 }
 
 function draw() {
-    if (didFinishDrawing()) return;
     readControls();
     drawSketch(); // the user has to define this function
-}
-
-/* Code to control how many iterations (frames) we want to draw. The difference
- * to frameCount is that when the drawing is restarted, currentIterations is
- * reset but frameCount is not.
- *
- * `draw()` should first call `didFinishDrawing()` and if it is, return
- * immediately without drawing anything.
- *
- * The advantage is that after the drawing has finished, toggleLooping()
- * doesn't have any effect.
- *
- * In the sketch, don't use frameCount, use currentIteration. Also don't use
- * `noLoop()`.
- *
- * 'maxIterations', set in the config, can be 1 if draw() finishes in one call,
- * or some number if it needs that number of frames to finish the drawing, or
- * -1 - or any negative number - if it should continue indefinitely.
- *
- * The default for maxIterations is -1; you can set it in setup().
- */
-
-function didFinishDrawing() {
-    let max = config.maxIterations();
-    if (max !== undefined && max >= 0 && currentIteration + 1 > max) {
-        noLoop();
-        return 1;
-    } else {
-        currentIteration++;
-        return 0;
-    }
 }

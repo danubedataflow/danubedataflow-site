@@ -3,9 +3,6 @@
 // based on Jon Stanley's program "lines" for the Tektronix 4052
 // https://www.electronixandmore.com/resources/teksystem/
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numLines', 'Number of lines', 1, 1500, 500),
     makeSlider('randomDelta', 'Random delta', 1, 20, 5),
@@ -43,6 +40,7 @@ function drawSketch() {
         x2 -= x2d;
         y2 -= y2d;
     }
+    noLoop();
 }
 
 function rnd(mid) {

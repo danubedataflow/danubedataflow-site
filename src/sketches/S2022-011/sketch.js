@@ -4,9 +4,6 @@
  * and/or shape color's alpha to 0.
  */
 
-const config = new Config()
-    .maxIterations(1);
-
 let grid;
 
 makeForm(
@@ -33,6 +30,7 @@ function drawSketch() {
         .getTiles()
         .shuffle()
         .forEach((t) => t.draw());
+    noLoop();
 }
 
 // make square grids

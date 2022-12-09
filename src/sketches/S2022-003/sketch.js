@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 function initSketch() {
     pixelDensity(1);
 }
@@ -17,4 +14,5 @@ function drawSketch() {
     img.updatePixels();
     img.resize(width * pixelDensity(), height * pixelDensity());
     image(img, 0, 0);
+    noLoop();
 }

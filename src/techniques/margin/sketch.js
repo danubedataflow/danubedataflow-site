@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
     makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),

@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 let palette;
 
 makeForm(
@@ -32,4 +29,5 @@ function drawSketch() {
         let s = int(random(width * minSize / 100, height * maxSize / 100));
         rect(int(random(width)), int(random(height)), s, s);
     }
+    noLoop();
 }

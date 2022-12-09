@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
     makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
@@ -36,4 +33,5 @@ function drawSketch() {
             if (random(100) < ctrl.chanceDiagoalDown) line(-dim / 2, -dim / 2, dim / 2, dim / 2);
         }
     });
+    noLoop();
 }

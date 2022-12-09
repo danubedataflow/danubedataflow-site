@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
     makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
@@ -28,4 +25,5 @@ function drawSketch() {
         fill(random(palette));
         rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
+    noLoop();
 }

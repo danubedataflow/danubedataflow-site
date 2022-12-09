@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSelectColorMap(),
     makeSlider('numColors', 'Number of colors', 2, 32, 16),
@@ -39,6 +36,7 @@ function drawSketch() {
             colorIndex = (colorIndex + 1) % palette.length;
         });
     }
+    noLoop();
 }
 
 function pairwise(arr, func) {

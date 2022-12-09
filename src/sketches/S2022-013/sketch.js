@@ -2,9 +2,6 @@
 
 // polygons at points of polygons at points of polygons etc.
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSlider('sides', 'Number of sides', 3, 10, 5),
     makeSlider('diameter', 'Diameter', 1, 100, 30),
@@ -30,6 +27,7 @@ function drawSketch() {
 
     drawPolygons(0, 0, ctrl.sides, ctrl.diameter * width / 100,
         0, ctrl.rotDelta, ctrl.maxDepth);
+    noLoop();
 }
 
 function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, depth = 0) {

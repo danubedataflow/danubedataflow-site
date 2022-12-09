@@ -1,8 +1,5 @@
 'use strict';
 
-const config = new Config()
-    .maxIterations(1);
-
 makeForm(
     makeSelectColorMap(),
     makeSelectBlendMode(),
@@ -33,4 +30,5 @@ function drawSketch() {
         fill(palette[colorIndex]);
         rect(x * magnify, y * magnify, magnify, magnify);
     });
+    noLoop();
 }
