@@ -481,8 +481,3 @@ function setup() {
     readControls(); // so initSketch() can use them
     if (typeof initSketch == 'function') initSketch();
 }
-
-function draw() {
-    readControls();
-    drawSketch(); // the user has to define this function
-}
