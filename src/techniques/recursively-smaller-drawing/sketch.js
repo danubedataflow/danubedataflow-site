@@ -18,9 +18,6 @@ function setup() {
     initCanvas();
 }
 
-function init() {
-}
-
 function draw() {
     readControls();
 

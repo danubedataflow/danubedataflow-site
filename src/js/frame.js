@@ -398,8 +398,6 @@ function updateURL() {
     window.history.replaceState(null, '', currentURL);
 }
 
-// a sketch can define the init() function to reset parameters
-
 function controlsDidChange() {
     readControls();
     updateURL();
@@ -414,10 +412,6 @@ function controlsDidChange() {
 
 function initCanvas() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
-    if (typeof init == 'function') {
-        readControls();   // so init() can use the controls
-        init();
-    }
 }
 
 // also show the canvas size on the web page

@@ -25,7 +25,6 @@
                 <span id="canvasSize"></span> |
                 <span id="source-code"><a href="[% Tools.source_link %]">Code</a></span>
 
-                <!-- windowResized() also calls init() again -->
                 <!-- return false to prevent the page reload -->
                 <button onclick="redraw(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
                 <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
