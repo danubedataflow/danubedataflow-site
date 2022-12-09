@@ -3,7 +3,8 @@
 // based on Jon Stanley's program "lines" for the Tektronix 4052
 // https://www.electronixandmore.com/resources/teksystem/
 
-const config = new Config();
+const config = new Config()
+    .maxIterations(-1);
 
 makeForm(
     makeSlider('numIterations', 'Number of iterations', 100, 2000, 500),

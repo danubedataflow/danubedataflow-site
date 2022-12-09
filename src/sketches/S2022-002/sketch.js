@@ -1,6 +1,7 @@
 'use strict';
 
-const config = new Config();
+const config = new Config()
+    .maxIterations(-1);
 
 makeForm(
     makeSlider('xyMultiplier', 'X/Y multiplier', 1, 300, 150),

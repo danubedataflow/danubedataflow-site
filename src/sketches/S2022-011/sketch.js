@@ -4,7 +4,8 @@
  * and/or shape color's alpha to 0.
  */
 
-const config = new Config();
+const config = new Config()
+    .maxIterations(-1);
 
 let grid;
 
