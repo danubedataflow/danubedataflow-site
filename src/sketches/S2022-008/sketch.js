@@ -15,9 +15,7 @@ function createImageCheckboxControl() {
         checkboxEl.setAttribute('type', 'checkbox');
         checkboxEl.setAttribute('id', id);
         checkboxEl.oninput = controlsDidChange;
-        controls[id] = new CheckboxControl()
-            .id(id)
-            .element(checkboxEl);
+        controls[id] = new CheckboxControl(id, checkboxEl);
         liEl.appendChild(checkboxEl);
 
         let labelEl = document.createElement('label');

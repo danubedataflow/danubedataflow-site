@@ -50,43 +50,42 @@ class Tile {
     draw() {
         this.contents.forEach((c) =>
             c.draw(
-                this.centerX(),
-                this.centerY(),
-                this.tileWidth(),
-                this.tileHeight()
+                this.centerX,
+                this.centerY,
+                this.tileWidth,
+                this.tileHeight
             )
         );
     }
 }
-
-createAccessors(Tile, ["centerX", "centerY", "tileWidth", "tileHeight"]);
 
 class Grid {
     tiles = [];
 
     // initTiles() needs to be called right after creating a Grid object.
     initTiles() {
-        let numRows = this.numRows();
-        let numCols = this.numCols();
-        let gridWidth = this.gridWidth();
-        let gridHeight = this.gridHeight();
+        let numRows = this.numRows;
+        let numCols = this.numCols;
+        let gridWidth = this.gridWidth;
+        let gridHeight = this.gridHeight;
 
         let tileWidth = gridWidth / numRows;
         let tileHeight = gridHeight / numCols;
 
-        let leftEdge = this.centerX() - gridWidth / 2;
-        let topEdge = this.centerY() - gridHeight / 2;
+        let leftEdge = this.centerX - gridWidth / 2;
+        let topEdge = this.centerY - gridHeight / 2;
 
         for (let row = 0; row < numRows; row++) {
             for (let col = 0; col < numCols; col++) {
                 let index = row * numCols + col;
                 let tileCenterX = leftEdge + (row + 0.5) * tileWidth;
                 let tileCenterY = topEdge + (col + 0.5) * tileHeight;
-                this.tiles[index] = new Tile()
-                    .centerX(tileCenterX)
-                    .centerY(tileCenterY)
-                    .tileWidth(tileWidth)
-                    .tileHeight(tileHeight);
+                let tile = new Tile();
+                tile.centerX = tileCenterX;
+                tile.centerY = tileCenterY;
+                tile.tileWidth = tileWidth;
+                tile.tileHeight = tileHeight;
+                this.tiles[index] = tile;
             }
         }
         return this; // for chaining
@@ -111,15 +110,6 @@ class Grid {
         return this; // for chaining
     }
 }
-
-createAccessors(Grid, [
-    "numRows",
-    "numCols",
-    "centerX",
-    "centerY",
-    "gridWidth",
-    "gridHeight",
-]);
 
 // Helper class for drawing symmetrical shapes.
 class Vertices {
@@ -155,13 +145,13 @@ class Shape {
      * accessor.
      */
 
-    _fillColor = "black";
-    _rotation = 0;
-    _flipHorizontally = false;
-    _flipVertically = false;
-    _sizeFactor = 1;
-    _strokeColor = "black";
-    _strokeWeight = 0;
+    fillColor = "black";
+    rotation = 0;
+    flipHorizontally = false;
+    flipVertically = false;
+    sizeFactor = 1;
+    strokeColor = "black";
+    strokeWeight = 0;
     config = {};
 
     draw(cx, cy, w, h) {
@@ -169,33 +159,23 @@ class Shape {
         translate(cx, cy);
 
         // Handle transforms
-        let xScale = this.flipHorizontally() ? -1 : 1;
-        let yScale = this.flipVertically() ? -1 : 1;
-        let sizeFactor = this.sizeFactor();
+        let xScale = this.flipHorizontally ? -1 : 1;
+        let yScale = this.flipVertically ? -1 : 1;
+        let sizeFactor = this.sizeFactor;
         xScale *= sizeFactor;
         yScale *= sizeFactor;
         scale(xScale, yScale);
 
-        rotate(this.rotation());
-        stroke(this.strokeColor());
-        strokeWeight(this.strokeWeight());
-        fill(this.fillColor());
+        rotate(this.rotation);
+        stroke(this.strokeColor);
+        strokeWeight(this.strokeWeight);
+        fill(this.fillColor);
 
         // Now that everything is in place, draw the actual shape around (0, 0).
         this.drawShape(w, h);
         pop();
     }
 }
-
-createAccessors(Shape, [
-    "fillColor",
-    "rotation",
-    "flipHorizontally",
-    "flipVertically",
-    "sizeFactor",
-    "strokeColor",
-    "strokeWeight",
-]);
 
 class Circle extends Shape {
     drawShape(w, h) {

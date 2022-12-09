@@ -36,56 +36,55 @@ function draw() {
 
 // make square grids
 function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
-    return new Grid()
-        .numRows(numTiles)
-        .numCols(numTiles)
-        .centerX(centerX)
-        .centerY(centerY)
-        .gridWidth(dim)
-        .gridHeight(dim)
-        .initTiles()
-        .iterate((tile) => {
-            if (depth < maxDepth && random() > 0.5) {
-                // make a sub-grid that is as big as the tile
-                tile.contents.push(
-                    makeGrid(
-                        int(random(3)) + 1,
-                        tile.centerX(),
-                        tile.centerY(),
-                        tile.tileWidth(),
-                        maxDepth,
-                        depth + 1
-                    )
-                );
-            } else {
-                // background rectangle for each tile
-                tile.contents.push(
-                    new Rectangle()
-                    .fillColor(color(random(255), random(100)))
-                    .strokeWeight(1)
-                );
+    let grid = new Grid();
+    grid.numRows = numTiles;
+    grid.numCols = numTiles;
+    grid.centerX = centerX;
+    grid.centerY = centerY;
+    grid.gridWidth = dim;
+    grid.gridHeight = dim;
+    grid.initTiles();
+    grid.iterate((tile) => {
+        if (depth < maxDepth && random() > 0.5) {
+            // make a sub-grid that is as big as the tile
+            tile.contents.push(
+                makeGrid(
+                    int(random(3)) + 1,
+                    tile.centerX,
+                    tile.centerY,
+                    tile.tileWidth,
+                    maxDepth,
+                    depth + 1
+                )
+            );
+        } else {
+            // background rectangle for each tile
+            let background = new Rectangle;
+            background.fillColor = color(random(255), random(100));
+            background.strokeWeight = 1;
+            tile.contents.push(background);
 
-                let maker = random([
-                    _ => new Triangle(),
-                    _ => new Circle(),
-                    _ => new Cross(),
-                    _ => new Rectangle(),
-                ]);
-                let shape = maker()
-                    .fillColor(color(random(255), 100 + random(155)))
-                    .rotation(90 * int(random(4)))
-                    .flipHorizontally(random() > 0.5 ? true : false)
-                    .flipVertically(random() > 0.5 ? true : false)
-                    .sizeFactor((30 + random(70)) / 100)
-                    .strokeWeight(1);
-                /* Using this noise offset each shape starts the perlin noise
-                 * at a different point so all shapes can animate their
-                 * properties differently.
-                 */
-                shape.config.noiseOffset = random() * 999;
-                tile.contents.push(shape);
-            }
-        });
+            let shape = random([
+                new Triangle(),
+                new Circle(),
+                new Cross(),
+                new Rectangle(),
+            ]);
+            shape.fillColor = color(random(255), 100 + random(155));
+            shape.rotation = 90 * int(random(4));
+            shape.flipHorizontally = random() > 0.5 ? true : false;
+            shape.flipVertically = random() > 0.5 ? true : false;
+            shape.sizeFactor = (30 + random(70)) / 100;
+            shape.strokeWeight = 1;
+            /* Using this noise offset each shape starts the perlin noise
+             * at a different point so all shapes can animate their
+             * properties differently.
+             */
+            shape.config.noiseOffset = random() * 999;
+            tile.contents.push(shape);
+        }
+    });
+    return grid;
 }
 
 function windowResized() {

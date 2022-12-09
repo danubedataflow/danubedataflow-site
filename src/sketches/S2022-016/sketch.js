@@ -42,35 +42,39 @@ function draw() {
 
 // make square grids
 function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
-    return new Grid()
-        .numRows(numTiles)
-        .numCols(numTiles)
-        .centerX(centerX)
-        .centerY(centerY)
-        .gridWidth(dim)
-        .gridHeight(dim)
-        .initTiles()
-        .iterate((tile) => {
-            if (depth < maxDepth && random() > 0.6) {
-                // make a sub-grid that is as big as the tile
-                tile.contents.push(
-                    makeGrid(
-                        int(random(3)) + 1,
-                        tile.centerX(),
-                        tile.centerY(),
-                        tile.tileWidth(),
-                        maxDepth,
-                        depth + 1
-                    )
-                );
-            } else {
+    let grid = new Grid();
+    grid.numRows = numTiles;
+    grid.numCols = numTiles;
+    grid.centerX = centerX;
+    grid.centerY = centerY;
+    grid.gridWidth = dim;
+    grid.gridHeight = dim;
+    grid.initTiles();
+    grid.iterate((tile) => {
+        if (depth < maxDepth && random() > 0.6) {
+            // make a sub-grid that is as big as the tile
+            tile.contents.push(
+                makeGrid(
+                    int(random(3)) + 1,
+                    tile.centerX,
+                    tile.centerY,
+                    tile.tileWidth,
+                    maxDepth,
+                    depth + 1
+                )
+            );
+        } else {
 
-                let shapeMaker = random([
-                    _ => new RoughRectangle(),
-                    _ => new RoughCircle(),
-                    _ => new RoughTriangle(),
-                ]);
-                let fillStyle = random([{
+            let shape = random([
+                new RoughRectangle(),
+                new RoughCircle(),
+                new RoughTriangle(),
+            ]);
+            shape.roughCanvas = roughCanvas;
+            shape.sizeFactor = 0.85;
+            shape.fillColor = random(palette);
+            shape.fillStyle =
+                random([{
                         fillStyle: 'hachure',
                         hachureAngle: int(random(120, 150))
                     },
@@ -81,22 +85,19 @@ function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
                         fillStyle: 'cross-hatch'
                     }
                 ]);
-                let shape = shapeMaker()
-                    .roughCanvas(roughCanvas)
-                    .sizeFactor(0.85)
-                    .fillColor(random(palette))
-                    .fillStyle(fillStyle)
-                    .roughness(random(1, 1.5))
-                    .strokeColor('white')
-                    .strokeWeight(int(random(1, 3)));
-                tile.contents.push(shape);
-            }
-        });
+            shape.roughness = random(1, 1.5);
+            shape.strokeColor = 'white';
+            shape.strokeWeight = int(random(1, 3));
+
+            tile.contents.push(shape);
+        }
+    });
+    return grid;
 }
 
 class RoughShape extends Shape {
-    _roughness = 1;
-    _fillStyle = {
+    roughness = 1;
+    fillStyle = {
         fillStyle: 'hachure',
         fillWeight: 1,
         hachureAngle: 135
@@ -104,36 +105,30 @@ class RoughShape extends Shape {
 
     getRoughOptions() {
         return {
-            roughness: this.roughness(),
-            fill: this.fillColor(),
-            stroke: this.strokeColor(),
-            strokeWidth: this.strokeWeight(),
-            ...this.fillStyle(),
+            roughness: this.roughness,
+            fill: this.fillColor,
+            stroke: this.strokeColor,
+            strokeWidth: this.strokeWeight,
+            ...this.fillStyle,
         };
     }
 }
 
-createAccessors(RoughShape, [
-    "roughCanvas",
-    "roughness",
-    "fillStyle"
-]);
-
 class RoughRectangle extends RoughShape {
     drawShape(w, h) {
-        this.roughCanvas().rectangle(-w / 2, -h / 2, w, h, this.getRoughOptions());
+        this.roughCanvas.rectangle(-w / 2, -h / 2, w, h, this.getRoughOptions());
     }
 }
 
 class RoughCircle extends RoughShape {
     drawShape(w, h) {
-        this.roughCanvas().circle(0, 0, min(w, h), this.getRoughOptions());
+        this.roughCanvas.circle(0, 0, min(w, h), this.getRoughOptions());
     }
 }
 
 class RoughTriangle extends RoughShape {
     drawShape(w, h) {
-        this.roughCanvas().polygon(
+        this.roughCanvas.polygon(
             [
                 [-w / 2, h / 2],
                 [w / 2, h / 2],
