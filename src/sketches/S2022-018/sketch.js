@@ -23,7 +23,8 @@ function initSketch() {
     background("black");
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     for (let i = 1; i <= ctrl.numLines; i++) {
         line(x1, y1, x2, y2);
         if (x1 > width) x1d = -rnd(2);

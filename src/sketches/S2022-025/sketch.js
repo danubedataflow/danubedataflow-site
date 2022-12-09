@@ -17,7 +17,8 @@ function initSketch() {
     palette = ['white', '#777777', 'black'];
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     simpleGrid({
         numTiles: ctrl.numTiles,
         margin: width / 10,

@@ -13,7 +13,8 @@ function initSketch() {
     noStroke();
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     let tileDim = width / ctrl.numTiles; // square canvas
 
     for (let i = 0; i <= ctrl.numRects; i++) {

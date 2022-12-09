@@ -26,7 +26,8 @@ function initSketch() {
     grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     /* Draw tiles in random order so if sizeFactor > 1 they overlap each other
      * randomly. If we just used `grid.draw()`, the tiles would be drawn from
      * the top left corner to the bottom right corner.

@@ -7,7 +7,8 @@ makeForm(
     makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
 );
 
-function drawSketch() {
+function draw() {
+    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);

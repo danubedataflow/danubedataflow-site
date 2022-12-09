@@ -22,7 +22,8 @@ function initSketch() {
     noStroke();
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     background('#cccccc');
     translate(width / 2, height / 2);
     scale(width * 0.45);

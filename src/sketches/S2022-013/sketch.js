@@ -21,7 +21,8 @@ function initSketch() {
     stroke('black');
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     translate(width / 2, height / 2);
     background('white');
 

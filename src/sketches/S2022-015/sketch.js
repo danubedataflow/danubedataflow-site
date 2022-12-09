@@ -19,7 +19,8 @@ function initSketch() {
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     background('white');
     noFill();
     translate(width / 2, height / 2);

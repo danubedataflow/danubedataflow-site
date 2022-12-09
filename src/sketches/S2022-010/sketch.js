@@ -11,7 +11,8 @@ makeForm(
     makeSlider('size', 'Size (%)', 1, 100, [5, 30]),
 );
 
-function drawSketch() {
+function draw() {
+    readControls();
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     background(int(random(palette)));

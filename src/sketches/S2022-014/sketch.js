@@ -22,7 +22,8 @@ function initSketch() {
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('#cccccc');
 

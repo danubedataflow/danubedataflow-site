@@ -14,7 +14,8 @@ function initSketch() {
     rectMode(CENTER);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     background(255);
     translate(width / 2, height / 2);
     for (let i = 0; i < 360; i += ctrl.angleStep) {

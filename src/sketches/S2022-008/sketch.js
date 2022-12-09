@@ -66,7 +66,8 @@ function initSketch() {
     strokeJoin(ROUND);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);

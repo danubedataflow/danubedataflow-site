@@ -12,7 +12,8 @@ function initSketch() {
     noStroke();
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     blendMode(ctrl.blendMode);
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration

@@ -9,14 +9,14 @@ while (my $next = $iter->()) {
     next unless $next =~ m!/sketch.js$!;
     subtest $next, sub {
         my $js = $next->slurp;
-        ok $js =~ /^'use strict';\n/,                "starts with 'use strict'";
+        ok $js =~ /^'use strict';\n/, "starts with 'use strict'";
 
         # Avoid `let foo = ...` in the global scope; assign in initSketch(). Or
         # use `const`.
         ok $js !~ /^let \w+\s*=/m,
           'does not assign variable values in the global scope';
-        ok $js !~ /^function drawSketch\(\) \{/, 'defines function drawSketch()';
-        ok $js !~ /\bframeCount\b/,              'does not use frameCount';
+        ok $js !~ /^function draw\(\) \{/, 'defines function draw()';
+        ok $js !~ /\bframeCount\b/,        'does not use frameCount';
 
         # check for forbidden function calls
         my @forbidden_calls = qw(
@@ -31,7 +31,6 @@ while (my $next = $iter->()) {
         my @forbidden_fn = qw(
           preload
           setup
-          draw
           keyPressed
           keyTyped
           mouseClicked

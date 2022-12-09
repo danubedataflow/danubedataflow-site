@@ -29,7 +29,8 @@ function initSketch() {
     angleMode(DEGREES);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     simpleGrid({
         numTiles: ctrl.numTiles,
         margin: width / 10,

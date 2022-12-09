@@ -17,7 +17,8 @@ function initSketch() {
     p = [sin(angle) * radius, cos(angle) * radius];
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     blendMode(ctrl.blendMode);
     let colorScale = chroma.scale(ctrl.colorMap);
     translate(width / 2, height / 2);

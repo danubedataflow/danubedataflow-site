@@ -19,7 +19,8 @@ function initSketch() {
     pg.pixelDensity(1);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     pg.background('black');
     for (let y = 0; y <= 2 * pg.height; y += pg.height / ctrl.lineDensity) {
         pg.line(0, 0, pg.width, y);

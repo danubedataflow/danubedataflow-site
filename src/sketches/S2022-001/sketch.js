@@ -14,7 +14,8 @@ makeForm(
     makeSlider('margin', 'Margin', 0, 200, 15, 5),
 );
 
-function drawSketch() {
+function draw() {
+    readControls();
     background('black');
     stroke('white');
     noFill();

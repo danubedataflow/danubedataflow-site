@@ -21,7 +21,6 @@ let P5C = {
     SOFT_LIGHT: 'soft-light',
 };
 
-let canvas;
 let controls = {};
 
 /* makeSlider() triggers controlsDidChange(), which eventually calls
@@ -477,7 +476,7 @@ function keyPressed() {
 
 function setup() {
     if (typeof setupSketch == 'function') setupSketch();
-    canvas = createSquareCanvas();
+    createSquareCanvas();
     setupFinished = true;
     readControls(); // so initSketch() can use them
     if (typeof initSketch == 'function') initSketch();

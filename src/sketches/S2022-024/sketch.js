@@ -16,7 +16,8 @@ function initSketch() {
     strokeWeight(ctrl.strokeWeight);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = width;  // width == height because of square canvas
     translate(dim / 2, dim / 2);

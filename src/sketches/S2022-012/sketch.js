@@ -13,7 +13,8 @@ function initSketch() {
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     translate(width / 2, height / 2);
 
     let points = getPointsForPolygon(ctrl.numSides, width * 0.9, 0);

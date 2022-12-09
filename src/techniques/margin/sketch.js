@@ -5,7 +5,8 @@ makeForm(
     makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
 );
 
-function drawSketch() {
+function draw() {
+    readControls();
     let dim = width;  // square canvas
 
     translate(dim / 2, dim / 2);

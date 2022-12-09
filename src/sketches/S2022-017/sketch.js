@@ -24,7 +24,8 @@ function initSketch() {
     drawingContext.strokeStyle = color(100);
 }
 
-function drawSketch() {
+function draw() {
+    readControls();
     background("white");
 
     let path = new Path2D();
