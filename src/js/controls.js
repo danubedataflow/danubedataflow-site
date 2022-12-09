@@ -107,6 +107,18 @@ class SelectControl {
     }
 }
 
+// Control values can be overridden if they exists in the URL search params.
+function valueWithSearchParam(key, defaultValue) {
+    let value = new URLSearchParams(window.location.search).get(key);
+    if (value == null) {
+        return defaultValue;
+    } else {
+        // convert noUISlider ranges to arrays
+        if (value.includes(',')) value = value.split(',');
+        return value;
+    }
+}
+
 function elementWithChildren(el, ...contents) {
     contents.forEach(child => el.appendChild(child));
     return el;
@@ -114,7 +126,7 @@ function elementWithChildren(el, ...contents) {
 
 function makeForm(...contents) {
     elementWithChildren(document.getElementById('controls-form'), ...contents);
-    initControls();
+    updateURL(); // because we potentially changed the controls
 }
 
 function makeLegend(legend) {
@@ -149,6 +161,8 @@ function makeLabel(config, ...contents) {
 }
 
 function makeSlider(id, label, min, max, value, step = 1) {
+    value = valueWithSearchParam(id, value);
+
     let containerDiv = document.createElement('div');
 
     // <label for="foo">The Foo: <span id="fooValue"></span></label>
@@ -191,7 +205,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
     return containerDiv;
 }
 
-function makeCheckbox(id, label, defaultValue = true) {
+function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
 
     containerDiv.appendChild(makeLabel({
@@ -206,7 +220,8 @@ function makeCheckbox(id, label, defaultValue = true) {
     containerDiv.appendChild(checkboxEl);
 
     controls[id] = new CheckboxControl(id, checkboxEl);
-    controls[id].setValue(defaultValue);
+    value = valueWithSearchParam(id, value);
+    if (value != null) controls[id].setValue(value);
 
     return containerDiv;
 }
@@ -225,7 +240,7 @@ function makeOptGroup(label, ...contents) {
     return el;
 }
 
-function makeSelect(id, label, ...contents) {
+function makeSelect(id, label, contents, value) {
     let containerDiv = document.createElement('div');
 
     containerDiv.appendChild(makeLabel({
@@ -241,95 +256,84 @@ function makeSelect(id, label, ...contents) {
     containerDiv.appendChild(selectEl);
 
     controls[id] = new SelectControl(id, selectEl);
+
+    value = valueWithSearchParam(id, value);
+    if (value != null) controls[id].setValue(value);
+
     return containerDiv;
 }
 
-function makeSelectColorMap(defaultValue = 'Viridis') {
+function makeSelectColorMap() {
     let containerDiv = makeSelect(
         'colorMap',
-        'Color palette',
-        makeOptGroup('Sequential',
-            makeOption('OrRd'),
-            makeOption('PuBu'),
-            makeOption('BuPu'),
-            makeOption('Oranges'),
-            makeOption('BuGn'),
-            makeOption('YlOrBr'),
-            makeOption('YlGn'),
-            makeOption('Reds'),
-            makeOption('RdPu'),
-            makeOption('Greens'),
-            makeOption('YlGnBu'),
-            makeOption('Purples'),
-            makeOption('GnBu'),
-            makeOption('Greys'),
-            makeOption('YlOrRd'),
-            makeOption('PuRd'),
-            makeOption('Blues'),
-            makeOption('PuBuGn'),
-            makeOption('Viridis'),
-        ),
-        makeOptGroup('Diverging',
-            makeOption('Spectral'),
-            makeOption('RdYlGn'),
-            makeOption('RdBu'),
-            makeOption('PiYG'),
-            makeOption('PRGn'),
-            makeOption('RdYlBu'),
-            makeOption('BrBG'),
-            makeOption('RdGy'),
-            makeOption('PuOr'),
-        ),
-        makeOptGroup('Qualitative',
-            makeOption('Set2'),
-            makeOption('Accent'),
-            makeOption('Set1'),
-            makeOption('Set3'),
-            makeOption('Dark2'),
-            makeOption('Paired'),
-            makeOption('Pastel2'),
-            makeOption('Pastel1'),
-        )
+        'Color palette', [
+            makeOptGroup('Sequential',
+                makeOption('OrRd'),
+                makeOption('PuBu'),
+                makeOption('BuPu'),
+                makeOption('Oranges'),
+                makeOption('BuGn'),
+                makeOption('YlOrBr'),
+                makeOption('YlGn'),
+                makeOption('Reds'),
+                makeOption('RdPu'),
+                makeOption('Greens'),
+                makeOption('YlGnBu'),
+                makeOption('Purples'),
+                makeOption('GnBu'),
+                makeOption('Greys'),
+                makeOption('YlOrRd'),
+                makeOption('PuRd'),
+                makeOption('Blues'),
+                makeOption('PuBuGn'),
+                makeOption('Viridis'),
+            ),
+            makeOptGroup('Diverging',
+                makeOption('Spectral'),
+                makeOption('RdYlGn'),
+                makeOption('RdBu'),
+                makeOption('PiYG'),
+                makeOption('PRGn'),
+                makeOption('RdYlBu'),
+                makeOption('BrBG'),
+                makeOption('RdGy'),
+                makeOption('PuOr'),
+            ),
+            makeOptGroup('Qualitative',
+                makeOption('Set2'),
+                makeOption('Accent'),
+                makeOption('Set1'),
+                makeOption('Set3'),
+                makeOption('Dark2'),
+                makeOption('Paired'),
+                makeOption('Pastel2'),
+                makeOption('Pastel1'),
+            )
+        ],
+        'Viridis'
     );
-    controls.colorMap.setValue(defaultValue);
     return containerDiv;
 }
 
 /* We only offer the values that make sense for sketches that are
  * being redrawn. The values are the corresponding p5.js constants.
  */
-function makeSelectBlendMode(defaultValue = P5C.BLEND) {
+function makeSelectBlendMode() {
     let containerDiv = makeSelect(
         'blendMode',
-        'Blend mode',
-        makeOption(P5C.BLEND, 'Blend'),
-        makeOption(P5C.ADD, 'Lighter'),
-        makeOption(P5C.DARKEST, 'Darkest'),
-        makeOption(P5C.DIFFERENCE, 'Difference'),
-        makeOption(P5C.MULTIPLY, 'Multiply'),
-        makeOption(P5C.EXCLUSION, 'Exclusion'),
-        makeOption(P5C.REPLACE, 'Replace'),
-        makeOption(P5C.HARD_LIGHT, 'Hard light'),
+        'Blend mode', [
+            makeOption(P5C.BLEND, 'Blend'),
+            makeOption(P5C.ADD, 'Lighter'),
+            makeOption(P5C.DARKEST, 'Darkest'),
+            makeOption(P5C.DIFFERENCE, 'Difference'),
+            makeOption(P5C.MULTIPLY, 'Multiply'),
+            makeOption(P5C.EXCLUSION, 'Exclusion'),
+            makeOption(P5C.REPLACE, 'Replace'),
+            makeOption(P5C.HARD_LIGHT, 'Hard light'),
+        ],
+        P5C.BLEND
     );
-    controls.blendMode.setValue(defaultValue);
     return containerDiv;
-}
-
-function initControls() {
-
-    // Grab the URLSearchParams early because the code below will
-    // trigger controlsDidChange, which will also change the URL.
-
-    let urlParams = new URLSearchParams(window.location.search);
-
-    // init values from URL query parameters
-    for (const [key, value] of urlParams) {
-        // Only use query parameters that correspond to a control id
-        if (controls.hasOwnProperty(key)) {
-            controls[key].setValue(value);
-        }
-    }
-    updateURL(); // because we potentially changed the controls
 }
 
 /* Copy the current control values into the `ctrl` object. This way the
@@ -362,14 +366,14 @@ function updateURL() {
 }
 
 function controlsDidChange() {
-    readControls();
-    updateURL();
-
     /* Form elements should be defined in the global scope so p5.js didn't yet
      * define redraw(). And we don't want to call redraw anyway before the
      * first draw to call() has finished.
      */
 
-    if (typeof redraw == 'function') redraw();
+    if (typeof redraw == 'function') {
+        readControls();
+        updateURL();
+        redraw();
+    }
 }
-

@@ -3,13 +3,14 @@
 function makeSelectColor() {
     let containerDiv = makeSelect(
         'color',
-        'Color',
-        makeOption('black', 'Black'),
-        makeOption('red', 'Red'),
-        makeOption('green', 'Green'),
-        makeOption('blue', 'Blue'),
+        'Color', [
+            makeOption('black', 'Black'),
+            makeOption('red', 'Red'),
+            makeOption('green', 'Green'),
+            makeOption('blue', 'Blue'),
+        ],
+        'black'
     );
-    controls.color.setValue('black');
     return containerDiv;
 }
 
