@@ -15,25 +15,25 @@ function draw() {
     background('white');
     noStroke();
     fill('black');
-    rectMode(CENTER);
+    rectMode(CORNER);
 
-    simpleGrid({
-        numTiles: ctrl.numTiles,
-        margin: width / 10,
-        callback: (config) => {
-            let {
-                dim,
-                y
-            } = config;
+    let dim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            push();
+            translate((x - 1) * dim, (y - 1) * dim);
 
             /* 0 < yPercent < 1, so the higher the exponent the more
              * likely a rectangle will be drawn.
              */
             let yPercent = map(y, 1, ctrl.numTiles, 0, 1);
-            scale(0.9);
+            scale(0.9);   // to have space between the squares
             if (random() > pow(yPercent, ctrl.exponent)) rect(0, 0, dim, dim);
+
+            pop();
         }
-    });
+    }
+
     noLoop();
 }
 

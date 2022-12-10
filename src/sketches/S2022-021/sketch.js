@@ -33,23 +33,31 @@ function draw() {
     rectMode(CENTER);
     angleMode(DEGREES);
 
+    // scale down so the outer border is visible
+    translate(width / 2, height / 2);
+    scale(0.97);
+    translate(-width / 2, -height / 2);
+
     background('white');
-    simpleGrid({
-        numTiles: ctrl.numTiles,
-        margin: width / 10,
-        callback: (config) => {
-            let {
-                dim
-            } = config;
-            if (random(100) < ctrl.rotationChance) rotate(int(random(...ctrl.rotationAmount)));
+    let dim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            push();
+            // `+ 0.5` to move to the tile's center
+            translate((x - 1) * (dim + 0.5), (y - 1) * (dim + 0.5));
+
+            if (random(100) < ctrl.rotationChance) rotate(random(...ctrl.rotationAmount));
             if (random(100) < ctrl.scaleChance) scale(random(...ctrl.scaleAmount) / 100);
             if (random(100) < ctrl.translationChance) translate(
                 dim * random(...ctrl.translationAmount) / 100,
                 dim * random(...ctrl.translationAmount) / 100);
             if (random(100) < ctrl.strokeChance) strokeWeight(random(...ctrl.strokeAmount));
             rect(0, 0, dim, dim);
+
+            pop();
         }
-    });
+    }
+
     noLoop();
 }
 

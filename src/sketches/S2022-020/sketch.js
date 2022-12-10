@@ -19,24 +19,31 @@ function draw() {
     strokeWeight(1);
     stroke('black');
     noFill();
-    rectMode(CENTER);
+    rectMode(CORNER);
     angleMode(DEGREES);
 
+    // scale down so the outer border is visible
+    translate(width / 2, height / 2);
+    scale(0.97);
+    translate(-width / 2, -height / 2);
+
     background('white');
-    simpleGrid({
-        numTiles: ctrl.numTiles,
-        margin: width / 10,
-        callback: (config) => {
-            let {
-                dim
-            } = config;
+    let dim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            push();
+            translate((x - 1) * dim, (y - 1) * dim);
+
             if (ctrl.tileBorder) rect(0, 0, dim, dim);
-            if (random(100) < ctrl.chanceHorizontal) line(-dim / 2, 0, dim / 2, 0);
-            if (random(100) < ctrl.chanceVertical) line(0, -dim / 2, 0, dim / 2);
-            if (random(100) < ctrl.chanceDiagoalUp) line(dim / 2, -dim / 2, -dim / 2, dim / 2);
-            if (random(100) < ctrl.chanceDiagoalDown) line(-dim / 2, -dim / 2, dim / 2, dim / 2);
+            if (random(100) < ctrl.chanceHorizontal) line(0, dim / 2, dim, dim / 2);
+            if (random(100) < ctrl.chanceVertical) line(dim / 2, 0, dim / 2, dim);
+            if (random(100) < ctrl.chanceDiagoalUp) line(0, dim, dim, 0);
+            if (random(100) < ctrl.chanceDiagoalDown) line(0, 0, dim, dim);
+
+            pop();
         }
-    });
+    }
+
     noLoop();
 }
 

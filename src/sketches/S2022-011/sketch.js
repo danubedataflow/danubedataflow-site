@@ -18,73 +18,60 @@ function draw() {
     colorMode(HSB, 360, 100, 100, 100);
     angleMode(DEGREES);
     rectMode(CENTER);
-    noStroke();
+    stroke('black');
+    strokeWeight(1);
 
-    let grid = makeGrid(ctrl.numTiles, width / 2, height / 2, width, ctrl.maxDepth);
+    // scale down so the outer border is visible
+    translate(width / 2, height / 2);
+    scale(0.97);
+    translate(-width / 2, -height / 2);
 
-    /* Draw tiles in random order so if sizeFactor > 1 they overlap each other
-     * randomly. If we just used `grid.draw()`, the tiles would be drawn from
-     * the top left corner to the bottom right corner.
-     */
     background("white");
-    grid
-        .getTiles()
-        .shuffle()
-        .forEach((t) => t.draw());
+    makeGrid(ctrl.numTiles, width, ctrl.maxDepth);
     noLoop();
 }
 
 // make square grids
-function makeGrid(numTiles, centerX, centerY, dim, maxDepth = 0, depth = 0) {
-    let grid = new Grid();
-    grid.numRows = numTiles;
-    grid.numCols = numTiles;
-    grid.centerX = centerX;
-    grid.centerY = centerY;
-    grid.gridWidth = dim;
-    grid.gridHeight = dim;
-    grid.initTiles();
-    grid.iterate((tile) => {
-        if (depth < maxDepth && random() > 0.5) {
-            // make a sub-grid that is as big as the tile
-            tile.contents.push(
-                makeGrid(
-                    int(random(3)) + 1,
-                    tile.centerX,
-                    tile.centerY,
-                    tile.tileWidth,
-                    maxDepth,
-                    depth + 1
-                )
-            );
-        } else {
-            // background rectangle for each tile
-            let background = new Rectangle;
-            background.fillColor = color(random(255), random(100));
-            background.strokeWeight = 1;
-            tile.contents.push(background);
+function makeGrid(numTiles, gridDim, maxDepth = 0, depth = 0) {
+    let dim = gridDim / numTiles;
+    for (let y = 1; y <= numTiles; y++) {
+        for (let x = 1; x <= numTiles; x++) {
+            push();
+            translate((x - 1) * dim, (y - 1) * dim);
 
-            let shape = random([
-                new Triangle(),
-                new Circle(),
-                new Cross(),
-                new Rectangle(),
-            ]);
-            shape.fillColor = color(random(255), 100 + random(155));
-            shape.rotation = 90 * int(random(4));
-            shape.flipHorizontally = random() > 0.5 ? true : false;
-            shape.flipVertically = random() > 0.5 ? true : false;
-            shape.sizeFactor = (30 + random(70)) / 100;
-            shape.strokeWeight = 1;
-            /* Using this noise offset each shape starts the perlin noise
-             * at a different point so all shapes can animate their
-             * properties differently.
-             */
-            shape.config.noiseOffset = random() * 999;
-            tile.contents.push(shape);
+            if (depth < maxDepth && random() > 0.5) {
+                // make a sub-grid that is as big as the tile
+                makeGrid(int(random(3)) + 1, dim, maxDepth, depth + 1)
+            } else {
+                push();
+
+                // Move to the tile center so that rotation and scaling happen
+                // around that center.
+                translate(dim / 2, dim / 2);
+
+                // background rectangle for each tile
+                fill(color(random(255), random(100)));
+                rect(0, 0, dim, dim);
+
+                // the random shape
+                fill(color(random(255), 100 + random(155)));
+                rotate(90 * int(random(4)));
+                scale((30 + random(70)) / 100);
+
+                let r = random();
+                if (r < 0.33) {
+                    triangle(-dim / 2, -dim / 2, dim / 2, -dim / 2, 0, dim / 2);
+                } else if (r < 0.66) {
+                    circle(0, 0, dim);
+                } else {
+                    rect(0, 0, dim, dim);
+                }
+
+                pop();
+            }
+            pop();
         }
-    });
-    return grid;
+    }
 }
 
 function windowResized() {

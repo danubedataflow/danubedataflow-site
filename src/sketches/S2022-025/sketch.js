@@ -19,20 +19,19 @@ function draw() {
     readControls();
 
     noStroke();
-    rectMode(CENTER);
+    rectMode(CORNER);
     palette = ['white', '#777777', 'black'];
 
-    simpleGrid({
-        numTiles: ctrl.numTiles,
-        margin: width / 10,
-        callback: (config) => {
-            let {
-                dim
-            } = config;
-            let ul = [-dim / 2, -dim / 2];
-            let ur = [dim / 2, -dim / 2];
-            let ll = [-dim / 2, dim / 2];
-            let lr = [dim / 2, dim / 2];
+    let dim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            push();
+            translate((x - 1) * dim, (y - 1) * dim);
+
+            let ul = [0, 0];
+            let ur = [dim, 0];
+            let ll = [0, dim];
+            let lr = [dim, dim];
 
             chooseColors();
             if (random(100) < ctrl.chanceDiagonal) {
@@ -49,10 +48,12 @@ function draw() {
                 fill(c2);
                 triangle(...ur, ...ll, ...lr);
             }
-
             c1 = c2;
+
+            pop();
         }
-    });
+    }
+
     noLoop();
 }
 
