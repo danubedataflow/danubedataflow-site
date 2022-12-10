@@ -1,7 +1,5 @@
 'use strict';
 
-// FIXME refactor this using the grid and shape objects in geometry.js
-
 function createImageCheckboxControl() {
     let ulEl = document.createElement('ul');
     ulEl.setAttribute('class', 'imageCheckboxes');

@@ -10,8 +10,7 @@
     <script src="[% prefix %]deps/p5.min.js"></script>
     [% Tools.add_dependencies %]
     <script src="[% prefix %]js/controls.js"></script>
-    <script src="[% prefix %]js/math.js"></script>
-    <script src="[% prefix %]js/geometry.js"></script>
+    <script src="[% prefix %]js/utils.js"></script>
 [% END %]
 
 [% WRAPPER body %]

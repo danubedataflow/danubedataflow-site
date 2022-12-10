@@ -26,3 +26,19 @@ function getPointsForPolygon(sides, diameter, rotation) {
     return points;
 }
 
+function randomIntRange(lowerBound, upperBound) {
+    return int(random(lowerBound, upperBound + 1));
+}
+
+// https://gist.github.com/motoishmz/5239619
+// Fisher-Yates
+Array.prototype.shuffle = function() {
+    var i = this.length;
+    while (i) {
+        var j = Math.floor(Math.random() * i);
+        var t = this[--i];
+        this[i] = this[j];
+        this[j] = t;
+    }
+    return this;
+};
