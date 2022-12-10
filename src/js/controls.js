@@ -367,8 +367,8 @@ function updateURL() {
 
 function controlsDidChange() {
     /* Form elements should be defined in the global scope so p5.js didn't yet
-     * define redraw(). And we don't want to call redraw anyway before the
-     * first draw to call() has finished.
+     * define redraw(). And we don't want to call redraw() anyway before the
+     * first call to draw() has finished.
      */
 
     if (typeof redraw == 'function') {
