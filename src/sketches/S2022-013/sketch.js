@@ -21,7 +21,7 @@ function setup() {
 
 function draw() {
     readControls();
-    palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
+    palette = shuffle(colors).slice(0, ctrl.maxDepth + 1);
     strokeWeight(1);
     stroke('black');
 
