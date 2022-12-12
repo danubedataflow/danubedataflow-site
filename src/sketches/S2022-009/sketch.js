@@ -43,8 +43,7 @@ function windowResized() {
 }
 
 function keyPressed() {
-    if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redraw();
+    handleStandardKeys();
 }
 
 /* See https://math.stackexchange.com/a/4128516

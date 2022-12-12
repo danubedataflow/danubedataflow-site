@@ -88,33 +88,6 @@ function draw() {
     noLoop();
 }
 
-// function keyPressed() {
-//   if (key == 'c') createCheckboxImages();
-// }
-
-/* For development purposes only. This function creates the images that
- * are used in the image checkboxes. See keyPressed().
- */
-
-function createCheckboxImages() {
-    let imageSize = 100;
-    resizeCanvas(imageSize, imageSize);
-    myShape.types.forEach(i => {
-        clear(); // transparent background
-        let centerPoint = [ imageSize / 2, imageSize / 2 ];
-
-        new myShape()
-            .setType(i)
-            .setColor('black')
-            .setCenterPoint(centerPoint)
-            .setSize(imageSize - 20)
-            .setStrokeWeight(5)
-            .setRotation(0)
-            .display();
-        saveCanvas('shape' + i + '.png');
-    });
-}
-
 class myShape {
 
     static types = [...Array(10).keys()]; // [0..9]
@@ -254,6 +227,30 @@ function windowResized() {
 }
 
 function keyPressed() {
-    if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redraw();
+    if (handleStandardKeys()) return;
+    // if (key == 'c') createCheckboxImages();
 }
+
+/* For development purposes only. This function creates the images that
+ * are used in the image checkboxes. See keyPressed().
+ */
+
+function createCheckboxImages() {
+    let imageSize = 100;
+    resizeCanvas(imageSize, imageSize);
+    myShape.types.forEach(i => {
+        clear(); // transparent background
+        let centerPoint = [ imageSize / 2, imageSize / 2 ];
+
+        new myShape()
+            .setType(i)
+            .setColor('black')
+            .setCenterPoint(centerPoint)
+            .setSize(imageSize - 20)
+            .setStrokeWeight(5)
+            .setRotation(0)
+            .display();
+        saveCanvas('shape' + i + '.png');
+    });
+}
+

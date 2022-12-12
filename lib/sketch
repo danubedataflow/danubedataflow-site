@@ -25,6 +25,7 @@
 
                 <!-- return false to prevent the page reload -->
                 <button onclick="redraw(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
+                <button onclick="setControlsRandomly(); return false;"><i class="bi bi-shuffle"></i></button>
                 <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
             </p>
 

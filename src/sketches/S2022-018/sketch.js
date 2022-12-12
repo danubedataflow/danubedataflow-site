@@ -54,6 +54,5 @@ function windowResized() {
 }
 
 function keyPressed() {
-    if (key == 's') saveCanvasAsPNG();
-    if (key == 'r') redraw();
+    handleStandardKeys();
 }

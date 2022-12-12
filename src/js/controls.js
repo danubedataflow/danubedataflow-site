@@ -43,18 +43,31 @@ class SliderControl {
         }
     }
 
-    setValue(value) {
+    // returns -1 on error, 0 if ok
+    checkValue(value) {
         let v = parseFloat(value);
         if (isNaN(v)) {
             console.log(`${this.id}: value "${value}" is not a number`);
+            return -1;
         } else {
             let range = this.element.options.range;
             if (v < range.min || v > range.max) {
                 console.log(`${this.id}: value "${value}" is outside the range [${range.min}, ${range.max}]`);
-            } else {
-                this.element.set(value);
+                return -1;
             }
         }
+        return 0;
+    }
+
+    setValue(value) {
+        if (Array.isArray(value)) {
+            for (const v of value) {
+                if (this.checkValue(v) == -1) return;
+            }
+        } else {
+            if (this.checkValue(value) == -1) return;
+        }
+        this.element.set(value);
     }
 }
 
@@ -376,4 +389,42 @@ function controlsDidChange() {
         updateURL();
         redraw();
     }
+}
+
+function setControlsRandomly() {
+    Object.values(controls).forEach(c => {
+        if (c instanceof SliderControl) {
+            /* For the noUISlider, generate one or more values between `min`
+             * and `max`, but only values that can be reached by `step`. The
+             * number of values is determined by the `start` option: if it is a
+             * scalar, we need one value; if it is an array, we need that many
+             * values.
+             */
+            let options = c.element.options;
+            let min = options.range.min[0];
+            let max = options.range.max[0];
+
+            // For example, if min = 0, max = 10 and step = 2, there are 6
+            // steps (0, 2, 4, 6, 8, 10), so maxStep = 5.
+
+            let maxStep = (max - min) / options.step;
+
+            let genValue = () => {
+                return min + randomIntRange(0, maxStep) * options.step
+            };
+
+            if (Array.isArray(options.start)) {
+                c.setValue(options.start.map(genValue).sort((a, b) => a - b));
+            } else {
+                c.setValue(genValue());
+            }
+
+        } else if (c instanceof SelectControl) {
+            let optionValues = [...c.element.options].map(o => o.value)
+            c.setValue(random(optionValues));
+
+        } else if (c instanceof CheckboxControl) {
+            c.setValue(random([true, false]));
+        }
+    });
 }
