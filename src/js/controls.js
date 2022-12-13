@@ -315,10 +315,6 @@ function makeSelectColorMap() {
  * being redrawn. The values are the corresponding p5.js constants.
  */
 function makeSelectBlendMode(options) {
-    if (options == null) {
-        options = [BLEND, ADD, DARKEST, DIFFERENCE, MULTIPLY, EXCLUSION, REPLACE, HARD_LIGHT];
-    }
-
     let nameFor = {
         [ADD]: 'Lighter',
         [BLEND]: 'Blend',
@@ -334,8 +330,12 @@ function makeSelectBlendMode(options) {
         [REMOVE]: 'Remove',
         [REPLACE]: 'Copy',
         [SCREEN]: 'Screen',
-        [SOFT_LIGHT]: 'Soft ligjt',
+        [SOFT_LIGHT]: 'Soft light',
     };
+
+    if (options == null) {
+        options = Object.keys(nameFor);
+    }
 
     // Sort the options by name. The default value is 'blend' if it is an
     // option, or the first sorted element if it isn't.
