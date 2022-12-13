@@ -13,6 +13,10 @@ let P5C = {
         value: 'source-over',
         name: 'Blend'
     },
+    BURN: {
+        value: 'color-burn',
+        name: 'Burn'
+    },
     DARKEST: {
         value: 'darken',
         name: 'Darkest'
@@ -20,6 +24,10 @@ let P5C = {
     DIFFERENCE: {
         value: 'difference',
         name: 'Difference'
+    },
+    DODGE: {
+        value: 'color-dodge',
+        name: 'Dodge'
     },
     EXCLUSION: {
         value: 'exclusion',
@@ -57,10 +65,6 @@ let P5C = {
         value: 'soft-light',
         name: 'Soft ligjt'
     },
-    SUBTRACT: {
-        value: 'subtract',
-        name: 'Subtract'
-    }
 };
 
 let controls = {};
