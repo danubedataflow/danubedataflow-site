@@ -1,75 +1,7 @@
 'use strict';
 
-let ignoreControlChange = 0;
-
-/* copied from p5.js so we can use these constants in the global scope, i.e.,
- * outside setup() etc. Kludge.
- */
-let P5C = {
-    // blend mode constants
-    ADD: {
-        value: 'lighter',
-        name: 'Lighter'
-    },
-    BLEND: {
-        value: 'source-over',
-        name: 'Blend'
-    },
-    BURN: {
-        value: 'color-burn',
-        name: 'Burn'
-    },
-    DARKEST: {
-        value: 'darken',
-        name: 'Darkest'
-    },
-    DIFFERENCE: {
-        value: 'difference',
-        name: 'Difference'
-    },
-    DODGE: {
-        value: 'color-dodge',
-        name: 'Dodge'
-    },
-    EXCLUSION: {
-        value: 'exclusion',
-        name: 'Exclusion'
-    },
-    HARD_LIGHT: {
-        value: 'hard-light',
-        name: 'Hard light'
-    },
-    LIGHTEST: {
-        value: 'lighten',
-        name: 'Lighten'
-    },
-    MULTIPLY: {
-        value: 'multiply',
-        name: 'Multiply'
-    },
-    OVERLAY: {
-        value: 'overlay',
-        name: 'Overlay'
-    },
-    REMOVE: {
-        value: 'destination-out',
-        name: 'Remove'
-    },
-    REPLACE: {
-        value: 'copy',
-        name: 'Copy'
-    },
-    SCREEN: {
-        value: 'screen',
-        name: 'Screen'
-    },
-    SOFT_LIGHT: {
-        value: 'soft-light',
-        name: 'Soft ligjt'
-    },
-};
-
-let controls = {};
+let ignoreControlChange = 0,
+    controls = {};
 
 class SliderControl {
 
@@ -384,18 +316,36 @@ function makeSelectColorMap() {
  */
 function makeSelectBlendMode(options) {
     if (options == null) {
-        options = [P5C.BLEND, P5C.ADD, P5C.DARKEST, P5C.DIFFERENCE, P5C.MULTIPLY, P5C.EXCLUSION, P5C.REPLACE, P5C.HARD_LIGHT];
+        options = [BLEND, ADD, DARKEST, DIFFERENCE, MULTIPLY, EXCLUSION, REPLACE, HARD_LIGHT];
     }
+
+    let nameFor = {
+        [ADD]: 'Lighter',
+        [BLEND]: 'Blend',
+        [BURN]: 'Burn',
+        [DARKEST]: 'Darkest',
+        [DIFFERENCE]: 'Difference',
+        [DODGE]: 'Dodge',
+        [EXCLUSION]: 'Exclusion',
+        [HARD_LIGHT]: 'Hard light',
+        [LIGHTEST]: 'Lighten',
+        [MULTIPLY]: 'Multiply',
+        [OVERLAY]: 'Overlay',
+        [REMOVE]: 'Remove',
+        [REPLACE]: 'Copy',
+        [SCREEN]: 'Screen',
+        [SOFT_LIGHT]: 'Soft ligjt',
+    };
 
     // Sort the options by name. The default value is 'blend' if it is an
     // option, or the first sorted element if it isn't.
 
-    options = options.sortByKey('name');
-    let defaultValue = options.putFirst(el => el.value == P5C.BLEND.value).at(0);
+    options = options.sort();
+    let defaultValue = options.putFirst(el => el == BLEND).at(0);
     return makeSelect(
         'blendMode',
         'Blend mode',
-        options.map(c => makeOption(c.value, c.name)),
+        options.map(c => makeOption(c, nameFor[c])),
         defaultValue
     );
 }
