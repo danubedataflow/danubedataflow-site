@@ -36,13 +36,13 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         vsegments.push(y);
     }
     vsegments.push(dim);
-    pairwise(vsegments, (vcurrent, vnext) => {
+    vsegments.pairwise((vcurrent, vnext) => {
         let hsegments = [];
         for (let x = 0; x < dim - (minS + maxS) / 2; x += int(random(minS, maxS))) {
             hsegments.push(x);
         }
         hsegments.push(dim);
-        pairwise(vsegments, (hcurrent, hnext) => {
+        hsegments.pairwise((hcurrent, hnext) => {
             if (drawType == 'plain') {
                 setFill(random(palette), alpha);
                 rect(hcurrent, vcurrent, hnext, vnext);

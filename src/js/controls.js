@@ -377,11 +377,17 @@ function makeSelectBlendMode(options) {
     if (options == null) {
         options = [P5C.BLEND, P5C.ADD, P5C.DARKEST, P5C.DIFFERENCE, P5C.MULTIPLY, P5C.EXCLUSION, P5C.REPLACE, P5C.HARD_LIGHT];
     }
+
+    // Sort the options by name. The default value is 'blend' if it is an
+    // option, or the first sorted element if it isn't.
+
+    options = options.sortByKey('name');
+    let defaultValue = options.putFirst(el => el.value == P5C.BLEND.value).at(0);
     return makeSelect(
         'blendMode',
         'Blend mode',
         options.map(c => makeOption(c.value, c.name)),
-        options[0].value
+        defaultValue
     );
 }
 

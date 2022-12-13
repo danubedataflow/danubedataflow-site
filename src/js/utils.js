@@ -45,11 +45,43 @@ function randomIntRange(lowerBound, upperBound) {
     return int(random(lowerBound, upperBound + 1));
 }
 
-function pairwise(arr, func) {
-    for (let i = 0; i < arr.length - 1; i++) {
-        func(arr[i], arr[i + 1]);
+// Move elements matching a selector function to the front of the array.
+Array.prototype.putFirst = function(selector) {
+    return [
+        ...this.filter(selector),
+        ...this.filter(el => !selector(el)),
+    ];
+}
+
+// sort an array of objects by a key
+Array.prototype.sortByKey = function(key) {
+    return this.sort(function(a, b) {
+        var x = a[key];
+        var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+// call a function with elements [0. 1], then [1, 2] etc.
+Array.prototype.pairwise = function(func) {
+    for (let i = 0; i < this.length - 1; i++) {
+        func(this[i], this[i + 1]);
     }
 }
+
+/* Fisher-Yates shuffle. This is not strictly necessary as p5.js provides a
+ * shuffle() function. See https://gist.github.com/motoishmz/5239619
+ */
+Array.prototype.shuffle = function() {
+    var i = this.length;
+    while (i) {
+        var j = Math.floor(Math.random() * i);
+        var t = this[--i];
+        this[i] = this[j];
+        this[j] = t;
+    }
+    return this;
+};
 
 let wes_palettes = [{
         name: 'BottleRocket1',

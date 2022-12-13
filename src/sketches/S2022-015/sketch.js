@@ -28,9 +28,11 @@ function draw() {
 
     let colorIndex = 0;
     let [minScale, maxScale] = ctrl.scaleRange;
+
     // for some reason roughCanvas.polygon() and .linearPoath() don't do anything
+
     for (let f = minScale / 100; f < maxScale / 100; f += ctrl.scaleDelta / 100) {
-        pairwise(getPointsForPolygon(ctrl.numSides, width * f, 180), (current, next) => {
+        getPointsForPolygon(ctrl.numSides, width * f, 180).pairwise((current, next) => {
             roughCanvas.line(...current, ...next, {
                 stroke: palette[colorIndex],
                 strokeWidth: 2
