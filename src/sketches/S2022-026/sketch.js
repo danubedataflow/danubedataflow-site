@@ -3,7 +3,7 @@
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT]),
+        makeSelectBlendMode([BLEND, DIFFERENCE, DODGE, EXCLUSION, HARD_LIGHT, LIGHTEST]),
         makeSlider('numGrids', 'Number of grids', 1, 10, 4),
         makeSlider('divisorRange', 'Segment divisor range', 2, 20, [3, 10]),
         makeSlider('strokeWeight', 'Stroke weight', 0, 8, 1),
