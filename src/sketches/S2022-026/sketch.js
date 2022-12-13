@@ -1,11 +1,11 @@
 'use strict';
 
 makeForm(
-    makeSelectBlendMode(),
+    makeSelectBlendMode([P5C.BLEND, P5C.DIFFERENCE, P5C.HARD_LIGHT]),
     makeSlider('numGrids', 'Number of grids', 1, 10, 4),
     makeSlider('divisorRange', 'Segment divisor range', 2, 20, [3, 10]),
-    makeSlider('strokeWeight', 'Stroke weight', 0, 10, 1),
-    makeSlider('alphaRange', 'Alpha range', 10, 90, [60, 70]),
+    makeSlider('strokeWeight', 'Stroke weight', 0, 8, 1),
+    makeSlider('alphaRange', 'Alpha range', 30, 90, [60, 70]),
 );
 
 function setup() {

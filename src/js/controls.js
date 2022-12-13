@@ -5,20 +5,62 @@
  */
 let P5C = {
     // blend mode constants
-    BLEND: 'source-over',
-    REMOVE: 'destination-out',
-    ADD: 'lighter',
-    DARKEST: 'darken',
-    LIGHTEST: 'lighten',
-    DIFFERENCE: 'difference',
-    SUBTRACT: 'subtract',
-    EXCLUSION: 'exclusion',
-    MULTIPLY: 'multiply',
-    SCREEN: 'screen',
-    REPLACE: 'copy',
-    OVERLAY: 'overlay',
-    HARD_LIGHT: 'hard-light',
-    SOFT_LIGHT: 'soft-light',
+    ADD: {
+        value: 'lighter',
+        name: 'Lighter'
+    },
+    BLEND: {
+        value: 'source-over',
+        name: 'Blend'
+    },
+    DARKEST: {
+        value: 'darken',
+        name: 'Darkest'
+    },
+    DIFFERENCE: {
+        value: 'difference',
+        name: 'Difference'
+    },
+    EXCLUSION: {
+        value: 'exclusion',
+        name: 'Exclusion'
+    },
+    HARD_LIGHT: {
+        value: 'hard-light',
+        name: 'Hard light'
+    },
+    LIGHTEST: {
+        value: 'lighten',
+        name: 'Lighten'
+    },
+    MULTIPLY: {
+        value: 'multiply',
+        name: 'Multiply'
+    },
+    OVERLAY: {
+        value: 'overlay',
+        name: 'Overlay'
+    },
+    REMOVE: {
+        value: 'destination-out',
+        name: 'Remove'
+    },
+    REPLACE: {
+        value: 'copy',
+        name: 'Copy'
+    },
+    SCREEN: {
+        value: 'screen',
+        name: 'Screen'
+    },
+    SOFT_LIGHT: {
+        value: 'soft-light',
+        name: 'Soft ligjt'
+    },
+    SUBTRACT: {
+        value: 'subtract',
+        name: 'Subtract'
+    }
 };
 
 let controls = {};
@@ -331,22 +373,16 @@ function makeSelectColorMap() {
 /* We only offer the values that make sense for sketches that are
  * being redrawn. The values are the corresponding p5.js constants.
  */
-function makeSelectBlendMode() {
-    let containerDiv = makeSelect(
+function makeSelectBlendMode(options) {
+    if (options == null) {
+        options = [P5C.BLEND, P5C.ADD, P5C.DARKEST, P5C.DIFFERENCE, P5C.MULTIPLY, P5C.EXCLUSION, P5C.REPLACE, P5C.HARD_LIGHT];
+    }
+    return makeSelect(
         'blendMode',
-        'Blend mode', [
-            makeOption(P5C.BLEND, 'Blend'),
-            makeOption(P5C.ADD, 'Lighter'),
-            makeOption(P5C.DARKEST, 'Darkest'),
-            makeOption(P5C.DIFFERENCE, 'Difference'),
-            makeOption(P5C.MULTIPLY, 'Multiply'),
-            makeOption(P5C.EXCLUSION, 'Exclusion'),
-            makeOption(P5C.REPLACE, 'Replace'),
-            makeOption(P5C.HARD_LIGHT, 'Hard light'),
-        ],
-        P5C.BLEND
+        'Blend mode',
+        options.map(c => makeOption(c.value, c.name)),
+        options[0].value
     );
-    return containerDiv;
 }
 
 /* Copy the current control values into the `ctrl` object. This way the
