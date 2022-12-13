@@ -1,15 +1,14 @@
 'use strict';
 
-makeForm(
-    makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
-    makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
-    makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
-    makeSlider('strokeWeight', 'Stroke weight', 1, 20, [10, 12]),
-    makeSlider('alpha', 'Alpha', 0, 255, [200, 255]),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
+        makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
+        makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
+        makeSlider('strokeWeight', 'Stroke weight', 1, 20, [10, 12]),
+        makeSlider('alpha', 'Alpha', 0, 255, [200, 255]),
+    );
 }
 
 function draw() {
@@ -19,7 +18,7 @@ function draw() {
     noFill();
 
     // Scale down to create a margin so the outermost strokes won't be clipped.
-    let dim = width;  // width == height because of square canvas
+    let dim = width; // width == height because of square canvas
     translate(dim / 2, dim / 2);
     scale(ctrl.scale);
     translate(-dim / 2, -dim / 2);

@@ -1,27 +1,26 @@
 'use strict';
 
-makeForm(
-    makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
-    makeFieldset('Rotation',
-        makeSlider('rotationChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('rotationAmount', 'Angles', -45, 45, [-10, 10]),
-    ),
-    makeFieldset('Scale',
-        makeSlider('scaleChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('scaleAmount', 'Amount (%)', 50, 150, [80, 120]),
-    ),
-    makeFieldset('Translation',
-        makeSlider('translationChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('translationAmount', 'Amount (%)', -50, 50, [-20, 20]),
-    ),
-    makeFieldset('Stroke',
-        makeSlider('strokeChance', 'Chance (%)', 0, 100, 5),
-        makeSlider('strokeAmount', 'Weight', 1, 4, [2, 3]),
-    ),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
+        makeFieldset('Rotation',
+            makeSlider('rotationChance', 'Chance (%)', 0, 100, 5),
+            makeSlider('rotationAmount', 'Angles', -45, 45, [-10, 10]),
+        ),
+        makeFieldset('Scale',
+            makeSlider('scaleChance', 'Chance (%)', 0, 100, 5),
+            makeSlider('scaleAmount', 'Amount (%)', 50, 150, [80, 120]),
+        ),
+        makeFieldset('Translation',
+            makeSlider('translationChance', 'Chance (%)', 0, 100, 5),
+            makeSlider('translationAmount', 'Amount (%)', -50, 50, [-20, 20]),
+        ),
+        makeFieldset('Stroke',
+            makeSlider('strokeChance', 'Chance (%)', 0, 100, 5),
+            makeSlider('strokeAmount', 'Weight', 1, 4, [2, 3]),
+        ),
+    );
 }
 
 function draw() {

@@ -1,14 +1,13 @@
 'use strict';
 
-makeForm(
-    makeSlider('resolutionFactor', 'Resolution factor', 1, 16, 8),
-    makeSlider('lineDensity', 'Line density', 1, 10, 5),
-);
-
 let canvas;
 
 function setup() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('resolutionFactor', 'Resolution factor', 1, 16, 8),
+        makeSlider('lineDensity', 'Line density', 1, 10, 5),
+    );
 }
 
 function draw() {

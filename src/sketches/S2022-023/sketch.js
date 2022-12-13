@@ -1,12 +1,11 @@
 'use strict';
 
-makeForm(
-    makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
-    makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
+        makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
+    );
 }
 
 function draw() {

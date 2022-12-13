@@ -1,13 +1,12 @@
 'use strict';
 
-makeForm(
-    makeSelectColorMap(),
-    makeSelectBlendMode(),
-    makeSlider('numLines', 'Number of lines', 1, 1500, 500),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSelectColorMap(),
+        makeSelectBlendMode(),
+        makeSlider('numLines', 'Number of lines', 1, 1500, 500),
+    );
 }
 
 function draw() {

@@ -1,19 +1,5 @@
 'use strict';
 
-function makeSelectColor() {
-    let containerDiv = makeSelect(
-        'color',
-        'Color', [
-            makeOption('black', 'Black'),
-            makeOption('red', 'Red'),
-            makeOption('green', 'Green'),
-            makeOption('blue', 'Blue'),
-        ],
-        'black'
-    );
-    return containerDiv;
-}
-
 /* Generic function to create a color based on two controls: one for the color
  * (default name 'color') and one range for the alpha (default name 'alpha').
  */
@@ -24,18 +10,26 @@ function controlColorWithAlpha(colorControl = 'color', alphaControl = 'alpha') {
     return c;
 }
 
-makeForm(
-    makeSlider('horizontalBars', 'Number of horizontal bars', 1, 10, 5),
-    makeSlider('verticalBars', 'Number of vertical bars', 1, 10, 5),
-    makeSlider('size', 'Size of bars in percent of canvas dimension', 1, 20, [9, 13]),
-    makeFieldset('Color',
-        makeSelectColor(),
-        makeSlider('alpha', 'Alpha', 1, 255, [50, 200]),
-    ),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('horizontalBars', 'Number of horizontal bars', 1, 10, 5),
+        makeSlider('verticalBars', 'Number of vertical bars', 1, 10, 5),
+        makeSlider('size', 'Size of bars in percent of canvas dimension', 1, 20, [9, 13]),
+        makeFieldset('Color',
+            makeSelect(
+                'color',
+                'Color', [
+                    makeOption('black', 'Black'),
+                    makeOption('red', 'Red'),
+                    makeOption('green', 'Green'),
+                    makeOption('blue', 'Blue'),
+                ],
+                'black'
+            ),
+            makeSlider('alpha', 'Alpha', 1, 255, [50, 200]),
+        ),
+    );
 }
 
 function draw() {

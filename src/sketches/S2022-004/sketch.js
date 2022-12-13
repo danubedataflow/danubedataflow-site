@@ -1,13 +1,12 @@
 'use strict';
 
-makeForm(
-    makeSelectColorMap(),
-    makeSelectBlendMode(),
-    makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSelectColorMap(),
+        makeSelectBlendMode(),
+        makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
+    );
 }
 
 function draw() {
@@ -19,7 +18,7 @@ function draw() {
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration
     for (let i = 1; i <= ctrl.numTriangles + 2; i++) {
-        p.push([ random(width), random(height) ]);
+        p.push([random(width), random(height)]);
         if (p.length == 3) {
             let colorScale = chroma.scale(ctrl.colorMap);
             let c = color(colorScale(random()).toString());

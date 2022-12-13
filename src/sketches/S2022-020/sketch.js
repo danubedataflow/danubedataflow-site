@@ -1,16 +1,15 @@
 'use strict';
 
-makeForm(
-    makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
-    makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
-    makeSlider('chanceVertical', 'Chance for a vertical line (%)', 0, 100, 30),
-    makeSlider('chanceDiagoalUp', 'Chance for an upwards diagonal line (%)', 0, 100, 30),
-    makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
-    makeCheckbox('tileBorder', 'Tile border'),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
+        makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
+        makeSlider('chanceVertical', 'Chance for a vertical line (%)', 0, 100, 30),
+        makeSlider('chanceDiagoalUp', 'Chance for an upwards diagonal line (%)', 0, 100, 30),
+        makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
+        makeCheckbox('tileBorder', 'Tile border'),
+    );
 }
 
 function draw() {

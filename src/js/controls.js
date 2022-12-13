@@ -1,5 +1,7 @@
 'use strict';
 
+let ignoreControlChange = 0;
+
 /* copied from p5.js so we can use these constants in the global scope, i.e.,
  * outside setup() etc. Kludge.
  */
@@ -184,7 +186,10 @@ function elementWithChildren(el, ...contents) {
 }
 
 function makeForm(...contents) {
+    ignoreControlChange = 1;
     elementWithChildren(document.getElementById('controls-form'), ...contents);
+    ignoreControlChange = 0;
+    controlsDidChange();
     updateURL(); // because we potentially changed the controls
 }
 
@@ -425,19 +430,14 @@ function updateURL() {
 }
 
 function controlsDidChange() {
-    /* Form elements should be defined in the global scope so p5.js didn't yet
-     * define redraw(). And we don't want to call redraw() anyway before the
-     * first call to draw() has finished.
-     */
-
-    if (typeof redraw == 'function') {
-        readControls();
-        updateURL();
-        redraw();
-    }
+    if (ignoreControlChange) return;
+    readControls();
+    updateURL();
+    redraw();
 }
 
 function setControlsRandomly() {
+    ignoreControlChange = 1;
     Object.values(controls).forEach(c => {
         if (c instanceof SliderControl) {
             /* For the noUISlider, generate one or more values between `min`
@@ -473,4 +473,6 @@ function setControlsRandomly() {
             c.setValue(random([true, false]));
         }
     });
+    ignoreControlChange = 0;
+    controlsDidChange();
 }

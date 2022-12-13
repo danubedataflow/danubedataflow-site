@@ -1,17 +1,16 @@
 'use strict';
 
-makeForm(
-    makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
-    makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
+        makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
+    );
 }
 
 function draw() {
     readControls();
-    let dim = width;  // square canvas
+    let dim = width; // square canvas
 
     translate(dim / 2, dim / 2);
     scale(ctrl.scale);

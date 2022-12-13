@@ -4,13 +4,12 @@
  * and/or shape color's alpha to 0.
  */
 
-makeForm(
-    makeSlider('numTiles', 'Number of tiles', 2, 10, 4),
-    makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numTiles', 'Number of tiles', 2, 10, 4),
+        makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
+    );
 }
 
 function draw() {

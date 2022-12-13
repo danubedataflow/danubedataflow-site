@@ -35,19 +35,18 @@ function createImageCheckboxControl() {
     return containerDiv;
 }
 
-makeForm(
-    createImageCheckboxControl(),
-    makeSelectColorMap(),
-    makeSelectBlendMode(),
-    makeSlider('numColors', 'Number of colors', 1, 12, 6),
-    makeSlider('numTiles', 'Number of tiles', 1, 16, 8),
-    makeSlider('numObjects', 'Number of objects', 20, 1000, 100, 20),
-    makeSlider('strokeWeight', 'Stroke weight', 1, 25, [10, 20]),
-    makeSlider('rotation', 'Maximum rotation', 0, 270, [0, 90], 90),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        createImageCheckboxControl(),
+        makeSelectColorMap(),
+        makeSelectBlendMode(),
+        makeSlider('numColors', 'Number of colors', 1, 12, 6),
+        makeSlider('numTiles', 'Number of tiles', 1, 16, 8),
+        makeSlider('numObjects', 'Number of objects', 20, 1000, 100, 20),
+        makeSlider('strokeWeight', 'Stroke weight', 1, 25, [10, 20]),
+        makeSlider('rotation', 'Maximum rotation', 0, 270, [0, 90], 90),
+    );
 
     // activate a random set of shapes
 

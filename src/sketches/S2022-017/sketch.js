@@ -5,12 +5,11 @@
  * Also see https://openprocessing.org/sketch/1626688 ("0576_2" by kusakari)
  */
 
-makeForm(
-    makeSlider('numCurves', 'Number of curves', 2, 100, 30),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('numCurves', 'Number of curves', 2, 100, 30),
+    );
 }
 
 function draw() {

@@ -2,21 +2,18 @@
 
 // polygons at points of polygons at points of polygons etc.
 
-makeForm(
-    makeSlider('sides', 'Number of sides', 3, 10, 5),
-    makeSlider('diameter', 'Diameter', 1, 100, 30),
-    makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
-    makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
-);
-
-const colors = ['#000000', '#ff0000', '#00ff00',
-    '#0000ff', '#ffff00', '#ff00ff'
-];
+const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
 
 let palette;
 
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSlider('sides', 'Number of sides', 3, 10, 5),
+        makeSlider('diameter', 'Diameter', 1, 100, 30),
+        makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
+        makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
+    );
 }
 
 function draw() {

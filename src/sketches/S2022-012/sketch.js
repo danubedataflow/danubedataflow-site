@@ -1,13 +1,12 @@
 'use strict';
 
-makeForm(
-    makeSelectColorMap(),
-    makeSlider('numColors', 'Number of colors', 2, 32, 16),
-    makeSlider('numSides', 'Number of sides', 3, 50, 10),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSelectColorMap(),
+        makeSlider('numColors', 'Number of colors', 2, 32, 16),
+        makeSlider('numSides', 'Number of sides', 3, 50, 10),
+    );
 }
 
 function draw() {

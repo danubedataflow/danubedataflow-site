@@ -4,18 +4,17 @@
  * https://github.com/codigo42/processing-glassner/Ch10-recursion/sketches/spinners7/spinners7.pde
  */
 
-makeForm(
-    makeSelectColorMap(),
-    makeSlider('numCircles', 'Number of circles', 2, 8, 3),
-    makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
-    makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
-    makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
-);
-
 let palette;
 
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSelectColorMap(),
+        makeSlider('numCircles', 'Number of circles', 2, 8, 3),
+        makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
+        makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
+        makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
+    );
 }
 
 function draw() {

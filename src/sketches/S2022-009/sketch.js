@@ -1,14 +1,13 @@
 'use strict';
 
-makeForm(
-    makeSelectColorMap(),
-    makeSelectBlendMode(),
-    makeSlider('numColors', 'Number of colors', 1, 32, 25),
-    makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
-);
-
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    makeForm(
+        makeSelectColorMap(),
+        makeSelectBlendMode(),
+        makeSlider('numColors', 'Number of colors', 1, 32, 25),
+        makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
+    );
 }
 
 function draw() {
@@ -66,4 +65,3 @@ function iterateSquareSpiral(max, callback) {
         callback(x, y, k);
     }
 }
-
