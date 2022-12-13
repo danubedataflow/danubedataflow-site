@@ -311,10 +311,8 @@ function makeSelectColorMap() {
     return containerDiv;
 }
 
-/* We only offer the values that make sense for sketches that are
- * being redrawn. The values are the corresponding p5.js constants.
- */
 function makeSelectBlendMode(options) {
+    // use [] because these are const names
     let nameFor = {
         [ADD]: 'Lighter',
         [BLEND]: 'Blend',
@@ -337,10 +335,14 @@ function makeSelectBlendMode(options) {
         options = Object.keys(nameFor);
     }
 
-    // Sort the options by name. The default value is 'blend' if it is an
-    // option, or the first sorted element if it isn't.
+    // Sort the options by their display name.
+    options = options.sort((a, b) => {
+        nameFor[a].localeCompare(nameFor[b])
+    });
 
-    options = options.sort();
+    // The default value is 'blend' if it is an option, or the first
+    // sorted element if it isn't.
+
     let defaultValue = options.putFirst(el => el == BLEND).at(0);
     return makeSelect(
         'blendMode',
