@@ -12,6 +12,7 @@ function setup() {
             makeOption('adjacent', 'Adjacent'),
         ]),
     );
+    noLoop();
 }
 
 function draw() {
@@ -52,8 +53,6 @@ function draw() {
             pop();
         }
     }
-
-    noLoop();
 }
 
 function chooseColors() {

@@ -15,6 +15,7 @@ function setup() {
         ),
         makeSlider('margin', 'Margin', 0, 200, 15, 5),
     );
+    noLoop();
 }
 
 function draw() {
@@ -49,7 +50,6 @@ function draw() {
             pop();
         }
     }
-    noLoop();
 }
 
 function windowResized() {

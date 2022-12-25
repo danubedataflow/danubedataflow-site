@@ -9,6 +9,7 @@ function setup() {
         makeSlider('numLines', 'Number of lines', 1, 1500, 500),
         makeSlider('randomDelta', 'Random delta', 1, 20, 5),
     );
+    noLoop();
 }
 
 function draw() {
@@ -41,7 +42,6 @@ function draw() {
         x2 -= x2d;
         y2 -= y2d;
     }
-    noLoop();
 }
 
 function rnd(mid) {

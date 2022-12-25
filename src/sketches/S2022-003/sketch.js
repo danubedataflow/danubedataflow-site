@@ -2,6 +2,7 @@
 
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
+    noLoop();
 }
 
 function draw() {
@@ -16,7 +17,6 @@ function draw() {
     img.updatePixels();
     img.resize(width * pixelDensity(), height * pixelDensity());
     image(img, 0, 0);
-    noLoop();
 }
 
 function windowResized() {

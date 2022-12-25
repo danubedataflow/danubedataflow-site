@@ -30,6 +30,7 @@ function setup() {
             makeSlider('alpha', 'Alpha', 1, 255, [50, 200]),
         ),
     );
+    noLoop();
 }
 
 function draw() {
@@ -52,7 +53,6 @@ function draw() {
         fill(controlColorWithAlpha());
         rect(0, y1, width, h);
     }
-    noLoop();
 }
 
 function windowResized() {

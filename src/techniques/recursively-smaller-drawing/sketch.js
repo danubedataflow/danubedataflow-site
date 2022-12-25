@@ -15,6 +15,7 @@ function setup() {
         makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
         makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
     );
+    noLoop();
 }
 
 function draw() {
@@ -28,7 +29,6 @@ function draw() {
     translate(width / 2, height / 2);
     scale(width * 0.45);
     drawCircles(0);
-    noLoop();
 }
 
 function drawCircles(depth) {

@@ -10,6 +10,7 @@ function setup() {
         makeSlider('numTiles', 'Number of tiles', 2, 10, 4),
         makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
     );
+    noLoop();
 }
 
 function draw() {
@@ -27,7 +28,6 @@ function draw() {
 
     background("white");
     makeGrid(ctrl.numTiles, width, ctrl.maxDepth);
-    noLoop();
 }
 
 // make square grids

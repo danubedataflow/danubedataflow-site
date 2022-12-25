@@ -14,6 +14,7 @@ function setup() {
         makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
         makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
     );
+    noLoop();
 }
 
 function draw() {
@@ -27,7 +28,6 @@ function draw() {
 
     drawPolygons(0, 0, ctrl.sides, ctrl.diameter * width / 100,
         0, ctrl.rotDelta, ctrl.maxDepth);
-    noLoop();
 }
 
 function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, depth = 0) {

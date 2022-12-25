@@ -55,6 +55,7 @@ function setup() {
         let randomShapes = [...myShape.types].sort(() => .5 - Math.random()).slice(0, 3);
         randomShapes.forEach(i => controls['shape' + i].setValue(true));
     }
+    noLoop();
 }
 
 function draw() {
@@ -84,7 +85,6 @@ function draw() {
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
     }
-    noLoop();
 }
 
 class myShape {

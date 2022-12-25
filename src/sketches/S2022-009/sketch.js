@@ -8,6 +8,7 @@ function setup() {
         makeSlider('numColors', 'Number of colors', 1, 32, 25),
         makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
     );
+    noLoop();
 }
 
 function draw() {
@@ -34,7 +35,6 @@ function draw() {
         fill(palette[colorIndex]);
         rect(x * magnify, y * magnify, magnify, magnify);
     });
-    noLoop();
 }
 
 function windowResized() {

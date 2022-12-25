@@ -8,6 +8,7 @@ function setup() {
         makeSlider('resolutionFactor', 'Resolution factor', 1, 16, 8),
         makeSlider('lineDensity', 'Line density', 1, 10, 5),
     );
+    noLoop();
 }
 
 function draw() {
@@ -30,7 +31,6 @@ function draw() {
     }
     imageMode(CORNER);
     image(pg, 0, 0, width, height);
-    noLoop();
 }
 
 function windowResized() {

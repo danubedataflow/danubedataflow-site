@@ -10,6 +10,7 @@ function setup() {
         makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
         makeCheckbox('tileBorder', 'Tile border'),
     );
+    noLoop();
 }
 
 function draw() {
@@ -42,8 +43,6 @@ function draw() {
             pop();
         }
     }
-
-    noLoop();
 }
 
 function windowResized() {

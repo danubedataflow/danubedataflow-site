@@ -6,6 +6,7 @@ function setup() {
         makeSlider('numTiles', 'Number of tiles', 2, 20, 10),
         makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
     );
+    noLoop();
 }
 
 function draw() {
@@ -26,7 +27,6 @@ function draw() {
         fill(random(palette));
         rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
-    noLoop();
 }
 
 function windowResized() {

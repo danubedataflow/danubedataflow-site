@@ -7,6 +7,7 @@ function setup() {
         makeSelectBlendMode(),
         makeSlider('numLines', 'Number of lines', 1, 1500, 500),
     );
+    noLoop();
 }
 
 function draw() {
@@ -27,7 +28,6 @@ function draw() {
 
         line(0, 0, sin(angle) * radius, cos(angle) * radius);
     }
-    noLoop();
 }
 
 function windowResized() {

@@ -13,6 +13,7 @@ function setup() {
             makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
         ),
     );
+    noLoop();
 }
 
 function draw() {
@@ -39,7 +40,6 @@ function draw() {
             colorIndex = (colorIndex + 1) % palette.length;
         });
     }
-    noLoop();
 }
 
 function windowResized() {

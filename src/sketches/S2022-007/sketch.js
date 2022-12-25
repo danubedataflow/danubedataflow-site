@@ -7,6 +7,7 @@ function setup() {
         makeSelectBlendMode(),
         makeSlider('numLines', 'Number of lines', 1, 1500, 500),
     );
+    noLoop();
 }
 
 function draw() {
@@ -30,7 +31,6 @@ function draw() {
         line(...p, ...p2);
         p = p2;
     }
-    noLoop();
 }
 
 function windowResized() {

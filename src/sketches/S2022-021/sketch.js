@@ -21,6 +21,7 @@ function setup() {
             makeSlider('strokeAmount', 'Weight', 1, 4, [2, 3]),
         ),
     );
+    noLoop();
 }
 
 function draw() {
@@ -56,8 +57,6 @@ function draw() {
             pop();
         }
     }
-
-    noLoop();
 }
 
 function windowResized() {

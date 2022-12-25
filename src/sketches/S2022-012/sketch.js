@@ -7,6 +7,7 @@ function setup() {
         makeSlider('numColors', 'Number of colors', 2, 32, 16),
         makeSlider('numSides', 'Number of sides', 3, 50, 10),
     );
+    noLoop();
 }
 
 function draw() {
@@ -28,7 +29,6 @@ function draw() {
             line(...p, ...p2);
         });
     });
-    noLoop();
 }
 
 function windowResized() {

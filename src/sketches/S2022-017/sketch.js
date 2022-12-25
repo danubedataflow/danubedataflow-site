@@ -10,6 +10,7 @@ function setup() {
     makeForm(
         makeSlider('numCurves', 'Number of curves', 2, 100, 30),
     );
+    noLoop();
 }
 
 function draw() {
@@ -34,7 +35,6 @@ function draw() {
     });
     path.closePath();
     drawingContext.fill(path, "evenodd");
-    noLoop();
 }
 
 function randomPoint() {

@@ -6,6 +6,7 @@ function setup() {
         makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
         makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
     );
+    noLoop();
 }
 
 function draw() {
@@ -32,8 +33,6 @@ function draw() {
             pop();
         }
     }
-
-    noLoop();
 }
 
 function windowResized() {

@@ -6,6 +6,7 @@ function setup() {
         makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
         makeSlider('strokeWeight', 'Stroke weight', 1, 20, 10),
     );
+    noLoop();
 }
 
 function draw() {
@@ -30,8 +31,6 @@ function draw() {
     line(0, dim / 2, dim, dim / 2);
     stroke('green');
     line(dim / 2, 0, dim / 2, dim);
-
-    noLoop();
 }
 
 function windowResized() {

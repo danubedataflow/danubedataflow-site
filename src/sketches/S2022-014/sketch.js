@@ -14,6 +14,7 @@ function setup() {
         makeSlider('modulus', 'Modulus', 10, 300, 100),
         makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
     );
+    noLoop();
 }
 
 function draw() {
@@ -26,7 +27,6 @@ function draw() {
     blendMode(BLEND); // so background() actually clears the canvas
     background('#cccccc');
 
-    push();
     translate(width / 2, height / 2);
     circle(0, 0, width);
 
@@ -43,8 +43,6 @@ function draw() {
             ...pointOnCircle(angle(i * ctrl.timesTable), radius)
         );
     }
-    pop();
-    noLoop();
 }
 
 function angle(n) {

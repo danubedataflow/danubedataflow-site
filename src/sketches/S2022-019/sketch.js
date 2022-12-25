@@ -8,6 +8,7 @@ function setup() {
         makeSlider('angleStep', 'Angle step', 0.1, 10, 0.5, 0.1),
         makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
     );
+    noLoop();
 }
 
 function draw() {
@@ -33,7 +34,6 @@ function draw() {
         let dim = random(...ctrl.squareSize);
         rect(x, y, dim, dim);
     }
-    noLoop();
 }
 
 function windowResized() {

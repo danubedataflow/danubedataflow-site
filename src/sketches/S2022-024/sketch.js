@@ -9,6 +9,7 @@ function setup() {
         makeSlider('strokeWeight', 'Stroke weight', 1, 20, [10, 12]),
         makeSlider('alpha', 'Alpha', 0, 255, [200, 255]),
     );
+    noLoop();
 }
 
 function draw() {
@@ -35,7 +36,6 @@ function draw() {
         stroke(0, randomIntRange(...ctrl.alpha));
         rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
-    noLoop();
 }
 
 function windowResized() {
