@@ -4,7 +4,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSelectColorMap(),
-        makeSelectBlendMode(),
+        makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
         makeSlider('numLines', 'Number of lines', 1, 1500, 500),
     );
     noLoop();

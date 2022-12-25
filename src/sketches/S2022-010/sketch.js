@@ -6,7 +6,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSelectColorMap(),
-        makeSelectBlendMode(),
+        makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
         makeSlider('numColors', 'Number of colors', 1, 32, 16),
         makeSlider('numSquares', 'Number of squares', 20, 1000, 100, 20),
         makeSlider('alpha', 'Transparency (%)', 0, 100, [20, 80]),
@@ -19,7 +19,9 @@ function draw() {
     readControls();
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
+    blendMode(BLEND); // so background() actually clears the canvas
     background(int(random(palette)));
+    blendMode(ctrl.blendMode);
     rectMode(CENTER);
     noStroke();
 

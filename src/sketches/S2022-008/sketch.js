@@ -40,7 +40,7 @@ function setup() {
     makeForm(
         createImageCheckboxControl(),
         makeSelectColorMap(),
-        makeSelectBlendMode(),
+        makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         makeSlider('numColors', 'Number of colors', 1, 12, 6),
         makeSlider('numTiles', 'Number of tiles', 1, 16, 8),
         makeSlider('numObjects', 'Number of objects', 20, 1000, 100, 20),

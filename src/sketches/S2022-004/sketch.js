@@ -4,7 +4,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSelectColorMap(),
-        makeSelectBlendMode(),
+        makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, HARD_LIGHT, MULTIPLY]),
         makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
     );
     noLoop();
