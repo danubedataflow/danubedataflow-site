@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = $(WWW)/deps
 
-.PHONY: default site deps watch deploy icons clean test
+.PHONY: default site deps watch open deploy icons clean test
 
 default:
 	$(error Specify a Makefile target)
@@ -23,6 +23,9 @@ deps:
 
 watch:
 	bin/live-reload
+
+open:
+	open $(WWW)/index.html
 
 deploy:
 	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
