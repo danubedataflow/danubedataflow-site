@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = $(WWW)/deps
 
-.PHONY: default site deps watch open deploy icons clean test
+.PHONY: default site deps watch nginx deploy icons clean test
 
 default:
 	$(error Specify a Makefile target)
@@ -24,8 +24,9 @@ deps:
 watch:
 	bin/live-reload
 
-open:
-	open $(WWW)/index.html
+nginx:
+	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
+	nginx -s reload
 
 deploy:
 	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/

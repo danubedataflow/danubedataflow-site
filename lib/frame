@@ -1,0 +1,3 @@
+<div class="frame">
+    <a href="[% dir %]/"><img src="[% dir %]/thumbnail.png"></a>
+</div>
