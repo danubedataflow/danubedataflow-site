@@ -1,0 +1,13 @@
+two-pass template processing
+
+ttree --start_tag="{%" --end_tag="%}" --define lang=de
+
+copies the site from `src/` to `pass1/de`. This means that images etc. are copied as well, but that's acceptable.
+
+Do this for the languages `de`, `en` and `jp`.
+
+Files in `lib/` are included in the first pass, so files in `src` don't have directives like `INCLUDE` or `WRAPPER` anymore.
+
+{% INCLUDE sketch %}
+
+Every page has the language flags in the header. They will take you to the same page in a different language.
