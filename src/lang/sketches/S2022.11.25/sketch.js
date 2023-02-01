@@ -4,7 +4,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 2, 20, 10),
-        makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
+        makeSlider('numRects', '[% t.numRects %]', 2, 20, 10),
     );
     noLoop();
 }

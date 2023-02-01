@@ -8,7 +8,7 @@ function setup() {
             makeSlider('rotationChance', 'Chance (%)', 0, 100, 5),
             makeSlider('rotationAmount', 'Angles', -45, 45, [-10, 10]),
         ),
-        makeFieldset('Scale',
+        makeFieldset('[% t.scale %]',
             makeSlider('scaleChance', 'Chance (%)', 0, 100, 5),
             makeSlider('scaleAmount', 'Amount (%)', 50, 150, [80, 120]),
         ),

@@ -6,9 +6,9 @@ function setup() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSelectColorMap(),
-        makeSlider('numColors', 'Number of colors', 2, 32, 16),
-        makeSlider('numSides', 'Number of sides', 3, 10, 5),
-        makeFieldset('Scale',
+        makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
+        makeSlider('numSides', '[% t.numSides %]', 3, 10, 5),
+        makeFieldset('[% t.scale %]',
             makeSlider('scaleRange', 'Range (%)', 1, 100, [5, 80]),
             makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
         ),

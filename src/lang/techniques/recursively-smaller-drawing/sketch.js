@@ -11,7 +11,7 @@ function setup() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numCircles', 'Number of circles', 2, 8, 3),
-        makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
+        makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 2),
         makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
         makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
     );

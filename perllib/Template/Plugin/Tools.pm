@@ -21,7 +21,19 @@ sub sl {
     my %translations = (en => $en, de => $de // $en, ja => $ja // $en);
     return $translations{ $self->{lang} };
 }
-sub numTiles     { $_[0]->sl('Number of tiles', 'Anzahl der Kacheln', 'タイル数') }
-sub numLines     { $_[0]->sl('Number of lines', 'Anzahl der Zeilen',  '線数') }
-sub strokeWeight { $_[0]->sl('Stroke weight',   'Strichstärke',       '線の太さ') }
+sub numTiles  { $_[0]->sl('Number of tiles',  'Anzahl der Kacheln', 'タイルの数') }
+sub numLines  { $_[0]->sl('Number of lines',  'Anzahl der Zeilen',  '線の数') }
+sub numColors { $_[0]->sl('Number of colors', 'Anzahl der Farben',  '色の数') }
+
+sub numRects {
+    $_[0]->sl('Number of rectangles', 'Anzahl der Rechtecke', '長方形の数');
+}
+sub numSides     { $_[0]->sl('Number of sides', 'Anzahl der Seiten', '辺の数') }
+sub maxDepth     { $_[0]->sl('Maximum depth',   'Maximale Tiefe',    '最大の深さ') }
+sub strokeWeight { $_[0]->sl('Stroke weight',   'Strichstärke',      '線の太さ') }
+
+sub alpha {
+    $_[0]->sl('Transparency (Alpha)', 'Transparenz (Alpha)', '透明度（アルファ値）');
+}
+sub scale { $_[0]->sl('Scale', 'Skalierung', '目盛') }
 1;

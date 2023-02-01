@@ -3,7 +3,7 @@
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
+        makeSlider('scale', '[% t.scale %]', 0, 1, 0.9, 0.1),
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 20, 10),
     );
     noLoop();

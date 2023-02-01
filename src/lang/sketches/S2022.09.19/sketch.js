@@ -8,7 +8,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 2, 10, 4),
-        makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
+        makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 2),
     );
     noLoop();
 }
