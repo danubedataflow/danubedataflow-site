@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="[% lang %]">
 
 [% WRAPPER head %]
     <link href="/deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
