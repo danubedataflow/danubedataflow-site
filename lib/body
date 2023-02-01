@@ -7,7 +7,7 @@
             | <a href="/[% lang %]/text/">[% t.sl('Text', 'Text', 'テキスト') %]</a>
             &nbsp; <a href="#" onclick="translatePage('de')"><img src="/images/de.png" width="25"></a>
             &nbsp; <a href="#" onclick="translatePage('en')"><img src="/images/en.png" width="35"></a>
-            &nbsp; <a href="#" onclick="translatePage('jp')"><img src="/images/jp.png" width="25"></a>
+            &nbsp; <a href="#" onclick="translatePage('ja')"><img src="/images/ja.png" width="25"></a>
         </div>
     </header>
 

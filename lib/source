@@ -13,7 +13,7 @@
             Back to the <a href="index.html">Sketch</a>
 [% ELSIF lang == 'de' %]
             Zurück zur <a href="index.html">Skizze</a>
-[% ELSIF lang == 'jp' %]
+[% ELSIF lang == 'ja' %]
             <a href="index.html">スケッチ</a>に戻る
 [% END %]
         </p>

@@ -10,7 +10,7 @@ site: clean
 	cp -a src/root $(WWW)
 	ttree -f etc/ttreerc --dest $(WWW)/de --define lang=de
 	ttree -f etc/ttreerc --dest $(WWW)/en --define lang=en
-	ttree -f etc/ttreerc --dest $(WWW)/jp --define lang=jp
+	ttree -f etc/ttreerc --dest $(WWW)/ja --define lang=ja
 	make deps
 
 deps:

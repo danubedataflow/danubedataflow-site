@@ -17,8 +17,8 @@ sub s {
 
 # Helper method to be more concise
 sub sl {
-    my ($self, $en, $de, $jp) = @_;
-    my %translations = (en => $en, de => $de // $en, jp => $jp // $en);
+    my ($self, $en, $de, $ja) = @_;
+    my %translations = (en => $en, de => $de // $en, ja => $ja // $en);
     return $translations{ $self->{lang} };
 }
 sub numTiles     { $_[0]->sl('Number of tiles', 'Anzahl der Kacheln', 'タイル数') }
