@@ -4,7 +4,7 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
-        makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
+        makeSlider('exponent', '[% t.sl('Exponent', 'Exponent', '指数') %]', 0, 5, 2, 0.1),
     );
     noLoop();
 }
