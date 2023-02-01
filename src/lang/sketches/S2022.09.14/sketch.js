@@ -9,7 +9,7 @@ function setup() {
         makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
         makeSlider('numColors', '[% t.numColors %]', 1, 32, 16),
         makeSlider('numSquares', 'Number of squares', 20, 1000, 100, 20),
-        makeSlider('alpha', 'Transparency (%)', 0, 100, [20, 80]),
+        makeSlider('alpha', '[% t.alpha %]', 0, 100, [20, 80]),
         makeSlider('size', 'Size (%)', 1, 100, [5, 30]),
     );
     noLoop();
