@@ -1,0 +1,6 @@
+From https://highlightjs.org/download/
+
+curl -o highlight.min.css "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
+curl -O "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js
+
+Can't just `npm i highlight.js` because that does not include the above two files.

@@ -42,9 +42,9 @@ function setup() {
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         makeSlider('numColors', 'Number of colors', 1, 12, 6),
-        makeSlider('numTiles', 'Number of tiles', 1, 16, 8),
+        makeSlider('numTiles', '[% t.numTiles %]', 1, 16, 8),
         makeSlider('numObjects', 'Number of objects', 20, 1000, 100, 20),
-        makeSlider('strokeWeight', '[% t.sl('Stroke weight', 'Strichstärke', '線の太さ') %]', 1, 25, [10, 20]),
+        makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 25, [10, 20]),
         makeSlider('rotation', 'Maximum rotation', 0, 270, [0, 90], 90),
     );
 

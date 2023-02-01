@@ -3,7 +3,7 @@
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
+        makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
         makeSlider('chanceVertical', 'Chance for a vertical line (%)', 0, 100, 30),
         makeSlider('chanceDiagoalUp', 'Chance for an upwards diagonal line (%)', 0, 100, 30),

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+[% WRAPPER head %]
+    <link href="/deps/highlight.min.css" rel="stylesheet">
+    <script src="/deps/highlight.min.js"></script>
+[% END %]
+
+[% WRAPPER body %]
+    <section class="narrow">
+        <p>
+[% IF lang == 'en' %]
+            Back to the <a href="index.html">Sketch</a>
+[% ELSIF lang == 'de' %]
+            Zurück zur <a href="index.html">Skizze</a>
+[% ELSIF lang == 'jp' %]
+            <a href="index.html">スケッチ</a>に戻る
+[% END %]
+        </p>
+        <pre><code class="language-javascript" id="source">
+        </code></pre>
+    </section>
+[% END %]
+
+<script>
+
+window.addEventListener('load', () => {
+    fetch('sketch.js')
+        .then(response => response.text())
+        .then(contents => {
+            document.getElementById("source").textContent = contents;
+            hljs.highlightAll();
+        });
+});
+
+</script>
+
+</html>

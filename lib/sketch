@@ -18,6 +18,7 @@
             <p>
                 <span id="sketchTitle">[% title %]</span> |
                 <span id="canvasSize"></span> |
+                <span id="source-link"><a href="source.html">[% t.sl('Code', 'Code', 'ソースコード') %]</a></span>
 
                 <!-- return false to prevent the page reload -->
                 <button onclick="redraw(); return false;"><i class="bi bi-arrow-clockwise"></i></button>

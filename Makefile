@@ -23,6 +23,7 @@ deps:
 	mkdir -p $(DEPS)/bootstrap-icons-font/fonts
 	cp -a node_modules/bootstrap-icons/font/bootstrap-icons.css $(DEPS)/bootstrap-icons-font/
 	cp -a node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff* $(DEPS)/bootstrap-icons-font/fonts/
+	cp more-deps/highlight.js/*.{css,js} $(DEPS)
 
 watch:
 	bin/live-reload
