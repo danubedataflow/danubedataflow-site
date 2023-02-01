@@ -4,8 +4,8 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeFieldset('Tiles',
-            makeSlider('tileCountX', 'Horizontal tiles', 1, 100, 30),
-            makeSlider('tileCountY', 'Vertical tiles', 1, 100, 15),
+            makeSlider('tileCountX', '[% t.sl('Horizontal tiles', 'Horizontale Kacheln', '水平タイル数') %]', 1, 100, 30),
+            makeSlider('tileCountY', '[% t.sl('Vertical tiles', 'Vertikale Kacheln', '垂直タイル数') %]', 1, 100, 15),
             makeSlider('tileSizeMultiplier', 'Tile size multiplier', 1, 10, 3, 0.1),
         ),
         makeFieldset('Noise',

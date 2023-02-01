@@ -5,8 +5,8 @@ let canvas;
 function setup() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('resolutionFactor', 'Resolution factor', 1, 16, 8),
-        makeSlider('lineDensity', 'Line density', 1, 10, 5),
+        makeSlider('resolutionFactor', '[% t.sl('Resolution', 'Auflösung', '解像度') %]', 1, 16, 8),
+        makeSlider('lineDensity', '[% t.sl('Line density', 'Liniendichte', '線度') %]', 1, 10, 5),
     );
     noLoop();
 }

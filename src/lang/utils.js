@@ -435,7 +435,8 @@ function makeSelect(id, label, contents, value) {
 function makeSelectColorMap() {
     let containerDiv = makeSelect(
         'colorMap',
-        'Color palette', [
+        '[% t.sl('Color palette', 'Farbpalette', 'カラーパレット') %]',
+        [
             makeOptGroup('Sequential',
                 makeOption('OrRd'),
                 makeOption('PuBu'),
@@ -519,7 +520,7 @@ function makeSelectBlendMode(options) {
     let defaultValue = options.putFirst(el => el == BLEND).at(0);
     return makeSelect(
         'blendMode',
-        'Blend mode',
+        '[% t.sl('Blend mode', 'Farbmischung', 'ブレンドモード') %]',
         options.map(c => makeOption(c, nameFor[c])),
         defaultValue
     );
@@ -600,4 +601,11 @@ function setControlsRandomly() {
     });
     ignoreControlChange = 0;
     controlsDidChange();
+}
+
+function translatePage(language) {
+    window.location.href =
+        window.location.protocol + "//" + window.location.host
+        + window.location.pathname.replace(/^\/[a-z][a-z]\//, '/' + language + '/')
+        + '?' + window.location.search;
 }

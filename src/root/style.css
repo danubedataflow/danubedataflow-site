@@ -48,17 +48,17 @@ main {
 .subheading a:visited {
     color: var(--maincolor);
     font-weight: bold;
-    text-decoration: none
+    text-decoration: none;
 }
 
 a,
 a:visited {
     color: var(--maincolor);
-    text-decoration: none
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline
+    text-decoration: none;
 }
 
 #sketch-container {

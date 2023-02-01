@@ -8,7 +8,6 @@
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
     <script src="/deps/rough.js"></script>
-    <script src="/utils.js"></script>
 [% END %]
 
 [% WRAPPER body %]

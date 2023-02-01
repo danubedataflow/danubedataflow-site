@@ -1,10 +1,13 @@
 <body>
     <header>
-        <h1 class="site-title">Danube Dataflow</h1>
+        <h1 class="site-title"><a href="/[% lang %]/">Danube Dataflow</a></h1>
         <div class="subheading">
-            <a href="/[% lang %]">Sketches</a>
-            | <a href="/[% lang %]techniques/">Techniques</a>
-            | <a href="/[% lang %]text/">Text</a>
+            <a href="/[% lang %]/">[% t.sl('Sketches', 'Skizzen', 'スケッチ') %]</a>
+            | <a href="/[% lang %]/techniques/">[% t.sl('Techniques', 'Techniken', '技術') %]</a>
+            | <a href="/[% lang %]/text/">[% t.sl('Text', 'Text', 'テキスト') %]</a>
+            &nbsp; <a href="#" onclick="translatePage('de')"><img src="/images/de.png" width="25"></a>
+            &nbsp; <a href="#" onclick="translatePage('en')"><img src="/images/en.png" width="35"></a>
+            &nbsp; <a href="#" onclick="translatePage('jp')"><img src="/images/jp.png" width="25"></a>
         </div>
     </header>
 
