@@ -27,7 +27,7 @@ function setup() {
                 ],
                 'black'
             ),
-            makeSlider('alpha', 'Alpha', 1, 255, [50, 200]),
+            makeSlider('alpha', '[% t.alpha %]', 1, 255, [50, 200]),
         ),
     );
     noLoop();

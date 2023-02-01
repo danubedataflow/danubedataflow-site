@@ -10,9 +10,9 @@ function setup() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSelectColorMap(),
-        makeSlider('numColors', 'Number of colors', 1, 12, 6),
+        makeSlider('numColors', '[% t.numColors %]', 1, 12, 6),
         makeSlider('numTiles', '[% t.numTiles %]', 2, 10, 4),
-        makeSlider('maxDepth', 'Maximum depth', 0, 4, 2),
+        makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 2),
     );
     noLoop();
 }

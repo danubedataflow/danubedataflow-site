@@ -5,7 +5,7 @@ function setup() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
-        makeSlider('numColors', 'Number of colors', 1, 32, 25),
+        makeSlider('numColors', '[% t.numColors %]', 1, 32, 25),
         makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
     );
     noLoop();

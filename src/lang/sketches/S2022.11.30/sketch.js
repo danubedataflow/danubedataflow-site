@@ -4,10 +4,10 @@ function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 2, 20, 10),
-        makeSlider('numRects', 'Number of rectangles', 2, 20, 10),
-        makeSlider('scale', 'Scale', 0, 1, 0.9, 0.1),
+        makeSlider('numRects', '[% t.numRects %]', 2, 20, 10),
+        makeSlider('scale', '[% t.scale %]', 0, 1, 0.9, 0.1),
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 20, [10, 12]),
-        makeSlider('alpha', 'Alpha', 0, 255, [200, 255]),
+        makeSlider('alpha', '[% t.alpha %]', 0, 255, [200, 255]),
     );
     noLoop();
 }

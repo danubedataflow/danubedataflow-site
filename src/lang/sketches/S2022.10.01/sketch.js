@@ -9,10 +9,10 @@ let palette;
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('sides', 'Number of sides', 3, 10, 5),
+        makeSlider('numSides', '[% t.numSides %]', 3, 10, 5),
         makeSlider('diameter', 'Diameter', 1, 100, 30),
         makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
-        makeSlider('maxDepth', 'Maximum depth', 0, 4, 1),
+        makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 1),
     );
     noLoop();
 }
@@ -26,7 +26,7 @@ function draw() {
     translate(width / 2, height / 2);
     background('white');
 
-    drawPolygons(0, 0, ctrl.sides, ctrl.diameter * width / 100,
+    drawPolygons(0, 0, ctrl.numSides, ctrl.diameter * width / 100,
         0, ctrl.rotDelta, ctrl.maxDepth);
 }
 
