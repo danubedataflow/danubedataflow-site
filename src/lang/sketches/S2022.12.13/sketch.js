@@ -7,7 +7,7 @@ function setup() {
         makeSlider('numGrids', 'Number of grids', 1, 10, 4),
         makeSlider('divisorRange', 'Segment divisor range', 2, 20, [3, 10]),
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 0, 8, 1),
-        makeSlider('alphaRange', 'Alpha range', 30, 90, [60, 70]),
+        makeSlider('alpha', '[% t.alpha %]', 30, 90, [60, 70]),
     );
     stroke('black');
     rectMode(CORNERS);
@@ -23,7 +23,7 @@ function draw() {
         let drawType = random(['plain', 'diagonal']);
         let maxDivisor = randomIntRange(...ctrl.divisorRange);
         let minDivisor = int(maxDivisor * 1.5);
-        drawGrid(width, minDivisor, maxDivisor, drawType, random(wes_palettes).colors, randomIntRange(...ctrl.alphaRange));
+        drawGrid(width, minDivisor, maxDivisor, drawType, random(wes_palettes).colors, randomIntRange(...ctrl.alpha));
     }
 }
 
