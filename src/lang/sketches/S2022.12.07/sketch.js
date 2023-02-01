@@ -5,7 +5,7 @@ let palette, c1, c2;
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
+        makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('chanceDiagonal', 'Chance for orientation of the diagonal (%)', 0, 100, 50),
         makeSelect('colorStrategy', 'Color selection strategy', [
             makeOption('random', 'Random'),

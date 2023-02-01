@@ -2,7 +2,6 @@ package Template::Plugin::Tools;
 use strict;
 use warnings;
 use v5.10;
-use Path::Tiny;
 use base 'Template::Plugin';
 
 sub new {
@@ -22,4 +21,7 @@ sub sl {
     my %translations = (en => $en, de => $de // $en, jp => $jp // $en);
     return $translations{ $self->{lang} };
 }
+sub numTiles     { $_[0]->sl('Number of tiles', 'Anzahl der Kacheln', 'タイル数') }
+sub numLines     { $_[0]->sl('Number of lines', 'Anzahl der Zeilen',  '線数') }
+sub strokeWeight { $_[0]->sl('Stroke weight',   'Strichstärke',       '線の太さ') }
 1;

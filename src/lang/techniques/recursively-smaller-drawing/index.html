@@ -3,8 +3,8 @@
 <p>The key idea is a recursive drawing function that draws on a smaller scale
 than in the previous recursion level:</p>
 
-<pre><code>function drawSomething() {
-    return if too small;
+<pre><code class="language-javascript">function drawSomething() {
+    if (too_small()) { return; }
     push();
     scale(0.4);
     drawSomething();

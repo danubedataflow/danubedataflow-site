@@ -6,7 +6,7 @@
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('numLines', 'Number of lines', 1, 1500, 500),
+        makeSlider('numLines', '[% t.numLines %]', 1, 1500, 500),
         makeSlider('randomDelta', 'Random delta', 1, 20, 5),
     );
     noLoop();

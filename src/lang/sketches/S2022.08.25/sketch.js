@@ -5,7 +5,7 @@ function setup() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
-        makeSlider('numLines', 'Number of lines', 1, 1500, 500),
+        makeSlider('numLines', '[% t.numLines %]', 1, 1500, 500),
     );
     noLoop();
 }

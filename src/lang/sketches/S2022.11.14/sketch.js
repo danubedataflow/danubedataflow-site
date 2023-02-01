@@ -3,7 +3,7 @@
 function setup() {
     createCanvas(...getCanvasDimension()).parent('sketch');
     makeForm(
-        makeSlider('numTiles', 'Number of tiles', 4, 40, 20),
+        makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeFieldset('Rotation',
             makeSlider('rotationChance', 'Chance (%)', 0, 100, 5),
             makeSlider('rotationAmount', 'Angles', -45, 45, [-10, 10]),
