@@ -7,5 +7,6 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link href="/style.css" rel="stylesheet">
+    <script src="/[% lang %]/utils.js"></script>
     [% content %]
 </head>

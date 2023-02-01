@@ -2,11 +2,14 @@ verbose
 recurse
 trim
 
-src  = src
-dest = ~/www/danubedataflow
+src  = src/lang
 lib  = lib
+perl5lib = perllib
 
-copy = \.(gif|png|jpg|pdf|css|json|js|mp3)$
+pre_process = pre
+
+# don't copy .js files; they contain text to be translated
+copy = \.(gif|png|jpg|pdf|css|json|mp3)$
 
 ignore = ^#
 ignore = \.swp$
