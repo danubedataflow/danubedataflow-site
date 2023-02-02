@@ -8,8 +8,8 @@ function setup() {
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('chanceDiagonal', 'Chance for orientation of the diagonal (%)', 0, 100, 50),
         makeSelect('colorStrategy', 'Color selection strategy', [
-            makeOption('random', 'Random'),
-            makeOption('adjacent', 'Adjacent'),
+            makeOption('random', '[% t.sl('Random', 'Zufällig', 'ランダム') %]'),
+            makeOption('adjacent', '[% t.sl('Adjacent', 'Angrenzend', '隣接') %]'),
         ]),
     );
     noLoop();
