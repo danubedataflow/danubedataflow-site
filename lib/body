@@ -4,6 +4,7 @@
         <div class="subheading">
             <a href="/[% lang %]/">[% t.sl('Sketches', 'Skizzen', 'スケッチ') %]</a>
             | <a href="/[% lang %]/techniques/">[% t.sl('Techniques', 'Techniken', '技術') %]</a>
+            | <a href="/[% lang %]/experiments/">[% t.sl('Experiments', 'Experimente', '実験') %]</a>
             | <a href="/[% lang %]/text/">[% t.sl('Text', 'Text', 'テキスト') %]</a>
             &nbsp; <a href="#" onclick="translatePage('de')"><img src="/images/de.png" width="25"></a>
             &nbsp; <a href="#" onclick="translatePage('en')"><img src="/images/en.png" width="35"></a>
