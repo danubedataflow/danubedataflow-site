@@ -2,24 +2,37 @@ package Template::Plugin::Tools;
 use strict;
 use warnings;
 use v5.10;
+use Path::Tiny;
 use base 'Template::Plugin';
 
 sub new {
     my ($class, $context) = @_;
-    bless { lang => $context->stash->{lang} }, $class;
+    bless { context => $context }, $class;
 }
+
+sub get_lang {
+    my $self = shift;
+    return $self->{context}->stash->{lang} // 'en';    # fallback language
+}
+
+sub get_dir {
+    my $self = shift;
+    return path('src/' . $self->{context}->stash->{template}{name})
+      ->parent->basename;
+}
+
+sub get_default_name { $_[0]->get_dir }
 
 sub s {
     my ($self, $lang_hash) = @_;
-    my $lang = $self->{lang} // 'en';    # fallback language
-    return $lang_hash->{$lang};
+    return $lang_hash->{ $self->get_lang };
 }
 
 # Helper method to be more concise
 sub sl {
     my ($self, $en, $de, $ja) = @_;
     my %translations = (en => $en, de => $de // $en, ja => $ja // $en);
-    return $translations{ $self->{lang} };
+    return $translations{ $self->get_lang };
 }
 sub numTiles  { $_[0]->sl('Number of tiles',  'Anzahl der Kacheln', 'タイルの数') }
 sub numLines  { $_[0]->sl('Number of lines',  'Anzahl der Zeilen',  '線の数') }
