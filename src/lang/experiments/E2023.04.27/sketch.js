@@ -5,7 +5,8 @@ function setup() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
-        makeSlider('chanceColor', 'Chance of any color (%)', 0, 100, 50),
+        makeSlider('chanceTileColor', 'Chance of a tile color (%)', 0, 100, 50),
+        makeSlider('chanceDiamondColor', 'Chance of a diamond color (%)', 0, 100, 50),
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 10),
     );
     noStroke();
@@ -39,7 +40,7 @@ function draw() {
 
             let c;
 
-            if (random(100) < ctrl.chanceColor) {
+            if (random(100) < ctrl.chanceTileColor) {
                 c = random(palette);
                 fill(c);
             } else {
@@ -47,7 +48,7 @@ function draw() {
             }
             rect(...ul, ...lr);
 
-            if (random(100) < ctrl.chanceColor) {
+            if (random(100) < ctrl.chanceDiamondColor) {
                 c = random(palette);
                 fill(c);
             } else {
@@ -56,7 +57,7 @@ function draw() {
             triangle(...um, ...center, ...lm);
 
 
-            if (random(100) < ctrl.chanceColor) {
+            if (random(100) < ctrl.chanceDiamondColor) {
                 c = random(palette);
                 fill(c);
             } else {
@@ -64,7 +65,7 @@ function draw() {
             }
             triangle(...um, ...center, ...rm);
 
-            if (random(100) < ctrl.chanceColor) {
+            if (random(100) < ctrl.chanceDiamondColor) {
                 c = random(palette);
                 fill(c);
             } else {
@@ -72,7 +73,7 @@ function draw() {
             }
             triangle(...bm, ...center, ...lm);
 
-            if (random(100) < ctrl.chanceColor) {
+            if (random(100) < ctrl.chanceDiamondColor) {
                 c = random(palette);
                 fill(c);
             } else {
