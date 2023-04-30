@@ -7,10 +7,11 @@ function setup() {
         makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
         makeSlider('chanceTileColor', 'Chance of a tile color (%)', 0, 100, 50),
         makeSlider('chanceDiamondColor', 'Chance of a diamond color (%)', 0, 100, 50),
-        makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 10),
+        makeSlider('numTilesX', '[% t.numTilesX %]', 4, 40, 10),
+        makeSlider('numTilesY', '[% t.numTilesY %]', 4, 40, 10),
     );
     noStroke();
-    rectMode(CORNERS);
+    rectMode(CENTER);
     noLoop();
 }
 
@@ -20,70 +21,26 @@ function draw() {
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    let dim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            push();
-            translate((x - 1) * dim, (y - 1) * dim);
+    makeGrid(ctrl.numTilesX, ctrl.numTilesY, function(tile) {
 
-            let ul = [0, 0];
-            let ur = [dim, 0];
-            let ll = [0, dim];
-            let lr = [dim, dim];
+        fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
+        rect(...tile.center, tile.width, tile.height);
 
-            // upper mid, right mid, bottom mid, left mid
-            let um = [dim / 2, 0];
-            let rm = [dim, dim / 2];
-            let bm = [dim / 2, dim];
-            let lm = [0, dim / 2];
-            let center = [dim / 2, dim / 2];
-
-            let c;
-
-            if (random(100) < ctrl.chanceTileColor) {
-                c = random(palette);
-                fill(c);
-            } else {
-                c = "white"
-            }
-            rect(...ul, ...lr);
-
-            if (random(100) < ctrl.chanceDiamondColor) {
-                c = random(palette);
-                fill(c);
-            } else {
-                c = "white"
-            }
-            triangle(...um, ...center, ...lm);
+        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+        triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
 
 
-            if (random(100) < ctrl.chanceDiamondColor) {
-                c = random(palette);
-                fill(c);
-            } else {
-                c = "white"
-            }
-            triangle(...um, ...center, ...rm);
+        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+        triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
 
-            if (random(100) < ctrl.chanceDiamondColor) {
-                c = random(palette);
-                fill(c);
-            } else {
-                c = "white"
-            }
-            triangle(...bm, ...center, ...lm);
+        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+        triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
 
-            if (random(100) < ctrl.chanceDiamondColor) {
-                c = random(palette);
-                fill(c);
-            } else {
-                c = "white"
-            }
-            triangle(...bm, ...center, ...rm);
+        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+        triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
+    });
 
-            pop();
-        }
-    }
+
 }
 
 function windowResized() {
