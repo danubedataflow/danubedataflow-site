@@ -435,8 +435,7 @@ function makeSelect(id, label, contents, value) {
 function makeSelectColorMap() {
     let containerDiv = makeSelect(
         'colorMap',
-        '[% t.sl('Color palette', 'Farbpalette', 'カラーパレット') %]',
-        [
+        '[% t.sl('Color palette ', 'Farbpalette ', 'カラーパレット ') %]', [
             makeOptGroup('Sequential',
                 makeOption('OrRd'),
                 makeOption('PuBu'),
@@ -520,7 +519,7 @@ function makeSelectBlendMode(options) {
     let defaultValue = options.putFirst(el => el == BLEND).at(0);
     return makeSelect(
         'blendMode',
-        '[% t.sl('Blend mode', 'Farbmischung', 'ブレンドモード') %]',
+        '[% t.sl('Blend mode ', 'Farbmischung ', 'ブレンドモード ') %]',
         options.map(c => makeOption(c, nameFor[c])),
         defaultValue
     );
@@ -605,7 +604,40 @@ function setControlsRandomly() {
 
 function translatePage(language) {
     window.location.href =
-        window.location.protocol + "//" + window.location.host
-        + window.location.pathname.replace(/^\/[a-z][a-z]\//, '/' + language + '/')
-        + '?' + window.location.search;
+        window.location.protocol + "//" + window.location.host +
+        window.location.pathname.replace(/^\/[a-z][a-z]\//, '/' + language + '/') +
+        '?' + window.location.search;
+}
+
+function makeGrid(numTilesX, numTilesY, tileCallback) {
+    let tileWidth = width / numTilesX;
+    let tileHeight = height / numTilesY;
+    for (let y = 1; y <= numTilesY; y++) {
+        for (let x = 1; x <= numTilesX; x++) {
+            push();
+
+            // translate to the tile's center point
+            translate((x - 1) * tileWidth + tileWidth / 2, (y - 1) * tileHeight + tileHeight / 2);
+
+            let tile = {
+                width: tileWidth,
+                height: tileHeight,
+                upperLeft: [-tileWidth / 2, -tileHeight / 2],
+                upperRight: [tileWidth / 2, -tileHeight / 2],
+                lowerLeft: [tileWidth / 2, -tileHeight / 2],
+                lowerRight: [tileWidth / 2, tileHeight / 2],
+
+                // upper mid, right mid, bottom mid, left mid
+                upperMiddle: [0, -tileHeight / 2],
+                rightMiddle: [tileWidth / 2, 0],
+                lowerMiddle: [0, tileHeight / 2],
+                leftMiddle: [-tileWidth / 2, 0],
+                center: [0, 0],
+            };
+
+            tileCallback(tile);
+
+            pop();
+        }
+    }
 }

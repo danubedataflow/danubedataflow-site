@@ -20,7 +20,6 @@ sub get_dir {
     return path('src/' . $self->{context}->stash->{template}{name})
       ->parent->basename;
 }
-
 sub get_default_name { $_[0]->get_dir }
 
 sub s {
@@ -34,9 +33,19 @@ sub sl {
     my %translations = (en => $en, de => $de // $en, ja => $ja // $en);
     return $translations{ $self->get_lang };
 }
-sub numTiles  { $_[0]->sl('Number of tiles',  'Anzahl der Kacheln', 'タイルの数') }
-sub numLines  { $_[0]->sl('Number of lines',  'Anzahl der Zeilen',  '線の数') }
-sub numColors { $_[0]->sl('Number of colors', 'Anzahl der Farben',  '色の数') }
+sub numTiles { $_[0]->sl('Number of tiles', 'Anzahl der Kacheln', 'タイルの数') }
+
+sub numTilesX {
+    $_[0]->sl('Number of horizontal tiles',
+        'Anzahl der horizontalen Kacheln', '水平タイルの数');
+}
+
+sub numTilesY {
+    $_[0]
+      ->sl('Number of vertical tiles', 'Anzahl der vertikalen Kacheln', '垂直タイルの数');
+}
+sub numLines  { $_[0]->sl('Number of lines',  'Anzahl der Zeilen', '線の数') }
+sub numColors { $_[0]->sl('Number of colors', 'Anzahl der Farben', '色の数') }
 
 sub numRects {
     $_[0]->sl('Number of rectangles', 'Anzahl der Rechtecke', '長方形の数');
