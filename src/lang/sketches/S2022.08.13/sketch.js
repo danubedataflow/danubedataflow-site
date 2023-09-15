@@ -14,8 +14,8 @@ function draw() {
     readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
-    noStroke();
     blendMode(ctrl.blendMode);
+    noStroke();
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration
     for (let i = 1; i <= ctrl.numTriangles + 2; i++) {

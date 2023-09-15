@@ -26,11 +26,11 @@ function draw() {
 
     blendMode(BLEND); // so background() actually clears the canvas
     background('#cccccc');
+    blendMode(ctrl.blendMode);
 
     translate(width / 2, height / 2);
     circle(0, 0, width);
 
-    blendMode(ctrl.blendMode);
     const radius = width / 2;
     for (let i = 0; i < ctrl.modulus; i++) {
 
