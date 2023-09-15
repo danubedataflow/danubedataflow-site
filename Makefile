@@ -1,16 +1,13 @@
 WWW = ~/www/danubedataflow
 DEPS = $(WWW)/deps
 
-.PHONY: default site deps watch nginx deploy icons clean test
+.PHONY: default site watch nginx deploy icons clean test
 
 default:
 	$(error Specify a Makefile target)
 
 site: clean
 	ttree -f etc/ttreerc
-	make deps
-
-deps:
 	mkdir -p $(DEPS)
 	cp node_modules/chroma-js/chroma.min.js $(DEPS)/
 	cp node_modules/roughjs/bundled/rough.js $(DEPS)/
