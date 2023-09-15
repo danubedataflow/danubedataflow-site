@@ -21,7 +21,7 @@
                 <span id="source-link"><a href="source.html">[% t.sl('Code', 'Code', 'ソースコード') %]</a></span>
 
                 <!-- return false to prevent the page reload -->
-                <button onclick="redraw(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
+                <button onclick="redrawWithNewSeed(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
                 <button onclick="setControlsRandomly(); return false;"><i class="bi bi-shuffle"></i></button>
                 <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
             </p>
