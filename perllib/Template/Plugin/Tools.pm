@@ -22,11 +22,6 @@ sub get_dir {
 }
 sub get_default_name { $_[0]->get_dir }
 
-sub s {
-    my ($self, $lang_hash) = @_;
-    return $lang_hash->{ $self->get_lang };
-}
-
 # Helper method to be more concise
 sub sl {
     my ($self, $en, $de, $ja) = @_;
