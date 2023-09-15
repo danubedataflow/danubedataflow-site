@@ -6,7 +6,7 @@ function setup() {
         makeSelectBlendMode([BLEND, DIFFERENCE, DODGE, EXCLUSION, HARD_LIGHT, LIGHTEST]),
         makeSlider('numGrids', 'Number of grids', 1, 10, 4),
         makeSlider('divisorRange', 'Segment divisor range', 2, 20, [3, 10]),
-        makeSlider('strokeWeight', '[% t.strokeWeight %]', 0, 8, 1),
+        makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 8, 1),
         makeSlider('alpha', '[% t.alpha %]', 30, 90, [60, 70]),
     );
     stroke('black');
