@@ -1,10 +1,5 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
-    noLoop();
-}
-
 function draw() {
     pixelDensity(1);
     readControls();
@@ -17,12 +12,4 @@ function draw() {
     img.updatePixels();
     img.resize(width * pixelDensity(), height * pixelDensity());
     image(img, 0, 0);
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

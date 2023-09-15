@@ -1,7 +1,6 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeFieldset('Rotation',
@@ -21,7 +20,6 @@ function setup() {
             makeSlider('strokeAmount', 'Weight', 1, 4, [2, 3]),
         ),
     );
-    noLoop();
 }
 
 function draw() {
@@ -57,12 +55,4 @@ function draw() {
             pop();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

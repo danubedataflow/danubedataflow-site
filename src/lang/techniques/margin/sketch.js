@@ -1,12 +1,10 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('scale', '[% t.scale %]', 0, 1, 0.9, 0.1),
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 20, 10),
     );
-    noLoop();
 }
 
 function draw() {
@@ -31,12 +29,4 @@ function draw() {
     line(0, dim / 2, dim, dim / 2);
     stroke('green');
     line(dim / 2, 0, dim / 2, dim);
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

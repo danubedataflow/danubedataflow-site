@@ -10,8 +10,7 @@ function controlColorWithAlpha(colorControl = 'color', alphaControl = 'alpha') {
     return c;
 }
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('horizontalBars', 'Number of horizontal bars', 1, 10, 5),
         makeSlider('verticalBars', 'Number of vertical bars', 1, 10, 5),
@@ -30,7 +29,6 @@ function setup() {
             makeSlider('alpha', '[% t.alpha %]', 1, 255, [50, 200]),
         ),
     );
-    noLoop();
 }
 
 function draw() {
@@ -53,12 +51,4 @@ function draw() {
         fill(controlColorWithAlpha());
         rect(0, y1, width, h);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

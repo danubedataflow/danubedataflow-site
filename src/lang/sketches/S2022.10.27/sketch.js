@@ -3,13 +3,11 @@
 // based on Jon Stanley's program "lines" for the Tektronix 4052
 // https://www.electronixandmore.com/resources/teksystem/
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numLines', '[% t.numLines %]', 1, 1500, 500),
         makeSlider('randomDelta', 'Random delta', 1, 20, 5),
     );
-    noLoop();
 }
 
 function draw() {
@@ -46,12 +44,4 @@ function draw() {
 
 function rnd(mid) {
     return int(random(mid - ctrl.randomDelta, mid + ctrl.randomDelta + 1));
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

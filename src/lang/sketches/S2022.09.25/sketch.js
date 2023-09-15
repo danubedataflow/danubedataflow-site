@@ -1,13 +1,11 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
         makeSlider('numSides', '[% t.numSides %]', 3, 50, 10),
     );
-    noLoop();
 }
 
 function draw() {
@@ -29,12 +27,4 @@ function draw() {
             line(...p, ...p2);
         });
     });
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

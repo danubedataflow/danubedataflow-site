@@ -1,14 +1,12 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         makeSlider('numColors', '[% t.numColors %]', 1, 32, 25),
         makeSlider('maxLength', 'Maximum length', 3, 19, 11, 2),
     );
-    noLoop();
 }
 
 function draw() {
@@ -35,14 +33,6 @@ function draw() {
         fill(palette[colorIndex]);
         rect(x * magnify, y * magnify, magnify, magnify);
     });
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }
 
 /* See https://math.stackexchange.com/a/4128516

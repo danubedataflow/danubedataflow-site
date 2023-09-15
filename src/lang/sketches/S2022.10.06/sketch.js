@@ -5,8 +5,7 @@
  * https://www.youtube.com/watch?v=qhbuKbxJsk8
  */
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
@@ -14,7 +13,6 @@ function setup() {
         makeSlider('modulus', 'Modulus', 10, 300, 100),
         makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
     );
-    noLoop();
 }
 
 function draw() {
@@ -51,12 +49,4 @@ function angle(n) {
 
 function pointOnCircle(angle, radius) {
     return [sin(angle) * radius, cos(angle) * radius];
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

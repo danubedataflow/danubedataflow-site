@@ -6,15 +6,13 @@ const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'
 
 let palette;
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numSides', '[% t.numSides %]', 3, 10, 5),
         makeSlider('diameter', 'Diameter', 1, 100, 30),
         makeSlider('rotDelta', 'Rotation delta', 0, 360, 180),
         makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 1),
     );
-    noLoop();
 }
 
 function draw() {
@@ -51,12 +49,4 @@ function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, d
 
         pop();
     });
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

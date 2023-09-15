@@ -2,8 +2,7 @@
 
 let palette, c1, c2;
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('chanceDiagonal', 'Chance for orientation of the diagonal (%)', 0, 100, 50),
@@ -12,7 +11,6 @@ function setup() {
             makeOption('adjacent', '[% t.sl('Adjacent', 'Angrenzend', '隣接') %]'),
         ]),
     );
-    noLoop();
 }
 
 function draw() {
@@ -73,12 +71,4 @@ function chooseColors() {
     } else {
         console.log('invalid color strategy ' + ctrl.colorStrategy);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

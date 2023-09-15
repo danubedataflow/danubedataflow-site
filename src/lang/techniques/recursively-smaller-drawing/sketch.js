@@ -6,8 +6,7 @@
 
 let palette;
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numCircles', 'Number of circles', 2, 8, 3),
@@ -15,7 +14,6 @@ function setup() {
         makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
         makeSlider('scaleFactor', 'Scale factor', 0.1, 1, 0.4, 0.05),
     );
-    noLoop();
 }
 
 function draw() {
@@ -43,12 +41,4 @@ function drawCircles(depth) {
         if (depth < ctrl.maxDepth) drawCircles(depth + 1);
         pop();
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

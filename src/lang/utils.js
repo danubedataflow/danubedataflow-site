@@ -1,7 +1,8 @@
 'use strict';
 
 let ignoreControlChange = 1,
-    controls = {};
+    controls = {},
+    canvas;
 
 // also show the canvas size on the web page
 function getCanvasDimension() {
@@ -700,4 +701,24 @@ function makeGrid(numTilesX, numTilesY, tileCallback) {
 
 function copyLink() {
     navigator.clipboard.writeText(getCurrentURL());
+}
+
+/* Sketch skeleton
+ *
+ * setup(), windowResized() and keyPressed() are used by p5.js. They are
+ * pretty much the same for every sketch. Invidual sketches just need to
+ * set up the form and to implement draw().
+ */
+function setup() {
+    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+    setupForm();  // sketches need to implement this
+    noLoop();
+}
+
+function windowResized() {
+    resizeCanvas(...getCanvasDimension());
+}
+
+function keyPressed() {
+    handleStandardKeys();
 }

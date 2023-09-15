@@ -1,13 +1,11 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numRects', '[% t.numRects %]', 10, 100, 50),
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 20, [2, 4]),
         makeSlider('alpha', '[% t.alpha %]', 0, 255, [200, 255]),
     );
-    noLoop();
 }
 
 function draw() {
@@ -28,12 +26,4 @@ function draw() {
         stroke(0, randomIntRange(...ctrl.alpha));
         rect(ulX, ulY, w, h);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

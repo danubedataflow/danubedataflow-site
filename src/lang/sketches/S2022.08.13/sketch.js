@@ -1,13 +1,11 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, HARD_LIGHT, MULTIPLY]),
         makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
     );
-    noLoop();
 }
 
 function draw() {
@@ -29,12 +27,4 @@ function draw() {
             p.shift();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

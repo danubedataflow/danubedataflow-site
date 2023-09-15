@@ -1,12 +1,10 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 2, 20, 10),
         makeSlider('numRects', '[% t.numRects %]', 2, 20, 10),
     );
-    noLoop();
 }
 
 function draw() {
@@ -27,12 +25,4 @@ function draw() {
         fill(random(palette));
         rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

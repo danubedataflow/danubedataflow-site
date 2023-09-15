@@ -1,7 +1,6 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectBlendMode([BLEND, DIFFERENCE, DODGE, EXCLUSION, HARD_LIGHT, LIGHTEST]),
         makeSlider('numGrids', 'Number of grids', 1, 10, 4),
@@ -9,13 +8,12 @@ function setup() {
         makeSlider('strokeWeight', '[% t.strokeWeight %]', 1, 8, 1),
         makeSlider('alpha', '[% t.alpha %]', 30, 90, [60, 70]),
     );
-    stroke('black');
-    rectMode(CORNERS);
-    noLoop();
 }
 
 function draw() {
     readControls();
+    stroke('black');
+    rectMode(CORNERS);
     let numGrids = 5;
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
@@ -71,12 +69,4 @@ function setFill(hex, alpha) {
     let c = color(hex);
     c.setAlpha(alpha);
     fill(c);
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }
