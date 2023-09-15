@@ -21,10 +21,10 @@
                 <span id="source-link"><a href="source.html">[% t.sl('Code', 'Code', 'ソースコード') %]</a></span>
 
                 <!-- return false to prevent the page reload -->
-                <button onclick="redrawWithNewSeed(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
-                <button onclick="setControlsRandomly(); return false;"><i class="bi bi-shuffle"></i></button>
-                <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
-                <button onclick="copyLink(); return false;"><i class="bi bi-link-45deg"></i></button>
+                <button onclick="redrawWithNewSeed(); return false;" title="[% t.sl('Redraw', 'Neu zeichnen') %]"><i class="bi bi-arrow-clockwise"></i></button>
+                <button onclick="setControlsRandomly(); return false;" title="[% t.sl('Randomize Controls', 'Zufallseinstellungen') %]"><i class="bi bi-shuffle"></i></button>
+                <button onclick="saveCanvasAsPNG(); return false;" title="[% t.sl('Save Canvas', 'Leinwand speichern') %]"><i class="bi bi-box-arrow-down"></i></button>
+                <button onclick="copyLink(); return false;" title="[% t.sl('Copy Link', 'Link kopieren') %]"><i class="bi bi-link-45deg"></i></button>
             </p>
 
             <form id="controls-form">
