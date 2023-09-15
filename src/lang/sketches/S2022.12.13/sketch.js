@@ -17,6 +17,8 @@ function setup() {
 function draw() {
     readControls();
     let numGrids = 5;
+    blendMode(BLEND); // so background() actually clears the canvas
+    background('white');
     blendMode(ctrl.blendMode);
     strokeWeight(ctrl.strokeWeight);
     for (let i = 0; i < numGrids; i++) {

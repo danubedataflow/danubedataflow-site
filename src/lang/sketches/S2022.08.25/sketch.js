@@ -14,11 +14,11 @@ function draw() {
     readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('black');
+    blendMode(ctrl.blendMode);
     angleMode(DEGREES);
     let radius = width * 0.4;
     let angle = random(360);
     let p = [sin(angle) * radius, cos(angle) * radius];
-    blendMode(ctrl.blendMode);
     let colorScale = chroma.scale(ctrl.colorMap);
     translate(width / 2, height / 2);
 

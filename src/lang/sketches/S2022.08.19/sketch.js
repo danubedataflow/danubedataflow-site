@@ -14,8 +14,8 @@ function draw() {
     readControls();
     blendMode(BLEND); // so background() actually clears the canvas
     background('black');
-    angleMode(DEGREES);
     blendMode(ctrl.blendMode);
+    angleMode(DEGREES);
     let colorScale = chroma.scale(ctrl.colorMap);
     translate(width / 2, height / 2);
 
