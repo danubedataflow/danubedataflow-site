@@ -7,10 +7,7 @@ default:
 	$(error Specify a Makefile target)
 
 site: clean
-	cp -a src/root $(WWW)
-	ttree -f etc/ttreerc --dest $(WWW)/de --define lang=de
-	ttree -f etc/ttreerc --dest $(WWW)/en --define lang=en
-	ttree -f etc/ttreerc --dest $(WWW)/ja --define lang=ja
+	ttree -f etc/ttreerc
 	make deps
 
 deps:

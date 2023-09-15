@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="[% lang %]">
+<html lang="de">
 
 [% WRAPPER head %]
     <link href="/deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
@@ -18,13 +18,13 @@
             <p>
                 <span id="sketchTitle">[% title %]</span> |
                 <span id="canvasSize"></span> |
-                <span id="source-link"><a href="source.html">[% t.sl('Code', 'Code', 'ソースコード') %]</a></span>
+                <span id="source-link"><a href="source.html">Code</a></span>
 
                 <!-- return false to prevent the page reload -->
-                <button onclick="redrawWithNewSeed(); return false;" title="[% t.sl('Redraw', 'Neu zeichnen') %]"><i class="bi bi-arrow-clockwise"></i></button>
-                <button onclick="setControlsRandomly(); return false;" title="[% t.sl('Randomize Controls', 'Zufallseinstellungen') %]"><i class="bi bi-shuffle"></i></button>
-                <button onclick="saveCanvasAsPNG(); return false;" title="[% t.sl('Save Canvas', 'Leinwand speichern') %]"><i class="bi bi-box-arrow-down"></i></button>
-                <button onclick="copyLink(); return false;" title="[% t.sl('Copy Link', 'Link kopieren') %]"><i class="bi bi-link-45deg"></i></button>
+                <button onclick="redrawWithNewSeed(); return false;" title="Neu zeichnen"><i class="bi bi-arrow-clockwise"></i></button>
+                <button onclick="setControlsRandomly(); return false;" title="Zufallseinstellungen"><i class="bi bi-shuffle"></i></button>
+                <button onclick="saveCanvasAsPNG(); return false;" title="Leinwand speichern"><i class="bi bi-box-arrow-down"></i></button>
+                <button onclick="copyLink(); return false;" title="Link kopieren"><i class="bi bi-link-45deg"></i></button>
             </p>
 
             <form id="controls-form">

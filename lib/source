@@ -1,6 +1,6 @@
 [%- DEFAULT file = 'sketch.js' -%]
 <!DOCTYPE html>
-<html lang="[% lang %]">
+<html lang="de">
 
 [% WRAPPER head %]
     <link href="/deps/highlight.min.css" rel="stylesheet">
@@ -9,15 +9,7 @@
 
 [% WRAPPER body %]
     <section class="narrow">
-        <p>
-[% IF lang == 'en' %]
-            Back to the <a href="index.html">Sketch</a>
-[% ELSIF lang == 'de' %]
-            Zurück zur <a href="index.html">Skizze</a>
-[% ELSIF lang == 'ja' %]
-            <a href="index.html">スケッチ</a>に戻る
-[% END %]
-        </p>
+        <p>Zurück zur <a href="index.html">Skizze</a></p>
         <pre><code class="language-javascript" id="source">
         </code></pre>
     </section>
