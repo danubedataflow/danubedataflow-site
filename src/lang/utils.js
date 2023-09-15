@@ -1,6 +1,6 @@
 'use strict';
 
-let ignoreControlChange = 0,
+let ignoreControlChange = 1,
     controls = {};
 
 // also show the canvas size on the web page
@@ -22,7 +22,7 @@ function handleStandardKeys() {
         saveCanvasAsPNG();
         return 1;
     } else if (key == 'r') {
-        redraw();
+        redrawWithNewSeed();
         return 1;
     } else if (key == 'p') {
         setControlsRandomly();
@@ -250,6 +250,39 @@ class CheckboxControl {
     }
 }
 
+class SeedControl {
+
+    constructor(_id, _element) {
+        this.id = _id;
+        this.element = _element;
+        this.element.disabled = true;
+        this.element.setAttribute('size', 10);
+    }
+
+    getValue() {
+        return this.element.value;
+    }
+
+    setValue(value) {
+        if (/^\d{3,9}$/.test(value)) {
+            this.element.value = value;
+        } else {
+            this.setRandomSeed();
+        }
+    }
+
+    setRandomSeed() {
+        this.element.value = int(random(1_000_000_000));
+        controlsDidChange();
+    }
+
+    applySeed() {
+        let seed = this.getValue();
+        randomSeed(seed);
+        noiseSeed(seed);
+    }
+}
+
 class SelectControl {
 
     constructor(_id, _element) {
@@ -286,12 +319,11 @@ function valueWithSearchParam(key, defaultValue) {
 }
 
 function makeForm(...contents) {
-    ignoreControlChange = 1;
     let form = document.getElementById('controls-form');
+    contents.push(makeSeed()),
     contents.forEach(child => form.appendChild(child));
     ignoreControlChange = 0;
     controlsDidChange();
-    updateURL(); // because we potentially changed the controls
 }
 
 function makeFieldset(legendText, ...contents) {
@@ -382,6 +414,26 @@ function makeCheckbox(id, label, value = true) {
     controls[id] = new CheckboxControl(id, checkboxEl);
     value = valueWithSearchParam(id, value);
     if (value != null) controls[id].setValue(value);
+
+    return containerDiv;
+}
+
+function makeSeed() {
+    let id = 'seed',
+        containerDiv = document.createElement('div');
+
+    containerDiv.appendChild(makeLabel({
+        'for': id,
+        'label': 'Seed: '
+    }));
+
+    let inputEl = document.createElement('input');
+    inputEl.setAttribute('id', id);
+    containerDiv.appendChild(inputEl);
+
+    controls[id] = new SeedControl(id, inputEl);
+    controls[id].setValue(valueWithSearchParam(id));   // no default value
+    controls[id].applySeed();
 
     return containerDiv;
 }
@@ -587,9 +639,19 @@ function setControlsRandomly() {
 
         } else if (c instanceof CheckboxControl) {
             c.setValue(random([true, false]));
+
+        } else if (c instanceof SeedControl) {
+            c.setRandomSeed();
+            c.applySeed();
         }
     });
     ignoreControlChange = 0;
+    controlsDidChange();
+}
+
+function redrawWithNewSeed() {
+    controls.seed.setRandomSeed();
+    controls.seed.applySeed();
     controlsDidChange();
 }
 
