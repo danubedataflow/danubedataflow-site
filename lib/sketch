@@ -24,6 +24,7 @@
                 <button onclick="redrawWithNewSeed(); return false;"><i class="bi bi-arrow-clockwise"></i></button>
                 <button onclick="setControlsRandomly(); return false;"><i class="bi bi-shuffle"></i></button>
                 <button onclick="saveCanvasAsPNG(); return false;"><i class="bi bi-box-arrow-down"></i></button>
+                <button onclick="copyLink(); return false;"><i class="bi bi-link-45deg"></i></button>
             </p>
 
             <form id="controls-form">

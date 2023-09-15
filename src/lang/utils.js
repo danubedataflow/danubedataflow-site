@@ -583,8 +583,7 @@ function readControls() {
     }
 }
 
-// update URL according to controls
-function updateURL() {
+function getCurrentURL() {
     let urlParams = new URLSearchParams();
     for (const [key, value] of Object.entries(controls)) {
         urlParams.set(key, value.getValue());
@@ -593,8 +592,12 @@ function updateURL() {
     /* Replace the URL in the browser's URL bar using the current control
      * values, without reloading the page.
      */
-    let currentURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
-    window.history.replaceState(null, '', currentURL);
+    return window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
+}
+
+// update URL according to controls
+function updateURL() {
+    window.history.replaceState(null, '', getCurrentURL());
 }
 
 function controlsDidChange() {
@@ -693,4 +696,8 @@ function makeGrid(numTilesX, numTilesY, tileCallback) {
             pop();
         }
     }
+}
+
+function copyLink() {
+    navigator.clipboard.writeText(getCurrentURL());
 }
