@@ -1,3 +1,4 @@
+[%- DEFAULT css = 'screen' -%]
 <head>
     <meta charset="utf-8">
     <title>[% title %]</title>
@@ -6,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link href="/style.css" rel="stylesheet">
-    <script src="/utils.js"></script>
+    <link href="/css/[% css %].css" rel="stylesheet">
+    <script src="/js/utils.js"></script>
     [% content %]
 </head>
