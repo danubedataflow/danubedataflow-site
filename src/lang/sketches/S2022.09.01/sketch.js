@@ -52,7 +52,7 @@ function setup() {
 
     let activeShapes = myShape.types.filter(i => controls['shape' + i].getValue());
     if (activeShapes.length === 0) {
-        let randomShapes = [...myShape.types].sort(() => .5 - Math.random()).slice(0, 3);
+        let randomShapes = [...myShape.types].sort(() => .5 - random()).slice(0, 3);
         randomShapes.forEach(i => controls['shape' + i].setValue(true));
     }
     noLoop();
