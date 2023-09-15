@@ -17,27 +17,3 @@ ignoreControlChange:
 Note: For some reason the seed doesn't work with Ctrl-R (reloading a page).
 Maybe updateURL() doesn't affect what Ctrl-R is doing. Best not to use Ctrl-R;
 use the provided buttons (redraw, randomize controls etc.) instead.
-
-===
-
-Avoid the Template Toolkit in JS files:
-
-ack '\[%' src/**/*.js
-
-?lang=de
-
-// have a fixed dictionary
-dictionary = {
-  key1: { en: '...', de: '...', ja: '...' },
-  ...
-};
-
-clicking on a flag just changes the 'lang' URL search parameter. Does it need a
-page reload so setupForm() etc. use the new dictionary entries?
-
-then we don't need to generate language-specific versions of the web site. no
-more src/lang and src/root; it's all one site
-
-and since src/**/*.js files don't use the Template Toolkit anymore, we can tidy
-it in vim with Ctrl-F.
-
