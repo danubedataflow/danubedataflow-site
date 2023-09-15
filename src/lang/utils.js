@@ -285,31 +285,22 @@ function valueWithSearchParam(key, defaultValue) {
     }
 }
 
-function elementWithChildren(el, ...contents) {
-    contents.forEach(child => el.appendChild(child));
-    return el;
-}
-
 function makeForm(...contents) {
     ignoreControlChange = 1;
-    elementWithChildren(document.getElementById('controls-form'), ...contents);
+    let form = document.getElementById('controls-form');
+    contents.forEach(child => form.appendChild(child));
     ignoreControlChange = 0;
     controlsDidChange();
     updateURL(); // because we potentially changed the controls
 }
 
-function makeLegend(legend) {
-    let el = document.createElement('legend');
-    el.appendChild(document.createTextNode(legend));
-    return el;
-}
-
-function makeFieldset(legend, ...contents) {
-    return elementWithChildren(
-        document.createElement('fieldset'),
-        makeLegend(legend),
-        ...contents
-    );
+function makeFieldset(legendText, ...contents) {
+    let fieldset = document.createElement('fieldset');
+    let legend = document.createElement('legend');
+    legend.appendChild(document.createTextNode(legendText));
+    fieldset.appendChild(legend);
+    contents.forEach(child => fieldset.appendChild(child));
+    return fieldset;
 }
 
 function makeDiv(config, ...contents) {
