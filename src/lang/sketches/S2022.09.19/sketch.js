@@ -4,13 +4,11 @@
  * and/or shape color's alpha to 0.
  */
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 2, 10, 4),
         makeSlider('maxDepth', '[% t.maxDepth %]', 0, 4, 2),
     );
-    noLoop();
 }
 
 function draw() {
@@ -71,12 +69,4 @@ function makeGrid(numTiles, gridDim, maxDepth = 0, depth = 0) {
             pop();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

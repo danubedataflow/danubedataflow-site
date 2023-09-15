@@ -1,9 +1,6 @@
 'use strict';
 
-let canvas;
-
-function setup() {
-    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
@@ -13,7 +10,6 @@ function setup() {
             makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
         ),
     );
-    noLoop();
 }
 
 function draw() {
@@ -40,12 +36,4 @@ function draw() {
             colorIndex = (colorIndex + 1) % palette.length;
         });
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

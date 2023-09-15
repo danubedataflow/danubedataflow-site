@@ -1,7 +1,6 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeFieldset('Tiles',
             makeSlider('tileCountX', '[% t.sl('Horizontal tiles', 'Horizontale Kacheln', '水平タイル数') %]', 1, 100, 30),
@@ -15,7 +14,6 @@ function setup() {
         ),
         makeSlider('margin', 'Margin', 0, 200, 15, 5),
     );
-    noLoop();
 }
 
 function draw() {
@@ -50,12 +48,4 @@ function draw() {
             pop();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

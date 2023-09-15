@@ -2,8 +2,7 @@
 
 let palette;
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
@@ -12,7 +11,6 @@ function setup() {
         makeSlider('alpha', '[% t.alpha %]', 0, 100, [20, 80]),
         makeSlider('size', 'Size (%)', 1, 100, [5, 30]),
     );
-    noLoop();
 }
 
 function draw() {
@@ -36,12 +34,4 @@ function draw() {
         let s = int(random(width * minSize / 100, height * maxSize / 100));
         rect(int(random(width)), int(random(height)), s, s);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

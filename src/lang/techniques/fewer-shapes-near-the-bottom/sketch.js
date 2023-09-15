@@ -1,12 +1,10 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('exponent', '[% t.sl('Exponent', 'Exponent', '指数') %]', 0, 5, 2, 0.1),
     );
-    noLoop();
 }
 
 function draw() {
@@ -33,12 +31,4 @@ function draw() {
             pop();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

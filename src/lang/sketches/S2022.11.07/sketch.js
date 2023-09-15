@@ -1,7 +1,6 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numTiles', '[% t.numTiles %]', 4, 40, 20),
         makeSlider('chanceHorizontal', 'Chance for a horizontal line (%)', 0, 100, 30),
@@ -10,7 +9,6 @@ function setup() {
         makeSlider('chanceDiagoalDown', 'Chance for an downwards diagonal line (%)', 0, 100, 30),
         makeCheckbox('tileBorder', 'Tile border'),
     );
-    noLoop();
 }
 
 function draw() {
@@ -43,12 +41,4 @@ function draw() {
             pop();
         }
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

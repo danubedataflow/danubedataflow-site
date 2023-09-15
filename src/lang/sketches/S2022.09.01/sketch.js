@@ -35,8 +35,7 @@ function createImageCheckboxControl() {
     return containerDiv;
 }
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         createImageCheckboxControl(),
         makeSelectColorMap(),
@@ -55,7 +54,6 @@ function setup() {
         let randomShapes = [...myShape.types].sort(() => .5 - random()).slice(0, 3);
         randomShapes.forEach(i => controls['shape' + i].setValue(true));
     }
-    noLoop();
 }
 
 function draw() {
@@ -221,14 +219,10 @@ class myShape {
     }
 }
 
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    if (handleStandardKeys()) return;
-    // if (key == 'c') createCheckboxImages();
-}
+// function keyPressed() {
+//     if (handleStandardKeys()) return;
+//     if (key == 'c') createCheckboxImages();
+// }
 
 /* For development purposes only. This function creates the images that
  * are used in the image checkboxes. See keyPressed().

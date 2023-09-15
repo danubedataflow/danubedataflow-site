@@ -1,7 +1,6 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numColors', '[% t.numColors %]', 2, 32, 16),
@@ -10,14 +9,13 @@ function setup() {
         makeSlider('numTilesX', '[% t.numTilesX %]', 4, 40, 10),
         makeSlider('numTilesY', '[% t.numTilesY %]', 4, 40, 10),
     );
-    noStroke();
-    rectMode(CENTER);
-    noLoop();
 }
 
 function draw() {
     readControls();
 
+    noStroke();
+    rectMode(CENTER);
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
@@ -39,14 +37,4 @@ function draw() {
         fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
         triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
     });
-
-
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

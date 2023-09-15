@@ -1,14 +1,12 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('xFactor', 'Horizontal factor', 1, 5, 2.5, 0.1),
         makeSlider('alpha', '[% t.alpha %]', 1, 255, 70),
         makeSlider('angleStep', 'Angle step', 0.1, 10, 0.5, 0.1),
         makeSlider('squareSize', 'Square size', 1, 100, [30, 50]),
     );
-    noLoop();
 }
 
 function draw() {
@@ -34,12 +32,4 @@ function draw() {
         let dim = random(...ctrl.squareSize);
         rect(x, y, dim, dim);
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

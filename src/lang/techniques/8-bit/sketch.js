@@ -1,14 +1,10 @@
 'use strict';
 
-let canvas;
-
-function setup() {
-    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('resolutionFactor', '[% t.sl('Resolution', 'Auflösung', '解像度') %]', 1, 16, 8),
         makeSlider('lineDensity', '[% t.sl('Line density', 'Liniendichte', '線度') %]', 1, 10, 5),
     );
-    noLoop();
 }
 
 function draw() {
@@ -31,12 +27,4 @@ function draw() {
     }
     imageMode(CORNER);
     image(pg, 0, 0, width, height);
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

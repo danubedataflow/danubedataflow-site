@@ -5,12 +5,10 @@
  * Also see https://openprocessing.org/sketch/1626688 ("0576_2" by kusakari)
  */
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSlider('numCurves', 'Number of curves', 2, 100, 30),
     );
-    noLoop();
 }
 
 function draw() {
@@ -39,12 +37,4 @@ function draw() {
 
 function randomPoint() {
     return [int(random(width)), int(random(width))];
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }

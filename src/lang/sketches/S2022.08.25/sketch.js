@@ -1,13 +1,11 @@
 'use strict';
 
-function setup() {
-    createCanvas(...getCanvasDimension()).parent('sketch');
+function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
         makeSlider('numLines', '[% t.numLines %]', 1, 1500, 500),
     );
-    noLoop();
 }
 
 function draw() {
@@ -31,12 +29,4 @@ function draw() {
         line(...p, ...p2);
         p = p2;
     }
-}
-
-function windowResized() {
-    resizeCanvas(...getCanvasDimension());
-}
-
-function keyPressed() {
-    handleStandardKeys();
 }
