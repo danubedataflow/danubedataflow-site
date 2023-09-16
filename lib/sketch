@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
+[% WRAPPER html %]
 
 [% WRAPPER head %]
     <link href="/deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
@@ -37,4 +36,4 @@
     <script src="sketch.js"></script>
 [% END %]
 
-</html>
+[% END %]

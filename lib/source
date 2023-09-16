@@ -1,6 +1,5 @@
 [%- DEFAULT file = 'sketch.js' -%]
-<!DOCTYPE html>
-<html lang="de">
+[% WRAPPER html %]
 
 [% WRAPPER head %]
     <link href="/deps/highlight.min.css" rel="stylesheet">
@@ -28,4 +27,4 @@ window.addEventListener('load', () => {
 
 </script>
 
-</html>
+[% END %]
