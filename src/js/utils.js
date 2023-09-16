@@ -1,7 +1,6 @@
 'use strict';
 
-let ignoreControlChange = 1,
-    controls = {},
+let controls = {},
     canvas;
 
 // also show the canvas size on the web page
@@ -265,22 +264,12 @@ class SeedControl {
     }
 
     setValue(value) {
-        if (/^\d{3,9}$/.test(value)) {
-            this.element.value = value;
-        } else {
-            this.setRandomSeed();
+        if (!/^\d{3,9}$/.test(value)) {
+            value = int(random(1_000_000_000));
         }
-    }
-
-    setRandomSeed() {
-        this.element.value = int(random(1_000_000_000));
-        controlsDidChange();
-    }
-
-    applySeed() {
-        let seed = this.getValue();
-        randomSeed(seed);
-        noiseSeed(seed);
+        this.element.value = value;
+        randomSeed(value);
+        noiseSeed(value);
     }
 }
 
@@ -323,8 +312,15 @@ function makeForm(...contents) {
     let form = document.getElementById('controls-form');
     contents.push(makeSeed()),
     contents.forEach(child => form.appendChild(child));
-    ignoreControlChange = 0;
-    controlsDidChange();
+
+    /* like controlsDidChange() but don't call redraw(). That's because
+     * draw() will be called anyway by p5.js and we don't want to call it
+     * twice because draw() will call random(), and you wouldn't be able
+     * to get the exact same image even with the same seed.
+     */
+
+    // readControls();
+    // updateURL();
 }
 
 function makeFieldset(legendText, ...contents) {
@@ -392,7 +388,9 @@ function makeSlider(id, label, min, max, value, step = 1) {
     slider.on('update', function(values, handle) {
         // support multiple handles
         valueSpan.innerHTML = values.map(numStr => parseFloat(numStr)).join('-');
-        controlsDidChange();
+    });
+    slider.on('change', function(values, handle) {
+        redraw();
     });
     controls[id] = new SliderControl(id, slider);
     return containerDiv;
@@ -409,7 +407,7 @@ function makeCheckbox(id, label, value = true) {
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
-    checkboxEl.oninput = controlsDidChange;
+    checkboxEl.oninput = function() { redraw(); };
     containerDiv.appendChild(checkboxEl);
 
     controls[id] = new CheckboxControl(id, checkboxEl);
@@ -434,7 +432,6 @@ function makeSeed() {
 
     controls[id] = new SeedControl(id, inputEl);
     controls[id].setValue(valueWithSearchParam(id));   // no default value
-    controls[id].applySeed();
 
     return containerDiv;
 }
@@ -465,7 +462,7 @@ function makeSelect(id, label, contents, value) {
     selectEl.setAttribute('id', id);
     contents.forEach(el => selectEl.appendChild(el));
 
-    selectEl.onchange = controlsDidChange;
+    selectEl.onchange = function() { redraw(); };
     containerDiv.appendChild(selectEl);
 
     controls[id] = new SelectControl(id, selectEl);
@@ -601,15 +598,7 @@ function updateURL() {
     window.history.replaceState(null, '', getCurrentURL());
 }
 
-function controlsDidChange() {
-    if (ignoreControlChange) return;
-    readControls();
-    updateURL();
-    redraw();
-}
-
 function setControlsRandomly() {
-    ignoreControlChange = 1;
     Object.values(controls).forEach(c => {
         if (c instanceof SliderControl) {
             /* For the noUISlider, generate one or more values between `min`
@@ -645,18 +634,15 @@ function setControlsRandomly() {
             c.setValue(random([true, false]));
 
         } else if (c instanceof SeedControl) {
-            c.setRandomSeed();
-            c.applySeed();
+            c.setValue();  // trigger new random seed
         }
     });
-    ignoreControlChange = 0;
-    controlsDidChange();
+    redraw();
 }
 
 function redrawWithNewSeed() {
-    controls.seed.setRandomSeed();
-    controls.seed.applySeed();
-    controlsDidChange();
+    controls.seed.setValue();  // trigger new random seed
+    redraw();
 }
 
 function makeGrid(numTilesX, numTilesY, tileCallback) {
@@ -698,14 +684,20 @@ function copyLink() {
 
 /* Sketch skeleton
  *
- * setup(), windowResized() and keyPressed() are used by p5.js. They are
- * pretty much the same for every sketch. Invidual sketches just need to
- * set up the form and to implement draw().
+ * setup(), draw(), windowResized() and keyPressed() are used by p5.js.
+ * They are pretty much the same for every sketch. Invidual sketches just
+ * need to set up the form and to implement drawSketch().
  */
 function setup() {
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm();  // sketches need to implement this
     noLoop();
+}
+
+function draw() {
+    readControls();
+    updateURL();
+    drawSketch();
 }
 
 function windowResized() {

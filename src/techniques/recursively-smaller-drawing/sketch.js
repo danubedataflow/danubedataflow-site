@@ -16,7 +16,7 @@ function setupForm() {
     );
 }
 
-function draw() {
+function drawSketch() {
     readControls();
 
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1);
