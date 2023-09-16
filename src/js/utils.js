@@ -683,7 +683,11 @@ function makeGrid(numTilesX, numTilesY, tileCallback) {
 }
 
 function copyLink() {
-    navigator.clipboard.writeText(getCurrentURL());
+    if (window.isSecureContext) {
+        navigator.clipboard.writeText(getCurrentURL());
+    } else {
+        alert("Eine sichere Verbindung ist nötig, um ins Clipboard schreiben zu können.");
+    }
 }
 
 /* Sketch skeleton
