@@ -1,19 +1,16 @@
 # danubedataflow.com
 
-Code for the website.
+Code für die Website.
 
-To build the site, install the
-[Template::Toolkit](https://metacpan.org/pod/Template::Toolkit) from CPAN.
+Um die Website zu erstellen, installiere den
+[Template::Toolkit](https://metacpan.org/pod/Template::Toolkit) von CPAN.
 
-Also install the dependencies:
+Installiere auch die Abhängigkeiten:
 
     npm install
 
-Then run:
+Dann:
 
     make site
 
-This installs the site in `~/www/danubedataflow`.
-
-All internal links are relative, so you can just use your browser's
-`file://` protocol to open the `index.html` page.
+Das installiert die Website in `~/www/danubedataflow`.
