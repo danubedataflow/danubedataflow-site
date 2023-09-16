@@ -264,8 +264,12 @@ class SeedControl {
     }
 
     setValue(value) {
+        /* Use Math.random() so that when you have two identical sketches and
+         * click "redraw with new seed" or "randomize controls" you don't get
+         * the same result on both sketches.
+         */
         if (!/^\d{3,9}$/.test(value)) {
-            value = int(random(1_000_000_000));
+            value = int(Math.random() * 1_000_000_000);
         }
         this.element.value = value;
         randomSeed(value);
