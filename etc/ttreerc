@@ -5,6 +5,7 @@ trim
 src  = src
 dest = ~/www/danubedataflow
 lib  = lib
+perl5lib = perllib
 
 pre_process = pre
 
