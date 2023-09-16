@@ -11,8 +11,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     background('white');
     noFill();
 

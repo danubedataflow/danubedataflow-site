@@ -11,8 +11,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     let x1 = int(random(width / 2));
     let y1 = int(random(height / 2));
     let x2 = int(random(width / 2)) + width / 2;

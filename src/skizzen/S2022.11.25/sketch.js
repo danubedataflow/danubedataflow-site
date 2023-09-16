@@ -8,8 +8,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     background('#777777');
     let palette = ['white', '#aaaaaa', 'black'];
     noStroke();

@@ -8,8 +8,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     background('white');
     noStroke();
     fill('black');

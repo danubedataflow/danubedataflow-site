@@ -10,8 +10,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     stroke(0, ctrl.alpha);
     strokeWeight(1);
     noFill();

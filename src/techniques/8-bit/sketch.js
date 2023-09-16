@@ -8,8 +8,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     let pgDim = width / ctrl.resolutionFactor;
     let pg = createGraphics(pgDim, pgDim);
     // frameRate(24);

@@ -12,8 +12,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     strokeWeight(1);
     stroke('black');
     noFill();

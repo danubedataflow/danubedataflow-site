@@ -12,7 +12,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     colorMode(HSB, 360, 100, 100, 100);
     angleMode(DEGREES);
     rectMode(CENTER);
