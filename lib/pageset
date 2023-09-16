@@ -1,0 +1,6 @@
+[%
+    DEFAULT title=t.get_default_name;
+    INCLUDE sketch;
+    INCLUDE source FILTER redirect("${t.get_current_parent_path}/source.html");
+    INCLUDE print  FILTER redirect("${t.get_current_parent_path}/print.html");
+%]

@@ -10,6 +10,13 @@ sub new {
     bless { context => $context }, $class;
 }
 
+# for a URL
+sub get_current_parent_path {
+    my $self = shift;
+    return path($self->{context}->stash->{template}{name})->parent;
+}
+
+# for the filesystem
 sub get_current_parent_dir {
     my $self = shift;
     return path('src/' . $self->{context}->stash->{template}{name})->parent;
