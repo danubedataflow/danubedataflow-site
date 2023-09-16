@@ -1,11 +1,10 @@
-[% WRAPPER html %]
-
-[% INCLUDE head title="Danube Dataflow" %]
-
-[% WRAPPER body %]
-    <section class="wide">
-        [% INCLUDE frame dir="E2023.04.27" %]
-    </section>
-[% END %]
-
-[% END %]
+[%
+    WRAPPER html;
+        INCLUDE head title="Danube Dataflow";
+        WRAPPER body;
+            WRAPPER frames title="Experimente";
+                INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("E");
+            END;
+        END;
+    END;
+%]
