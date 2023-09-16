@@ -11,7 +11,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     stroke('black');
     rectMode(CORNERS);
     let numGrids = 5;

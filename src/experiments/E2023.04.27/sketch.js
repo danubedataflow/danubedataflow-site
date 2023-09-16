@@ -12,8 +12,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     noStroke();
     rectMode(CENTER);
     background("white");

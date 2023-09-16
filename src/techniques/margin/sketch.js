@@ -8,7 +8,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     let dim = width; // square canvas
 
     translate(dim / 2, dim / 2);

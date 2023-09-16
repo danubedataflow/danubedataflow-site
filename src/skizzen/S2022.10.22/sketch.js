@@ -12,8 +12,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     let curves = [];
 
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.

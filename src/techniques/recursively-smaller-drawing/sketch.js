@@ -17,8 +17,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.maxDepth + 1);
     angleMode(DEGREES);
     noStroke();

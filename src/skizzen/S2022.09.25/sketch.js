@@ -9,7 +9,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     background("black");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 

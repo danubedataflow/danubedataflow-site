@@ -13,8 +13,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     let roughCanvas = rough.canvas(canvas.elt);
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 

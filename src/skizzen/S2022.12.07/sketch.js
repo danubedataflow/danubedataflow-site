@@ -14,8 +14,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
-
     noStroke();
     rectMode(CORNER);
     palette = ['white', '#777777', 'black'];

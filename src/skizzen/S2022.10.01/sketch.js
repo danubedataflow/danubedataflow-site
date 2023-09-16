@@ -16,7 +16,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     palette = shuffle(colors).slice(0, ctrl.maxDepth + 1);
     strokeWeight(1);
     stroke('black');

@@ -14,7 +14,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     blendMode(BLEND); // so background() actually clears the canvas

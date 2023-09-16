@@ -16,7 +16,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     angleMode(DEGREES);
     fill('white');
     strokeWeight(1);

@@ -62,7 +62,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    readControls();
     updateURL();
     rectMode(CENTER);
     strokeCap(ROUND);
