@@ -7,7 +7,7 @@ function setupForm() {
     );
 }
 
-function draw() {
+function drawSketch() {
     readControls();
 
     let pgDim = width / ctrl.resolutionFactor;

@@ -7,7 +7,7 @@ function setupForm() {
     );
 }
 
-function draw() {
+function drawSketch() {
     readControls();
     let dim = width; // square canvas
 

@@ -11,7 +11,7 @@ function setupForm() {
     );
 }
 
-function draw() {
+function drawSketch() {
     readControls();
 
     noStroke();
