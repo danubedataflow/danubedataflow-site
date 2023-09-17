@@ -703,6 +703,31 @@ function isLive() {
     return window.location.host == 'danubedataflow.com';
 }
 
+function setupButtons() {
+    // because the print functionality doesn't yet work:
+    if (isLive()) document.getElementById("button-print").remove();
+
+    // print.html draws a sketch but doesn't have buttons, so check
+    // whether each button exists.
+
+    let clickHandlers = {
+        redraw: redrawWithNewSeed,
+        randomize: setControlsRandomly,
+        save: saveCanvasAsPNG,
+        copylink: copyLink,
+        print: function() {
+            window.location = 'print.html' + window.location.search;
+        },
+    };
+    for (const [name, handler] of Object.entries(clickHandlers)) {
+        let button = document.getElementById("button-" + name);
+        if (button) {
+            button.addEventListener("click", handler);
+        }
+    }
+
+}
+
 /* Sketch skeleton
  *
  * setup(), draw(), windowResized() and keyPressed() are used by p5.js.
@@ -710,15 +735,7 @@ function isLive() {
  * need to set up the form and to implement drawSketch().
  */
 function setup() {
-    let btnPrint = document.getElementById("button-print");
-    // print.html draws a sketch but doesn't have buttons, so check
-    if (btnPrint) {
-        btnPrint.addEventListener("click", function() {
-            window.location = 'print.html' + window.location.search;
-        });
-        if (isLive()) btnPrint.disabled = true;
-    }
-
+    setupButtons();
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm(); // sketches need to implement this
     noLoop();
