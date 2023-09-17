@@ -31,13 +31,8 @@ convert -size 200x200 xc:#777777 thumbnail.png
 
 ===
 
-"Analysis" ("Analyse", "分析”): Explaining and parameterizing others' works. E.g., takawo. Use sketches from "Creative Coding 3rd" that I already analyzed.
+Analyse: Werke von anderen analysieren, erklären und parametrisieren.
 
-t(): uses a hash with `key` and `language` to get the string
-
-{
-	diameter => { de => 'Durchmesser', en => 'Diameter', jp => '直径' },
-}
 
 https://en.wikipedia.org/wiki/HSL_and_HSV
 (HSV == HSB)
@@ -69,7 +64,7 @@ popup for keyboard shortcuts. Icon like for innerspace
 
 is black alpha 127 the same as 777?
 
-visualize brewer palettes
+Techniken: visualize brewer palettes
 
 technique: scale(0, -1), scale(-1, 0) etc. to flip vertically, horizontally etc.
 
@@ -120,21 +115,8 @@ a = atan (y / x)
 ack -w cos src
 
 
-creative-coding-3rd/other: Johan Karlsson's code
-
-
 My self-imposed restrictions
 how to use (keyboard shortcuts etc.)
-
-
-creative-coding-3rd: reduce to "Techniques", but only for minimal shapes, then delete.
-
-S2022-015: add controls for roughness etc.
-
-S2022-016: recursive grid of filled rough circles , squares and triangles. with white outline on a black background.
-
-support custom color schemes, e.g., from takawo; adapt them to chroma.js.
-Only brewer palettes support numColors.
 
 
 add the ability to create a square canvas of arbitrary size, for wallpapers, prints etc. using pixelDensity() ?
@@ -167,7 +149,7 @@ MAK-Garten https://wien.orf.at/stories/3207130/
 TU-Mensa
 Schillerpark, auch auf den Stufen der Statue
 
-Prague, Manhattan
+Praha, Manhattan
 cafes, walking, art
 
 hypnagogia -> creativity
@@ -247,36 +229,33 @@ Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
 
 
-self-imposed restrictions:
+Ich habe mir folgende Beschränkungen selbst auferlegt:
 
-minimal shapes := lines, squares, triangles
-2D flat drawings, no WebGL
-not figurative, only abstract
+Die Formen sollen minimal sein - Linien, Rechtecke, Dreiecke.
+Zweidimensionale flache Zeichnungen. Keine perspektivischen Elemente oder 3D-Effekte oder gar WebGL.
+Nicht figurativ, nur abstrakt.
+Kurze Algorithmen sind besser, weil sie eher die komplexen geometrischen Muster zeigen, die aus einfachen mathematischen und algorithmischen Zusammenhängen entstehen.
 not iterative. If possible, avoid "first draw this part, then draw that part". The whole image should result from one overarching algorithm. (Not always possible).
 no preloading of images, fonts or other external resources. The sketches must be entirely self-contained.
 no text or emoji, but some abstract Unicode characters are ok
-no data visualizations (charts etc.); no info graphics
+Keine Datenvisualisierung wie etwa Diagramme; keine Infographiken.
 short sketches are better because they are more likely to show complex geometric patterns arising from simple mathematics.
-no interactivity (mouse)
-no animations
-nicht rund
-nicht bunt
-nicht perspektivisch
-nicht dreidimensional
+Keine Interaktivität mit der Maus, dem Trackpad oder der Kamera.
+Keine Animationen.
+Nicht bunt. Entweder schwarz-weiß oder beschränkt auf eine kleine Palette.
 
 Happy accidents
 Allow yourself to be surprised.
 Curated randomness: You can regenerate the sketch many times and select the most pleasing ones.
+Art calculus
+Drawing machines
 
 Some artists are more interested in success than in art. The art world ruled by connections and money, and those are people wanting to make a career, sidling up to art critics and and galleries and museums.
+Weil ich mir durch meinem Brotberuf finanziell unabhängig bin, habe ich das nicht nötig.
+I prefer to have my own separate means of living, a separate income, and be free to create art without having to bow to commercial interests.
+A digital artist doesn't have to rent an extremely expensive art studio in New York. There is very little cost involved. You just need a laptop, an Internet connection and a web site, things like that. And as long as your basic needs are covered, you can concentrate on creating art.
 
-In nature there is no linear alignment.
-
-Art calculus
-Drawing  machines
-
-
-What is the driving force behind these works? I would say it is linear alignment, lines and squares.
+What is the driving force behind these works? I would say it is linear alignment, lines and squares. In nature there is no linear alignment.
 
 Who is creative? Is it the programmer of the algorithm or is it the machine that executes the algorithm?
 Cf. Sol LeWitt's wall drawing instructions.
@@ -285,9 +264,7 @@ I concentrate on one single tool; in this case p5.js and, in a broader sense, Ja
 
 Ich studiere die Skizzen von anderen; zumeist auf https://editor.p5js.org/ . Dadurch lerne ich neue Techniken, vor allem die der Bildbearbeitung durch einfache mathematische Operationen.
 
-
 describe my workflow. vim, tools etc.
-
 
 The following lines are inspired by an interview that Jean-Michel Jarre gave.
 
@@ -307,11 +284,6 @@ This is an example of how one art form - electronic music - can influence anothe
 
 
 Japanese aesthetic: leave things to be appreciated, uncluttered. the silence between notes is most important. cf. architecture. find your own way.
-
-
-site improvements:
-- explain keyboard shortcuts in a table underneath
-
 
 - shapes that sit on points on a path (circle, Ulam spiral etc.) or on grid positions
 - also on a path generated by the superformula?
@@ -336,10 +308,6 @@ variations:
 - displayed shapes are state machines. idea via sasj-continuum-parade-2021.js
 - Unicode 2500-25FF; 1D300-1D35F (Tai Xuan Jing)
 
-I prefer to have my own separate means of living, a separate income, and be free to create art without having to bow to commercial interests.
-
-A digital artist doesn't have to rent an extremely expensive art studio in New York. There is very little cost involved. You just need a laptop, an Internet connection and a web site, things like that. And as long as your basic needs are covered, you can concentrate on creating art.
-
 ===
 
 The Internet is digital art's natural habitat. There is no talk about "having to be there in person" to experience the nuances like size, colors and texture; what you see is what you get.
@@ -357,14 +325,6 @@ Creative Coding
 
 Wie findet man Gleichgesinnte?
 Gibt es einen Discord-Server dafür?
-
-===
-
-save current image plus param file that includes the seed
-
-drag-and-drop param file with seed (can be -1)
-
-print from param file. generate hi-res image, then embed in LaTeX document.
 
 ===
 
