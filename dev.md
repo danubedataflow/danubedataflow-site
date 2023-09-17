@@ -229,21 +229,6 @@ Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
 
 
-Ich habe mir folgende Beschränkungen selbst auferlegt:
-
-Die Formen sollen minimal sein - Linien, Rechtecke, Dreiecke.
-Zweidimensionale flache Zeichnungen. Keine perspektivischen Elemente oder 3D-Effekte oder gar WebGL.
-Nicht figurativ, nur abstrakt.
-Kurze Algorithmen sind besser, weil sie eher die komplexen geometrischen Muster zeigen, die aus einfachen mathematischen und algorithmischen Zusammenhängen entstehen.
-not iterative. If possible, avoid "first draw this part, then draw that part". The whole image should result from one overarching algorithm. (Not always possible).
-no preloading of images, fonts or other external resources. The sketches must be entirely self-contained.
-no text or emoji, but some abstract Unicode characters are ok
-Keine Datenvisualisierung wie etwa Diagramme; keine Infographiken.
-short sketches are better because they are more likely to show complex geometric patterns arising from simple mathematics.
-Keine Interaktivität mit der Maus, dem Trackpad oder der Kamera.
-Keine Animationen.
-Nicht bunt. Entweder schwarz-weiß oder beschränkt auf eine kleine Palette.
-
 Happy accidents
 Allow yourself to be surprised.
 Curated randomness: You can regenerate the sketch many times and select the most pleasing ones.
