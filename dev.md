@@ -1,10 +1,3 @@
-ignoreControlChange:
-- in utils.js ignoreControlChange is initialized with 1. When the form is done,
-  it is set to 0 so controlsDidChange() will have an effect from then on.
-- ignoreControlChange is necessary so form elements don't randomly call
-  readControls() and updateURL() on half-empty forms, i.e. before everything is
-  set up.
-
 - if seed is given in URL, that is used. If not, a random seed is used.
 - The seed that is used is shown.
 -  oth the redraw button and the change-parameters-randomly button will
@@ -14,16 +7,7 @@ ignoreControlChange:
 - To be able to regenerate the exact same image, copy the URL including the
   seed.
 
-Note: For some reason the seed doesn't work with Ctrl-R (reloading a page).
-Maybe updateURL() doesn't affect what Ctrl-R is doing. Best not to use Ctrl-R;
-use the provided buttons (redraw, randomize controls etc.) instead.
-
 ===
-
-Experiment 2023.04.27:
-- diamond needs stricter palette
-- number of tiles horizontally and vertically can be different
-- skew? cf. "Bridget Riley 0000"
 
 Zorn palette
 
@@ -33,11 +17,8 @@ convert -size 200x200 xc:#777777 thumbnail.png
 
 Analyse: Werke von anderen analysieren, erklären und parametrisieren.
 
-
 https://en.wikipedia.org/wiki/HSL_and_HSV
 (HSV == HSB)
-
-create a section that explains how to use my system yourself
 
 Tiled sketches
 
@@ -68,6 +49,8 @@ Techniken: visualize brewer palettes
 
 technique: scale(0, -1), scale(-1, 0) etc. to flip vertically, horizontally etc.
 
+rough.js verwendet Math.random(). Damit die Skizze reproduzierbar bleibt:
+Math.random = random;   // use the p5.js random() function
 
 matter.js, tumbling squares. black, to create white spaces in-between.
 
@@ -154,7 +137,7 @@ MAK-Garten https://wien.orf.at/stories/3207130/
 TU-Mensa
 Schillerpark, auch auf den Stufen der Statue
 
-Praha, Manhattan
+Praha, NYC
 cafes, walking, art
 
 hypnagogia -> creativity
@@ -172,11 +155,6 @@ also http://palmerpaul.com/p5-matter/ ?
 :%w !pbcopy
 :r !pbpaste
 .\{-}
-
-
-if (url.searchParams.has(variableName)) {
-  value = url.searchParams.get(variableName);
-}
 
 
 // Vera Molnar's state machine for colors with three states and random transitions
@@ -210,7 +188,7 @@ XOR: ^, ^=
 bit shifting >>, <<
 
 
-S2022-008:
+S2022.09.01:
 random size: min="0.5" max="2" step="0.5" (slider with two handles). dann kleines quadrat nicht mehr notwendig
 random transparency: 0 - 100% (slider with two handles)
 neue formen: viertelkreis, halbkreis, dreiviertelkreis
@@ -251,8 +229,6 @@ Who is creative? Is it the programmer of the algorithm or is it the machine that
 Cf. Sol LeWitt's wall drawing instructions.
 
 I concentrate on one single tool; in this case p5.js and, in a broader sense, JavaScript. I don't want to be a "jack of all trades, master of none". I deliberately restrict myself so I can concentrate on one technology for months or years and become settled and comfortable in those tools.
-
-Ich studiere die Skizzen von anderen; zumeist auf https://editor.p5js.org/ . Dadurch lerne ich neue Techniken, vor allem die der Bildbearbeitung durch einfache mathematische Operationen.
 
 describe my workflow. vim, tools etc.
 
@@ -313,9 +289,6 @@ Generative Art
 Algorithmic Art
 Creative Coding
 
-Wie findet man Gleichgesinnte?
-Gibt es einen Discord-Server dafür?
-
 ===
 
 Sequenzen (vgl. Hofstadter)
@@ -335,13 +308,9 @@ hält die Hektik des Alltages auf Distanz.
 Elemente der traditionellen japanischen Architektur.
 Siehe:
 - das Buch "Tokyo Style".
-- das "Maki Solitaire"-Gebäude in Düsseldorf
+- Das Maki Solitaire in Düsseldorf ist inspiriert durch das Hillside West in Shibuya, auch von Maki Fumihiko
 
 Victor Vasarely, Yellow Manifest
-
-Photographiere diese schlichte Ästhetik in der Architektur und im Design, wenn Du in Tokyo bist
-
-Das Maki Solitaire in Düsseldorf ist inspiriert durch das Hillside West in Shibuya, auch von Maki Fumihiko
 
 Kanji sind auch geometrisch, basieren auf Funktion und Bedeutung. Eine "Formensprache" im wahrsten Sinne.
 
@@ -351,18 +320,6 @@ stable diffusion emoji prompt
 abstract geometric
 
 ===
-
-cfg 5, 7.5, 10, 12.5
-steps 20, 50, 100
-🛰 🌈 🕳 abstract geometric colorful
-1232822638
-512x512
-
-abstract geometric
-abstract detailed geometric
-abstract geometric colorful
-
-various 3d geometric shapes floating, abstract, render, vibrant, artstation award winning
 
 Gedanken
 
@@ -383,14 +340,6 @@ Heute blicken wir hundert oder hundertfünfzig Jahre zurück und sehen, wie vere
 
 ===
 
-“Art when really understood is the province of every human being. It is simply a question of doing things, anything, well. It is not an extra outside thing. When the artist is alive in any person, whatever his kind of work may be, he becomes an inventive, searching, daring, self-expressive person. The world would stagnate without him, for he is interesting to others. where there is the art spirit there will be precious works to fill museums.”
-
-“The object isn't to make art, it's to be in that wonderful state which makes art inevitable.”
-
-from “The Art Spirit” by Robert Henri
-
-===
-
 https://www.artsy.net/artist/vera-molnar-1
 
 ===
@@ -403,4 +352,19 @@ Selektive Wahrnehmung
 Die Bedeutung entsteht für uns aus dem, was zwischen den Linien ist. Aber das ist eine menschliche Wahrnehmung, keine Aussage der Maschine.
 Vgl. Rorschach-Test
 Vgl. Räume sind das, was zwischen Wänden ist.
+
+===
+
+Lizenzen
+
+ack -h 'makeSlider\(' | perl -pE's/^\s*//; s/.*?,.*?,\K.*//' | sort | uniq -c | sort -n
+refactor?
+eindeutschen
+
+ddf-edit -i S2022.12.13 => vim .../S2022.12.13/sketch.js
+-i: edit index.html
+-a: edit all files: index.html, sketch.js
+default: edit sketch.js
+
+qrcode.js für print
 
