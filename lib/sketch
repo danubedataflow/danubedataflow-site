@@ -24,7 +24,7 @@
                 <button onclick="setControlsRandomly(); return false;" title="Zufallseinstellungen"><i class="bi bi-shuffle"></i></button>
                 <button onclick="saveCanvasAsPNG(); return false;" title="Leinwand speichern"><i class="bi bi-box-arrow-down"></i></button>
                 <button onclick="copyLink(); return false;" title="Link kopieren"><i class="bi bi-link-45deg"></i></button>
-                <button onclick="window.location='print.html'+window.location.search;" title="Skizze drucken"><i class="bi bi-printer"></i></button>
+                <button id="button-print" title="Skizze drucken"><i class="bi bi-printer"></i></button>
             </p>
 
             <form id="controls-form">

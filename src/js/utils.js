@@ -268,9 +268,7 @@ class SeedControl {
          * click "redraw with new seed" or "randomize controls" you don't get
          * the same result on both sketches.
          */
-        if (!/^\d{3,9}$/.test(value)) {
-            value = int(Math.random() * 1_000_000_000);
-        }
+        if (!/^\d{3,9}$/.test(value)) value = int(Math.random() * 1000000000);
         this.element.value = value;
         randomSeed(value);
         noiseSeed(value);
@@ -315,7 +313,7 @@ function valueWithSearchParam(key, defaultValue) {
 function makeForm(...contents) {
     let form = document.getElementById('controls-form');
     contents.push(makeSeed()),
-    contents.forEach(child => form.appendChild(child));
+        contents.forEach(child => form.appendChild(child));
 
     /* like controlsDidChange() but don't call redraw(). That's because
      * draw() will be called anyway by p5.js and we don't want to call it
@@ -411,7 +409,9 @@ function makeCheckbox(id, label, value = true) {
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
-    checkboxEl.oninput = function() { redraw(); };
+    checkboxEl.oninput = function() {
+        redraw();
+    };
     containerDiv.appendChild(checkboxEl);
 
     controls[id] = new CheckboxControl(id, checkboxEl);
@@ -435,7 +435,7 @@ function makeSeed() {
     containerDiv.appendChild(inputEl);
 
     controls[id] = new SeedControl(id, inputEl);
-    controls[id].setValue(valueWithSearchParam(id));   // no default value
+    controls[id].setValue(valueWithSearchParam(id)); // no default value
 
     return containerDiv;
 }
@@ -466,7 +466,9 @@ function makeSelect(id, label, contents, value) {
     selectEl.setAttribute('id', id);
     contents.forEach(el => selectEl.appendChild(el));
 
-    selectEl.onchange = function() { redraw(); };
+    selectEl.onchange = function() {
+        redraw();
+    };
     containerDiv.appendChild(selectEl);
 
     controls[id] = new SelectControl(id, selectEl);
@@ -645,14 +647,14 @@ function setControlsRandomly() {
             c.setValue(random([true, false]));
 
         } else if (c instanceof SeedControl) {
-            c.setValue();  // trigger new random seed
+            c.setValue(); // trigger new random seed
         }
     });
     redraw();
 }
 
 function redrawWithNewSeed() {
-    controls.seed.setValue();  // trigger new random seed
+    controls.seed.setValue(); // trigger new random seed
     redraw();
 }
 
@@ -697,6 +699,10 @@ function copyLink() {
     }
 }
 
+function isLive() {
+    return window.location.host == 'danubedataflow.com';
+}
+
 /* Sketch skeleton
  *
  * setup(), draw(), windowResized() and keyPressed() are used by p5.js.
@@ -704,8 +710,17 @@ function copyLink() {
  * need to set up the form and to implement drawSketch().
  */
 function setup() {
+    let btnPrint = document.getElementById("button-print");
+    // print.html draws a sketch but doesn't have buttons, so check
+    if (btnPrint) {
+        btnPrint.addEventListener("click", function() {
+            window.location = 'print.html' + window.location.search;
+        });
+        if (isLive()) btnPrint.disabled = true;
+    }
+
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
-    setupForm();  // sketches need to implement this
+    setupForm(); // sketches need to implement this
     noLoop();
 }
 
