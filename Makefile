@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site watch nginx deploy icons clean test
+.PHONY: site watch nginx live icons clean test
 
 site:
 	ttree -f etc/ttreerc
@@ -25,7 +25,7 @@ nginx:
 	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
 	nginx -s reload
 
-deploy:
+live:
 	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
 	ssh hetzner 'sudo bin/fix-permissions'
 
