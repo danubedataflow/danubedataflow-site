@@ -138,6 +138,11 @@ Cafe Jelinek
 Cafe Sperl
 Cafe Bräunerhof
 Cafe Dommayer
+Kaffee Alt Wien
+Café Anno
+Futuregarden (Schadekgasse)
+Metalab (€30 pro Monat)
+Go7
 Akademie der bildenden Künste, Mensa
 Mama Liu's Cafe (früher "Fain")
 Museumsquartier
@@ -387,3 +392,15 @@ from “The Art Spirit” by Robert Henri
 ===
 
 https://www.artsy.net/artist/vera-molnar-1
+
+===
+
+In Anlehnung an Gerhard Richter
+sechs zufällige Zahlen bedeutungslos
+aber wenn es die richtigen Lottozahlen sind, bekommen sie bedeutung.
+Selektive Wahrnehmung
+=> Zufâllige Linien: wenn ihre Anordnung ein uns bekanntes Muster ergibt - ein Rechteck, oder eine spitze Klammer etwa, messen wir dem Bedeutung zu. Aber diese Anordnung ist genauso zufällig wie jede andere.
+Die Bedeutung entsteht für uns aus dem, was zwischen den Linien ist. Aber das ist eine menschliche Wahrnehmung, keine Aussage der Maschine.
+Vgl. Rorschach-Test
+Vgl. Räume sind das, was zwischen Wänden ist.
+
