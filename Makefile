@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site watch nginx live icons clean test
+.PHONY: site deps watch nginx live icons clean test
 
 site:
 	ttree -f etc/ttreerc
