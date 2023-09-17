@@ -6,7 +6,7 @@ DEPS = $(WWW)/deps
 default:
 	$(error Specify a Makefile target)
 
-site: clean
+site:
 	ttree -f etc/ttreerc
 	mkdir -p $(DEPS)
 	cp node_modules/chroma-js/chroma.min.js $(DEPS)/
