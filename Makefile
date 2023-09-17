@@ -1,10 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: default site watch nginx deploy icons clean test
-
-default:
-	$(error Specify a Makefile target)
+.PHONY: site watch nginx deploy icons clean test
 
 site:
 	ttree -f etc/ttreerc
