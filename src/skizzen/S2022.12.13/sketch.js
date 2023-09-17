@@ -30,6 +30,8 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
     let vsegments = [];
     let minS = int(dim / minDivisor),
         maxS = int(dim / maxDivisor);
+    // Note: the arguments to random() depend on the canvas width(), so when
+    // you resize it you will get a different image
     for (let y = 0; y < dim - (minS + maxS) / 2; y += int(random(minS, maxS))) {
         vsegments.push(y);
     }
