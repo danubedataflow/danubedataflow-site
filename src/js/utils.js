@@ -709,6 +709,9 @@ function draw() {
 }
 
 function windowResized() {
+    // After resizing the canvas, we want to draw with the same seed as before
+    // resizing.
+    controls.seed.setValue(controls.seed.getValue());
     resizeCanvas(...getCanvasDimension());
 }
 
