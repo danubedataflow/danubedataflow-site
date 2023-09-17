@@ -16,19 +16,14 @@ function saveCanvasAsPNG() {
     saveCanvas(decodeURI(name) + '.png');
 }
 
-// returns 1 if handled, 0 if not
 function handleStandardKeys() {
-    if (key == 's') {
-        saveCanvasAsPNG();
-        return 1;
-    } else if (key == 'r') {
-        redrawWithNewSeed();
-        return 1;
-    } else if (key == 'p') {
-        setControlsRandomly();
-        return 1;
-    }
-    return 0;
+    let keyHandlers = {
+        s: saveCanvasAsPNG,
+        r: redrawWithNewSeed,
+        p: setControlsRandomly,
+    };
+    let handler = keyHandlers[key];
+    if (handler) handler();
 }
 
 function getPointsForPolygon(sides, diameter, rotation) {
