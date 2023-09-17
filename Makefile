@@ -4,7 +4,7 @@ DEPS = src/deps
 .PHONY: site deps watch nginx live icons clean test
 
 site:
-	ttree -f etc/ttreerc
+	@ttree -f etc/ttreerc
 
 deps:
 	mkdir -p $(DEPS)
