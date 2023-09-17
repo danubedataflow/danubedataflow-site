@@ -20,10 +20,10 @@
                 <span id="source-link"><a href="source.html">Code</a></span>
 
                 <!-- return false to prevent the page reload -->
-                <button onclick="redrawWithNewSeed(); return false;" title="Neu zeichnen"><i class="bi bi-arrow-clockwise"></i></button>
-                <button onclick="setControlsRandomly(); return false;" title="Zufallseinstellungen"><i class="bi bi-shuffle"></i></button>
-                <button onclick="saveCanvasAsPNG(); return false;" title="Leinwand speichern"><i class="bi bi-box-arrow-down"></i></button>
-                <button onclick="copyLink(); return false;" title="Link kopieren"><i class="bi bi-link-45deg"></i></button>
+                <button id="button-redraw" title="Neu zeichnen"><i class="bi bi-arrow-clockwise"></i></button>
+                <button id="button-randomize" title="Zufallseinstellungen"><i class="bi bi-shuffle"></i></button>
+                <button id="button-save" title="Leinwand speichern"><i class="bi bi-box-arrow-down"></i></button>
+                <button id="button-copylink" title="Link kopieren"><i class="bi bi-link-45deg"></i></button>
                 <button id="button-print" title="Skizze drucken"><i class="bi bi-printer"></i></button>
             </p>
 
