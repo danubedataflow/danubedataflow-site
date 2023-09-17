@@ -597,9 +597,16 @@ function getCurrentURL() {
     return window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
 }
 
-// update URL according to controls
+/* Update the URL according to controls. But don't update it if it hasn't
+ * changed. Because if you continuously resize the window, Safari produces a
+ * "SecurityError: Attempt to use history.replaceState() more than 100 times
+ * per 30 seconds".
+ */
 function updateURL() {
-    window.history.replaceState(null, '', getCurrentURL());
+    let currentURL = getCurrentURL();
+    if (currentURL != window.location.href) {
+        window.history.replaceState(null, '', currentURL);
+    }
 }
 
 function setControlsRandomly() {
