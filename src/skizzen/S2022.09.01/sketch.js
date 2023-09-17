@@ -62,7 +62,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    updateURL();
     rectMode(CENTER);
     strokeCap(ROUND);
     strokeJoin(ROUND);
