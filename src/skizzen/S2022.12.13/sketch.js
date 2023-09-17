@@ -13,12 +13,11 @@ function setupForm() {
 function drawSketch() {
     stroke('black');
     rectMode(CORNERS);
-    let numGrids = 5;
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);
     strokeWeight(ctrl.strokeWeight);
-    for (let i = 0; i < numGrids; i++) {
+    for (let i = 0; i < ctrl.numGrids; i++) {
         let drawType = random(['plain', 'diagonal']);
         let maxDivisor = randomIntRange(...ctrl.divisorRange);
         let minDivisor = int(maxDivisor * 1.5);
