@@ -2,8 +2,8 @@
 
 function setupForm() {
     makeForm(
-        makeSelectBlendMode([BLEND, DIFFERENCE, DODGE, EXCLUSION, HARD_LIGHT, LIGHTEST]),
-        makeSlider('numGrids', 'Anzahl der Gitter', 1, 10, 4),
+        makeSelectBlendMode([BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST]),
+        makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
         makeSlider('divisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
         makeSlider('strokeWeight', 'Strichstärke', 1, 8, 1),
         makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [60, 70]),
