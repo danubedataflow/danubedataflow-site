@@ -1,5 +1,5 @@
 WWW = ~/www/danubedataflow
-DEPS = $(WWW)/deps
+DEPS = src/deps
 
 .PHONY: default site watch nginx deploy icons clean test
 
@@ -8,6 +8,8 @@ default:
 
 site:
 	ttree -f etc/ttreerc
+
+deps:
 	mkdir -p $(DEPS)
 	cp node_modules/chroma-js/chroma.min.js $(DEPS)/
 	cp node_modules/roughjs/bundled/rough.js $(DEPS)/
