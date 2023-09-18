@@ -401,7 +401,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
     });
     slider.on('update', function(values, handle) {
         // support multiple handles
-        valueSpan.innerHTML = values.map(numStr => parseFloat(numStr)).join('-');
+        valueSpan.innerHTML = values.map(numStr => parseFloat(numStr)).join('&ndash;');
     });
     slider.on('change', function(values, handle) {
         redraw();
