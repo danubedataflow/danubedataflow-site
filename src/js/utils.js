@@ -711,14 +711,7 @@ function copyLink() {
     }
 }
 
-function isLive() {
-    return window.location.host == 'danubedataflow.com';
-}
-
 function setupButtons() {
-    // because the print functionality doesn't yet work:
-    if (isLive()) document.getElementById("button-print").remove();
-
     // print.html draws a sketch but doesn't have buttons, so check
     // whether each button exists.
 
