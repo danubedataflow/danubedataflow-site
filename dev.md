@@ -1,7 +1,5 @@
 Zorn palette
 
-===
-
 Analyse: Werke von anderen analysieren, erklären und parametrisieren.
 
 https://en.wikipedia.org/wiki/HSL_and_HSV
@@ -9,7 +7,9 @@ https://en.wikipedia.org/wiki/HSL_and_HSV
 
 Tiled sketches
 
-Adapt existing sketches to use a (sub)grid so a sketch can show multiple at the same time. Use this for drawings that are not in a grid already and that have randomness.
+Adapt existing sketches to use a (sub)grid so a sketch can show multiple at the
+same time. Use this for drawings that are not in a grid already and that have
+randomness.
 
 for (each tile) {
   let len = tile length;
@@ -21,12 +21,11 @@ for (each tile) {
   scale(0.9);
   translate(-len / 2, -len / 2);
 
+  // drawTile(len) draws the shapes assuming (0,0) is the upper left and the
+  // tile length is len.
   drawTile(len);
   pop();
 }
-
-drawTile(len) draws the shapes assuming (0,0) is the upper left and the tile length is len.
-
 
 popup for keyboard shortcuts. Icon like for innerspace
 
@@ -48,32 +47,26 @@ movers create rectangular lines. different colors where they intersect.
 draw several permutations on the same canvas, one per tile:
 arr.permutations().shuffle().slice(...)
 
-
 Schotter:
-randomness function
-0 <= x <= 1, 0 <= y <= 1.
-f(x,y) =
-y (increasing towards the bottom)
-x (increasing towards the right)
-1 - y (increasing towards the top)
-1 - x (increasing towards the left)
-(x + y) / 2 (increasing towards the lower right)
-increasing towards the center, zero in the corners
-increasing towards the corners, zero in the center
-also see file:///Users/marcel/www/creative-coding-3rd/sketches/takawo--221023a/index.html Convert the rectangular coordinates (x, y) to the polar coordinates (r, a) and use them in these formulas.
+- randomness function
+- 0 <= x <= 1, 0 <= y <= 1.
+- f(x,y) =
+- y (increasing towards the bottom)
+- x (increasing towards the right)
+- 1 - y (increasing towards the top)
+- 1 - x (increasing towards the left)
+- (x + y) / 2 (increasing towards the lower right)
+- increasing towards the center, zero in the corners
+- increasing towards the corners, zero in the center
+- also see file:///Users/marcel/www/creative-coding-3rd/sketches/takawo--221023a/index.html Convert the rectangular coordinates (x, y) to the polar coordinates (r, a) and use them in these formulas.
 
 permuted values could be the lengths of vertical bars, or the positions of notches in a 3x3 subsquare.
 
-
 Tetris shapes; each of the four squares in a shape can be filled or stroked. Random rotation, color etc.
-
 
 Unmonotone fractals:
 T-square fractal
 Cantor square fractal
-
-
-
 
 Rectangular to polar coordinates: x = r * cos(a)
 y = r * sin(a)
@@ -84,18 +77,10 @@ a = atan (y / x)
 
 ack -w cos src
 
-
-My self-imposed restrictions
-how to use (keyboard shortcuts etc.)
-
-
 add the ability to create a square canvas of arbitrary size, for wallpapers, prints etc. using pixelDensity() ?
-
 
 https://www.skillshare.com/en/blog/35-geometric-patterns-and-how-to-design-your-own/
 https://square-the-circle.com/
-
-
 
 Kaffeehäuser und Konditoreien:
 - Cafe Caspar
@@ -136,11 +121,9 @@ matter.js
 https://brm.io/matter-js/
 also http://palmerpaul.com/p5-matter/ ?
 
-
 :%w !pbcopy
 :r !pbpaste
 .\{-}
-
 
 /* Vera Molnar's state machine for colors with three states and random
  * transitions.
@@ -170,14 +153,12 @@ function* colorStateMachine() {
     }
 }
 
-
 Bitwise operations
 AND: &, &=
 NOT: ~
 OR: |, |=
 XOR: ^, ^=
 bit shifting >>, <<
-
 
 S2022.09.01:
 random size: min="0.5" max="2" step="0.5" (slider with two handles). dann kleines quadrat nicht mehr notwendig
@@ -200,8 +181,6 @@ stroke (fieldset)
 - weight
 Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
-
-
 ===
 
 Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann die Skizze viele Male neu generieren und die ansprechendsten Variationen auswählen.
@@ -214,32 +193,14 @@ Ich konzentriere mich auf ein einziges Werkzeug; in diesem Fall ist es p5.js und
 
 Einer der attraktiven Aspekte der generativen Gestaltung ist, daß ich mein Studio immer bei mir haben kann. Ich brauche nur einen Laptop. Allerdings bedarf es auch eines Raumes, in den man sich zurückziehen kann und in dem man kreativ inspiriert werden kann.
 
-Meine parametrisierten Werke ermöglichen eine kontrolliertere Gestaltung als man sie mit einem Prompt für eine Text-zu-Bild-KI wie Stable Diffusion oder Midjourney erreichen kann.
-
-In der zweiten Hälfte des 19. Jahrhunderts wurde mit Hilfe der Wissenschaft eine Realität jenseits der sichtbaren Welt entdeckt. Elektrizität, Gammastrahlen, Röntgenstrahlen, radioaktive Strahlen, Radio, Telephon, Photographie, Ultraschall, Bakterien unter einem Mikroskop, Elektronen, Psychologie usw. Die sichtbare Welt stellte sich als lediglich dünner Streifen der wahren Realität heraus. War das erst der Anfang des Weges, das Göttliche zu quantifizieren, zu entmystifizieren und es sich dienstbar zu machen? Mit Hilfe von Ouija-Boards ("Tischerlrücken") mit Verstorbenen, Geistern und Lichtwesen kommunizieren? Siehe Hilmar af Klint und ihre Gruppe. Anfang der abstrakten Malerei; verwurzelt in der Theosophie. Spirituelle Bewegungen; esoterisch.
-
-Die Wissenschaft gibt uns Karten und Diagramme, mit denen wir die Realität besser verstehen können. Manche Künstler des späten 19. Jahrhunderts wollten die unsichtbaren Kräfte auf andere Arten sichtbar machen.
-
-Eine visuelle Sprache, um die Kräfte zu beschreiben, die die Welt vorantreiben. Nicht eine alternative Welt erschaffen, sondern jenseits der sichtbaren Formen schauen?
-
-Früher war alle Kunst gegenständlich: Ein Stilleben, Menschen, Natur (Wiese, Blumen, Bäume, Berge usw.). Immer weiter vereinfacht (Kandinsky, Malewitsch). Auch Musik und Philosophie wurden abstrakter.
-
-Heute blicken wir hundert oder hundertfünfzig Jahre zurück und sehen, wie vereinfacht, überoptimistisch und oft auch falsch die Menschen damals die Welt gesehen haben. Vermutlich wird man in fünfzig oder hundert Jahren auch so auf uns zurückblicken, wie wir erste, einfache Schritte mit KI gemacht haben.
+Das Internet ist der natürliche Lebensraum der digitalen Kunst. Es ist nicht die Rede davon, „persönlich dort sein zu müssen“, um die Nuancen wie Größe, Farben und Textur zu erleben. Um digitale Kunst anzusehen, muß man nicht in verschiedene Städte reisen, um sie in einer Galerie zu sehen.
 
 ===
 
 describe my workflow. vim, tools etc.
 
-===
-
-===
-
-Japanese aesthetic: leave things to be appreciated, uncluttered. the silence between notes is most important. cf. architecture. find your own way.
-
 - shapes that sit on points on a path (circle, Ulam spiral etc.) or on grid positions
 - also on a path generated by the superformula?
-
-shapes can be polygons (triangles, rectangles), crosses, Unicode characters etc.
 
 examples:
 black background. the same shape on random grid points, non-overlapping.
@@ -261,22 +222,14 @@ variations:
 
 ===
 
-The Internet is digital art's natural habitat. There is no talk about "having to be there in person" to experience the nuances like size, colors and texture; what you see is what you get.
-
-To view digital art, you don't need to travel to different cities to see it in a gallery.
-
-Also digital art has a longevity that traditional art cannot have.
-
-===
-
-Generative Design
-Generative Art
-Algorithmic Art
-Creative Coding
+Generative Gestaltung
+Algorithmische Kunst
+Kreatives Programmieren
 
 ===
 
 Sequenzen (vgl. Hofstadter)
+The On-Line Encyclopedia of Integer Sequences https://oeis.org/
 Parkettierung (siehe "Mathewelten - Rätselhafte Fünfecke" und https://de.wikipedia.org/wiki/Parkettierung )
 Game of Life
 
@@ -288,6 +241,7 @@ Twitter, Instagram: danubedataflow oder marcel?
 Warum mache ich das? Ist das nur geometrische und mathematische Spielerei?
 
 Japanische Ästhetik.
+leave things to be appreciated, uncluttered. the silence between notes is most important. cf. architecture. find your own way.
 Gerade Linien, Schlichtheit. Unscheinbar, unaufgeregt. kühl, Understatement
 hält die Hektik des Alltages auf Distanz.
 Elemente der traditionellen japanischen Architektur.
@@ -299,11 +253,7 @@ Victor Vasarely, Yellow Manifest
 
 Kanji sind auch geometrisch, basieren auf Funktion und Bedeutung. Eine "Formensprache" im wahrsten Sinne.
 
-===
-
 https://www.artsy.net/artist/vera-molnar-1
-
-===
 
 In Anlehnung an Gerhard Richter
 sechs zufällige Zahlen bedeutungslos
@@ -314,31 +264,23 @@ Die Bedeutung entsteht für uns aus dem, was zwischen den Linien ist. Aber das i
 Vgl. Rorschach-Test
 Vgl. Räume sind das, was zwischen Wänden ist.
 
-===
-
 ack -h 'makeSlider\(' | perl -pE's/^\s*//; s/.*?,.*?,\K.*//' | sort | uniq -c | sort -n
-refactor?
-eindeutschen
+=> refactor? eindeutschen
 
 ddf-edit -i S2022.12.13 => vim .../S2022.12.13/sketch.js
 -i: edit index.html
 -a: edit all files: index.html, sketch.js
 default: edit sketch.js
 
-qrcode.js für print
-
-html canvas 300dpi?
+print:
+- höhere Auflösung
+  - html canvas 300dpi?
+- qrcode.js
+- kompaktere Parameter, etwa bei fieldsets.
 
 save canvas as STE20xx.xx.xx.png
 
 workflow for thumbnails
 import thumbnail: take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
 
-print css:
-<form> wiederherstellen
-nur nouislider ist hidden
-canvas width 100%
-damit form drunter ist
-
 warum einmal makeGrid, einmal manuell?
-
