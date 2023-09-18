@@ -723,6 +723,9 @@ function setupButtons() {
     // whether each button exists.
 
     let clickHandlers = {
+        source: function() {
+            window.location = 'source.html';
+        },
         redraw: redrawWithNewSeed,
         randomize: setControlsRandomly,
         save: saveCanvasAsPNG,
