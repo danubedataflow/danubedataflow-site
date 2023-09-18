@@ -1,1 +1,10 @@
-<meta http-equiv="refresh" content="0; URL=/skizzen/" />
+[%
+    WRAPPER html;
+        INCLUDE head title="Danube Dataflow";
+        WRAPPER body;
+            WRAPPER frames title="Skizzen";
+                INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("S");
+            END;
+        END;
+    END;
+%]
