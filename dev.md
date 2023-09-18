@@ -111,41 +111,40 @@ https://square-the-circle.com/
 
 
 
-Creative spaces / Digital Nomads
-Westbahnhof: UG Heberer, EG Ströck, OG Backwerk
-Hauptbahnhof
-Hotel Schani
-Fladerei
-Cafe Caspar
-Cafe Jelinek
-Cafe Sperl
-Cafe Bräunerhof
-Cafe Dommayer
-Kaffee Alt Wien
-Café Anno
-Futuregarden (Schadekgasse)
-Metalab (€30 pro Monat)
+Kaffeehäuser und Konditoreien:
+- Cafe Caspar
+- Cafe Jelinek
+- Cafe Sperl
+- Cafe Bräunerhof
+- Cafe Dommayer
+- Cafe Anno
+- Kleines Cafe (Franziskanerplatz)
+- Paremi
+- Kaffee Alt Wien
+- Mama Liu's Cafe (vormals "Fain")
+Andere Lokale:
+- Hotel Schani
+- Fladerei
+- Futuregarden (Schadekgasse)
+- Westbahnhof: UG Heberer, EG Ströck, OG Backwerk
+- Hauptbahnhof
+Mensen:
+- Akademie der bildenden Künste, Mensa
+- TU-Mensa
+Bänke:
+- Bänke bei der Kirche am Schulhof 1
+- Bänke in der TU, Getreidemarkt
+- Bank in der Reitschulgasse, beim Taxi-Standplatz
+Metalab (aber €30 pro Monat ist zuviel)
 Go7
-Akademie der bildenden Künste, Mensa
-Mama Liu's Cafe (früher "Fain")
 Museumsquartier
-Kleines Cafe (Franziskanerplatz)
-Kaffee Alt Wien
-Zollergasse
 Uni Wien Arkadenhof
 MAK-Garten https://wien.orf.at/stories/3207130/
-TU-Mensa
 Schillerpark, auch auf den Stufen der Statue
 
 Praha, NYC
-cafes, walking, art
 
 hypnagogia -> creativity
-
-polygon collision
-https://twitter.com/andyduboc
-https://github.com/bmoren/p5.collide2D/blob/master/README.md
-https://gorillasun.de/blog/an-algorithm-for-polygon-intersections
 
 matter.js
 https://brm.io/matter-js/
@@ -157,7 +156,13 @@ also http://palmerpaul.com/p5-matter/ ?
 .\{-}
 
 
-// Vera Molnar's state machine for colors with three states and random transitions
+/* Vera Molnar's state machine for colors with three states and random
+ * transitions.
+ *
+ * Assume the a circle with states in the order 'R', 'G' and 'B'.
+ * From each state, there is a 70% to go to the next state, a 15% chance
+ * to go to the previous state and a 15% chance to stay in the same state.
+ */
 function* colorStateMachine() {
     state = 'R';
     while (1) {
@@ -212,42 +217,48 @@ Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
 
 
-Happy accidents
-Allow yourself to be surprised.
-Curated randomness: You can regenerate the sketch many times and select the most pleasing ones.
-Art calculus
-Drawing machines
+Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen.
+Kuratierte Zufälligkeit: Sie können die Skizze viele Male neu generieren und die schönsten auswählen.
 
-Some artists are more interested in success than in art. The art world ruled by connections and money, and those are people wanting to make a career, sidling up to art critics and and galleries and museums.
+
+Manche Künstler sind mehr am Erfolg als an der Kunst interessiert. Die Kunstwelt wird von Verbindungen und Geld beherrscht, und das sind Menschen, die Karriere machen wollen und sich an Kunstkritiker, Galerien und Museen schleichen.
+
 Weil ich mir durch meinem Brotberuf finanziell unabhängig bin, habe ich das nicht nötig.
-I prefer to have my own separate means of living, a separate income, and be free to create art without having to bow to commercial interests.
-A digital artist doesn't have to rent an extremely expensive art studio in New York. There is very little cost involved. You just need a laptop, an Internet connection and a web site, things like that. And as long as your basic needs are covered, you can concentrate on creating art.
 
-What is the driving force behind these works? I would say it is linear alignment, lines and squares. In nature there is no linear alignment.
+Ich ziehe es vor, über einen eigenen Lebensunterhalt und ein eigenes Einkommen zu verfügen und die Freiheit zu haben, Kunst zu schaffen, ohne mich kommerziellen Interessen beugen zu müssen.
 
-Who is creative? Is it the programmer of the algorithm or is it the machine that executes the algorithm?
-Cf. Sol LeWitt's wall drawing instructions.
+Ein Digitalkünstler muss kein extrem teures Kunstatelier in New York mieten. Es fallen nur sehr geringe Kosten an. Ich benötige lediglich einen Laptop, eine Internetverbindung und eine Website usw. Und solange meine Grundbedürfnisse gedeckt sind, kann ich mich auf das Schaffen von Kunst konzentrieren.
 
-I concentrate on one single tool; in this case p5.js and, in a broader sense, JavaScript. I don't want to be a "jack of all trades, master of none". I deliberately restrict myself so I can concentrate on one technology for months or years and become settled and comfortable in those tools.
+Was ist die treibende Kraft hinter diesen Arbeiten? Ich würde sagen, es ist eine lineare Ausrichtung, Linien und Quadrate. In der Natur gibt es keine lineare Ausrichtung.
+
+Wer ist kreativ? Ist es der Programmierer des Algorithmus oder ist es die Maschine, die den Algorithmus ausführt?
+  Vgl. Anleitung zum Wandzeichnen von Sol LeWitt. Es ist eine Art Kunstkalkül.
+
+Ich konzentriere mich auf ein einziges Werkzeug; in diesem Fall p5.js und im weiteren Sinne JavaScript. Ich möchte kein Hansdampf in allen Gassen sein. Ich schränke mich bewusst ein, damit ich mich über Monate oder Jahre hinweg auf eine Technologie konzentrieren und mich mit diesen Werkzeugen vertraut machen kann.
+
+===
 
 describe my workflow. vim, tools etc.
 
-The following lines are inspired by an interview that Jean-Michel Jarre gave.
+===
 
-When classical instruments like the piano or the violin appeared, they changed the nature of music. That same happened and is still happening today with electronic and purely digital instruments. And you can see the same in different art forms.
+Die folgenden Zeilen sind von einem Interview inspiriert, das Jean-Michel Jarre gegeben hat.
 
-Technology determines the style.
+Als klassische Instrumente wie das Klavier oder die Violine auftauchten, veränderten sie das Wesen der Musik. Das Gleiche geschah und geschieht auch heute noch bei elektronischen und rein digitalen Instrumenten. Und das Gleiche kann man in verschiedenen Kunstformen sehen.
 
-In an interview from 2017 Jean-Michel Jarre said that without the "Massive" plugin by Native Instruments there probably wouldn't be the Dubstep genre. I have also heard elsewhere that some plugins had a big effect on the electronic music genres.
+Technologie bestimmt den Stil.
 
-In generative design you can also see that with WebGL, Processing, p5.js and other tools. But we shouldn't be dependent on the software that we use for generative design.
+In einem Interview aus dem Jahr 2017 sagte Jean-Michel Jarre, dass es ohne das „Massive“-Plugin von Native Instruments das Dubstep-Genre wahrscheinlich nicht gäbe. Ich habe auch an anderer Stelle gehört, daß einige Plugins einen großen Einfluss auf die Genres der elektronischen Musik hatten.
 
-We rely on these technologies, but you shouldn't expect too much from them. What differentiates the artists who use these technologies is how they use them.
+Im der Generativen Gestaltung sieht man das auch bei WebGL, Processing, p5.js und anderen Tools. Aber wir sollten nicht von der Software abhängig sein, die wir für generatives Design verwenden.
 
-I see my parametrised works in a similar way. Certain groups of parameters are like virtual instruments that give the work a certain "sound quality".
+Wir setzen auf diese Technologien, aber man sollte nicht zu viel von ihnen erwarten. Was die Künstler, die diese Technologien nutzen, unterscheidet, ist die Art und Weise, wie sie sie nutzen.
 
-This is an example of how one art form - electronic music - can influence another art form - creative design.
+Ähnlich sehe ich meine parametrisierten Arbeiten. Bestimmte Gruppen von Parametern sind wie virtuelle Instrumente, die dem Werk eine bestimmte "Klangqualität" verleihen.
 
+Dies ist ein Beispiel dafür, wie eine Kunstform – elektronische Musik – eine andere Kunstform – kreative Gestaltung – beeinflussen kann.
+
+===
 
 Japanese aesthetic: leave things to be appreciated, uncluttered. the silence between notes is most important. cf. architecture. find your own way.
 
@@ -367,4 +378,22 @@ ddf-edit -i S2022.12.13 => vim .../S2022.12.13/sketch.js
 default: edit sketch.js
 
 qrcode.js für print
+
+===
+
+html canvas 300dpi?
+
+save canvas as STE20xx.xx.xx.png
+
+workflow for. thumbnails
+import thumbnail:
+take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
+
+print css:
+form wiederherstellen
+nur nouislider ist hidden
+canvas width 100%
+damit form drunter ist
+
+warum einmal makeGrid, einmal manuell?
 
