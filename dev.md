@@ -1,17 +1,4 @@
-- if seed is given in URL, that is used. If not, a random seed is used.
-- The seed that is used is shown.
--  oth the redraw button and the change-parameters-randomly button will
-   generate a new seed. (Rationale: if the redraw button didn't generate a new
-   seed, you couldn't get the exact same image with the shown seed because
-   every time you redraw it calls random() again.
-- To be able to regenerate the exact same image, copy the URL including the
-  seed.
-
-===
-
 Zorn palette
-
-convert -size 200x200 xc:#777777 thumbnail.png
 
 ===
 
@@ -110,7 +97,6 @@ https://square-the-circle.com/
 
 
 
-
 Kaffeehäuser und Konditoreien:
 - Cafe Caspar
 - Cafe Jelinek
@@ -144,7 +130,7 @@ Schillerpark, auch auf den Stufen der Statue
 
 Praha, NYC
 
-hypnagogia -> creativity
+Hypnagogie und Kreativität
 
 matter.js
 https://brm.io/matter-js/
@@ -216,47 +202,35 @@ Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
 
 
+===
 
-Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen.
-Kuratierte Zufälligkeit: Sie können die Skizze viele Male neu generieren und die schönsten auswählen.
+Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann die Skizze viele Male neu generieren und die ansprechendsten Variationen auswählen.
 
+Was ist die treibende Kraft hinter meinen Arbeiten? Ich würde sagen, es ist eine lineare Ausrichtung, Linien und Quadrate. In der Natur gibt es keine lineare Ausrichtung.
 
-Manche Künstler sind mehr am Erfolg als an der Kunst interessiert. Die Kunstwelt wird von Verbindungen und Geld beherrscht, und das sind Menschen, die Karriere machen wollen und sich an Kunstkritiker, Galerien und Museen schleichen.
+Wer ist kreativ? Ist es der Programmierer des Algorithmus oder ist es die Maschine, die den Algorithmus ausführt?  Das erinnert mich an die Anleitungen zu den Wandzeichnungen von Sol LeWitt. Es ist eine Art Kunstkalkül.
 
-Weil ich mir durch meinem Brotberuf finanziell unabhängig bin, habe ich das nicht nötig.
+Ich konzentriere mich auf ein einziges Werkzeug; in diesem Fall ist es p5.js und im weiteren Sinne JavaScript. Ich möchte kein Hansdampf in allen Gassen sein. Ich schränke mich bewusst ein, damit ich mich über Monate oder Jahre hinweg auf eine Technologie konzentrieren und mich mit diesen Werkzeugen vertraut machen kann.
 
-Ich ziehe es vor, über einen eigenen Lebensunterhalt und ein eigenes Einkommen zu verfügen und die Freiheit zu haben, Kunst zu schaffen, ohne mich kommerziellen Interessen beugen zu müssen.
+Einer der attraktiven Aspekte der generativen Gestaltung ist, daß ich mein Studio immer bei mir haben kann. Ich brauche nur einen Laptop. Allerdings bedarf es auch eines Raumes, in den man sich zurückziehen kann und in dem man kreativ inspiriert werden kann.
 
-Ein Digitalkünstler muss kein extrem teures Kunstatelier in New York mieten. Es fallen nur sehr geringe Kosten an. Ich benötige lediglich einen Laptop, eine Internetverbindung und eine Website usw. Und solange meine Grundbedürfnisse gedeckt sind, kann ich mich auf das Schaffen von Kunst konzentrieren.
+Meine parametrisierten Werke ermöglichen eine kontrolliertere Gestaltung als man sie mit einem Prompt für eine Text-zu-Bild-KI wie Stable Diffusion oder Midjourney erreichen kann.
 
-Was ist die treibende Kraft hinter diesen Arbeiten? Ich würde sagen, es ist eine lineare Ausrichtung, Linien und Quadrate. In der Natur gibt es keine lineare Ausrichtung.
+In der zweiten Hälfte des 19. Jahrhunderts wurde mit Hilfe der Wissenschaft eine Realität jenseits der sichtbaren Welt entdeckt. Elektrizität, Gammastrahlen, Röntgenstrahlen, radioaktive Strahlen, Radio, Telephon, Photographie, Ultraschall, Bakterien unter einem Mikroskop, Elektronen, Psychologie usw. Die sichtbare Welt stellte sich als lediglich dünner Streifen der wahren Realität heraus. War das erst der Anfang des Weges, das Göttliche zu quantifizieren, zu entmystifizieren und es sich dienstbar zu machen? Mit Hilfe von Ouija-Boards ("Tischerlrücken") mit Verstorbenen, Geistern und Lichtwesen kommunizieren? Siehe Hilmar af Klint und ihre Gruppe. Anfang der abstrakten Malerei; verwurzelt in der Theosophie. Spirituelle Bewegungen; esoterisch.
 
-Wer ist kreativ? Ist es der Programmierer des Algorithmus oder ist es die Maschine, die den Algorithmus ausführt?
-  Vgl. Anleitung zum Wandzeichnen von Sol LeWitt. Es ist eine Art Kunstkalkül.
+Die Wissenschaft gibt uns Karten und Diagramme, mit denen wir die Realität besser verstehen können. Manche Künstler des späten 19. Jahrhunderts wollten die unsichtbaren Kräfte auf andere Arten sichtbar machen.
 
-Ich konzentriere mich auf ein einziges Werkzeug; in diesem Fall p5.js und im weiteren Sinne JavaScript. Ich möchte kein Hansdampf in allen Gassen sein. Ich schränke mich bewusst ein, damit ich mich über Monate oder Jahre hinweg auf eine Technologie konzentrieren und mich mit diesen Werkzeugen vertraut machen kann.
+Eine visuelle Sprache, um die Kräfte zu beschreiben, die die Welt vorantreiben. Nicht eine alternative Welt erschaffen, sondern jenseits der sichtbaren Formen schauen?
+
+Früher war alle Kunst gegenständlich: Ein Stilleben, Menschen, Natur (Wiese, Blumen, Bäume, Berge usw.). Immer weiter vereinfacht (Kandinsky, Malewitsch). Auch Musik und Philosophie wurden abstrakter.
+
+Heute blicken wir hundert oder hundertfünfzig Jahre zurück und sehen, wie vereinfacht, überoptimistisch und oft auch falsch die Menschen damals die Welt gesehen haben. Vermutlich wird man in fünfzig oder hundert Jahren auch so auf uns zurückblicken, wie wir erste, einfache Schritte mit KI gemacht haben.
 
 ===
 
 describe my workflow. vim, tools etc.
 
 ===
-
-Die folgenden Zeilen sind von einem Interview inspiriert, das Jean-Michel Jarre gegeben hat.
-
-Als klassische Instrumente wie das Klavier oder die Violine auftauchten, veränderten sie das Wesen der Musik. Das Gleiche geschah und geschieht auch heute noch bei elektronischen und rein digitalen Instrumenten. Und das Gleiche kann man in verschiedenen Kunstformen sehen.
-
-Technologie bestimmt den Stil.
-
-In einem Interview aus dem Jahr 2017 sagte Jean-Michel Jarre, dass es ohne das „Massive“-Plugin von Native Instruments das Dubstep-Genre wahrscheinlich nicht gäbe. Ich habe auch an anderer Stelle gehört, daß einige Plugins einen großen Einfluss auf die Genres der elektronischen Musik hatten.
-
-Im der Generativen Gestaltung sieht man das auch bei WebGL, Processing, p5.js und anderen Tools. Aber wir sollten nicht von der Software abhängig sein, die wir für generatives Design verwenden.
-
-Wir setzen auf diese Technologien, aber man sollte nicht zu viel von ihnen erwarten. Was die Künstler, die diese Technologien nutzen, unterscheidet, ist die Art und Weise, wie sie sie nutzen.
-
-Ähnlich sehe ich meine parametrisierten Arbeiten. Bestimmte Gruppen von Parametern sind wie virtuelle Instrumente, die dem Werk eine bestimmte "Klangqualität" verleihen.
-
-Dies ist ein Beispiel dafür, wie eine Kunstform – elektronische Musik – eine andere Kunstform – kreative Gestaltung – beeinflussen kann.
 
 ===
 
@@ -324,30 +298,6 @@ Siehe:
 Victor Vasarely, Yellow Manifest
 
 Kanji sind auch geometrisch, basieren auf Funktion und Bedeutung. Eine "Formensprache" im wahrsten Sinne.
-
-===
-
-stable diffusion emoji prompt
-abstract geometric
-
-===
-
-Gedanken
-
-Einer der attraktiven Aspekte der generativen Gestaltung ist, daß ich mein Atelier immer bei mir haben kann. Ich brauche nur einen Laptop. Allerdings bedarf es auch eines Raumes, in den man sich zurückziehen kann und in dem man kreativ inspiriert werden kann.
-
-Meine parametrisierten Werke ermöglichen eine kontrolliertere Gestaltung als man sie mit einem Prompt für eine Text-zu-Bild-KI wie Stable Diffusion oder Midjourney erreichen kann.
-
-In der zweiten Hälfte des 19. Jahrhunderts wurde mit Hilfe der Wissenschaft eine Realität jenseits der sichtbaren Welt entdeckt. Elektrizität, Gammastrahlen, Röntgenstrahlen, radioaktive Strahlen, Radio, Telephon, Photographie, Ultraschall, Bakterien unter einem Mikroskop, Elektronen, Psychologie usw. Die sichtbare Welt stellte sich als lediglich dünner Streifen der wahren Realität heraus. War das erst der Anfang des Weges, das Göttliche zu quantifizieren, zu entmystifizieren und es sich dienstbar zu machen? Mit Hilfe von Ouija-Boards ("Tischerlrücken") mit Verstorbenen, Geistern und Lichtwesen kommunizieren? Siehe Hilmar af Klint und ihre Gruppe. Anfang der abstrakten Malerei; verwurzelt in der Theosophie. Spirituelle Bewegungen; esoterisch.
-
-Die Wissenschaft gibt uns Karten und Diagramme, mit denen wir die Realität besser verstehen können. Manche Künstler des späten 19. Jahrhunderts wollten die unsichtbaren Kräfte auf andere Arten sichtbar machen.
-
-Eine visuelle Sprache, um die Kräfte zu beschreiben, die die Welt vorantreiben. Nicht eine alternative Welt erschaffen, sondern jenseits der sichtbaren Formen schauen?
-
-Früher war alle Kunst gegenständlich: Ein Stilleben, Menschen, Natur (Wiese, Blumen, Bäume, Berge usw.). Immer weiter vereinfacht (Kandinsky, Malewitsch). Auch Musik und Philosophie wurden abstrakter.
-
-Heute blicken wir hundert oder hundertfünfzig Jahre zurück und sehen, wie vereinfacht, überoptimistisch und oft auch falsch die Menschen damals die Welt gesehen haben. Vermutlich wird man in fünfzig oder hundert Jahren auch so auf uns zurückblicken, wie wir erste, einfache Schritte mit KI gemacht haben.
-
 
 ===
 
