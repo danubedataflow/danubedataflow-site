@@ -366,8 +366,6 @@ Vgl. Räume sind das, was zwischen Wänden ist.
 
 ===
 
-Lizenzen
-
 ack -h 'makeSlider\(' | perl -pE's/^\s*//; s/.*?,.*?,\K.*//' | sort | uniq -c | sort -n
 refactor?
 eindeutschen
@@ -379,18 +377,15 @@ default: edit sketch.js
 
 qrcode.js für print
 
-===
-
 html canvas 300dpi?
 
 save canvas as STE20xx.xx.xx.png
 
-workflow for. thumbnails
-import thumbnail:
-take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
+workflow for thumbnails
+import thumbnail: take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
 
 print css:
-form wiederherstellen
+<form> wiederherstellen
 nur nouislider ist hidden
 canvas width 100%
 damit form drunter ist
