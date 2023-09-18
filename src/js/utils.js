@@ -245,6 +245,23 @@ class CheckboxControl {
     }
 }
 
+/* Seed handling
+ *
+ * If a seed is given in URL's query string, that is used. If
+ * not, a random seed is used.
+ *
+ * The seed that is used is shown below the form controls.
+ *
+ * Both the "redraw with new seed" button and the "randomize
+ * parameters" button will generate a new seed. That is because
+ * if the redraw button didn't generate a new seed, you couldn't
+ * get the exact same image with the shown seed because every
+ * time you redraw it calls random() again.
+ *
+ * To be able to regenerate the exact same image, copy the URL
+ * including the seed. The "copy link" button does that as well.
+ */
+
 class SeedControl {
 
     constructor(_id, _element) {
