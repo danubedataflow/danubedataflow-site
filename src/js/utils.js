@@ -770,5 +770,9 @@ function windowResized() {
 }
 
 function keyPressed() {
-    handleStandardKeys();
+    /* only handle keypresses in the main sketch view. For example, in the
+     * print view, it doesn't make sense, and they even interfere with "Cmd-P"
+     * for printing.
+     */
+    if (window.location.pathname.split('/').reverse()[0] == 'index.html') handleStandardKeys();
 }
