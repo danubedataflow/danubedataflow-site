@@ -12,19 +12,18 @@
 [% END %]
 
 <main>
+    <h1>Danube Dataflow</h1>
     <section id="sketch-container">
         <div id="sketch"></div>
 
         <div id="controls">
             <p>
                 <span id="sketchTitle">[% title %]</span> |
-                <span id="canvasSize"></span> |
+                <span id="canvasSize"></span>
             </p>
 
             <form id="controls-form">
             </form>
-
-            [% content %]
         </div>
     </section>
     <script src="sketch.js"></script>
