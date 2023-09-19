@@ -736,6 +736,15 @@ function setupButtons() {
 
 }
 
+function basename () {
+    return window.location.pathname.split('/').reverse()[0];
+}
+
+function setupQRCode() {
+	new QRCode(document.getElementById("qrcode"), getCurrentURL());
+
+}
+
 /* Sketch skeleton
  *
  * setup(), draw(), windowResized() and keyPressed() are used by p5.js.
@@ -746,6 +755,7 @@ function setup() {
     setupButtons();
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm(); // sketches need to implement this
+    if (basename() == 'print.html') setupQRCode();
     noLoop();
 }
 
@@ -767,5 +777,5 @@ function keyPressed() {
      * print view, it doesn't make sense, and they even interfere with "Cmd-P"
      * for printing.
      */
-    if (window.location.pathname.split('/').reverse()[0] == 'index.html') handleStandardKeys();
+    if (basename() == 'index.html') handleStandardKeys();
 }
