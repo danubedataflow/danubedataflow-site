@@ -161,7 +161,7 @@ XOR: ^, ^=
 bit shifting >>, <<
 
 S2022.09.01:
-random size: min="0.5" max="2" step="0.5" (slider with two handles). dann kleines quadrat nicht mehr notwendig
+random size: min="0.5" max="2" step="0.5" (slider with two handles).
 random transparency: 0 - 100% (slider with two handles)
 neue formen: viertelkreis, halbkreis, dreiviertelkreis
 formen-checkboxen: deskriptive namen, nicht nummeriert
