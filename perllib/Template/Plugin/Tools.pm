@@ -37,4 +37,10 @@ sub get_subdirs_starting_with {
       grep { $_->is_dir } $self->get_current_parent_dir->children(qr/^$prefix/);
     return @dirs;
 }
+
+sub does_file_exist_in_current_dir {
+    my ($self, $basename) = @_;
+    $self->get_current_parent_dir->child($basename)->is_file;
+}
+
 1;
