@@ -1,8 +1,28 @@
+/* Image checkboxes from
+ * https://codepen.io/echosoft/pen/RaVEvG
+ */
+
 ul.shapeCheckboxes {
     list-style-type: none;
 }
 
 ul.shapeCheckboxes li {
     display: inline-block;
+    width: 30px;
     margin-right: 5px;
 }
+
+ul.shapeCheckboxes input[type="checkbox"] {
+    display: none;
+}
+
+ul.shapeCheckboxes label {
+    padding: 2px;
+    text-align: center;
+    cursor: pointer;
+}
+
+ul.shapeCheckboxes :checked+label {
+    border: 5px solid grey;
+}
+
