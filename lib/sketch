@@ -7,6 +7,9 @@
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
     <script src="/deps/rough.js"></script>
+    [% IF t.does_file_exist_in_current_dir("sketch.css") %]
+    <link href="sketch.css" rel="stylesheet">
+    [% END %]
 [% END %]
 
 [% WRAPPER body %]
