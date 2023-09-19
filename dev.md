@@ -280,9 +280,6 @@ Die Bedeutung entsteht für uns aus dem, was zwischen den Linien ist. Aber das i
 Vgl. Rorschach-Test
 Vgl. Räume sind das, was zwischen Wänden ist.
 
-ack -h 'makeSlider\(' | perl -pE's/^\s*//; s/.*?,.*?,\K.*//' | sort | uniq -c | sort -n
-=> refactor? eindeutschen
-
 ddf-edit -i S2022.12.13 => vim .../S2022.12.13/sketch.js
 -i: edit index.html
 -a: edit all files: index.html, sketch.js

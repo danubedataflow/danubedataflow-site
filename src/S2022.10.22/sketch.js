@@ -7,7 +7,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numCurves', 'Number of curves', 2, 100, 30),
+        makeSlider('numCurves', 'Anzahl der Kurven', 2, 100, 30),
     );
 }
 

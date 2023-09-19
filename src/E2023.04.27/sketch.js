@@ -5,7 +5,7 @@ function setupForm() {
         makeSelectColorMap(),
         makeSlider('numColors', 'Anzahl der Farben', 2, 32, 16),
         makeSlider('chanceTileColor', 'Wahrscheinlichkeit einer gefärbten Kachel (%)', 0, 100, 50),
-        makeSlider('chanceDiamondColor', 'Wahrscheinlichkeit eines gefärbten Diamanten (%)', 0, 100, 50),
+        makeSlider('chanceDiamondColor', 'Wahrscheinlichkeit einer gefärbten Raute (%)', 0, 100, 50),
         makeSlider('numTilesX', 'Anzahl der horizontalen Kacheln', 4, 40, 10),
         makeSlider('numTilesY', 'Anzahl der vertikalen Kacheln', 4, 40, 10),
     );

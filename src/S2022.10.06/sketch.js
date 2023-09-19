@@ -11,7 +11,7 @@ function setupForm() {
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         // the modulus is the number of points on the circle
         makeSlider('modulus', 'Modulus', 10, 300, 100),
-        makeSlider('timesTable', 'Times table', 2, 100, 10, 0.2),
+        makeSlider('timesTable', 'Einmaleins', 2, 100, 10, 0.2),
     );
 }
 

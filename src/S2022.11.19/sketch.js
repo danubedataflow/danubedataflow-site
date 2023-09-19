@@ -12,9 +12,9 @@ function controlColorWithAlpha(colorControl = 'color', alphaControl = 'alpha') {
 
 function setupForm() {
     makeForm(
-        makeSlider('horizontalBars', 'Number of horizontal bars', 1, 10, 5),
-        makeSlider('verticalBars', 'Number of vertical bars', 1, 10, 5),
-        makeSlider('size', 'Size of bars in percent of canvas dimension', 1, 20, [9, 13]),
+        makeSlider('horizontalBars', 'Anzahl der horizontalen Striche', 1, 10, 5),
+        makeSlider('verticalBars', 'Anzahl der vertikalen Striche', 1, 10, 5),
+        makeSlider('size', 'Strichdicke als Prozentsatz der Leinwandgröße', 1, 20, [9, 13]),
         makeFieldset('Farbe',
             makeSelect(
                 'color',
