@@ -1,10 +1,21 @@
 'use strict';
 
-function createImageCheckboxControl() {
-    let ulEl = document.createElement('ul');
-    ulEl.setAttribute('class', 'imageCheckboxes');
+const unicodeShapes = [
+    '\u25EF', // ◯
+    '\u25A2', // ▢
+    '\u25C7', // ◇
+    '\u25B7', // ▷
+    '\u23AF', // ⎯
+    '\u2572', // ╲
+    '\u253C', // ┼
+    '\u2573', // ╳
+];
 
-    for (let i = 0; i < 10; i++) {
+function createShapeCheckboxControl() {
+    let ulEl = document.createElement('ul');
+    ulEl.setAttribute('class', 'shapeCheckboxes');
+
+    for (let i = 0; i < unicodeShapes.length; i++) {
         let id = 'shape' + i;
 
         let liEl = document.createElement('li');
@@ -12,7 +23,9 @@ function createImageCheckboxControl() {
         let checkboxEl = document.createElement('input');
         checkboxEl.setAttribute('type', 'checkbox');
         checkboxEl.setAttribute('id', id);
-        checkboxEl.oninput = function() { redraw(); };
+        checkboxEl.oninput = function() {
+            redraw();
+        };
         controls[id] = new CheckboxControl(id, checkboxEl);
         let value = valueWithSearchParam(id);
         if (value != null) controls[id].setValue(value);
@@ -22,9 +35,7 @@ function createImageCheckboxControl() {
         let labelEl = document.createElement('label');
         labelEl.setAttribute('for', id);
 
-        let imgEl = document.createElement('img');
-        imgEl.setAttribute('src', 'images/' + id + '.png');
-        labelEl.appendChild(imgEl);
+        labelEl.appendChild(document.createTextNode(unicodeShapes[i]));
 
         liEl.appendChild(labelEl);
         ulEl.appendChild(liEl);
@@ -37,7 +48,7 @@ function createImageCheckboxControl() {
 
 function setupForm() {
     makeForm(
-        createImageCheckboxControl(),
+        createShapeCheckboxControl(),
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
@@ -91,7 +102,7 @@ function drawSketch() {
 
 class myShape {
 
-    static types = [...Array(10).keys()]; // [0..9]
+    static types = [...unicodeShapes.keys()]; // [0..n]
 
     constructor() {}
 
@@ -147,11 +158,6 @@ class myShape {
             rect(0, 0, sp, sp);
 
         } else if (this.type == 2) {
-            /* small square */
-            let sp = this.size / 2;
-            rect(0, 0, sp, sp);
-
-        } else if (this.type == 3) {
             /* diamond */
             let sp = this.size / 2;
             beginShape();
@@ -161,28 +167,28 @@ class myShape {
             vertex(-sp, 0);
             endShape(CLOSE);
 
-        } else if (this.type == 4) {
+        } else if (this.type == 3) {
             /* triangle */
             let sp = this.size / 2;
             triangle(-sp, -sp, -sp, sp, sp, 0);
 
-        } else if (this.type == 5) {
+        } else if (this.type == 4) {
             /* straight line */
             let sp = this.size / 2;
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 6) {
+        } else if (this.type == 5) {
             /* diagonal line */
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
 
-        } else if (this.type == 7) {
+        } else if (this.type == 6) {
             /* plus */
             let sp = this.size / 2;
             line(0, -sp, 0, sp);
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 8) {
+        } else if (this.type == 7) {
             /* X */
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
@@ -191,32 +197,4 @@ class myShape {
         }
         pop();
     }
-}
-
-// function keyPressed() {
-//     if (handleStandardKeys()) return;
-//     if (key == 'c') createCheckboxImages();
-// }
-
-/* For development purposes only. This function creates the images that
- * are used in the image checkboxes. See keyPressed().
- */
-
-function createCheckboxImages() {
-    let imageSize = 100;
-    resizeCanvas(imageSize, imageSize);
-    myShape.types.forEach(i => {
-        clear(); // transparent background
-        let centerPoint = [imageSize / 2, imageSize / 2];
-
-        new myShape()
-            .setType(i)
-            .setColor('black')
-            .setCenterPoint(centerPoint)
-            .setSize(imageSize - 20)
-            .setStrokeWeight(5)
-            .setRotation(0)
-            .display();
-        saveCanvas('shape' + i + '.png');
-    });
 }
