@@ -55,6 +55,7 @@ function setupForm() {
         makeSlider('numTiles', 'Anzahl der Kacheln', 1, 16, 8),
         makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
         makeSlider('strokeWeight', 'Strichstärke', 1, 25, [10, 20]),
+        makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [80, 100]),
         makeSlider('rotation', 'Maximale Rotation', 0, 270, [0, 90], 90),
     );
 
@@ -95,6 +96,7 @@ function drawSketch() {
             .setCenterPoint(centerPoint)
             .setSize(offset)
             .setStrokeWeight(randomIntRange(...ctrl.strokeWeight))
+            .setAlpha(randomIntRange(...ctrl.alpha))
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
     }
@@ -135,6 +137,11 @@ class myShape {
         return this;
     }
 
+    setAlpha(_alpha) {
+        this.alpha = _alpha;
+        return this;
+    }
+
     setRotation(_rotation) {
         this.rotation = _rotation;
         return this;
@@ -144,7 +151,9 @@ class myShape {
         push();
         translate(...this.center);
         strokeWeight(this.strokeWeight);
-        stroke(this.color);
+        let c = color(this.color);
+        c.setAlpha(this.alpha);
+        stroke(c);
         noFill();
         rotate(radians(90) * this.rotation);
 
