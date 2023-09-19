@@ -183,17 +183,33 @@ Andere Sets von Formen: z.B. Sets von Unicode-Zeichen
 
 ===
 
-Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann die Skizze viele Male neu generieren und die ansprechendsten Variationen auswählen.
+Statt um ein einzelnes Bild geht es mehr um den Prozeß, der die Bilder generiert. Die einzelnen generierten Bilder sind nicht so wichtig wie die Art, durch die der Algorithmus und die Parameter beeinflußen, welche Art von Bildern entstehen.
 
-Was ist die treibende Kraft hinter meinen Arbeiten? Ich würde sagen, es ist eine lineare Ausrichtung, Linien und Quadrate. In der Natur gibt es keine lineare Ausrichtung.
+Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann die Skizze viele Male neu generieren und die ansprechendsten Variationen auswählen.
 
 Wer ist kreativ? Ist es der Programmierer des Algorithmus oder ist es die Maschine, die den Algorithmus ausführt?  Das erinnert mich an die Anleitungen zu den Wandzeichnungen von Sol LeWitt. Es ist eine Art Kunstkalkül.
 
+Ich nehme mich eine Ebene zurück; nicht ich bestimme, wie das Bild aussieht, sondern der Algorithmus, den ich schreibe.
+
+Den Zufall muß man dabei erst gezielt dazuprogrammieren. Es st nicht so wie bei analoger Kunst, wo man oft gezielt versucht, den Zufall zu vermeiden.
+
+Den Algorithmus zu finden ist für mich ein iterativer Prozeß. Ich weiß am Anfang nicht wirklich, was dabei herauskommt, sondern taste mich Schritt für Schritt vorwärts. Oft überrascht mich, was dabei herauskommt.
+
+---
+
+Was ist die treibende Kraft hinter meinen Arbeiten? Ich würde sagen, es ist eine lineare Ausrichtung, Linien und Quadrate. In der Natur gibt es keine lineare Ausrichtung.
+
+---
+
 Ich konzentriere mich auf ein einziges Werkzeug; in diesem Fall ist es p5.js und im weiteren Sinne JavaScript. Ich möchte kein Hansdampf in allen Gassen sein. Ich schränke mich bewusst ein, damit ich mich über Monate oder Jahre hinweg auf eine Technologie konzentrieren und mich mit diesen Werkzeugen vertraut machen kann.
+
+---
 
 Einer der attraktiven Aspekte der generativen Gestaltung ist, daß ich mein Studio immer bei mir haben kann. Ich brauche nur einen Laptop. Allerdings bedarf es auch eines Raumes, in den man sich zurückziehen kann und in dem man kreativ inspiriert werden kann.
 
-Das Internet ist der natürliche Lebensraum der digitalen Kunst. Es ist nicht die Rede davon, „persönlich dort sein zu müssen“, um die Nuancen wie Größe, Farben und Textur zu erleben. Um digitale Kunst anzusehen, muß man nicht in verschiedene Städte reisen, um sie in einer Galerie zu sehen.
+---
+
+Das Internet ist der natürliche Lebensraum der digitalen Kunst. Es ist nicht nötig, selbst "dort" sein zu müssen, um die Nuancen wie Größe, Farben und Textur zu erleben. Um digitale Kunst anzusehen, muß man nicht in verschiedene Städte reisen, um sie in einer Galerie zu sehen.
 
 ===
 
@@ -284,3 +300,14 @@ workflow for thumbnails
 import thumbnail: take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
 
 warum einmal makeGrid, einmal manuell?
+
+===
+
+Serien-Galerie:
+
+jedes Bild ist vorgeneriert aus einer URL und als png gespeichert, mit thumbnail.
+Eine Galerie pro Skizze? Bilder sind aufsteigend numeriert.
+
+===
+
+Idee: jedesmal, bevor ich eine Linie zeichne, rotiere und skaliere ich die Leinwand zufällig.
