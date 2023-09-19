@@ -737,7 +737,12 @@ function setupButtons() {
 }
 
 function basename () {
-    return window.location.pathname.split('/').reverse()[0];
+    let path = window.location.pathname;
+    if (path.endsWith('/')) {
+        return 'index.html';
+    } else {
+        return path.split('/').reverse()[0];
+    }
 }
 
 function setupQRCode() {
