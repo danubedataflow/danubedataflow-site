@@ -57,6 +57,7 @@ function setupForm() {
         makeSlider('strokeWeight', 'Strichstärke', 1, 25, [10, 20]),
         makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [80, 100]),
         makeSlider('rotation', 'Maximale Rotation', 0, 270, [0, 90], 90),
+        makeSlider('scaleFactor', 'Skalierung', 0.5, 1.5, [0.7, 1], 0.1),
     );
 
     let activeShapes = myShape.types.filter(i => controls['shape' + i].getValue());
@@ -97,6 +98,7 @@ function drawSketch() {
             .setSize(offset)
             .setStrokeWeight(randomIntRange(...ctrl.strokeWeight))
             .setAlpha(randomIntRange(...ctrl.alpha))
+            .setScale(random(...ctrl.scaleFactor))
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
     }
@@ -142,6 +144,11 @@ class myShape {
         return this;
     }
 
+    setScale(_scale) {
+        this.scale = _scale;
+        return this;
+    }
+
     setRotation(_rotation) {
         this.rotation = _rotation;
         return this;
@@ -154,6 +161,7 @@ class myShape {
         let c = color(this.color);
         c.setAlpha(this.alpha);
         stroke(c);
+        scale(this.scale);
         noFill();
         rotate(radians(90) * this.rotation);
 
