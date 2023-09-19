@@ -63,8 +63,6 @@ main {
 
 #controls {
     margin-left: 20px;
-    margin-right: 20px;
-    min-width: 50vmin;
     font-family: var(--sans-serif);
 }
 
@@ -81,11 +79,23 @@ form {
     pointer-events:none;
 }
 
+fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset label {
+    margin-left: 20px;
+}
+
+legend {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
 #sketchTitle {
     font-weight: bold;
 }
 
-i.bi {
-    font-size: 150%;
-    -webkit-text-stroke: 1px;
-}
