@@ -724,7 +724,7 @@ function setupButtons() {
         save: saveCanvasAsPNG,
         copylink: copyLink,
         print: function() {
-            window.location = 'print.html' + window.location.search;
+            window.open('print.html' + window.location.search, '_blank');
         },
     };
     for (const [name, handler] of Object.entries(clickHandlers)) {
