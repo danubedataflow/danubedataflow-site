@@ -168,7 +168,6 @@ function displayRange(a, b) {}
     "a bis b"
 
 S2022.09.01:
-Formgrößen-Faktor: min="0.5" max="1.5" step="0.5" (default 1, 1).
 neue formen: viertelkreis, halbkreis, dreiviertelkreis
 formen-checkboxen:
 - deskriptive namen, nicht nummeriert
