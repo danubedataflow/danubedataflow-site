@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('xFactor', 'Horizontaler Factor', 1, 5, 2.5, 0.1),
+        makeSlider('xFactor', 'Horizontaler Faktor', 1, 5, 2.5, 0.1),
         makeSlider('alpha', 'Transparenz (Alpha)', 1, 255, 70),
         makeSlider('angleStep', 'Winkel-Delta', 0.1, 10, 0.5, 0.1),
         makeSlider('squareSize', 'Größe der Quadrate', 1, 100, [30, 50]),

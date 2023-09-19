@@ -4,7 +4,7 @@ function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, HARD_LIGHT, MULTIPLY]),
-        makeSlider('numTriangles', 'Number of triangles', 1, 500, 100),
+        makeSlider('numTriangles', 'Anzahl der Dreiecke', 1, 500, 100),
     );
 }
 
