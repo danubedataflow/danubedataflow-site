@@ -9,6 +9,7 @@
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
     <script src="/deps/rough.js"></script>
+    <script src="/deps/qrcode.min.js"></script>
 [% END %]
 
 <main>
@@ -16,14 +17,19 @@
     <section id="sketch-container">
         <div id="sketch"></div>
 
-        <div id="controls">
-            <p>
-                <span id="sketchTitle">[% title %]</span> |
-                <span id="canvasSize"></span>
-            </p>
+        <div id="tools-container">
+            <div id="controls">
+                <p>
+                    <span id="sketchTitle">[% title %]</span> |
+                    <span id="canvasSize"></span>
+                </p>
 
-            <form id="controls-form">
-            </form>
+                <form id="controls-form">
+                </form>
+            </div>
+
+            <div id="qrcode">
+            </div>
         </div>
     </section>
     <script src="sketch.js"></script>

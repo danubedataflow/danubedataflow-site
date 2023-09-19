@@ -23,6 +23,8 @@ deps:
 	cp -a node_modules/bootstrap-icons/LICENSE.md $(DEPS)/bootstrap-icons-font/LICENSE-bootstrap-icons-font.md
 	cp more-deps/highlight.js/*.{css,js} $(DEPS)/
 	cp more-deps/highlight.js/LICENSE $(DEPS)/LICENSE-highlight.js.txt
+	cp more-deps/qrcode.js/qrcode.min.js $(DEPS)/
+	cp more-deps/qrcode.js/LICENSE $(DEPS)/LICENSE-qrcode.js.txt
 
 watch:
 	bin/live-reload
