@@ -1,61 +1,8 @@
-/* Image checkboxes from
- * https://codepen.io/echosoft/pen/RaVEvG
- */
-
-ul.imageCheckboxes {
+ul.shapeCheckboxes {
     list-style-type: none;
 }
 
-ul.imageCheckboxes li {
+ul.shapeCheckboxes li {
     display: inline-block;
+    margin-right: 5px;
 }
-
-ul.imageCheckboxes input[type="checkbox"] {
-    display: none;
-}
-
-ul.imageCheckboxes label {
-    display: block;
-    position: relative;
-    cursor: pointer;
-}
-
-ul.imageCheckboxes label:before {
-    background-color: white;
-    color: white;
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    transition-duration: 0.4s;
-    transform: scale(0);
-}
-
-ul.imageCheckboxes label img {
-    height: 50px;
-    width: 50px;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
-}
-
-ul.imageCheckboxes :checked+label {
-    border-color: #ddd;
-}
-
-ul.imageCheckboxes :checked+label:before {
-    content: "✓";
-    background-color: grey;
-    transform: scale(1);
-}
-
-ul.imageCheckboxes :checked+label img {
-    transform: scale(0.9);
-    /* box-shadow: 0 0 5px #333; */
-    z-index: -1;
-}
-
