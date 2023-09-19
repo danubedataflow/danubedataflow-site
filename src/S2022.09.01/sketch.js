@@ -167,52 +167,22 @@ class myShape {
             triangle(-sp, -sp, -sp, sp, sp, 0);
 
         } else if (this.type == 5) {
-
-            /* hollow cross */
-            let sp3 = this.size / 3;
-            let sp6 = this.size / 6;
-
-            beginShape();
-
-            // upper left part
-            vertex(-(sp6 + sp3), -sp6);
-            vertex(-sp6, -sp6);
-            vertex(-sp6, -(sp6 + sp3));
-
-            // upper right part
-            vertex(sp6, -(sp6 + sp3));
-            vertex(sp6, -sp6);
-            vertex((sp6 + sp3), -sp6);
-
-            // lower right part
-            vertex((sp6 + sp3), sp6);
-            vertex(sp6, sp6);
-            vertex(sp6, (sp6 + sp3));
-
-            // lower left part
-            vertex(-sp6, (sp6 + sp3));
-            vertex(-sp6, sp6);
-            vertex(-(sp6 + sp3), sp6);
-
-            endShape(CLOSE);
-
-        } else if (this.type == 6) {
             /* straight line */
             let sp = this.size / 2;
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 7) {
+        } else if (this.type == 6) {
             /* diagonal line */
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
 
-        } else if (this.type == 8) {
+        } else if (this.type == 7) {
             /* plus */
             let sp = this.size / 2;
             line(0, -sp, 0, sp);
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 9) {
+        } else if (this.type == 8) {
             /* X */
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
