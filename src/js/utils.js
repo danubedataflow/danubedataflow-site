@@ -1,7 +1,8 @@
 'use strict';
 
 let controls = {},
-    canvas;
+    canvas,
+    pageType;
 
 // also show the canvas size on the web page
 function getCanvasDimension() {
@@ -736,12 +737,21 @@ function setupButtons() {
 
 }
 
-function basename () {
+function basename() {
     let path = window.location.pathname;
     if (path.endsWith('/')) {
         return 'index.html';
     } else {
         return path.split('/').reverse()[0];
+    }
+}
+
+function setPageType() {
+    let b = basename();
+    if (b == 'index.html') {
+        pageType = 'screen';
+    } else if (b == 'print.html') {
+        pageType = 'print';
     }
 }
 
@@ -757,10 +767,11 @@ function setupQRCode() {
  * need to set up the form and to implement drawSketch().
  */
 function setup() {
+    setPageType();
     setupButtons();
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm(); // sketches need to implement this
-    if (basename() == 'print.html') setupQRCode();
+    if (pageType == 'print') setupQRCode();
     noLoop();
 }
 
@@ -782,5 +793,5 @@ function keyPressed() {
      * print view, it doesn't make sense, and they even interfere with "Cmd-P"
      * for printing.
      */
-    if (basename() == 'index.html') handleStandardKeys();
+    if (pageType == 'screen') handleStandardKeys();
 }
