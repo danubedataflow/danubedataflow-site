@@ -402,7 +402,9 @@ function makeSlider(id, label, min, max, value, step = 1) {
     });
     slider.on('update', function(values, handle) {
         // support multiple handles
-        valueSpan.innerHTML = values.map(numStr => parseFloat(numStr)).join(' bis ');
+        valueSpan.innerHTML = values
+            .map(numStr => parseFloat(numStr).toLocaleString("de-DE"))
+            .join(' bis ');
     });
     slider.on('change', function(values, handle) {
         redraw();
