@@ -2,8 +2,8 @@
     WRAPPER html;
         INCLUDE head title="Danube Dataflow";
         WRAPPER body;
-            WRAPPER frames title="Skizzen";
-                INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("S");
+            WRAPPER frames title="Werke";
+                INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("W");
             END;
         END;
     END;

@@ -35,7 +35,7 @@ Techniken: visualize brewer palettes
 
 technique: scale(0, -1), scale(-1, 0) etc. to flip vertically, horizontally etc.
 
-rough.js verwendet Math.random(). Damit die Skizze reproduzierbar bleibt:
+rough.js verwendet Math.random(). Damit das Werk reproduzierbar bleibt:
 Math.random = random;   // use the p5.js random() function
 
 matter.js, tumbling squares. black, to create white spaces in-between.
@@ -167,7 +167,7 @@ function displayNumber(n) {}
 function displayRange(a, b) {}
     "a bis b"
 
-S2022.09.01:
+W2022.09.01:
 neue formen: viertelkreis, halbkreis, dreiviertelkreis
 formen-checkboxen:
 - deskriptive namen, nicht nummeriert
@@ -184,7 +184,7 @@ reverb (fieldset): nacheinander kleinere, ineinander gezeichnete Quadrate
 
 Statt um ein einzelnes Bild geht es mehr um den Prozeß, der die Bilder generiert. Die einzelnen generierten Bilder sind nicht so wichtig wie die Art, durch die der Algorithmus und die Parameter beeinflußen, welche Art von Bildern entstehen.
 
-Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann die Skizze viele Male neu generieren und die ansprechendsten Variationen auswählen.
+Generative Gestaltung ist geprägt durch glückliche Zufälle. Ich lasse mich von den Zeichenmaschinen überraschen. Es ist eine Art kuratierte Zufälligkeit; ich kann das Werk viele Male neu generieren und die ansprechendsten Variationen auswählen.
 
 Wer ist kreativ? Ist es der Programmierer des Algorithmus oder ist es die Maschine, die den Algorithmus ausführt?  Das erinnert mich an die Anleitungen zu den Wandzeichnungen von Sol LeWitt. Es ist eine Art Kunstkalkül.
 
@@ -196,7 +196,7 @@ Den Algorithmus zu finden ist für mich ein iterativer Prozeß. Ich weiß am Anf
 
 ---
 
-Je mehr Parameter eine Skizze hat, umso vielfältiger ist die Bandbreite der dadurch erzeugten Bilder.
+Je mehr Parameter ein Werk hat, umso vielfältiger ist die Bandbreite der dadurch erzeugten Bilder.
 
 ---
 
@@ -267,7 +267,7 @@ Die Bedeutung entsteht für uns aus dem, was zwischen den Linien ist. Aber das i
 Vgl. Rorschach-Test
 Vgl. Räume sind das, was zwischen Wänden ist.
 
-ddf-edit -i S2022.12.13 => vim .../S2022.12.13/sketch.js
+ddf-edit -i W2022.12.13 => vim .../W2022.12.13/sketch.js
 -i: edit index.html
 -a: edit all files: index.html, sketch.js
 default: edit sketch.js
@@ -288,7 +288,7 @@ warum einmal makeGrid, einmal manuell?
 Serien-Galerie:
 
 jedes Bild ist vorgeneriert aus einer URL und als png gespeichert, mit thumbnail.
-Eine Galerie pro Skizze? Bilder sind aufsteigend numeriert.
+Eine Galerie pro Werk? Bilder sind aufsteigend numeriert.
 
 ===
 
