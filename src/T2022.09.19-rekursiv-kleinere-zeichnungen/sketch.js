@@ -11,7 +11,7 @@ function setupForm() {
         makeSelectColorMap(),
         makeSlider('numCircles', 'Anzahl der Kreise', 2, 8, 3),
         makeSlider('maxDepth', 'Maximale Tiefe', 0, 4, 2),
-        makeSlider('translation', 'Translation', 0.1, 1, 0.6, 0.05),
+        makeSlider('translation', 'Verschiebung', 0.1, 1, 0.6, 0.05),
         makeSlider('scaleFactor', 'Skalierung', 0.1, 1, 0.4, 0.05),
     );
 }
@@ -28,7 +28,9 @@ function drawSketch() {
 }
 
 function drawCircles(depth) {
-    fill(palette[depth]);
+    let c = color(palette[depth]);
+    c.setAlpha(50);
+    fill(c);
     ellipse(0, 0, 2, 2);
 
     for (let i = 0; i < ctrl.numCircles; i++) {

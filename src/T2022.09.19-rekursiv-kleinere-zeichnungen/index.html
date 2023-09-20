@@ -4,9 +4,11 @@
 Skalierung als in der vorigen Rekursionsstufe zeichnet.</p>
 
 <pre><code class="language-javascript">function drawSomething() {
-    if (too_small()) { return; }
+    if (too_small()) return;
     push();
-    scale(0.4);
+    rotate(...);
+    scale(...);
+    translate(...);
     drawSomething();
     pop();
 }</code></pre>
