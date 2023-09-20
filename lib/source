@@ -8,7 +8,7 @@
 
 [% WRAPPER body %]
     <section class="narrow">
-        <p>Zurück zur <a href="index.html">Skizze</a></p>
+        <p>Zurück zum <a href="index.html">Werk</a></p>
         <pre><code class="language-javascript" id="source">
         </code></pre>
     </section>
