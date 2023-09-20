@@ -19,6 +19,10 @@ body {
     background-color: #eee;
 }
 
+body.print {
+    background-color: white;
+}
+
 header {
     display: block;
     text-align: center;
@@ -62,30 +66,51 @@ a:hover {
 }
 
 #sketch-container {
-    display: inline-flex;
-    flex-flow: row wrap;
     min-width: 100%;
 }
 
+#sketch-container.screen {
+    display: inline-flex;
+    flex-flow: row wrap;
+}
+
 #sketch {
-    flex: 1;
     padding: 10px;
 }
 
-#controls {
+#sketch.screen {
     flex: 1;
+}
+
+#tools-container.print {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+
+}
+
+#controls {
     margin-left: 20px;
     margin-right: 20px;
     min-width: 50vmin;
     font-family: var(--sans-serif);
 }
 
+#controls.screen {
+    flex: 1;
+}
+
 #controls label {
     text-align: left;
 }
 
-div.slider-wrapper {
+div.slider-wrapper.screen {
     display: flex;
+}
+
+div.slider-wrapper.print {
+    display: none;
 }
 
 div.slider-wrapper div {
@@ -130,6 +155,26 @@ pre {
 
 form {
     margin-top: 1rem;
+}
+
+form.print {
+    pointer-events:none;
+}
+
+fieldset.print {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset.print label {
+    margin-left: 20px;
+}
+
+legend.print {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
 }
 
 #sketchTitle {
