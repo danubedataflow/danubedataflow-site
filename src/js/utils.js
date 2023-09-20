@@ -756,7 +756,7 @@ function setPageType() {
 }
 
 function setupQRCode() {
-	new QRCode(document.getElementById("qrcode"), getCurrentURL());
+    new QRCode(document.getElementById("qrcode"), getCurrentURL());
 
 }
 
@@ -771,6 +771,12 @@ function setup() {
     setupButtons();
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm(); // sketches need to implement this
+
+    if (pageType) {
+        // So CSS can differentiate between the page type, add it as a class to
+        // all DOM elements
+        document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
+    }
     if (pageType == 'print') setupQRCode();
     noLoop();
 }

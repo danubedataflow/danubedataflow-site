@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="de">
 
-[% WRAPPER head css="print" %]
+[% WRAPPER head %]
     <link href="/deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
     <script src="/deps/p5.min.js"></script>
     <link href="/deps/nouislider.min.css" rel="stylesheet">
