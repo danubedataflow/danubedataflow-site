@@ -3,7 +3,7 @@ DEPS = src/deps
 
 .PHONY: site deps watch nginx live icons clean test
 
-site:
+site: clean
 	@ttree -f etc/ttreerc
 
 deps:
@@ -41,7 +41,7 @@ icons:
 	bin/make-favicon
 
 clean:
-	rm -rf $(WWW) build
+	@rm -rf $(WWW) build
 
 test:
 	perl t/sketches.t
