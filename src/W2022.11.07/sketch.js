@@ -17,12 +17,7 @@ function drawSketch() {
     noFill();
     rectMode(CORNER);
     angleMode(DEGREES);
-
-    // scale down so the outer border is visible
-    translate(width / 2, height / 2);
-    scale(0.97);
-    translate(-width / 2, -height / 2);
-
+    padSketch();
     background('white');
     let dim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {

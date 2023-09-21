@@ -17,12 +17,7 @@ function drawSketch() {
     rectMode(CENTER);
     stroke('black');
     strokeWeight(1);
-
-    // scale down so the outer border is visible
-    translate(width / 2, height / 2);
-    scale(0.97);
-    translate(-width / 2, -height / 2);
-
+    padSketch();
     background("white");
     makeGrid({
         numTilesX: ctrl.numTiles,
