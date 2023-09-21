@@ -17,7 +17,7 @@ function drawSketch() {
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    makeGridRecursive({
+    makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
         gridWidth: width,
