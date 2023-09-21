@@ -82,38 +82,17 @@ add the ability to create a square canvas of arbitrary size, for wallpapers, pri
 https://www.skillshare.com/en/blog/35-geometric-patterns-and-how-to-design-your-own/
 https://square-the-circle.com/
 
-Kaffeehäuser und Konditoreien:
-- Cafe Caspar
-- Cafe Jelinek
-- Cafe Sperl
-- Cafe Bräunerhof
-- Cafe Dommayer
-- Cafe Anno
-- Kleines Cafe (Franziskanerplatz)
-- Paremi
-- Kaffee Alt Wien
-- Mama Liu's Cafe (vormals "Fain")
-Andere Lokale:
-- Hotel Schani
-- Fladerei
-- Futuregarden (Schadekgasse)
-- Westbahnhof: UG Heberer, EG Ströck, OG Backwerk
-- Hauptbahnhof
-Mensen:
-- Akademie der bildenden Künste, Mensa
-- TU-Mensa
-Bänke:
-- Bänke bei der Kirche am Schulhof 1
-- Bänke in der TU, Getreidemarkt
-- Bank in der Reitschulgasse, beim Taxi-Standplatz
+Westbahnhof: UG Heberer, EG Ströck, OG Backwerk
+Hauptbahnhof
+Bänke bei der Kirche am Schulhof 1
+Bänke in der TU, Getreidemarkt
+Bank in der Reitschulgasse, beim Taxi-Standplatz
 Metalab (aber €30 pro Monat ist zuviel)
 Go7
 Museumsquartier
 Uni Wien Arkadenhof
 MAK-Garten https://wien.orf.at/stories/3207130/
 Schillerpark, auch auf den Stufen der Statue
-
-Praha, NYC
 
 Hypnagogie und Kreativität
 
