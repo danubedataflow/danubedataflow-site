@@ -1,39 +1,26 @@
-Zorn palette
+FIXME
+W2023.09.13: tileDim?
+double quotes vs single quotes
 
 Analyse: Werke von anderen analysieren, erklären und parametrisieren.
 
-https://en.wikipedia.org/wiki/HSL_and_HSV
-(HSV == HSB)
+Neuer thumbnail:
+convert -size 200x200 xc:#777777 thumbnail.png
 
-Tiled sketches
+Zorn palette
 
-Adapt existing sketches to use a (sub)grid so a sketch can show multiple at the
-same time. Use this for drawings that are not in a grid already and that have
-randomness.
-
-for (each tile) {
-  let len = tile length;
-  translate to the tile's upper left corner;
-  push();
-
-  // add margin whose center is the tile's center
-  translate(len / 2, len / 2);
-  scale(0.9);
-  translate(-len / 2, -len / 2);
-
-  // drawTile(len) draws the shapes assuming (0,0) is the upper left and the
-  // tile length is len.
-  drawTile(len);
-  pop();
-}
+- Werke für "Wiederholungen" adaptieren.
+- Interruptions: fieldset "Wiederholungen" wie bei W2023.09.21. 50 x 50. Pro
+  Kachel: Skalierung 125%; eine Linie in zufälligem Winkel int(random(12)) * 30
+  Grad. Zufällig versetzt in x, y.
 
 popup for keyboard shortcuts. Icon like for innerspace
 
-is black alpha 127 the same as 777?
-
-Techniken: visualize brewer palettes
-
-technique: scale(0, -1), scale(-1, 0) etc. to flip vertically, horizontally etc.
+Techniken:
+- visualize brewer palettes
+- scale(0, -1), scale(-1, 0) etc. to flip vertically, horizontally etc.
+- https://en.wikipedia.org/wiki/HSL_and_HSV (HSV == HSB)
+- is black alpha 127 the same as 777?
 
 rough.js verwendet Math.random(). Damit das Werk reproduzierbar bleibt:
 Math.random = random;   // use the p5.js random() function
@@ -68,20 +55,18 @@ Unmonotone fractals:
 T-square fractal
 Cantor square fractal
 
-Rectangular to polar coordinates: x = r * cos(a)
+Rectangular to polar coordinates:
+x = r * cos(a)
 y = r * sin(a)
 
 Polar to rectangular coordinates:
-r = sqrt(x ** 2 + y ** 2)
+r = sqrt(x ** 2 + y ** 2);
 a = atan (y / x)
-
-ack -w cos src
-
-add the ability to create a square canvas of arbitrary size, for wallpapers, prints etc. using pixelDensity() ?
 
 https://www.skillshare.com/en/blog/35-geometric-patterns-and-how-to-design-your-own/
 https://square-the-circle.com/
 
+Motto Brot
 Westbahnhof: UG Heberer, EG Ströck, OG Backwerk
 Hauptbahnhof
 Bänke bei der Kirche am Schulhof 1
@@ -215,7 +200,7 @@ p5.js
 ===
 
 Facebook-Gruppe: danubedataflow
-Twitter, Instagram: danubedataflow oder marcel?
+Instagram: danubedataflow
 
 ===
 
