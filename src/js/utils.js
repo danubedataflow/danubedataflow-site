@@ -673,7 +673,7 @@ function redrawWithNewSeed() {
     redraw();
 }
 
-function makeGridRecursive(args) {
+function makeGrid(args) {
     const {
         numTilesX,
         numTilesY,
@@ -695,7 +695,7 @@ function makeGridRecursive(args) {
             let subdivisions = numSubdivisions(depth);
             // make a sub-grid that is as big as the tile
             if (subdivisions > 0) {
-                makeGridRecursive({
+                makeGrid({
                     numTilesX: subdivisions,
                     numTilesY: subdivisions,
                     gridWidth: tileWidth,

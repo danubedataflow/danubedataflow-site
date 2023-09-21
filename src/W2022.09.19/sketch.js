@@ -24,7 +24,7 @@ function drawSketch() {
     translate(-width / 2, -height / 2);
 
     background("white");
-    makeGridRecursive({
+    makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
         gridWidth: width,
