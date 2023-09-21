@@ -24,48 +24,35 @@ function drawSketch() {
     translate(-width / 2, -height / 2);
 
     background("white");
-    makeGrid(ctrl.numTiles, width, ctrl.maxDepth);
-}
+    makeGridRecursive({
+        numTilesX: ctrl.numTiles,
+        numTilesY: ctrl.numTiles,
+        gridWidth: width,
+        gridHeight: height,
+        numSubdivisions: function(depth) {
+            if (depth >= ctrl.maxDepth) return 0;
+            return (random() > 0.5) * int(random(3)) + 1;
+        },
+        tileCallback: function(tile) {
 
-// make square grids
-function makeGrid(numTiles, gridDim, maxDepth = 0, depth = 0) {
-    let dim = gridDim / numTiles;
-    for (let y = 1; y <= numTiles; y++) {
-        for (let x = 1; x <= numTiles; x++) {
-            push();
-            translate((x - 1) * dim, (y - 1) * dim);
+            // background rectangle for each tile
+            fill(color(random(255), random(100)));
+            rect(0, 0, tile.width, tile.height);
 
-            if (depth < maxDepth && random() > 0.5) {
-                // make a sub-grid that is as big as the tile
-                makeGrid(int(random(3)) + 1, dim, maxDepth, depth + 1)
+            // the random shape
+            fill(color(random(255), 100 + random(155)));
+            // rotate(90 * int(random(4)));
+            scale((30 + random(70)) / 100);
+
+            let r = random();
+            if (r < 0.33) {
+                triangle(...tile.upperLeft, ...tile.upperRight, ...tile.lowerMiddle);
+            } else if (r < 0.66) {
+                circle(...tile.center, min(tile.width, tile.height));
             } else {
-                push();
-
-                // Move to the tile center so that rotation and scaling happen
-                // around that center.
-                translate(dim / 2, dim / 2);
-
-                // background rectangle for each tile
-                fill(color(random(255), random(100)));
-                rect(0, 0, dim, dim);
-
-                // the random shape
-                fill(color(random(255), 100 + random(155)));
-                rotate(90 * int(random(4)));
-                scale((30 + random(70)) / 100);
-
-                let r = random();
-                if (r < 0.33) {
-                    triangle(-dim / 2, -dim / 2, dim / 2, -dim / 2, 0, dim / 2);
-                } else if (r < 0.66) {
-                    circle(0, 0, dim);
-                } else {
-                    rect(0, 0, dim, dim);
-                }
-
-                pop();
+                rect(...tile.center, tile.width, tile.height);
             }
-            pop();
+
         }
-    }
+    });
 }

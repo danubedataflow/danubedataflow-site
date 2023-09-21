@@ -256,8 +256,6 @@ save canvas as STE20xx.xx.xx.png
 workflow for thumbnails
 import thumbnail: take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
 
-warum einmal makeGrid, einmal manuell?
-
 ===
 
 Serien-Galerie:

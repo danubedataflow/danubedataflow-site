@@ -17,22 +17,27 @@ function drawSketch() {
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    makeGrid(ctrl.numTilesX, ctrl.numTilesY, function(tile) {
+    makeGridRecursive({
+        numTilesX: ctrl.numTilesX,
+        numTilesY: ctrl.numTilesY,
+        gridWidth: width,
+        gridHeight: height,
+        tileCallback: function(tile) {
 
-        fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
-        rect(...tile.center, tile.width, tile.height);
+            fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
+            rect(...tile.center, tile.width, tile.height);
 
-        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-        triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
+            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+            triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
 
+            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+            triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
 
-        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-        triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
+            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+            triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
 
-        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-        triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
-
-        fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-        triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
+            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+            triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
+        },
     });
 }
