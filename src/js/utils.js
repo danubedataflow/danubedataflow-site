@@ -68,20 +68,6 @@ Array.prototype.pairwise = function(func) {
     }
 }
 
-/* Fisher-Yates shuffle. This is not strictly necessary as p5.js provides a
- * shuffle() function. See https://gist.github.com/motoishmz/5239619
- */
-Array.prototype.shuffle = function() {
-    var i = this.length;
-    while (i) {
-        var j = Math.floor(random(i));
-        var t = this[--i];
-        this[i] = this[j];
-        this[j] = t;
-    }
-    return this;
-};
-
 let wes_palettes = [{
         name: 'BottleRocket1',
         colors: [
