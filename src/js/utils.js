@@ -724,6 +724,12 @@ function makeGrid(args) {
     }
 }
 
+function padSketch(_scale = 0.97) {
+    translate(width / 2, height / 2);
+    scale(_scale);
+    translate(-width / 2, -height / 2);
+}
+
 function copyLink() {
     if (window.isSecureContext) {
         navigator.clipboard.writeText(getCurrentURL());

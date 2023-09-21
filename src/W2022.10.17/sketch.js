@@ -18,15 +18,9 @@ function setupForm() {
 function drawSketch() {
     roughCanvas = rough.canvas(canvas.elt);
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-
     angleMode(DEGREES);
     rectMode(CENTER);
-
-    // scale down so the outer border is visible
-    translate(width / 2, height / 2);
-    scale(0.97);
-    translate(-width / 2, -height / 2);
-
+    padSketch();
     background("black");
     makeGrid({
         numTilesX: ctrl.numTiles,
