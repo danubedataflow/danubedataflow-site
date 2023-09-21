@@ -673,34 +673,66 @@ function redrawWithNewSeed() {
     redraw();
 }
 
-function makeGrid(numTilesX, numTilesY, tileCallback) {
-    let tileWidth = width / numTilesX;
-    let tileHeight = height / numTilesY;
+function makeGridRecursive(args) {
+    const {
+        numTilesX,
+        numTilesY,
+        gridWidth,
+        gridHeight,
+        depth = 0,
+        tileCallback,
+        numSubdivisions = function(depth) {
+            return 0;
+        }
+    } = args;
+    let tileWidth = gridWidth / numTilesX;
+    let tileHeight = gridHeight / numTilesY;
     for (let y = 1; y <= numTilesY; y++) {
         for (let x = 1; x <= numTilesX; x++) {
             push();
+            translate((x - 1) * tileWidth, (y - 1) * tileHeight);
 
-            // translate to the tile's center point
-            translate((x - 1) * tileWidth + tileWidth / 2, (y - 1) * tileHeight + tileHeight / 2);
+            let subdivisions = numSubdivisions(depth);
+            // make a sub-grid that is as big as the tile
+            if (subdivisions > 0) {
+                makeGridRecursive({
+                    numTilesX: subdivisions,
+                    numTilesY: subdivisions,
+                    gridWidth: tileWidth,
+                    gridHeight: tileHeight,
+                    depth: depth + 1,
+                    numSubdivisions: numSubdivisions,
+                    tileCallback: tileCallback
+                });
+            } else {
+                push();
 
-            let tile = {
-                width: tileWidth,
-                height: tileHeight,
-                upperLeft: [-tileWidth / 2, -tileHeight / 2],
-                upperRight: [tileWidth / 2, -tileHeight / 2],
-                lowerLeft: [tileWidth / 2, -tileHeight / 2],
-                lowerRight: [tileWidth / 2, tileHeight / 2],
+                // Move to the tile center so that rotation and scaling happen
+                // around that center.
+                translate(tileWidth / 2, tileHeight / 2);
 
-                // upper mid, right mid, bottom mid, left mid
-                upperMiddle: [0, -tileHeight / 2],
-                rightMiddle: [tileWidth / 2, 0],
-                lowerMiddle: [0, tileHeight / 2],
-                leftMiddle: [-tileWidth / 2, 0],
-                center: [0, 0],
-            };
+                let tile = {
+                    width: tileWidth,
+                    height: tileHeight,
 
-            tileCallback(tile);
+                    // corners
+                    upperLeft: [-tileWidth / 2, -tileHeight / 2],
+                    upperRight: [tileWidth / 2, -tileHeight / 2],
+                    lowerLeft: [-tileWidth / 2, tileHeight / 2],
+                    lowerRight: [tileWidth / 2, tileHeight / 2],
 
+                    // midpoints of sides
+                    upperMiddle: [0, -tileHeight / 2],
+                    rightMiddle: [tileWidth / 2, 0],
+                    lowerMiddle: [0, tileHeight / 2],
+                    leftMiddle: [-tileWidth / 2, 0],
+                    center: [0, 0],
+                };
+
+                tileCallback(tile);
+
+                pop();
+            }
             pop();
         }
     }
