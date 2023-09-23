@@ -4,9 +4,6 @@ double quotes vs single quotes
 
 Analyse: Werke von anderen analysieren, erklären und parametrisieren.
 
-Neuer thumbnail:
-convert -size 200x200 xc:#777777 thumbnail.png
-
 Zorn palette
 
 - Werke für "Wiederholungen" adaptieren.
@@ -14,7 +11,7 @@ Zorn palette
   Kachel: Skalierung 125%; eine Linie in zufälligem Winkel int(random(12)) * 30
   Grad. Zufällig versetzt in x, y.
 
-popup for keyboard shortcuts. Icon like for innerspace
+Dialog für Tastaturkürzel, wie bei innerspace.
 
 Techniken:
 - visualize brewer palettes
@@ -232,14 +229,18 @@ ddf-edit -i W2022.12.13 => vim .../W2022.12.13/sketch.js
 -a: edit all files: index.html, sketch.js
 default: edit sketch.js
 
-print:
+Druckansicht:
 - höhere Auflösung
-  - html canvas 300dpi?
+- html canvas 300dpi?
+- volle Breite
+- pixelDensity?
 
 save canvas as STE20xx.xx.xx.png
 
 workflow for thumbnails
 import thumbnail: take such a png, resize to 200x200, move to corresponding directory as thunbnail.png
+Neuer thumbnail:
+convert -size 200x200 xc:#777777 thumbnail.png
 
 ===
 
@@ -251,3 +252,18 @@ Eine Galerie pro Werk? Bilder sind aufsteigend numeriert.
 ===
 
 Idee: jedesmal, bevor ich eine Linie zeichne, rotiere und skaliere ich die Leinwand zufällig.
+
+vertikale streifen, in f(n) balken unterteilt. vgl siena 2^n, aber auch mit anderen sequenzen
+
+gitter von m x n spline-Punkten
+punkte zufällig verschieben
+in mehreren schritten
+
+„Generative Art“ Kapitel 7
+GOL isa CA
+classes for the CA and for Cell
+also have cell age
+cell also knows the number of live neighbours
+run() calls a callback, passing the current cell
+different works will interpret the cell differently.
+e.g. as length, rotation, size, color etc
