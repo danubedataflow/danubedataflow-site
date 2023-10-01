@@ -52,7 +52,7 @@ function setupForm() {
         makeSelectColorMap(),
         makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
         makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
-        makeSlider('numTiles', 'Anzahl der Kacheln', 1, 16, 8),
+        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 1, 16, 8),
         makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
         makeSlider('strokeWeight', 'Strichstärke', 1, 25, [10, 20]),
         makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [80, 100]),

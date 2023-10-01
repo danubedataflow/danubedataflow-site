@@ -10,7 +10,7 @@ function setupForm() {
     makeForm(
         makeSelectColorMap(),
         makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
-        makeSlider('numTiles', 'Anzahl der Kacheln', 2, 10, 4),
+        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 2, 10, 4),
         makeSlider('maxDepth', 'Maximale Tiefe', 0, 4, 2),
     );
 }
