@@ -24,7 +24,7 @@ function createShapeCheckboxControl() {
         checkboxEl.setAttribute('type', 'checkbox');
         checkboxEl.setAttribute('id', id);
         checkboxEl.oninput = function() {
-            redraw();
+            redrawWithNewSeed();
         };
         controls[id] = new CheckboxControl(id, checkboxEl);
         let value = valueWithSearchParam(id);

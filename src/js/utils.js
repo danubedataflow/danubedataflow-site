@@ -245,6 +245,11 @@ class CheckboxControl {
  * get the exact same image with the shown seed because every
  * time you redraw it calls random() again.
  *
+ * Note that you have to generate a new seed every time you redraw the sketch.
+ * If you just redraw without generating a new seed, you won't get the same
+ * image even if you copy the URL including the seed because every time you
+ * just redraw you get different random numbers.
+ *
  * To be able to regenerate the exact same image, copy the URL
  * including the seed. The "copy link" button does that as well.
  */
@@ -392,8 +397,8 @@ function makeSlider(id, label, min, max, value, step = 1) {
             .map(numStr => parseFloat(numStr).toLocaleString("de-DE"))
             .join(' bis ');
     });
-    slider.on('change', function(values, handle) {
-        redraw();
+    slider.on('slide', function(values, handle) {
+        redrawWithNewSeed();
     });
     controls[id] = new SliderControl(id, slider);
     return containerDiv;
@@ -411,7 +416,7 @@ function makeCheckbox(id, label, value = true) {
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
     checkboxEl.oninput = function() {
-        redraw();
+        redrawWithNewSeed();
     };
     containerDiv.appendChild(checkboxEl);
 
@@ -468,7 +473,7 @@ function makeSelect(id, label, contents, value) {
     contents.forEach(el => selectEl.appendChild(el));
 
     selectEl.onchange = function() {
-        redraw();
+        redrawWithNewSeed();
     };
     containerDiv.appendChild(selectEl);
 
@@ -646,12 +651,12 @@ function setControlsRandomly() {
 
         } else if (c instanceof CheckboxControl) {
             c.setValue(random([true, false]));
-
-        } else if (c instanceof SeedControl) {
-            c.setValue(); // trigger new random seed
         }
+
+        // No need to set the seed value (for SeedControl); that's done in
+        // redrawWithNewSeed() anyway.
     });
-    redraw();
+    redrawWithNewSeed();
 }
 
 function redrawWithNewSeed() {
