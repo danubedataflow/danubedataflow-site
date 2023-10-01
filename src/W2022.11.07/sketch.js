@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln', 4, 40, 20),
+        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 4, 40, 20),
         makeSlider('chanceHorizontal', 'Wahrscheinlichkeit einer horizontalen Linie (%)', 0, 100, 30),
         makeSlider('chanceVertical', 'Wahrscheinlichkeit einer vertikalen Linie (%)', 0, 100, 30),
         makeSlider('chanceDiagoalUp', 'Wahrscheinlichkeit einer diagonalen Aufwärtslinie (%)', 0, 100, 30),

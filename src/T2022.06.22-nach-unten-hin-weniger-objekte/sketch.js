@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln', 4, 40, 20),
+        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 4, 40, 20),
         makeSlider('exponent', 'Exponent', 0, 5, 2, 0.1),
     );
 }
