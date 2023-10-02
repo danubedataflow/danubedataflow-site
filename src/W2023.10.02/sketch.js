@@ -50,7 +50,11 @@ function drawSketch() {
         numTilesY: ctrl.numTiles,
         tileCallback: function(tile) {
             scale(ctrl.scale);
+
+            // makeGrid() translates to each tile's center, but here we want
+            // (0, 0) to be in the tile's upper left corner.
             translate(...tile.upperLeft);
+
             let coords = (x, y) => {
                 return [
                     (x - 1) / (ctrl.numPointsX - 1) * tile.width,
