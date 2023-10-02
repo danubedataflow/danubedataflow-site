@@ -20,8 +20,6 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
-        gridWidth: width,
-        gridHeight: height,
         tileCallback: function(tile) {
 
             fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");

@@ -18,15 +18,13 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
-        gridWidth: width,
-        gridHeight: height,
         tileCallback: function(tile) {
             if (random() > 0.2) {
                 scale(ctrl.scale);
                 rotate(30 * int(random(12)));
                 translate(
-                    int(random(2 * ctrl.maxOffset) - ctrl.maxOffset),
-                    int(random(2 * ctrl.maxOffset) - ctrl.maxOffset),
+                    randomIntPlusMinus(ctrl.maxOffset),
+                    randomIntPlusMinus(ctrl.maxOffset),
                 );
                 line(...tile.leftMiddle, ...tile.rightMiddle);
             }

@@ -44,6 +44,12 @@ function randomIntRange(lowerBound, upperBound) {
     return int(random(lowerBound, upperBound + 1));
 }
 
+// generate a random integer in the range [-n, n].
+function randomIntPlusMinus(n) {
+    return int(random(2 * n) - n);
+}
+
+
 // Move elements matching a selector function to the front of the array.
 Array.prototype.putFirst = function(selector) {
     return [
@@ -668,8 +674,8 @@ function makeGrid(args) {
     const {
         numTilesX,
         numTilesY,
-        gridWidth,
-        gridHeight,
+        gridWidth = width,
+        gridHeight = height,
         depth = 0,
         tileCallback,
         numSubdivisions = function(depth) {

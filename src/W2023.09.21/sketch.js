@@ -16,8 +16,6 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.repsPerSide,
         numTilesY: ctrl.repsPerSide,
-        gridWidth: width,
-        gridHeight: height,
         tileCallback: function(tile) {
             scale(ctrl.repScale);
             let points = [];
