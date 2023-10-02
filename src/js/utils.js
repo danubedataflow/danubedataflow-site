@@ -17,16 +17,6 @@ function saveCanvasAsPNG() {
     saveCanvas(decodeURI(name) + '.png');
 }
 
-function handleStandardKeys() {
-    let keyHandlers = {
-        s: saveCanvasAsPNG,
-        r: redrawWithNewSeed,
-        p: setControlsRandomly,
-    };
-    let handler = keyHandlers[key];
-    if (handler) handler();
-}
-
 function getPointsForPolygon(sides, diameter, rotation) {
     // the polygon center is (0, 0)
     let points = [];
@@ -829,6 +819,16 @@ function windowResized() {
     // resizing.
     controls.seed.setValue(controls.seed.getValue());
     resizeCanvas(...getCanvasDimension());
+}
+
+function handleStandardKeys() {
+    let keyHandlers = {
+        s: saveCanvasAsPNG,
+        r: redrawWithNewSeed,
+        p: setControlsRandomly,
+    };
+    let handler = keyHandlers[key];
+    if (handler) handler();
 }
 
 function keyPressed() {
