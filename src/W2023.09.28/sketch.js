@@ -42,12 +42,10 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        gridWidth: width,
-        gridHeight: height,
         tileCallback: function(tile) {
             translate(
-                int(random(2 * ctrl.maxOffset) - ctrl.maxOffset),
-                int(random(2 * ctrl.maxOffset) - ctrl.maxOffset),
+                randomIntPlusMinus(ctrl.maxOffset),
+                randomIntPlusMinus(ctrl.maxOffset),
             );
             let shouldFill = shouldFillArray.shift();
             if (shouldFill) {

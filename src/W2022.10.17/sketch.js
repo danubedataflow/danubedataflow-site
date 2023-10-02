@@ -25,8 +25,6 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        gridWidth: width,
-        gridHeight: height,
         numSubdivisions: function(depth) {
             if (depth >= ctrl.maxDepth) return 0;
             return (random() > 0.5) * int(random(3)) + 1;
