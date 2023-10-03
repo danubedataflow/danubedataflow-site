@@ -267,3 +267,13 @@ cell also knows the number of live neighbours
 run() calls a callback, passing the current cell
 different works will interpret the cell differently.
 e.g. as length, rotation, size, color etc
+
+===
+
+makeFieldset('Farben',...) wie W2022.10.12
+wo 'numColors' verwendet wird
+
+strange attractors
+
+W2022.11.19: auch 'Winkel auf dem Farbkreis' statt fixer Farben? Auch HSV?
+
