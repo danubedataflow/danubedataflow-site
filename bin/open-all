@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+use ScriptTools::features;
+use FindBin qw($Bin);
+use Path::Tiny;
+my @urls;
+for (path($Bin)->parent->child('src')->children) {
+    my $b = $_->basename;
+    if ($b =~ /^[WT]20\d\d\.\d\d\.\d\d$/) {
+        push @urls, "http://danubedataflow.localhost/$b/";
+    }
+}
+exec open => sort @urls;
+
+=pod
+
+Open all sketches (works and techniques) in the browser. Useful if you have
+made a large-scale change and want to see whether everything still works.
+
+=cut
+
