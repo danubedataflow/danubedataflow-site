@@ -183,6 +183,12 @@ class SeedControl {
         randomSeed(value);
         noiseSeed(value);
     }
+
+    // After resizing the canvas or changing sliders, we want to draw
+    // with the same seed as before.
+    setSameSeedAgain() {
+        this.setValue(this.getValue());
+    }
 }
 
 class SelectControl {
@@ -725,9 +731,7 @@ function draw() {
 }
 
 function windowResized() {
-    // After resizing the canvas, we want to draw with the same seed as before
-    // resizing.
-    controls.seed.setValue(controls.seed.getValue());
+    controls.seed.setSameSeedAgain();
     resizeCanvas(...getCanvasDimension());
 }
 
