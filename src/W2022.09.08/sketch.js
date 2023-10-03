@@ -2,9 +2,11 @@
 
 function setupForm() {
     makeForm(
-        makeSelectColorMap(),
-        makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
-        makeSlider('numColors', 'Anzahl der Farben', 1, 32, 25),
+        makeFieldset('Farben',
+            makeSelectColorMap(),
+            makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
+            makeSlider('numColors', 'Anzahl der Farben', 1, 32, 25),
+        ),
         makeSlider('maxLength', 'Maximale Länge', 3, 19, 11, 2),
     );
 }

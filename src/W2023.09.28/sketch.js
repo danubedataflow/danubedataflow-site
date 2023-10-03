@@ -4,10 +4,10 @@ function setupForm() {
     makeForm(
         makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 3, 10, 4),
         makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 20, 10),
-        makeFieldset('Farbe',
-            makeSlider('numRatio', 'Färbe eine in so vielen Kacheln', 8, 32, 16),
+        makeFieldset('Farben',
             makeSelectColorMap(),
             makeSlider('numColors', 'Anzahl der Farben', 1, 8, 2),
+            makeSlider('numRatio', 'Färbe eine in so vielen Kacheln', 8, 32, 16),
         ),
     );
 }

@@ -2,8 +2,10 @@
 
 function setupForm() {
     makeForm(
-        makeSelectColorMap(),
-        makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
+        makeFieldset('Farben',
+            makeSelectColorMap(),
+            makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
+        ),
         makeSlider('numLines', 'Anzahl der Zeilen', 1, 1500, 500),
     );
 }
