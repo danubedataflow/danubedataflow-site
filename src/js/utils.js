@@ -328,7 +328,7 @@ function makeCheckbox(id, label, value = true) {
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
     checkboxEl.oninput = function() {
-        redrawWithNewSeed();
+        redrawWithSameSeed();
     };
     containerDiv.appendChild(checkboxEl);
 
@@ -385,7 +385,7 @@ function makeSelect(id, label, contents, value) {
     contents.forEach(el => selectEl.appendChild(el));
 
     selectEl.onchange = function() {
-        redrawWithNewSeed();
+        redrawWithSameSeed();
     };
     containerDiv.appendChild(selectEl);
 
