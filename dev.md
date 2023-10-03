@@ -279,3 +279,10 @@ ack -l -w stroke src/**/sketch.js | xargs ack noStroke
 
 Fieldset für numTilesX und numTilesY
 
+W2023.10.03:
+Hier: zwei ineinander verschachtelte Quadrate, aber können mehr sein.
+Generalisiert:
+Verschachtelungen: Anzahl (von-bis); Skalierung pro Ebene (von-bis)
+Gefüllt oder nur Umriß
+zufälliger Versatz pro Ebene
+
