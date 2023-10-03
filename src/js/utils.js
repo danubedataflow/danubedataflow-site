@@ -310,7 +310,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
             .join(' bis ');
     });
     slider.on('slide', function(values, handle) {
-        redrawWithNewSeed();
+        redrawWithSameSeed();
     });
     controls[id] = new SliderControl(id, slider);
     return containerDiv;
@@ -569,6 +569,11 @@ function setControlsRandomly() {
         // redrawWithNewSeed() anyway.
     });
     redrawWithNewSeed();
+}
+
+function redrawWithSameSeed() {
+    controls.seed.setSameSeedAgain();
+    redraw();
 }
 
 function redrawWithNewSeed() {
