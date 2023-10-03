@@ -1,5 +1,7 @@
 'use strict';
 
+function setupForm() {}
+
 function drawSketch() {
     pixelDensity(1);
     let img = createImage(width, height);

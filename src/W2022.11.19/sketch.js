@@ -15,7 +15,7 @@ function setupForm() {
         makeSlider('horizontalBars', 'Anzahl der horizontalen Striche', 1, 10, 5),
         makeSlider('verticalBars', 'Anzahl der vertikalen Striche', 1, 10, 5),
         makeSlider('size', 'Strichdicke als Prozentsatz der Leinwandgröße', 1, 20, [9, 13]),
-        makeFieldset('Farbe',
+        makeFieldset('Farben',
             makeSelect(
                 'color',
                 'Farbe', [

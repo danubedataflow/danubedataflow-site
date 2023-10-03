@@ -2,8 +2,10 @@
 
 function setupForm() {
     makeForm(
-        makeSelectColorMap(),
-        makeSlider('numColors', 'Anzahl der Farben', 2, 32, 16),
+        makeFieldset('Farben',
+            makeSelectColorMap(),
+            makeSlider('numColors', 'Anzahl der Farben', 2, 32, 16),
+        ),
         makeSlider('numSides', 'Anzahl der Seiten', 3, 50, 10),
     );
 }
