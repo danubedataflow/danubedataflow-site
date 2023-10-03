@@ -270,10 +270,12 @@ e.g. as length, rotation, size, color etc
 
 ===
 
-makeFieldset('Farben',...) wie W2022.10.12
-wo 'numColors' verwendet wird
-
 strange attractors
 
 W2022.11.19: auch 'Winkel auf dem Farbkreis' statt fixer Farben? Auch HSV?
+
+don't call noStroke() if you afterward call stroke().
+ack -l -w stroke src/**/sketch.js | xargs ack noStroke
+
+Fieldset für numTilesX und numTilesY
 
