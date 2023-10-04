@@ -4,7 +4,7 @@
     <meta name="keywords" content="Generative Gestaltung, Algorithmische Kunst, Kreatives Programmieren, Digitale Kunst, Creative Coding, p5.js">
     <meta name="description" content="Generative Gestaltung aus der Donaumetropole. Minimale algorithmische Kunst mit p5.js">
     <meta name="author" content="Marcel Gruenauer">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
