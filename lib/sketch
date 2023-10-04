@@ -1,7 +1,6 @@
 [% WRAPPER html %]
 
 [% WRAPPER head %]
-    <link href="/deps/bootstrap-icons-font/bootstrap-icons.css" rel="stylesheet">
     <script src="/deps/p5.min.js"></script>
     <link href="/deps/nouislider.min.css" rel="stylesheet">
     <script src="/deps/nouislider.min.js"></script>
@@ -19,14 +18,13 @@
         <div id="controls">
             <p>
                 <span id="sketchTitle">[% title %]</span> |
-                <span id="canvasSize"></span>
-
-                <button id="button-source" title="Quellcode"><i class="bi bi-code"></i></button>
-                <button id="button-redraw" title="Neu zeichnen"><i class="bi bi-arrow-clockwise"></i></button>
-                <button id="button-randomize" title="Zufallseinstellungen"><i class="bi bi-shuffle"></i></button>
-                <button id="button-save" title="Leinwand speichern"><i class="bi bi-box-arrow-down"></i></button>
-                <button id="button-copylink" title="Link kopieren"><i class="bi bi-link-45deg"></i></button>
-                <button id="button-print" title="Druckansicht"><i class="bi bi-printer"></i></button>
+                <span id="canvasSize"></span> |
+                <a href="source.html" target="_blank">Quellcode</a> |
+                <a href="javascript:redrawWithNewSeed();">Neuer Seed</a> |
+                <a href="javascript:setControlsRandomly();">Zufällige&nbsp;Parameter</a> |
+                <a href="javascript:saveCanvasAsPNG();">Leinwand&nbsp;speichern</a> |
+                <a href="javascript:copyLink();">Link&nbsp;kopieren</a> |
+                <a href="javascript:window.open('print.html' + window.location.search, '_blank');">Druckansicht</a>
             </p>
 
             <form id="controls-form">
