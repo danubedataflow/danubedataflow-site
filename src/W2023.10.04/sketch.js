@@ -2,15 +2,15 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('resolutionFactor', 'Auflösung', 1, 16, 8),
-        makeSlider('lineDensity', 'Liniendichte', 1, 10, 5),
+        makeSlider('resolutionFactor', 'Auflösung', 4, 16, 10),
+        makeSlider('lineDensity', 'Liniendichte', 3, 8, 5),
+        makeSlider('rotation', 'Rotation', 0, 270, 0, 90),
     );
 }
 
 function drawSketch() {
     let pgDim = width / ctrl.resolutionFactor;
     let pg = createGraphics(pgDim, pgDim);
-    // frameRate(24);
 
     canvas.imageSmoothingEnabled = false;
     pg.noSmooth();
@@ -23,6 +23,11 @@ function drawSketch() {
         pg.line(0, 0, pg.width, y);
         pg.line(pg.width, 0, 0, y);
     }
+    angleMode(DEGREES);
+    translate(width / 2, height / 2);
+    rotate(ctrl.rotation);
+    translate(-width / 2, -height / 2);
+
     imageMode(CORNER);
     image(pg, 0, 0, width, height);
 }
