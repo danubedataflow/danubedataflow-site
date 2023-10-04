@@ -660,31 +660,6 @@ function copyLink() {
     }
 }
 
-function setupButtons() {
-    // print.html draws a sketch but doesn't have buttons, so check
-    // whether each button exists.
-
-    let clickHandlers = {
-        source: function() {
-            window.location = 'source.html';
-        },
-        redraw: redrawWithNewSeed,
-        randomize: setControlsRandomly,
-        save: saveCanvasAsPNG,
-        copylink: copyLink,
-        print: function() {
-            window.open('print.html' + window.location.search, '_blank');
-        },
-    };
-    for (const [name, handler] of Object.entries(clickHandlers)) {
-        let button = document.getElementById("button-" + name);
-        if (button) {
-            button.addEventListener("click", handler);
-        }
-    }
-
-}
-
 function basename() {
     let path = window.location.pathname;
     if (path.endsWith('/')) {
@@ -716,7 +691,6 @@ function setupQRCode() {
  */
 function setup() {
     setPageType();
-    setupButtons();
     canvas = createCanvas(...getCanvasDimension()).parent('sketch');
     setupForm(); // sketches need to implement this
 
