@@ -700,6 +700,7 @@ function setup() {
         document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
     }
     if (pageType == 'print') setupQRCode();
+    angleMode(DEGREES);
     noLoop();
 }
 

@@ -23,7 +23,6 @@ function drawSketch() {
         pg.line(0, 0, pg.width, y);
         pg.line(pg.width, 0, 0, y);
     }
-    angleMode(DEGREES);
     translate(width / 2, height / 2);
     rotate(ctrl.rotation);
     translate(-width / 2, -height / 2);

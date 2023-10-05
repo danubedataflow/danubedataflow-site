@@ -20,7 +20,6 @@ function setupForm() {
 function drawSketch() {
     roughCanvas = rough.canvas(canvas.elt);
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-    angleMode(DEGREES);
     rectMode(CENTER);
     padSketch();
     background("black");

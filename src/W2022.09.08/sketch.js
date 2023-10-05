@@ -12,6 +12,7 @@ function setupForm() {
 }
 
 function drawSketch() {
+    angleMode(RADIANS);
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);

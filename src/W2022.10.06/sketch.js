@@ -18,7 +18,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    angleMode(DEGREES);
     fill('white');
     strokeWeight(1);
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
