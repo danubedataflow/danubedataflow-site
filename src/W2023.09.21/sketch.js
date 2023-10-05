@@ -16,21 +16,23 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.repsPerSide,
         numTilesY: ctrl.repsPerSide,
-        tileCallback: function(tile) {
-            scale(ctrl.repScale);
-            let points = [];
-            for (let y = 0; y < ctrl.squareSize; y++) {
-                for (let x = 0; x < ctrl.squareSize; x++) {
-                    points.push([
-                        int(x * tile.width / (ctrl.squareSize - 1) - tile.width / 2),
-                        int(y * tile.height / (ctrl.squareSize - 1) - tile.height / 2)
-                    ]);
-                }
-            }
-            shuffle(points, true);
-            for (let i = 0; i < points.length - 1; i++) {
-                line(...points[i], ...points[i + 1]);
-            }
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+    scale(ctrl.repScale);
+    let points = [];
+    for (let y = 0; y < ctrl.squareSize; y++) {
+        for (let x = 0; x < ctrl.squareSize; x++) {
+            points.push([
+                int(x * tile.width / (ctrl.squareSize - 1) - tile.width / 2),
+                int(y * tile.height / (ctrl.squareSize - 1) - tile.height / 2)
+            ]);
+        }
+    }
+    shuffle(points, true);
+    for (let i = 0; i < points.length - 1; i++) {
+        line(...points[i], ...points[i + 1]);
+    }
 }

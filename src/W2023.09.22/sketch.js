@@ -17,16 +17,18 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
-        tileCallback: function(tile) {
-            if (random() > 0.2) {
-                scale(ctrl.scale);
-                rotate(30 * int(random(12)));
-                translate(
-                    randomIntPlusMinus(ctrl.maxOffset),
-                    randomIntPlusMinus(ctrl.maxOffset),
-                );
-                line(...tile.leftMiddle, ...tile.rightMiddle);
-            }
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+    if (random() > 0.2) {
+        scale(ctrl.scale);
+        rotate(30 * int(random(12)));
+        translate(
+            randomIntPlusMinus(ctrl.maxOffset),
+            randomIntPlusMinus(ctrl.maxOffset),
+        );
+        line(...tile.leftMiddle, ...tile.rightMiddle);
+    }
 }

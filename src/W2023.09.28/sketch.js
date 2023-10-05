@@ -1,5 +1,7 @@
 'use strict';
 
+let palette, shouldFillArray;
+
 function setupForm() {
     makeForm(
         makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 3, 10, 4),
@@ -18,7 +20,7 @@ function drawSketch() {
     background("white");
     stroke('black');
     padSketch(0.9);
-    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     /* Fill one in numRatio tiles. For example, if numRatio is 9, we want
      * to fill one in nine tiles.
@@ -36,24 +38,28 @@ function drawSketch() {
 
     let numTilesTotal = pow(ctrl.numTiles, 2);
     let numFilled = max(1, round(numTilesTotal / ctrl.numRatio));
-    let shouldFillArray = shuffle(Array.from(Array(numTilesTotal))
-        .map((el, index) => { return index < numFilled }));
+    shouldFillArray = shuffle(Array.from(Array(numTilesTotal))
+        .map((el, index) => {
+            return index < numFilled
+        }));
 
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        tileCallback: function(tile) {
-            translate(
-                randomIntPlusMinus(ctrl.maxOffset),
-                randomIntPlusMinus(ctrl.maxOffset),
-            );
-            let shouldFill = shouldFillArray.shift();
-            if (shouldFill) {
-                fill(random(palette));
-            } else {
-                noFill();
-            }
-            rect(...tile.upperLeft, ...tile.lowerRight);
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+    translate(
+        randomIntPlusMinus(ctrl.maxOffset),
+        randomIntPlusMinus(ctrl.maxOffset),
+    );
+    let shouldFill = shouldFillArray.shift();
+    if (shouldFill) {
+        fill(random(palette));
+    } else {
+        noFill();
+    }
+    rect(...tile.upperLeft, ...tile.lowerRight);
 }

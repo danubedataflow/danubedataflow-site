@@ -16,12 +16,14 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        tileCallback: function(tile) {
-            fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
-            rect(...tile.upperLeft, ...tile.lowerRight);
-            scale(ctrl.scale);
-            fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
-            rect(...tile.upperLeft, ...tile.lowerRight);
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+    fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
+    rect(...tile.upperLeft, ...tile.lowerRight);
+    scale(ctrl.scale);
+    fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
+    rect(...tile.upperLeft, ...tile.lowerRight);
 }
