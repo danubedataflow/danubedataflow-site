@@ -13,7 +13,6 @@ function drawSketch() {
     noStroke();
     background("white");
     stroke('black');
-    angleMode(DEGREES);
     padSketch();
     makeGrid({
         numTilesX: ctrl.numTilesX,

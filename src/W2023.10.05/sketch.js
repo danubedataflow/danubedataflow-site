@@ -33,7 +33,6 @@ function drawSketch() {
 
             // Draw the tile. Scale down to leave a border on each tile.
             scale(0.8);
-            angleMode(DEGREES);
             rotate(90 * int(random(4)));
 
             // The following code assumes that (0, 0) is in the tile's upper left

@@ -27,7 +27,6 @@ function drawSketch() {
     stroke('black');
     noFill();
     rectMode(CENTER);
-    angleMode(DEGREES);
     padSketch();
     background('white');
     let dim = width / ctrl.numTiles;
