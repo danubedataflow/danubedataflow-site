@@ -1,5 +1,7 @@
 'use strict';
 
+let palette;
+
 function setupForm() {
     makeForm(
         makeFieldset('Farben',
@@ -16,27 +18,29 @@ function setupForm() {
 function drawSketch() {
     noStroke();
     background("white");
-    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
-        tileCallback: function(tile) {
-
-            fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
-            rect(...tile.upperLeft, ...tile.lowerRight);
-
-            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-            triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
-
-            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-            triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
-
-            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-            triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
-
-            fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
-            triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+
+    fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
+    rect(...tile.upperLeft, ...tile.lowerRight);
+
+    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
+
+    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
+
+    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
+
+    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
 }
