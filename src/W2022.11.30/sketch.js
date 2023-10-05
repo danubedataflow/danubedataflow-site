@@ -13,6 +13,7 @@ function setupForm() {
 function drawSketch() {
     background('white');
     noFill();
+    rectMode(CORNER);
 
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = width; // width == height because of square canvas

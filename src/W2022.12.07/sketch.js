@@ -15,7 +15,6 @@ function setupForm() {
 
 function drawSketch() {
     noStroke();
-    rectMode(CORNER);
     palette = ['white', '#777777', 'black'];
 
     let dim = width / ctrl.numTiles;

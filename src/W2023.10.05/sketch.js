@@ -19,7 +19,6 @@ function drawSketch() {
     ));
 
     noStroke();
-    rectMode(CORNERS);
 
     makeGrid({
         numTilesX: ctrl.numTiles,

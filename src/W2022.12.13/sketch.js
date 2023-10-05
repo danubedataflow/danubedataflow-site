@@ -16,7 +16,6 @@ function setupForm() {
 
 function drawSketch() {
     stroke('black');
-    rectMode(CORNERS);
     blendMode(BLEND); // so background() actually clears the canvas
     background('white');
     blendMode(ctrl.blendMode);

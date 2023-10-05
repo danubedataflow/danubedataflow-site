@@ -701,6 +701,7 @@ function setup() {
     }
     if (pageType == 'print') setupQRCode();
     angleMode(DEGREES);
+    rectMode(CORNERS);
     noLoop();
 }
 

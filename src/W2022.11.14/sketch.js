@@ -26,7 +26,6 @@ function drawSketch() {
     strokeWeight(1);
     stroke('black');
     noFill();
-    rectMode(CENTER);
     padSketch();
     background('white');
     let dim = width / ctrl.numTiles;

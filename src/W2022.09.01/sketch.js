@@ -77,7 +77,6 @@ function setupForm() {
 }
 
 function drawSketch() {
-    rectMode(CENTER);
     strokeCap(ROUND);
     strokeJoin(ROUND);
     blendMode(BLEND); // so background() actually clears the canvas
@@ -173,8 +172,8 @@ class myShape {
 
         } else if (this.type == 1) {
             /* square */
-            let sp = this.size;
-            rect(0, 0, sp, sp);
+            let sp = this.size / 2;
+            rect(-sp, -sp, sp, sp);
 
         } else if (this.type == 2) {
             /* diamond */

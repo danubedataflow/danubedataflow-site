@@ -11,7 +11,6 @@ function setupForm() {
 function drawSketch() {
     noStroke();
     background("white");
-    rectMode(CORNERS);
     colorMode(HSB, 360, 100, 100)
     makeGrid({
         numTilesX: ctrl.numTiles,
