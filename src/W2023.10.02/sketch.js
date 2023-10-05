@@ -48,39 +48,41 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        tileCallback: function(tile) {
-            scale(ctrl.scale);
+        tileCallback: drawTile,
+    });
+}
 
-            // makeGrid() translates to each tile's center, but here we want
-            // (0, 0) to be in the tile's upper left corner.
-            translate(...tile.upperLeft);
+function drawTile(tile) {
+    scale(ctrl.scale);
 
-            let coords = (x, y) => {
-                return [
-                    (x - 1) / (ctrl.numPointsX - 1) * tile.width,
-                    (y - 1) / (ctrl.numPointsY - 1) * tile.height
-                ];
-            };
-            let connections = [];
-            for (let y = 1; y <= ctrl.numPointsY; y++) {
-                for (let x = 1; x <= ctrl.numPointsX; x++) {
-                    let c = coords(x, y);
-                    point(...c);
+    // makeGrid() translates to each tile's center, but here we want
+    // (0, 0) to be in the tile's upper left corner.
+    translate(...tile.upperLeft);
 
-                    // connection to the neighbor to the right?
-                    if (x < ctrl.numPointsX) {
-                        connections.push([c, coords(x + 1, y)]);
-                    }
+    let coords = (x, y) => {
+        return [
+            (x - 1) / (ctrl.numPointsX - 1) * tile.width,
+            (y - 1) / (ctrl.numPointsY - 1) * tile.height
+        ];
+    };
+    let connections = [];
+    for (let y = 1; y <= ctrl.numPointsY; y++) {
+        for (let x = 1; x <= ctrl.numPointsX; x++) {
+            let c = coords(x, y);
+            point(...c);
 
-                    // connection to the neighbor below?
-                    if (y < ctrl.numPointsY) {
-                        connections.push([c, coords(x, y + 1)]);
-                    }
-                }
-                shuffle(connections, true);
-                connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.connectionsRatio / 100);
-                connections.forEach(el => line(...el[0], ...el[1]));
+            // connection to the neighbor to the right?
+            if (x < ctrl.numPointsX) {
+                connections.push([c, coords(x + 1, y)]);
+            }
+
+            // connection to the neighbor below?
+            if (y < ctrl.numPointsY) {
+                connections.push([c, coords(x, y + 1)]);
             }
         }
-    });
+        shuffle(connections, true);
+        connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.connectionsRatio / 100);
+        connections.forEach(el => line(...el[0], ...el[1]));
+    }
 }

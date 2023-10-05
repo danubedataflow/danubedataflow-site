@@ -15,7 +15,7 @@ function setupForm() {
 
 function drawSketch() {
     noStroke();
-    rectMode(CENTER);
+    rectMode(CORNERS);
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
@@ -25,7 +25,7 @@ function drawSketch() {
         tileCallback: function(tile) {
 
             fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
-            rect(...tile.center, tile.width, tile.height);
+            rect(...tile.upperLeft, ...tile.lowerRight);
 
             fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
             triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);

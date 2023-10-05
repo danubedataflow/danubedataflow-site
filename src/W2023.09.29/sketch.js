@@ -19,16 +19,18 @@ function drawSketch() {
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
-        tileCallback: function(tile) {
-            for (let i = 0; i < ctrl.repetitions; i++) {
-                push();
-                translate(
-                    randomIntPlusMinus(ctrl.maxOffset),
-                    randomIntPlusMinus(ctrl.maxOffset),
-                );
-                rect(...tile.upperLeft, ...tile.lowerRight);
-                pop();
-            }
-        },
+        tileCallback: drawTile,
     });
+}
+
+function drawTile(tile) {
+    for (let i = 0; i < ctrl.repetitions; i++) {
+        push();
+        translate(
+            randomIntPlusMinus(ctrl.maxOffset),
+            randomIntPlusMinus(ctrl.maxOffset),
+        );
+        rect(...tile.upperLeft, ...tile.lowerRight);
+        pop();
+    }
 }
