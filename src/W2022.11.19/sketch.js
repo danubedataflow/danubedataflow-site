@@ -27,19 +27,18 @@ function drawSketch() {
     background('white');
     noStroke();
     fill('black');
-    rectMode(CORNER);
     colorMode(HSB, 360, 100, 100, 100);
 
     for (let i = 0; i <= ctrl.horizontalBars; i++) {
         let x1 = int(random(width));
         let w = int(random(...ctrl.size.map(x => x * width / 100)));
         setRandomFillColor();
-        rect(x1, 0, w, height);
+        rect(x1, 0, x1 + w, height);
     }
     for (let i = 0; i <= ctrl.verticalBars; i++) {
         let y1 = int(random(width));
         let h = int(random(...ctrl.size.map(x => x * height / 100)));
         setRandomFillColor();
-        rect(0, y1, width, h);
+        rect(0, y1, width, y1 + h);
     }
 }

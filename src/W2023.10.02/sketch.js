@@ -40,7 +40,6 @@ function setupForm() {
 function drawSketch() {
     noStroke();
     noFill();
-    rectMode(CORNERS);
     background("white");
     stroke('black');
     strokeWeight(ctrl.strokeWeight);

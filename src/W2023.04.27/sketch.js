@@ -15,7 +15,6 @@ function setupForm() {
 
 function drawSketch() {
     noStroke();
-    rectMode(CORNERS);
     background("white");
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 

@@ -13,7 +13,6 @@ function setupForm() {
 
 function drawSketch() {
     colorMode(HSB, 360, 100, 100, 100);
-    rectMode(CORNERS);
     stroke('black');
     strokeWeight(1);
     padSketch();

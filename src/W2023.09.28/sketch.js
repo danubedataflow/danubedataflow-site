@@ -16,7 +16,6 @@ function setupForm() {
 
 function drawSketch() {
     noStroke();
-    rectMode(CORNERS);
     background("white");
     stroke('black');
     padSketch(0.9);

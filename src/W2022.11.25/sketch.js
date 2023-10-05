@@ -11,7 +11,7 @@ function drawSketch() {
     background('#777777');
     let palette = ['white', '#aaaaaa', 'black'];
     noStroke();
-
+    rectMode(CORNER);
     let tileDim = width / ctrl.numTiles; // square canvas
 
     for (let i = 0; i <= ctrl.numRects; i++) {

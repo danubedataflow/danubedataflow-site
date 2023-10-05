@@ -11,6 +11,7 @@ function setupForm() {
 function drawSketch() {
     background('white');
     noFill();
+    rectMode(CORNER);
 
     let tileDim = width / ctrl.numTiles;
 
