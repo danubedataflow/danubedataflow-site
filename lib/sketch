@@ -21,8 +21,8 @@
                 <span id="canvasSize"></span> |
                 <a href="source.html" target="_blank">Quellcode</a> |
                 <a href="javascript:redrawWithNewSeed();">Neuer Seed</a> |
-                <a href="javascript:setControlsRandomly();">Zufällige&nbsp;Parameter</a> |
-                <a href="javascript:saveCanvasAsPNG();">Leinwand&nbsp;speichern</a> |
+                <a href="javascript:setControlsRandomly();">Zufallsparameter</a> |
+                <a href="javascript:saveCanvasAsPNG();">Speichern</a> |
                 <a href="javascript:copyLink();">Link&nbsp;kopieren</a> |
                 <a href="javascript:window.open('print.html' + window.location.search, '_blank');">Druckansicht</a>
             </p>
