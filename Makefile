@@ -37,7 +37,7 @@ icons:
 	bin/make-favicon
 
 clean:
-	@rm -rf $(WWW) build
+	@rm -rf $(WWW) build.noindex
 
 test:
 	perl t/sketches.t
