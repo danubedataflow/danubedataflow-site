@@ -6,12 +6,14 @@ function setupForm() {
         makeSlider('numTilesY', 'Anzahl der vertikalen Kacheln', 10, 100, 50),
         makeSlider('scale', 'Skalierung', 0.5, 1.5, 1, 0.1),
         makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 10, 2),
+        makeSlider('strokeWeight', 'Strichstärke', 1, 6, 1),
     );
 }
 
 function drawSketch() {
     noStroke();
     background("white");
+    strokeWeight(ctrl.strokeWeight);
     stroke('black');
     padSketch();
     makeGrid({
