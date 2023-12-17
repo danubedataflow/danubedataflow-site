@@ -286,3 +286,37 @@ Verschachtelungen: Anzahl (von-bis); Skalierung pro Ebene (von-bis)
 Gefüllt oder nur Umriß
 zufälliger Versatz pro Ebene
 
+===
+
+Verallgemeinern
+- Unterteilungen (subdivisions) (Chance; max. Tiefe)
+    - z.B. W2023.10.02 ist unterteilt (Wahrscheinlichkeit = 100%; Tiefe = 1; Unterteilungen pro Ebene = 3 bis 5; kein Rand)
+    - Nur Kacheln an den Enden des Unterteilungs-Baumes können skaliert sein oder einen Rand haben; unterteilte Flächen nicht
+    - Wahrscheinlichkeit, daß eine Fläche unterteilt wird (in %)
+    - Anzahl der Unterteilungen pro Ebene (von-bis)
+    - maximuale Unterteilungstiefe
+- Kacheln:
+    - Rand (ja/nein; Strichstärke)
+    - Rotation (von-bis)
+    - Skalierung der Kachel (x, y, je von-bis)
+    - Verschiebung (x, y, je von-bis) (= “Versatz”)
+    - Scherung (shear) (x, y, je von-bis)
+
+OOP: Werke sind Klassen.
+JSDoc3 -> Dokumentation + Codeansicht für Site generieren
+
+Der Benutzer kann gewisse Parameter einrasten / feststellen, damit sie bei Zufallswerten nicht verändert werden. Unterklassen von Werken können gewisse Parameter der Oberklassen fixieren.
+
+Unaufgeregt; ich hab nicht das Gefühl, daß ich ständig mehr machen müßte wie das beim Go der Fall ist, selbst wenn ich dort dann eh nichts gemacht hab. Ohne schlechtes Gewissen lesen, spazieren gehen, Filme anschauen, kochen oder Dinge im Haushalt machen. Niemand, der aktiv gegen mich arbeitet, wie das bei einer Go-Partie der Fall ist. Und programmieren macht mir mehr Spaß als Go, und ich bin auch besser darin. Und ich habe nicht das Gefühl, vor einer unbewältigbaren Aufgabe zu stehen.
+
+Beschränkt auf wenige Formen. Reduzierte Farbpalette. Prozeß - wer ist der Künstler? Manuell kann man einige Variationen eines Bildes machen. Der Computer kann beliebig viele Variationen machen; dabei kann durch Zufall etwas entstehen, auf das man selbst nicht gekommen wäre (siehe Vera Molnár über Zufall und Intuition).
+
+===
+
+createCanvas(...).parent("sketch");
+
+convert ~/Downloads/canvas.png -resize 200x200 thumbnail.png
+
+https://codepen.io/DonKarlssonSan
+https://codepen.io/DonKarlssonSan/post/random-walk
+
