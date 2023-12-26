@@ -320,3 +320,10 @@ convert ~/Downloads/canvas.png -resize 200x200 thumbnail.png
 https://codepen.io/DonKarlssonSan
 https://codepen.io/DonKarlssonSan/post/random-walk
 
+===
+
+Voreinstellungen mit zufälligen Mathematiksymbolen
+https://www.compart.com/en/unicode/block/U+2200
+Ist aber nur sinnvoll bei einem Werk, das durch viele Parameter besonders abwechslungsreiche Bilder erzeugt.
+Vgl. https://github.com/doersino/uji
+
