@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 4, 40, 20),
+        makeSlider('numTiles', 'XXX', 4, 40, 20),
         makeFieldset('Rotation',
             makeSlider('rotationChance', 'Wahrscheinlichkeit (%)', 0, 100, 5),
             makeSlider('rotationAmount', 'Winkel', -45, 45, [-10, 10]),
