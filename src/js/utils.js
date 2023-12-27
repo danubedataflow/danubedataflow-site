@@ -259,12 +259,42 @@ function makeDiv(config, ...contents) {
     return el;
 }
 
-function makeLabel(config, ...contents) {
+// 'id' is the value of the 'for' attribute
+function makeLabel(id) {
     let el = document.createElement('label');
-    el.setAttribute('for', config.for);
-    el.appendChild(document.createTextNode(config.label));
-    contents.forEach(child => el.appendChild(child));
+    el.setAttribute('for', id);
+    // The <label>'s actual text will be determined by the i18n code. Us
+    // e the "for" attribute as a default since createTextNode() expects
+    // a value.
+    el.appendChild(document.createTextNode(id));
     return el;
+}
+
+function setIntlAttributes (element, key, values) {
+    element.setAttribute('data-i18n-key', key);
+
+    // Create the 'data-i18n-opt' attribute only if any values are given.
+    // For example, slider labels have values, checkbox labels do not.
+
+    if (typeof values !== 'undefined') {
+        // Handle scalar values. one-element arrays and two-element
+        // arrays. The initial call to makeSlider can have a scalar
+        // value. But the slider 'update' event will always return an
+        // array, even for sliders with one handle.
+        let opt = {};
+        if (Array.isArray(values) ) {
+            if (values.length == 1) {
+                opt.value = values[0];
+            } else {
+                opt.from = values[0];
+                opt.to = values[1];
+            }
+        } else {
+            opt.value = values;
+        }
+        element.setAttribute('data-i18n-opt', JSON.stringify(opt));
+    }
+    element.innerText = translateElement(element);
 }
 
 function makeSlider(id, label, min, max, value, step = 1) {
@@ -272,13 +302,9 @@ function makeSlider(id, label, min, max, value, step = 1) {
 
     let containerDiv = document.createElement('div');
 
-    // <label for="foo">The Foo: <span id="fooValue"></span></label>
-
-    let valueSpan = document.createElement('span');
-    containerDiv.appendChild(makeLabel({
-        'for': id,
-        'label': label + ': '
-    }, valueSpan));
+    let labelEl = makeLabel(id);
+    setIntlAttributes(labelEl, 'param-' + id, value);
+    containerDiv.appendChild(labelEl);
 
     // <div class="slider-wrapper"><div id="foo"></div></div>
 
@@ -289,7 +315,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
         makeDiv({
             'class': 'slider-wrapper'
         }, sliderDiv)
-    );
+);
 
     let slider = noUiSlider.create(sliderDiv, {
         range: {
@@ -304,10 +330,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
         behaviour: 'tap-drag'
     });
     slider.on('update', function(values, handle) {
-        // support multiple handles
-        valueSpan.innerHTML = values
-            .map(numStr => parseFloat(numStr).toLocaleString("de-DE"))
-            .join(' bis ');
+        setIntlAttributes(labelEl, 'param-' + id, values);
     });
     slider.on('slide', function(values, handle) {
         redrawWithSameSeed();
@@ -319,10 +342,9 @@ function makeSlider(id, label, min, max, value, step = 1) {
 function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
 
-    containerDiv.appendChild(makeLabel({
-        'for': id,
-        'label': label
-    }));
+    let labelEl = makeLabel(id);
+    setIntlAttributes(labelEl, 'param-' + id);
+    containerDiv.appendChild(labelEl);
 
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
@@ -343,10 +365,9 @@ function makeSeed() {
     let id = 'seed',
         containerDiv = document.createElement('div');
 
-    containerDiv.appendChild(makeLabel({
-        'for': id,
-        'label': 'Seed: '
-    }));
+    let labelEl = makeLabel(id);
+    setIntlAttributes(labelEl, 'param-' + id, 0);
+    containerDiv.appendChild(labelEl);
 
     let inputEl = document.createElement('input');
     inputEl.setAttribute('id', id);
@@ -375,10 +396,9 @@ function makeOptGroup(label, ...contents) {
 function makeSelect(id, label, contents, value) {
     let containerDiv = document.createElement('div');
 
-    containerDiv.appendChild(makeLabel({
-        'for': id,
-        'label': label + ': '
-    }));
+    let labelEl = makeLabel(id);
+    setIntlAttributes(labelEl, 'param-' + id);
+    containerDiv.appendChild(labelEl);
 
     let selectEl = document.createElement('select');
     selectEl.setAttribute('id', id);

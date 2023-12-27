@@ -11,5 +11,10 @@
     "randomParameters": "ランダムパラメータ",
     "saveCanvas": "保存",
     "copyLink": "リンクをコピー",
-    "printView": "プリンタービュー"
+    "printView": "プリンタービュー",
+
+    "param-numTiles": "軸あたりのタイル数：{value}",
+    "param-lineGap": "最新の点の距離：{value}",
+    "param-maxMovement": "最大の動き：{value}",
+    "param-seed": "シード："
 }

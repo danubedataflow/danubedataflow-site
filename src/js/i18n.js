@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         wantedLocales.unshift(storedLocale);
     }
 
-
     // Get the first locale we support from the given array, or use our
     // default locale.
     const initialLocale = wantedLocales.find(
@@ -42,18 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // bind the locale switcher
     const switcher = document.querySelector("[data-i18n-switcher]");
     switcher.value = initialLocale;
-    switcher.onchange = (e) => { setLocale(e.target.value) };
+    switcher.onchange = (e) => {
+        setLocale(e.target.value)
+    };
 });
 
 // Load translations for the given locale and translate
 // the page to this locale
-async function setLocale(newLocale) {
+function setLocale(newLocale) {
     if (newLocale === locale) return;
-
-    const newTranslations = await fetchTranslationsFor(
-        newLocale,
-    );
-
+    const newTranslations = fetchTranslationsFor(newLocale);
     locale = newLocale;
     localStorage.setItem('userLocale', newLocale);
     translations = newTranslations;
@@ -65,9 +62,16 @@ async function setLocale(newLocale) {
 
 // Retrieves translations JSON object for the given
 // locale over the network
-async function fetchTranslationsFor(newLocale) {
-    const response = await fetch(`/lang/${newLocale}.json`);
-    return await response.json();
+function fetchTranslationsFor(newLocale) {
+    const request = new XMLHttpRequest();
+    request.open('GET', `/lang/${newLocale}.json`, false); // `false` makes the request synchronous
+    request.send(null);
+
+    if (request.status === 200) {
+        return JSON.parse(request.responseText);
+    }
+    return null;
+
 }
 
 // Replace the inner text of all elements with the
@@ -88,6 +92,11 @@ function translateElement(element) {
         JSON.parse(element.getAttribute("data-i18n-opt")) || {};
 
     const message = translations[key];
+
+    // Missing entry in a dictionary?
+    if (typeof message === 'undefined') {
+        return 'missing key ' + key;
+    }
 
     if (key.endsWith("-plural")) {
         return interpolate(
