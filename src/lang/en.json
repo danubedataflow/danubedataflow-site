@@ -11,5 +11,10 @@
     "randomParameters": "Random parameters",
     "saveCanvas": "Save",
     "copyLink": "Copy link",
-    "printView": "Print view"
+    "printView": "Print view",
+
+    "param-numTiles": "Number of tiles per axis: {value}",
+    "param-lineGap": "Distanz of initial points: {value}",
+    "param-maxMovement": "Maximum movement: {value}",
+    "param-seed": "Seed: "
 }
