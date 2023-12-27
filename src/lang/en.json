@@ -13,8 +13,11 @@
     "copyLink": "Copy link",
     "printView": "Print view",
 
+    "param-seed": "Seed: ",
+
     "param-numTiles": "Number of tiles per axis: {value}",
     "param-lineGap": "Distanz of initial points: {value}",
     "param-maxMovement": "Maximum movement: {value}",
-    "param-seed": "Seed: "
+
+    "W2023.10.05-description": "Take a probability value that goes from 0 at the top to 1 at the bottom. In order for a square to be drawn in a row, a random number must be larger than the probability value raised to the power of a given value. So the higher the exponent, the lower the threshold becomes, and the more likely it is that a square will be drawn."
 }
