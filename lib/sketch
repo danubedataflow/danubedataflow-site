@@ -19,12 +19,12 @@
             <p>
                 <span id="sketchTitle">[% title %]</span> |
                 <span id="canvasSize"></span> |
-                <a href="source.html" target="_blank">Quellcode</a> |
-                <a href="javascript:redrawWithNewSeed();">Neuer Seed</a> |
-                <a href="javascript:setControlsRandomly();">Zufallsparameter</a> |
-                <a href="javascript:saveCanvasAsPNG();">Speichern</a> |
-                <a href="javascript:copyLink();">Link&nbsp;kopieren</a> |
-                <a href="javascript:window.open('print.html' + window.location.search, '_blank');">Druckansicht</a>
+                <a href="source.html" target="_blank" data-i18n-key="sourceCode">Quellcode</a> |
+                <a href="javascript:redrawWithNewSeed();" data-i18n-key="newSeed">Neuer Seed</a> |
+                <a href="javascript:setControlsRandomly();" data-i18n-key="randomParameters">Zufallsparameter</a> |
+                <a href="javascript:saveCanvasAsPNG();" data-i18n-key="saveCanvas">Speichern</a> |
+                <a href="javascript:copyLink();" data-i18n-key="copyLink">Link&nbsp;kopieren</a> |
+                <a href="javascript:window.open('print.html' + window.location.search, '_blank');" data-i18n-key="printView">Druckansicht</a>
             </p>
 
             <form id="controls-form">

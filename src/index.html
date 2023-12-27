@@ -2,9 +2,15 @@
     WRAPPER html;
         INCLUDE head title="Danube Dataflow";
         WRAPPER body;
-            WRAPPER frames title="Werke";
-                INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("W");
-            END;
+%]
+            <section class="wide">
+                <h1 data-i18n-key="sectionWorks">Werke</h1>
+            </section>
+
+            <section class="wide">
+                [% INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("W") %]
+            </section>
+[%
         END;
     END;
 %]
