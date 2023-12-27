@@ -28,7 +28,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 3, 5, 4),
+        makeSlider('numTiles', 'XXX', 3, 5, 4),
         makeSlider('numPointsX', 'Anzahl der horizontalen Punkte', 3, 5, 4),
         makeSlider('numPointsY', 'Anzahl der vertikalen Punkte', 3, 5, 4),
         makeSlider('strokeWeight', 'Strichstärke', 8, 20, 12),

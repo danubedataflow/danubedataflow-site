@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 3, 10, 4),
+        makeSlider('numTiles', 'XXX', 3, 10, 4),
         makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 30, 15),
         makeSlider('repetitions', 'Anzahl der Wiederholungen', 2, 20, 10),
     );

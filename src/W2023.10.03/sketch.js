@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'Anzahl der Kacheln pro Achse', 3, 10, 5),
+        makeSlider('numTiles', 'XXX', 3, 10, 5),
         makeSlider('colorAngle', 'Winkel auf dem Farbenkreis', 0, 359, 0),
         makeSlider('scale', 'Skalierung der inneren Quadrate', 0.3, 0.7, 0.5, 0.05),
     );
