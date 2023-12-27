@@ -15,6 +15,8 @@
 
     "param-seed": "シード：",
 
+    "param-exponents": "指数：{from}〜{to}",
+    "param-numPoints": "タイルあたりのポイント数：{value}",
     "param-numTiles": "軸あたりのタイル数：{value}",
     "param-lineGap": "最新の点の距離：{value}",
     "param-maxMovement": "最大の動き：{value}",
