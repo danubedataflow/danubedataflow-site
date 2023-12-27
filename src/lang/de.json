@@ -15,6 +15,8 @@
 
     "param-seed": "Seed: ",
 
+    "param-exponents": "Exponenten: {from} bis {to}",
+    "param-numPoints": "Anzahl der Punkte pro Kachel: {value}",
     "param-numTiles": "Anzahl der Kacheln pro Achse: {value}",
     "param-lineGap": "Distanz der Anfangspunkte: {value}",
     "param-maxMovement": "Maximale Bewegung: {value}",
