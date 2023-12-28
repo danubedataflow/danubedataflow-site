@@ -20,8 +20,8 @@
     "param-numTiles": "軸あたりのタイル数：{value}",
     "param-lineGap": "最新の点の距離：{value}",
     "param-maxMovement": "最大の動き：{value}",
-    "param-strokeWeight": "筆の太さ",
-    "param-colorStrategy": "色の選択",
+    "param-strokeWeight": "筆の太さ：{value}",
+    "param-colorStrategy": "色の選択：",
 
     "option-random": "ランダム",
     "option-adjacent": "隣接",

@@ -20,8 +20,8 @@
     "param-numTiles": "Anzahl der Kacheln pro Achse: {value}",
     "param-lineGap": "Distanz der Anfangspunkte: {value}",
     "param-maxMovement": "Maximale Bewegung: {value}",
-    "param-strokeWeight": "Strichstärke",
-    "param-colorStrategy": "Farbwahl-Strategie",
+    "param-strokeWeight": "Strichstärke: {value}",
+    "param-colorStrategy": "Farbwahl-Strategie: ",
 
     "option-random": "Zufällig",
     "option-adjacent": "Angrenzend",
