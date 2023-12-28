@@ -10,8 +10,8 @@ function setupForm() {
         ),
         makeSlider('chanceTileColor', 'Wahrscheinlichkeit einer gefärbten Kachel (%)', 0, 100, 50),
         makeSlider('chanceDiamondColor', 'Wahrscheinlichkeit einer gefärbten Raute (%)', 0, 100, 50),
-        makeSlider('numTilesX', 'Anzahl der horizontalen Kacheln', 4, 40, 10),
-        makeSlider('numTilesY', 'Anzahl der vertikalen Kacheln', 4, 40, 10),
+        makeSlider('numTilesX', 'XXX', 4, 40, 10),
+        makeSlider('numTilesY', 'XXX', 4, 40, 10),
     );
 }
 
