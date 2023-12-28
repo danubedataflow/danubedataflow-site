@@ -10,7 +10,7 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
+            makeSlider('numColors', 'XXX', 1, 12, 6),
         ),
         makeSlider('numTiles', 'XXX', 2, 10, 4),
         makeSlider('maxDepth', 'Maximale Tiefe', 0, 4, 2),

@@ -52,7 +52,7 @@ function setupForm() {
         makeFieldset('colors',
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
-            makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
+            makeSlider('numColors', 'XXX', 1, 12, 6),
             makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [80, 100]),
         ),
         makeSlider('numTiles', 'XXX', 1, 16, 8),
