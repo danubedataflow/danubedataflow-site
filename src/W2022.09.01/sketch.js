@@ -4,8 +4,13 @@ const unicodeShapes = [
     '\u25EF', // ◯
     '\u25A2', // ▢
     '\u25C7', // ◇
+    '\u25B3', // △
     '\u25B7', // ▷
+    '\u25BD', // ▽
+    '\u25C1', // ◁
     '\u23AF', // ⎯
+    '\u23D0', // ⏐
+    '\u2571', // ╱
     '\u2572', // ╲
     '\u253C', // ┼
     '\u2573', // ╳
@@ -58,7 +63,6 @@ function setupForm() {
         makeSlider('numTiles', 'XXX', 1, 16, 8),
         makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
         makeSlider('strokeWeightRange', 'XXX', 1, 25, [10, 20]),
-        makeSlider('rotation', 'Maximale Rotation', 0, 270, [0, 90], 90),
         makeSlider('scaleFactor', 'Skalierung', 0.5, 1.5, [0.7, 1], 0.1),
     );
 
@@ -91,7 +95,6 @@ function drawSketch() {
             (int(random(ctrl.numTiles)) + 0.5) * offset,
             (int(random(ctrl.numTiles)) + 0.5) * offset
         ];
-        let [minRotation, maxRotation] = ctrl.rotation;
         new myShape()
             .setType(random(activeShapes))
             .setColor(random(palette))
@@ -100,7 +103,6 @@ function drawSketch() {
             .setStrokeWeight(randomIntRange(...ctrl.strokeWeightRange))
             .setAlpha(randomIntRange(...ctrl.alphaRange))
             .setScale(random(...ctrl.scaleFactor))
-            .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
     }
 }
@@ -150,11 +152,6 @@ class myShape {
         return this;
     }
 
-    setRotation(_rotation) {
-        this.rotation = _rotation;
-        return this;
-    }
-
     display() {
         push();
         translate(...this.center);
@@ -164,19 +161,18 @@ class myShape {
         stroke(c);
         scale(this.scale);
         noFill();
-        rotate(radians(90) * this.rotation);
 
         if (this.type == 0) {
-            /* circle */
+            // ◯
             circle(0, 0, this.size);
 
         } else if (this.type == 1) {
-            /* square */
+            // ▢
             let sp = this.size / 2;
             rect(-sp, -sp, sp, sp);
 
         } else if (this.type == 2) {
-            /* diamond */
+            // ◇
             let sp = this.size / 2;
             beginShape();
             vertex(0, sp);
@@ -186,28 +182,53 @@ class myShape {
             endShape(CLOSE);
 
         } else if (this.type == 3) {
-            /* triangle */
+            // △
+            let sp = this.size / 2;
+            triangle(-sp, sp, sp, sp, 0, -sp);
+
+        } else if (this.type == 4) {
+            // ▷
             let sp = this.size / 2;
             triangle(-sp, -sp, -sp, sp, sp, 0);
 
-        } else if (this.type == 4) {
-            /* straight line */
+        } else if (this.type == 5) {
+            // ▽
+            let sp = this.size / 2;
+            triangle(-sp, -sp, sp, -sp, 0, sp);
+
+        } else if (this.type == 6) {
+            // ◁
+            let sp = this.size / 2;
+            triangle(sp, -sp, sp, sp, -sp, 0);
+
+        } else if (this.type == 7) {
+            // ⎯
             let sp = this.size / 2;
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 5) {
-            /* diagonal line */
+        } else if (this.type == 8) {
+            // ⏐
+            let sp = this.size / 2;
+            line(0, -sp, 0, sp);
+
+        } else if (this.type == 9) {
+            // ╱
+            let sp = this.size / 2;
+            line(-sp, sp, sp, -sp);
+
+        } else if (this.type == 10) {
+            // ╲
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
 
-        } else if (this.type == 6) {
-            /* plus */
+        } else if (this.type == 11) {
+            // ┼
             let sp = this.size / 2;
             line(0, -sp, 0, sp);
             line(-sp, 0, sp, 0);
 
-        } else if (this.type == 7) {
-            /* X */
+        } else if (this.type == 12) {
+            // ╳
             let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
             line(sp, -sp, -sp, sp);
