@@ -25,6 +25,7 @@
     "param-numColors": "Number of colors: {value}",
     "param-numTilesX": "Number of horizontal tiles: {value}",
     "param-numTilesY": "Number of vertical tiles: {value}",
+    "param-hasTileBorder": "Tile border: ",
 
     "option-random": "Random",
     "option-adjacent": "Adjacent",

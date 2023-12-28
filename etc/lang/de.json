@@ -25,6 +25,7 @@
     "param-numColors": "Anzahl der Farben: {value}",
     "param-numTilesX": "Anzahl der horizontalen Kacheln: {value}",
     "param-numTilesY": "Anzahl der vertikalen Kacheln: {value}",
+    "param-hasTileBorder": "Kachelrand: ",
 
     "option-random": "Zufällig",
     "option-adjacent": "Angrenzend",
