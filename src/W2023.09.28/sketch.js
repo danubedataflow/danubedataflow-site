@@ -8,7 +8,7 @@ function setupForm() {
         makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 20, 10),
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'Anzahl der Farben', 1, 8, 2),
+            makeSlider('numColors', 'XXX', 1, 8, 2),
             makeSlider('numRatio', 'Färbe eine in so vielen Kacheln', 8, 32, 16),
         ),
     );

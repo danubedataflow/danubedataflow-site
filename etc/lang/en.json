@@ -21,6 +21,7 @@
     "param-lineGap": "Distanz of initial points: {value}",
     "param-maxMovement": "Maximum movement: {value}",
     "param-strokeWeight": "Stroke weight: {value}",
+    "param-numColors": "Number of colors: {value}",
 
     "option-random": "Random",
     "option-adjacent": "Adjacent",

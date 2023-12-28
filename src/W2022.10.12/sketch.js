@@ -5,7 +5,7 @@ function setupForm() {
         makeSlider('numSides', 'Anzahl der Seiten', 3, 10, 5),
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'Anzahl der Farben', 2, 32, 16),
+            makeSlider('numColors', 'XXX', 2, 32, 16),
         ),
         makeFieldset('scale',
             makeSlider('scaleRange', 'Bereich (%)', 1, 100, [5, 80]),
