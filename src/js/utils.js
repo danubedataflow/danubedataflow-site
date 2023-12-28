@@ -284,13 +284,13 @@ function setIntlAttributes(element, config) {
         let opt = {};
         if (Array.isArray(config.opt)) {
             if (config.opt.length == 1) {
-                opt.value = config.opt[0];
+                opt.value = { number: config.opt[0] };
             } else {
-                opt.from = config.opt[0];
-                opt.to = config.opt[1];
+                opt.from = { number: config.opt[0] };
+                opt.to = { number: config.opt[1] };
             }
         } else {
-            opt.value = config.opt;
+            opt.value = { number: config.opt };
         }
         element.setAttribute('data-i18n-opt', JSON.stringify(opt));
     }
