@@ -25,7 +25,8 @@
     "slider-numColors": "色の数：{value}",
     "slider-numTilesX": "水平タイルの数：{value}",
     "slider-numTilesY": "垂直タイルの数：{value}",
-    "slider-rotationAngleRange": "角の範囲（アルファ）：{from}〜{to}",
+    "slider-rotationChance": "確率：{value}%",
+    "slider-rotationAngleRange": "角の範囲（アルファ）：{from}°〜{to}°",
 
     "checkbox-hasTileBorder": "タイルの境界線：",
 
