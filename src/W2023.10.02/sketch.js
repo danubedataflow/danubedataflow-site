@@ -31,7 +31,7 @@ function setupForm() {
         makeSlider('numTiles', 'XXX', 3, 5, 4),
         makeSlider('numPointsX', 'Anzahl der horizontalen Punkte', 3, 5, 4),
         makeSlider('numPointsY', 'Anzahl der vertikalen Punkte', 3, 5, 4),
-        makeSlider('strokeWeight', 'Strichstärke', 8, 20, 12),
+        makeSlider('strokeWeight', 'XXX', 8, 20, 12),
         makeSlider('connectionsRatio', 'Prozent der Verbindungen', 30, 70, 50, 5),
         makeSlider('scale', 'Skalierung', 0.5, 0.8, 0.6, 0.05),
     );

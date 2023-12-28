@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+use ScriptTools::features;
+use ScriptTools::JSON;
+use Path::Tiny;
+use open qw(:std :utf8);
+
+# Assuming there are JSON files named after locales like path/to/en.json,
+# path/to/ja.json etc., use
+#
+#     ./bin/assemble-i18n-dicts etc/lang/*.json >src/js/i18n-dicts.js
+#
+# It's not strictly necessary to decode and encode the JSON; a string
+# concatenation would be sufficient. But the result looks nicer and it's also
+# works as a JSON syntax check.
+
+my $data = {};
+for my $filename (@ARGV) {
+    my $p      = path($filename);
+    my $locale = $p->basename('.json');    # 'ja.json' => 'ja'
+    $data->{$locale} = json_decode($p->slurp_utf8);
+}
+my $json = json_encode($data);
+1 while chomp $json;
+my $js = "const translations = $json;";
+say $js;
