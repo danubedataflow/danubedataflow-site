@@ -57,7 +57,7 @@ function setupForm() {
         ),
         makeSlider('numTiles', 'XXX', 1, 16, 8),
         makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
-        makeSlider('strokeWeight', 'XXX', 1, 25, [10, 20]),
+        makeSlider('strokeWeightRange', 'XXX', 1, 25, [10, 20]),
         makeSlider('rotation', 'Maximale Rotation', 0, 270, [0, 90], 90),
         makeSlider('scaleFactor', 'Skalierung', 0.5, 1.5, [0.7, 1], 0.1),
     );
@@ -97,7 +97,7 @@ function drawSketch() {
             .setColor(random(palette))
             .setCenterPoint(centerPoint)
             .setSize(offset)
-            .setStrokeWeight(randomIntRange(...ctrl.strokeWeight))
+            .setStrokeWeight(randomIntRange(...ctrl.strokeWeightRange))
             .setAlpha(randomIntRange(...ctrl.alpha))
             .setScale(random(...ctrl.scaleFactor))
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))

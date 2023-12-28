@@ -3,7 +3,7 @@
 function setupForm() {
     makeForm(
         makeSlider('numRects', 'Anzahl der Rechtecke', 10, 100, 50),
-        makeSlider('strokeWeight', 'XXX', 1, 20, [2, 4]),
+        makeSlider('strokeWeightRange', 'XXX', 1, 20, [2, 4]),
         makeSlider('alpha', 'Transparenz (Alpha)', 0, 255, [200, 255]),
     );
 }
@@ -21,7 +21,7 @@ function drawSketch() {
         let w = int(random(width - ulX));
         let h = int(random(height - ulY));
 
-        strokeWeight(randomIntRange(...ctrl.strokeWeight));
+        strokeWeight(randomIntRange(...ctrl.strokeWeightRange));
         stroke(0, randomIntRange(...ctrl.alpha));
         rect(ulX, ulY, w, h);
     }
