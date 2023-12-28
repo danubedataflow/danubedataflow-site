@@ -314,7 +314,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
 
     let labelEl = makeLabel(id);
     setIntlAttributes(labelEl, {
-        key: 'param-' + id,
+        key: 'slider-' + id,
         opt: value
     });
     containerDiv.appendChild(labelEl);
@@ -344,7 +344,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
     });
     slider.on('update', function(values, handle) {
         setIntlAttributes(labelEl, {
-            key: 'param-' + id,
+            key: 'slider-' + id,
             opt: values
         });
     });
@@ -360,7 +360,7 @@ function makeCheckbox(id, value = true) {
 
     let labelEl = makeLabel(id);
     setIntlAttributes(labelEl, {
-        key: 'param-' + id
+        key: 'checkbox-' + id
     });
     containerDiv.appendChild(labelEl);
 
@@ -385,7 +385,7 @@ function makeSeed() {
 
     let labelEl = makeLabel(id);
     setIntlAttributes(labelEl, {
-        key: 'param-' + id,
+        key: 'display-' + id,
         opt: 0
     });
     containerDiv.appendChild(labelEl);

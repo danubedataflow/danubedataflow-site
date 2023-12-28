@@ -7,7 +7,7 @@ function setupForm() {
         makeSlider('chanceVertical', 'Wahrscheinlichkeit einer vertikalen Linie (%)', 0, 100, 30),
         makeSlider('chanceDiagoalUp', 'Wahrscheinlichkeit einer diagonalen Aufwärtslinie (%)', 0, 100, 30),
         makeSlider('chanceDiagoalDown', 'Wahrscheinlichkeit einer diagonalen Abwärtslinie (%)', 0, 100, 30),
-        makeCheckbox('hasTileBorder', 'Kachelrand'),
+        makeCheckbox('hasTileBorder'),
     );
 }
 
