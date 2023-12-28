@@ -20,8 +20,8 @@
     "param-numTiles": "Number of tiles per axis: {value}",
     "param-lineGap": "Distanz of initial points: {value}",
     "param-maxMovement": "Maximum movement: {value}",
-    "param-strokeWeight": "Stroke weight",
-    "param-colorStrategy": "Color strategy",
+    "param-strokeWeight": "Stroke weight: {value}",
+    "param-colorStrategy": "Color strategy: ",
 
     "option-random": "Random",
     "option-adjacent": "Adjacent",
