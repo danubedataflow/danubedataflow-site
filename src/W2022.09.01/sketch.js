@@ -161,6 +161,7 @@ class myShape {
         stroke(c);
         scale(this.scale);
         noFill();
+        let sp = this.size / 2;
 
         if (this.type == 0) {
             // ◯
@@ -168,12 +169,10 @@ class myShape {
 
         } else if (this.type == 1) {
             // ▢
-            let sp = this.size / 2;
             rect(-sp, -sp, sp, sp);
 
         } else if (this.type == 2) {
             // ◇
-            let sp = this.size / 2;
             beginShape();
             vertex(0, sp);
             vertex(sp, 0);
@@ -183,53 +182,43 @@ class myShape {
 
         } else if (this.type == 3) {
             // △
-            let sp = this.size / 2;
             triangle(-sp, sp, sp, sp, 0, -sp);
 
         } else if (this.type == 4) {
             // ▷
-            let sp = this.size / 2;
             triangle(-sp, -sp, -sp, sp, sp, 0);
 
         } else if (this.type == 5) {
             // ▽
-            let sp = this.size / 2;
             triangle(-sp, -sp, sp, -sp, 0, sp);
 
         } else if (this.type == 6) {
             // ◁
-            let sp = this.size / 2;
             triangle(sp, -sp, sp, sp, -sp, 0);
 
         } else if (this.type == 7) {
             // ⎯
-            let sp = this.size / 2;
             line(-sp, 0, sp, 0);
 
         } else if (this.type == 8) {
             // ⏐
-            let sp = this.size / 2;
             line(0, -sp, 0, sp);
 
         } else if (this.type == 9) {
             // ╱
-            let sp = this.size / 2;
             line(-sp, sp, sp, -sp);
 
         } else if (this.type == 10) {
             // ╲
-            let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
 
         } else if (this.type == 11) {
             // ┼
-            let sp = this.size / 2;
             line(0, -sp, 0, sp);
             line(-sp, 0, sp, 0);
 
         } else if (this.type == 12) {
             // ╳
-            let sp = this.size / 2;
             line(-sp, -sp, sp, sp);
             line(sp, -sp, -sp, sp);
 
