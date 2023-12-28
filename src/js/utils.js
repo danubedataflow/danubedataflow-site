@@ -355,7 +355,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
     return containerDiv;
 }
 
-function makeCheckbox(id, label, value = true) {
+function makeCheckbox(id, value = true) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);

@@ -25,6 +25,7 @@
     "param-numColors": "色の数：{value}",
     "param-numTilesX": "水平タイルの数：{value}",
     "param-numTilesY": "垂直タイルの数：{value}",
+    "param-hasTileBorder": "タイルの境界線：",
 
     "option-random": "ランダム",
     "option-adjacent": "隣接",
