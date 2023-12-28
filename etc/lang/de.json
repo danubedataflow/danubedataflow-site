@@ -25,6 +25,7 @@
     "slider-numColors": "Anzahl der Farben: {value}",
     "slider-numTilesX": "Anzahl der horizontalen Kacheln: {value}",
     "slider-numTilesY": "Anzahl der vertikalen Kacheln: {value}",
+    "slider-alphaRange": "Transparenz-Bereich (Alpha): {from} bis {to}",
 
     "checkbox-hasTileBorder": "Kachelrand: ",
 

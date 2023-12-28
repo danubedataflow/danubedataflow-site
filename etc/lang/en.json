@@ -25,6 +25,7 @@
     "slider-numColors": "Number of colors: {value}",
     "slider-numTilesX": "Number of horizontal tiles: {value}",
     "slider-numTilesY": "Number of vertical tiles: {value}",
+    "slider-alphaRange": "Transparency range (alpha): {from} to {to}",
 
     "checkbox-hasTileBorder": "Tile border: ",
 

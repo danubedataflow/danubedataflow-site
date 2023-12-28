@@ -8,7 +8,7 @@ function setupForm() {
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
             makeSlider('numColors', 'XXX', 1, 32, 16),
-            makeSlider('alpha', 'Transparenz (Alpha)', 0, 100, [20, 80]),
+            makeSlider('alphaRange', 'Transparenz (Alpha)', 0, 100, [20, 80]),
         ),
         makeSlider('numSquares', 'Anzahl der Quadrate', 20, 1000, 100, 20),
         makeSlider('size', 'Größe (%)', 1, 100, [5, 30]),
@@ -28,7 +28,7 @@ function drawSketch() {
         let c = color(random(palette));
 
         // map [0,100]% to [0,255]
-        c.setAlpha(randomIntRange(...ctrl.alpha.map(n => n * 255 / 100)));
+        c.setAlpha(randomIntRange(...ctrl.alphaRange.map(n => n * 255 / 100)));
         fill(c);
 
         let [minSize, maxSize] = ctrl.size;
