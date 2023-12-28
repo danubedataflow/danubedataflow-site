@@ -2,12 +2,12 @@
 
 function setupForm() {
     makeForm(
-        makeFieldset('Kacheln',
+        makeFieldset('tiles',
             makeSlider('tileCountX', 'Horizontale Kacheln', 1, 100, 30),
             makeSlider('tileCountY', 'Vertikale Kacheln', 1, 100, 15),
             makeSlider('tileSizeMultiplier', 'Kachelgrößen-Multiplikator', 1, 10, 3, 0.1),
         ),
-        makeFieldset('Rauschen',
+        makeFieldset('noise',
             makeSlider('noiseOffsetX', 'Horizontaler Rausch-Versatz', 0, 30, 4),
             makeSlider('noiseOffsetY', 'Vertikaler Rausch-Versatz', 1, 100, 15),
             makeSlider('noiseDivisor', 'Rausch-Teiler', 1, 30, 9),

@@ -241,13 +241,13 @@ function makeForm(...contents) {
     // updateURL();
 }
 
-function makeFieldset(legendText, ...contents) {
-    let fieldset = document.createElement('fieldset');
-    let legend = document.createElement('legend');
-    legend.appendChild(document.createTextNode(legendText));
-    fieldset.appendChild(legend);
-    contents.forEach(child => fieldset.appendChild(child));
-    return fieldset;
+function makeFieldset(legend, ...contents) {
+    let fieldsetEl = document.createElement('fieldset');
+    let legendEl = document.createElement('legend');
+    setIntlAttributes(legendEl, { key: 'fieldset-' + legend });
+    fieldsetEl.appendChild(legendEl);
+    contents.forEach(child => fieldsetEl.appendChild(child));
+    return fieldsetEl;
 }
 
 function makeDiv(config, ...contents) {
@@ -259,42 +259,50 @@ function makeDiv(config, ...contents) {
     return el;
 }
 
-// 'id' is the value of the 'for' attribute
+// 'id' is the value of the 'for' attribute. The <label>'s innerText
+// will be set by the i18n code.
 function makeLabel(id) {
     let el = document.createElement('label');
     el.setAttribute('for', id);
-    // The <label>'s actual text will be determined by the i18n code. Us
-    // e the "for" attribute as a default since createTextNode() expects
-    // a value.
-    el.appendChild(document.createTextNode(id));
     return el;
 }
 
-function setIntlAttributes (element, key, values) {
-    element.setAttribute('data-i18n-key', key);
+function setIntlAttributes (element, config) {
+    element.setAttribute('data-i18n-key', config.key);
 
-    // Create the 'data-i18n-opt' attribute only if any values are given.
-    // For example, slider labels have values, checkbox labels do not.
+    // Create the 'data-i18n-opt' attribute only if config.opt is given. For
+    // example, slider labels have options (placeholders), checkbox labels do
+    // not.
 
-    if (typeof values !== 'undefined') {
+    if (typeof config.opt !== 'undefined') {
         // Handle scalar values. one-element arrays and two-element
         // arrays. The initial call to makeSlider can have a scalar
         // value. But the slider 'update' event will always return an
         // array, even for sliders with one handle.
         let opt = {};
-        if (Array.isArray(values) ) {
-            if (values.length == 1) {
-                opt.value = values[0];
+        if (Array.isArray(config.opt) ) {
+            if (config.opt.length == 1) {
+                opt.value = config.opt[0];
             } else {
-                opt.from = values[0];
-                opt.to = values[1];
+                opt.from = config.opt[0];
+                opt.to = config.opt[1];
             }
         } else {
-            opt.value = values;
+            opt.value = config.opt;
         }
         element.setAttribute('data-i18n-opt', JSON.stringify(opt));
     }
-    element.innerText = translateElement(element);
+
+    // By default we translate the innerText of the given element. If
+    // config.target is given, we want to translate the attribute with that
+    // name instead.
+
+    if (typeof config.target !== 'undefined') {
+        element.setAttribute('data-i18n-target', config.target);
+        element.setAttribute(config.target, translateElement(element));
+    } else {
+        element.innerText = translateElement(element);
+    }
 }
 
 function makeSlider(id, label, min, max, value, step = 1) {
@@ -303,7 +311,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, 'param-' + id, value);
+    setIntlAttributes(labelEl, { key: 'param-' + id, opt: value });
     containerDiv.appendChild(labelEl);
 
     // <div class="slider-wrapper"><div id="foo"></div></div>
@@ -330,7 +338,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
         behaviour: 'tap-drag'
     });
     slider.on('update', function(values, handle) {
-        setIntlAttributes(labelEl, 'param-' + id, values);
+        setIntlAttributes(labelEl, { key: 'param-' + id, opt: values });
     });
     slider.on('slide', function(values, handle) {
         redrawWithSameSeed();
@@ -343,7 +351,7 @@ function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, 'param-' + id);
+    setIntlAttributes(labelEl, { key: 'param-' + id });
     containerDiv.appendChild(labelEl);
 
     let checkboxEl = document.createElement('input');
@@ -366,7 +374,7 @@ function makeSeed() {
         containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, 'param-' + id, 0);
+    setIntlAttributes(labelEl, { key: 'param-' + id, opt: 0 });
     containerDiv.appendChild(labelEl);
 
     let inputEl = document.createElement('input');
@@ -382,16 +390,17 @@ function makeSeed() {
 function makeOption(value, text = value) {
     let el = document.createElement('option');
     el.setAttribute('value', value);
-    setIntlAttributes(el, 'option-' + value);
-
-    // The text node's innerText will be filled by the i18n code
-    el.appendChild(document.createTextNode(''));
+    setIntlAttributes(el, { key: 'option-' + value });
     return el;
 }
 
 function makeOptGroup(label, ...contents) {
     let el = document.createElement('optGroup');
     el.setAttribute('label', label);
+    setIntlAttributes(el, { key: 'optgroup-' + label, target: 'label' });
+
+    // We need to translate the 'label' attr, not any innterText.
+    el.setAttribute('data-i18n-target', 'label');
     contents.forEach(child => el.appendChild(child));
     return el;
 }
@@ -400,7 +409,7 @@ function makeSelect(id, label, contents, value) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, 'param-' + id);
+    setIntlAttributes(labelEl, { key: 'select-' + id });
     containerDiv.appendChild(labelEl);
 
     let selectEl = document.createElement('select');
@@ -424,7 +433,7 @@ function makeSelectColorMap() {
     let containerDiv = makeSelect(
         'colorMap',
         'Farbpalette', [
-            makeOptGroup('Sequetiell',
+            makeOptGroup('sequential',
                 makeOption('OrRd'),
                 makeOption('PuBu'),
                 makeOption('BuPu'),
@@ -445,7 +454,7 @@ function makeSelectColorMap() {
                 makeOption('PuBuGn'),
                 makeOption('Viridis'),
             ),
-            makeOptGroup('Divergierend',
+            makeOptGroup('diverging',
                 makeOption('Spectral'),
                 makeOption('RdYlGn'),
                 makeOption('RdBu'),
@@ -456,7 +465,7 @@ function makeSelectColorMap() {
                 makeOption('RdGy'),
                 makeOption('PuOr'),
             ),
-            makeOptGroup('Qualitativ',
+            makeOptGroup('qualitative',
                 makeOption('Set2'),
                 makeOption('Accent'),
                 makeOption('Set1'),

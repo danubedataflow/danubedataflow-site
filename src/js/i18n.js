@@ -54,12 +54,25 @@ function setLocale(newLocale) {
     translatePage();
 }
 
-// Replace the inner text of all elements with the data-i18n-key attribute to
-// translations corresponding to their data-i18n-key
+// Replace the target of all elements with the data-i18n-key attribute to
+// translations corresponding to their data-i18n-key. Normally the innerText
+// will be replaced, but if there is a data-i18n-target attribute, the
+// attribute with that name will be replaced. The 'target' mechanism is useful
+// for <optgroup label='...'>.
+
 function translatePage() {
     document
         .querySelectorAll("[data-i18n-key]")
-        .forEach((el) => el.innerText = translateElement(el));
+        .forEach((el) => {
+            let target = el.getAttribute('data-i18n-target');
+
+            // getAttribute() may return null, not undefined
+            if (target) {
+                el.setAttribute(target, translateElement(el));
+            } else {
+                el.innerText = translateElement(el)
+            }
+        });
 }
 
 // Return the given HTML element's translation in the active locale,
@@ -70,11 +83,20 @@ function translateElement(element) {
     const interpolations =
         JSON.parse(element.getAttribute("data-i18n-opt")) || {};
 
-    const message = translations[locale][key] || translations[defaultLocale][key];
-
-    // Missing entry in a dictionary?
+    let message = translations[locale][key];
     if (typeof message === 'undefined') {
-        return 'missing key ' + key;
+        console.log(`locale '${locale}' has no key '${key}'`);
+
+        // try to find the key in the defaultLocale, if it's not the
+        // locale already
+
+        if (locale != defaultLocale) {
+            message = translations[defaultLocale][key];
+            if (typeof message === 'undefined') {
+                console.log(`default locale '${defaultLocale}' also has no key '${key}'`);
+            }
+        }
+        if (typeof message === 'undefined') return 'missing key ' + key;
     }
 
     if (key.endsWith("-plural")) {

@@ -4,7 +4,7 @@ let palette;
 
 function setupForm() {
     makeForm(
-        makeFieldset('Farben',
+        makeFieldset('colors',
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
             makeSlider('numColors', 'Anzahl der Farben', 1, 32, 16),

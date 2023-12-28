@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeFieldset('Farben',
+        makeFieldset('colors',
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
             makeSlider('numColors', 'Anzahl der Farben', 1, 32, 25),

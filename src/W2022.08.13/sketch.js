@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeFieldset('Farben',
+        makeFieldset('colors',
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, HARD_LIGHT, MULTIPLY]),
         ),
