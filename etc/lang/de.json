@@ -21,7 +21,12 @@
     "param-lineGap": "Distanz der Anfangspunkte: {value}",
     "param-maxMovement": "Maximale Bewegung: {value}",
     "param-strokeWeight": "Strichstärke",
+    "param-colorStrategy": "Farbwahl-Strategie",
+
+    "option-random": "Zufällig",
+    "option-adjacent": "Angrenzend",
 
     "description-inspired-vm": "Inspiriert von Vera Molnár.",
+    "description-W2022.12.07": "Die \"angrenzende\" Farbwahl-Strategie verwendet eine Farbe der vorigen Kachel.",
     "description-W2023.10.05": "Nimm einen Wahrscheinlichkeitswert, der von 0 ganz oben bis 1 ganz unten geht. Damit in einer Reihe ein Quadrat gezeichnet wird, muß eine Zufallszahl größer sein als der Wahrscheinlichkeitswert potenziert mit einem gegebenen Wert. Je höher also der Exponent ist, desto niedriger wird der Schwellwert, und umso wahrscheinlicher ist es, daß ein Quadrat gezeichnet wird."
 }
