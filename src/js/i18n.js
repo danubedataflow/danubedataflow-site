@@ -14,9 +14,6 @@ const fullyQualifiedLocaleDefaults = {
 // The active locale
 let locale;
 
-// Gets filled with active locale translations
-let translations = {};
-
 // When the page content is ready...
 document.addEventListener("DOMContentLoaded", () => {
     // use ['en', 'fr'] instead of ['en-US', 'fr-FR']
@@ -46,37 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 });
 
-// Load translations for the given locale and translate
-// the page to this locale
+// Set the given locale and translate the page to this locale
 function setLocale(newLocale) {
     if (newLocale === locale) return;
-    const newTranslations = fetchTranslationsFor(newLocale);
     locale = newLocale;
     localStorage.setItem('userLocale', newLocale);
-    translations = newTranslations;
     document.documentElement.lang = newLocale;
     document.documentElement.dir = 'ltr';
 
     translatePage();
 }
 
-// Retrieves translations JSON object for the given
-// locale over the network
-function fetchTranslationsFor(newLocale) {
-    const request = new XMLHttpRequest();
-    request.open('GET', `/lang/${newLocale}.json`, false); // `false` makes the request synchronous
-    request.send(null);
-
-    if (request.status === 200) {
-        return JSON.parse(request.responseText);
-    }
-    return null;
-
-}
-
-// Replace the inner text of all elements with the
-// data-i18n-key attribute to translations corresponding
-// to their data-i18n-key
+// Replace the inner text of all elements with the data-i18n-key attribute to
+// translations corresponding to their data-i18n-key
 function translatePage() {
     document
         .querySelectorAll("[data-i18n-key]")
@@ -91,7 +70,7 @@ function translateElement(element) {
     const interpolations =
         JSON.parse(element.getAttribute("data-i18n-opt")) || {};
 
-    const message = translations[key];
+    const message = translations[locale][key] || translations[defaultLocale][key];
 
     // Missing entry in a dictionary?
     if (typeof message === 'undefined') {

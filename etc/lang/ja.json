@@ -1,17 +1,17 @@
 {
-    "navWorks": "作品",
-    "navNotes": "日記",
-    "navQuotes": "引用",
-    "sectionWorks": "作品",
-    "sectionNotes": "日記（ドイツ語）",
-    "sectionQuotes": "引用(英語）",
+    "nav-Works": "作品",
+    "nav-Notes": "日記",
+    "nav-Quotes": "引用",
+    "section-Works": "作品",
+    "section-Notes": "日記（ドイツ語）",
+    "section-Quotes": "引用(英語）",
 
-    "sourceCode": "ソースコード",
-    "newSeed": "新しいシード",
-    "randomParameters": "ランダムパラメータ",
-    "saveCanvas": "保存",
-    "copyLink": "リンクをコピー",
-    "printView": "プリンタービュー",
+    "sketch-sourceCode": "ソースコード",
+    "sketch-newSeed": "新しいシード",
+    "sketch-randomParameters": "ランダムパラメータ",
+    "sketch-saveCanvas": "保存",
+    "sketch-copyLink": "リンクをコピー",
+    "sketch-printView": "プリンタービュー",
 
     "param-seed": "シード：",
 
@@ -20,6 +20,7 @@
     "param-numTiles": "軸あたりのタイル数：{value}",
     "param-lineGap": "最新の点の距離：{value}",
     "param-maxMovement": "最大の動き：{value}",
+    "param-strokeWeight": "筆の太さ",
 
     "W2023.10.05-description": "上部の 0 から下部の 1 までの確率値を取得します。 正方形を連続して描画するには、乱数が確率値の指定値の累乗よりも大きくなければなりません。 したがって、指数が高くなるほど、しきい値は低くなり、正方形が描画される可能性が高くなります。"
 }

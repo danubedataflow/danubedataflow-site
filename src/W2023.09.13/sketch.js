@@ -3,7 +3,7 @@
 function setupForm() {
     makeForm(
         makeSlider('numRects', 'Anzahl der Rechtecke', 10, 100, 50),
-        makeSlider('strokeWeight', 'Strichstärke', 1, 20, [2, 4]),
+        makeSlider('strokeWeight', 'XXX', 1, 20, [2, 4]),
         makeSlider('alpha', 'Transparenz (Alpha)', 0, 255, [200, 255]),
     );
 }

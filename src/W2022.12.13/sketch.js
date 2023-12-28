@@ -10,7 +10,7 @@ function setupForm() {
         ),
         makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
         makeSlider('divisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
-        makeSlider('strokeWeight', 'Strichstärke', 1, 8, 1),
+        makeSlider('strokeWeight', 'XXX', 1, 8, 1),
     );
 }
 

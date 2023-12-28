@@ -4,6 +4,7 @@ DEPS = src/deps
 .PHONY: site deps watch nginx live icons clean test open-all
 
 site: clean
+	@./bin/assemble-i18n-dicts etc/lang/*.json >src/js/i18n-dicts.js
 	@ttree -f etc/ttreerc
 
 deps:

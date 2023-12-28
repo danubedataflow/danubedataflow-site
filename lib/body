@@ -2,9 +2,9 @@
     <header>
         <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
         <div class="subheading">
-            <a href="/" data-i18n-key="navWorks">Werke</a>
-            | <a href="/notizen.html" data-i18n-key="navNotes">Notizen</a>
-            | <a href="/zitate.html" data-i18n-key="navQuotes">Zitate</a>
+            <a href="/" data-i18n-key="nav-Works">Werke</a>
+            | <a href="/notizen.html" data-i18n-key="nav-Notes">Notizen</a>
+            | <a href="/zitate.html" data-i18n-key="nav-Quotes">Zitate</a>
             |
 
           <select data-i18n-switcher class="locale-switcher">
@@ -18,5 +18,6 @@
     <main>
 [% content %]
     </main>
+    <script src="/js/i18n-dicts.js"></script>
     <script src="/js/i18n.js"></script>
 </body>

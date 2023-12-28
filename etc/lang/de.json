@@ -1,17 +1,17 @@
 {
-    "navWorks": "Werke",
-    "navNotes": "Notizen",
-    "navQuotes": "Zitate",
-    "sectionWorks": "Werke",
-    "sectionNotes": "Notizen",
-    "sectionQuotes": "Zitate",
+    "nav-Works": "Werke",
+    "nav-Notes": "Notizen",
+    "nav-Quotes": "Zitate",
+    "section-Works": "Werke",
+    "section-Notes": "Notizen",
+    "section-Quotes": "Zitate",
 
-    "sourceCode": "Quellcode",
-    "newSeed": "Neuer Seed",
-    "randomParameters": "Zufallsparameter",
-    "saveCanvas": "Speichern",
-    "copyLink": "Link kopieren",
-    "printView": "Druckansicht",
+    "sketch-sourceCode": "Quellcode",
+    "sketch-newSeed": "Neuer Seed",
+    "sketch-randomParameters": "Zufallsparameter",
+    "sketch-saveCanvas": "Speichern",
+    "sketch-copyLink": "Link kopieren",
+    "sketch-printView": "Druckansicht",
 
     "param-seed": "Seed: ",
 
@@ -20,6 +20,7 @@
     "param-numTiles": "Anzahl der Kacheln pro Achse: {value}",
     "param-lineGap": "Distanz der Anfangspunkte: {value}",
     "param-maxMovement": "Maximale Bewegung: {value}",
+    "param-strokeWeight": "Strichstärke",
 
     "W2023.10.05-description": "Nimm einen Wahrscheinlichkeitswert, der von 0 ganz oben bis 1 ganz unten geht. Damit in einer Reihe ein Quadrat gezeichnet wird, muß eine Zufallszahl größer sein als der Wahrscheinlichkeitswert potenziert mit einem gegebenen Wert. Je höher also der Exponent ist, desto niedriger wird der Schwellwert, und umso wahrscheinlicher ist es, daß ein Quadrat gezeichnet wird."
 }
