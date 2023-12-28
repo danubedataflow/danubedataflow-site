@@ -25,6 +25,7 @@
     "slider-numColors": "色の数：{value}",
     "slider-numTilesX": "水平タイルの数：{value}",
     "slider-numTilesY": "垂直タイルの数：{value}",
+    "slider-alphaRange": "透明度の範囲（アルファ）：{from}〜{to}",
 
     "checkbox-hasTileBorder": "タイルの境界線：",
 

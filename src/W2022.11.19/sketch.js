@@ -9,7 +9,7 @@ function setupForm() {
             makeSlider('colorAngle', 'Winkel auf dem Farbenkreis', 0, 359, 0),
             makeSlider('saturation', 'Farbsättigung', 40, 100, [60, 80]),
             makeSlider('brightness', 'Helligkeit', 40, 100, [60, 80]),
-            makeSlider('alpha', 'Transparenz (Alpha)', 1, 255, [50, 200]),
+            makeSlider('alphaRange', 'Transparenz (Alpha)', 1, 255, [50, 200]),
         ),
     );
 }
@@ -19,7 +19,7 @@ function setRandomFillColor() {
         ctrl.colorAngle,
         randomIntRange(...ctrl.saturation),
         randomIntRange(...ctrl.brightness),
-        randomIntRange(...ctrl.alpha)
+        randomIntRange(...ctrl.alphaRange)
     );
 }
 

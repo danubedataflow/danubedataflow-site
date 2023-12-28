@@ -6,7 +6,7 @@ function setupForm() {
             makeSelectColorMap(),
             makeSlider('numColors', 'XXX', 2, 16, 8),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT]),
-            makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [60, 70]),
+            makeSlider('alphaRange', 'Transparenz (Alpha)', 30, 90, [60, 70]),
         ),
         makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
         makeSlider('divisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
@@ -25,7 +25,7 @@ function drawSketch() {
         let drawType = random(['plain', 'diagonal']);
         let maxDivisor = randomIntRange(...ctrl.divisorRange);
         let minDivisor = int(maxDivisor * 1.5);
-        drawGrid(width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alpha));
+        drawGrid(width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange));
     }
 }
 

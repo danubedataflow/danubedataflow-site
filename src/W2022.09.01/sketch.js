@@ -53,7 +53,7 @@ function setupForm() {
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
             makeSlider('numColors', 'XXX', 1, 12, 6),
-            makeSlider('alpha', 'Transparenz (Alpha)', 30, 90, [80, 100]),
+            makeSlider('alphaRange', 'XXX', 30, 90, [80, 100]),
         ),
         makeSlider('numTiles', 'XXX', 1, 16, 8),
         makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
@@ -98,7 +98,7 @@ function drawSketch() {
             .setCenterPoint(centerPoint)
             .setSize(offset)
             .setStrokeWeight(randomIntRange(...ctrl.strokeWeightRange))
-            .setAlpha(randomIntRange(...ctrl.alpha))
+            .setAlpha(randomIntRange(...ctrl.alphaRange))
             .setScale(random(...ctrl.scaleFactor))
             .setRotation(int(random(minRotation / 90, maxRotation / 90 + 1)))
             .display();
