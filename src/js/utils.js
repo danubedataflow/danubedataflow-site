@@ -382,7 +382,10 @@ function makeSeed() {
 function makeOption(value, text = value) {
     let el = document.createElement('option');
     el.setAttribute('value', value);
-    el.appendChild(document.createTextNode(text));
+    setIntlAttributes(el, 'option-' + value);
+
+    // The text node's innerText will be filled by the i18n code
+    el.appendChild(document.createTextNode(''));
     return el;
 }
 
