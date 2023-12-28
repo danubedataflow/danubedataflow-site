@@ -327,3 +327,23 @@ https://www.compart.com/en/unicode/block/U+2200
 Ist aber nur sinnvoll bei einem Werk, das durch viele Parameter besonders abwechslungsreiche Bilder erzeugt.
 Vgl. https://github.com/doersino/uji
 
+===
+
+makeSelectBlendMode() uses p5.js's constants, but in the i18n dicts we
+need to use the values of these constants.
+
+- ADD == lighter
+- BLEND == source-over
+- BURN == color-burn
+- DARKEST == darken
+- DIFFERENCE == difference
+- DODGE == color-dodge
+- EXCLUSION == exclusion
+- HARD_LIGHT == hard-light
+- LIGHTEST == lighten
+- MULTIPLY == multiply
+- OVERLAY == overlay
+- REMOVE == destination-out
+- REPLACE == copy
+- SCREEN == screen
+- SOFT_LIGHT == soft-light

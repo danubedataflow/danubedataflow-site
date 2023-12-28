@@ -244,7 +244,9 @@ function makeForm(...contents) {
 function makeFieldset(legend, ...contents) {
     let fieldsetEl = document.createElement('fieldset');
     let legendEl = document.createElement('legend');
-    setIntlAttributes(legendEl, { key: 'fieldset-' + legend });
+    setIntlAttributes(legendEl, {
+        key: 'fieldset-' + legend
+    });
     fieldsetEl.appendChild(legendEl);
     contents.forEach(child => fieldsetEl.appendChild(child));
     return fieldsetEl;
@@ -267,7 +269,7 @@ function makeLabel(id) {
     return el;
 }
 
-function setIntlAttributes (element, config) {
+function setIntlAttributes(element, config) {
     element.setAttribute('data-i18n-key', config.key);
 
     // Create the 'data-i18n-opt' attribute only if config.opt is given. For
@@ -280,7 +282,7 @@ function setIntlAttributes (element, config) {
         // value. But the slider 'update' event will always return an
         // array, even for sliders with one handle.
         let opt = {};
-        if (Array.isArray(config.opt) ) {
+        if (Array.isArray(config.opt)) {
             if (config.opt.length == 1) {
                 opt.value = config.opt[0];
             } else {
@@ -311,7 +313,10 @@ function makeSlider(id, label, min, max, value, step = 1) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, { key: 'param-' + id, opt: value });
+    setIntlAttributes(labelEl, {
+        key: 'param-' + id,
+        opt: value
+    });
     containerDiv.appendChild(labelEl);
 
     // <div class="slider-wrapper"><div id="foo"></div></div>
@@ -323,7 +328,7 @@ function makeSlider(id, label, min, max, value, step = 1) {
         makeDiv({
             'class': 'slider-wrapper'
         }, sliderDiv)
-);
+    );
 
     let slider = noUiSlider.create(sliderDiv, {
         range: {
@@ -338,7 +343,10 @@ function makeSlider(id, label, min, max, value, step = 1) {
         behaviour: 'tap-drag'
     });
     slider.on('update', function(values, handle) {
-        setIntlAttributes(labelEl, { key: 'param-' + id, opt: values });
+        setIntlAttributes(labelEl, {
+            key: 'param-' + id,
+            opt: values
+        });
     });
     slider.on('slide', function(values, handle) {
         redrawWithSameSeed();
@@ -351,7 +359,9 @@ function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, { key: 'param-' + id });
+    setIntlAttributes(labelEl, {
+        key: 'param-' + id
+    });
     containerDiv.appendChild(labelEl);
 
     let checkboxEl = document.createElement('input');
@@ -374,7 +384,10 @@ function makeSeed() {
         containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, { key: 'param-' + id, opt: 0 });
+    setIntlAttributes(labelEl, {
+        key: 'param-' + id,
+        opt: 0
+    });
     containerDiv.appendChild(labelEl);
 
     let inputEl = document.createElement('input');
@@ -387,17 +400,23 @@ function makeSeed() {
     return containerDiv;
 }
 
-function makeOption(value, text = value) {
+// The <option>'s innerText will be set by the i18n code.
+function makeOption(value) {
     let el = document.createElement('option');
     el.setAttribute('value', value);
-    setIntlAttributes(el, { key: 'option-' + value });
+    setIntlAttributes(el, {
+        key: 'option-' + value
+    });
     return el;
 }
 
 function makeOptGroup(label, ...contents) {
     let el = document.createElement('optGroup');
     el.setAttribute('label', label);
-    setIntlAttributes(el, { key: 'optgroup-' + label, target: 'label' });
+    setIntlAttributes(el, {
+        key: 'optgroup-' + label,
+        target: 'label'
+    });
 
     // We need to translate the 'label' attr, not any innterText.
     el.setAttribute('data-i18n-target', 'label');
@@ -405,11 +424,13 @@ function makeOptGroup(label, ...contents) {
     return el;
 }
 
-function makeSelect(id, label, contents, value) {
+function makeSelect(id, contents, value) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, { key: 'select-' + id });
+    setIntlAttributes(labelEl, {
+        key: 'select-' + id
+    });
     containerDiv.appendChild(labelEl);
 
     let selectEl = document.createElement('select');
@@ -431,8 +452,7 @@ function makeSelect(id, label, contents, value) {
 
 function makeSelectColorMap() {
     let containerDiv = makeSelect(
-        'colorMap',
-        'Farbpalette', [
+        'colorMap', [
             makeOptGroup('sequential',
                 makeOption('OrRd'),
                 makeOption('PuBu'),
@@ -516,8 +536,7 @@ function makeSelectBlendMode(options) {
     let defaultValue = options.putFirst(el => el == BLEND).at(0);
     return makeSelect(
         'blendMode',
-        'Farbmischung',
-        options.map(c => makeOption(c, nameFor[c])),
+        options.map(c => makeOption(c)),
         defaultValue
     );
 }
