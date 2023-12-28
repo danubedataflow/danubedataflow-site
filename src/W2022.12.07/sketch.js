@@ -6,7 +6,7 @@ function setupForm() {
     makeForm(
         makeSlider('numTiles', 'XXX', 4, 40, 20),
         makeSlider('chanceDiagonal', 'Wahrscheinlichkeit der Ausrichtung der Diagonale (%)', 0, 100, 50),
-        makeSelect('colorStrategy', 'Farbwahl-Strategie', [
+        makeSelect('colorStrategy', [
             makeOption('random', 'XXX'),
             makeOption('adjacent', 'XXX'),
         ]),
