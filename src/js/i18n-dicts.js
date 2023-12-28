@@ -95,6 +95,7 @@ const translations = {
       "slider-numTiles" : "Anzahl der Kacheln pro Achse: {value}",
       "slider-numTilesX" : "Anzahl der horizontalen Kacheln: {value}",
       "slider-numTilesY" : "Anzahl der vertikalen Kacheln: {value}",
+      "slider-rotationAngleRange" : "Winkel-Bereich: {from} bis {to}",
       "slider-strokeWeight" : "Strichstärke: {value}",
       "slider-strokeWeightRange" : "Strichstärke-Bereich: {from} bis {to}"
    },
@@ -192,6 +193,7 @@ const translations = {
       "slider-numTiles" : "Number of tiles per axis: {value}",
       "slider-numTilesX" : "Number of horizontal tiles: {value}",
       "slider-numTilesY" : "Number of vertical tiles: {value}",
+      "slider-rotationAngleRange" : "Angle range: {from} to {to}",
       "slider-strokeWeight" : "Stroke weight: {value}",
       "slider-strokeWeightRange" : "Stroke weight range: {from} to {to}"
    },
@@ -280,7 +282,6 @@ const translations = {
       "sketch-randomParameters" : "ランダムパラメータ",
       "sketch-saveCanvas" : "保存",
       "sketch-sourceCode" : "ソースコード",
-      "slider-alphaRange" : "透明度の範囲（アルファ）：{from}〜{to}",
       "slider-exponentsRange" : "指数：{from}〜{to}",
       "slider-lineGap" : "最新の点の距離：{value}",
       "slider-maxMovement" : "最大の動き：{value}",
@@ -289,6 +290,7 @@ const translations = {
       "slider-numTiles" : "軸あたりのタイル数：{value}",
       "slider-numTilesX" : "水平タイルの数：{value}",
       "slider-numTilesY" : "垂直タイルの数：{value}",
+      "slider-rotationAngleRange" : "角の範囲（アルファ）：{from}〜{to}",
       "slider-strokeWeight" : "筆の太さ：{value}",
       "slider-strokeWeightRange" : "筆の太さ：{from}〜{to}"
    }

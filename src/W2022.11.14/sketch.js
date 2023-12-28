@@ -5,7 +5,7 @@ function setupForm() {
         makeSlider('numTiles', 'XXX', 4, 40, 20),
         makeFieldset('rotation',
             makeSlider('rotationChance', 'Wahrscheinlichkeit (%)', 0, 100, 5),
-            makeSlider('rotationAmount', 'Winkel', -45, 45, [-10, 10]),
+            makeSlider('rotationAngleRange', 'XXX', -45, 45, [-10, 10]),
         ),
         makeFieldset('scale',
             makeSlider('scaleChance', 'Wahrscheinlichkeit (%)', 0, 100, 5),
@@ -35,7 +35,7 @@ function drawSketch() {
             // `+ 0.5` to move to the tile's center
             translate((x - 1) * (dim + 0.5), (y - 1) * (dim + 0.5));
 
-            if (random(100) < ctrl.rotationChance) rotate(random(...ctrl.rotationAmount));
+            if (random(100) < ctrl.rotationChance) rotate(random(...ctrl.rotationAngleRange));
             if (random(100) < ctrl.scaleChance) scale(random(...ctrl.scaleAmount) / 100);
             if (random(100) < ctrl.translationChance) translate(
                 dim * random(...ctrl.translationAmount) / 100,
