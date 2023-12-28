@@ -4,7 +4,7 @@ function setupForm() {
     makeForm(
         makeSlider('numTiles', 'XXX', 3, 5, 4),
         makeSlider('numPoints', 'XXX', 4, 10, 7),
-        makeSlider('exponents', 'XXX', 0.2, 5, [2, 3], 0.1),
+        makeSlider('exponentsRange', 'XXX', 0.2, 5, [2, 3], 0.1),
     );
 }
 
@@ -42,7 +42,7 @@ function drawTile(tile) {
     translate(...tile.upperLeft);
 
     // Get a random exponent for each tile
-    let exponent = random(...ctrl.exponents);
+    let exponent = random(...ctrl.exponentsRange);
     let dim = tile.width / ctrl.numPoints;
     for (let y = 1; y <= ctrl.numPoints; y++) {
         for (let x = 1; x <= ctrl.numPoints; x++) {

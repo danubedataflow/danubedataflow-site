@@ -15,12 +15,13 @@
 
     "param-seed": "Seed: ",
 
-    "param-exponents": "Exponenten: {from} bis {to}",
+    "param-exponentsRange": "Exponenten-Bereich: {from} bis {to}",
     "param-numPoints": "Anzahl der Punkte pro Kachel: {value}",
     "param-numTiles": "Anzahl der Kacheln pro Achse: {value}",
     "param-lineGap": "Distanz der Anfangspunkte: {value}",
     "param-maxMovement": "Maximale Bewegung: {value}",
     "param-strokeWeight": "Strichstärke: {value}",
+    "param-strokeWeightRange": "Strichstärke-Bereich: {from} bis {to}",
     "param-numColors": "Anzahl der Farben: {value}",
     "param-numTilesX": "Anzahl der horizontalen Kacheln: {value}",
     "param-numTilesY": "Anzahl der vertikalen Kacheln: {value}",

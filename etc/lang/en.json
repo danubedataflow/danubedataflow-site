@@ -15,12 +15,13 @@
 
     "param-seed": "Seed: ",
 
-    "param-exponents": "exponents: {from} to {to}",
+    "param-exponentsRange": "Exponent range: {from} to {to}",
     "param-numPoints": "Number of points per tile: {value}",
     "param-numTiles": "Number of tiles per axis: {value}",
     "param-lineGap": "Distanz of initial points: {value}",
     "param-maxMovement": "Maximum movement: {value}",
     "param-strokeWeight": "Stroke weight: {value}",
+    "param-strokeWeightRange": "Stroke weight range: {from} to {to}",
     "param-numColors": "Number of colors: {value}",
     "param-numTilesX": "Number of horizontal tiles: {value}",
     "param-numTilesY": "Number of vertical tiles: {value}",
