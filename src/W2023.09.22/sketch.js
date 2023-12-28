@@ -2,8 +2,8 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTilesX', 'Anzahl der horizontalen Kacheln', 10, 100, 50),
-        makeSlider('numTilesY', 'Anzahl der vertikalen Kacheln', 10, 100, 50),
+        makeSlider('numTilesX', 'XXX', 10, 100, 50),
+        makeSlider('numTilesY', 'XXX', 10, 100, 50),
         makeSlider('scale', 'Skalierung', 0.5, 1.5, 1, 0.1),
         makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 10, 2),
         makeSlider('strokeWeight', 'XXX', 1, 6, 1),

@@ -22,6 +22,8 @@
     "param-maxMovement": "Maximum movement: {value}",
     "param-strokeWeight": "Stroke weight: {value}",
     "param-numColors": "Number of colors: {value}",
+    "param-numTilesX": "Number of horizontal tiles: {value}",
+    "param-numTilesY": "Number of vertical tiles: {value}",
 
     "option-random": "Random",
     "option-adjacent": "Adjacent",

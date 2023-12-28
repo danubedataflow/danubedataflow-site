@@ -22,6 +22,8 @@
     "param-maxMovement": "最大の動き：{value}",
     "param-strokeWeight": "筆の太さ：{value}",
     "param-numColors": "色の数：{value}",
+    "param-numTilesX": "水平タイルの数：{value}",
+    "param-numTilesY": "垂直タイルの数：{value}",
 
     "option-random": "ランダム",
     "option-adjacent": "隣接",

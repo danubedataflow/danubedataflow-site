@@ -22,6 +22,8 @@
     "param-maxMovement": "Maximale Bewegung: {value}",
     "param-strokeWeight": "Strichstärke: {value}",
     "param-numColors": "Anzahl der Farben: {value}",
+    "param-numTilesX": "Anzahl der horizontalen Kacheln: {value}",
+    "param-numTilesY": "Anzahl der vertikalen Kacheln: {value}",
 
     "option-random": "Zufällig",
     "option-adjacent": "Angrenzend",
