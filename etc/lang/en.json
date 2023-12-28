@@ -26,7 +26,8 @@
     "slider-numTilesX": "Number of horizontal tiles: {value}",
     "slider-numTilesY": "Number of vertical tiles: {value}",
     "slider-alphaRange": "Transparency range (alpha): {from} to {to}",
-    "slider-rotationAngleRange": "Angle range: {from} to {to}",
+    "slider-rotationChance": "Probability: {value}%",
+    "slider-rotationAngleRange": "Angle range: {from}° to {to}°",
 
     "checkbox-hasTileBorder": "Tile border: ",
 
