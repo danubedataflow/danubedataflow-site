@@ -2,7 +2,7 @@
 
 function setupForm() {
     makeForm(
-        makeFieldset('Wiederholungen',
+        makeFieldset('repetitions',
             makeSlider('repsPerSide', 'Anzahl der Wiederholungen pro Achse', 4, 12, 9),
             makeSlider('repScale', 'Skalierung jeder Wiederholung', 0.6, 1, 0.8, 0.05),
         ),

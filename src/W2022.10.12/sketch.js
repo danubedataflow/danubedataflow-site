@@ -3,11 +3,11 @@
 function setupForm() {
     makeForm(
         makeSlider('numSides', 'Anzahl der Seiten', 3, 10, 5),
-        makeFieldset('Farben',
+        makeFieldset('colors',
             makeSelectColorMap(),
             makeSlider('numColors', 'Anzahl der Farben', 2, 32, 16),
         ),
-        makeFieldset('Skalierung',
+        makeFieldset('scale',
             makeSlider('scaleRange', 'Bereich (%)', 1, 100, [5, 80]),
             makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
         ),

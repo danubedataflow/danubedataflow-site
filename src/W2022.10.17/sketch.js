@@ -8,7 +8,7 @@ let roughCanvas, palette;
 
 function setupForm() {
     makeForm(
-        makeFieldset('Farben',
+        makeFieldset('colors',
             makeSelectColorMap(),
             makeSlider('numColors', 'Anzahl der Farben', 1, 12, 6),
         ),
