@@ -8,9 +8,9 @@ perl5lib = perllib
 
 pre_process = pre
 
-# don't copy .js files; they contain text to be translated
-copy = \.(gif|png|jpg|pdf|css|json|mp3)$
+copy = \.(png|js|css)$
 
+ignore = lang-.*\.json
 ignore = ^#
 ignore = \.swp$
 ignore = ~$

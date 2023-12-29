@@ -110,6 +110,5 @@
     "select-colorStrategy": "Color strategy: ",
 
     "description-inspired-vm": "Inspired by Vera Molnár.",
-    "description-W2022.12.07": "The \"adjacent\" color choice strategy uses a color from the previous tile.",
-    "description-W2023.10.05": "Take a probability value that goes from 0 at the top to 1 at the bottom. In order for a square to be drawn in a row, a random number must be larger than the probability value raised to the power of a given value. So the higher the exponent, the lower the threshold becomes, and the more likely it is that a square will be drawn."
+    "description-W2022.12.07": "The \"adjacent\" color choice strategy uses a color from the previous tile."
 }
