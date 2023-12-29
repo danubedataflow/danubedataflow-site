@@ -27,7 +27,13 @@
     "slider-numTilesY": "Number of vertical tiles: {value}",
     "slider-alphaRange": "Transparency range (alpha): {from} to {to}",
     "slider-rotationChance": "Probability: {value}%",
-    "slider-rotationAngleRange": "Angle range: {from}° to {to}°",
+    "slider-rotationRange": "Range: {from}° to {to}°",
+    "slider-scaleChance": "Probability: {value}%",
+    "slider-scaleRange": "Range: {from} to {to}",
+    "slider-translationChance": "Probability: {value}%",
+    "slider-translationRange": "Range: {from} to {to}",
+    "slider-strokeChance": "Probability: {value}%",
+    "slider-strokeRange": "Range: {from} to {to}",
 
     "checkbox-hasTileBorder": "Tile border: ",
 

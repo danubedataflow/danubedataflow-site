@@ -95,10 +95,16 @@ const translations = {
       "slider-numTiles" : "Anzahl der Kacheln pro Achse: {value}",
       "slider-numTilesX" : "Anzahl der horizontalen Kacheln: {value}",
       "slider-numTilesY" : "Anzahl der vertikalen Kacheln: {value}",
-      "slider-rotationAngleRange" : "Winkel-Bereich: {from}° bis {to}°",
       "slider-rotationChance" : "Wahrscheinlichkeit: {value}%",
+      "slider-rotationRange" : "Bereich: {from}° bis {to}°",
+      "slider-scaleChance" : "Wahrscheinlichkeit: {value}%",
+      "slider-scaleRange" : "Bereich: {from} bis {to}",
+      "slider-strokeChance" : "Wahrscheinlichkeit: {value}%",
+      "slider-strokeRange" : "Bereich: {from} bis {to}",
       "slider-strokeWeight" : "Strichstärke: {value}",
-      "slider-strokeWeightRange" : "Strichstärke-Bereich: {from} bis {to}"
+      "slider-strokeWeightRange" : "Strichstärke-Bereich: {from} bis {to}",
+      "slider-translationChance" : "Wahrscheinlichkeit: {value}%",
+      "slider-translationRange" : "Bereich: {from} bis {to}"
    },
    "en" : {
       "checkbox-hasTileBorder" : "Tile border: ",
@@ -194,10 +200,16 @@ const translations = {
       "slider-numTiles" : "Number of tiles per axis: {value}",
       "slider-numTilesX" : "Number of horizontal tiles: {value}",
       "slider-numTilesY" : "Number of vertical tiles: {value}",
-      "slider-rotationAngleRange" : "Angle range: {from}° to {to}°",
       "slider-rotationChance" : "Probability: {value}%",
+      "slider-rotationRange" : "Range: {from}° to {to}°",
+      "slider-scaleChance" : "Probability: {value}%",
+      "slider-scaleRange" : "Range: {from} to {to}",
+      "slider-strokeChance" : "Probability: {value}%",
+      "slider-strokeRange" : "Range: {from} to {to}",
       "slider-strokeWeight" : "Stroke weight: {value}",
-      "slider-strokeWeightRange" : "Stroke weight range: {from} to {to}"
+      "slider-strokeWeightRange" : "Stroke weight range: {from} to {to}",
+      "slider-translationChance" : "Probability: {value}%",
+      "slider-translationRange" : "Range: {from} to {to}"
    },
    "ja" : {
       "checkbox-hasTileBorder" : "タイルの境界線：",
@@ -293,10 +305,16 @@ const translations = {
       "slider-numTiles" : "軸あたりのタイル数：{value}",
       "slider-numTilesX" : "水平タイルの数：{value}",
       "slider-numTilesY" : "垂直タイルの数：{value}",
-      "slider-rotationAngleRange" : "角の範囲：{from}°〜{to}°",
-      "slider-rotationChance" : "確率：{value}%",
+      "slider-rotationChance" : "回転移動の確率：{value}%",
+      "slider-rotationRange" : "回転移動の範囲：{from}°〜{to}°",
+      "slider-scaleChance" : "拡大縮小の確率：{value}%",
+      "slider-scaleRange" : "拡大縮小の範囲：{from}〜{to}",
+      "slider-strokeChance" : "筆の確率：{value}%",
+      "slider-strokeRange" : "筆の範囲：{from}〜{to}",
       "slider-strokeWeight" : "筆の太さ：{value}",
-      "slider-strokeWeightRange" : "筆の太さ：{from}〜{to}"
+      "slider-strokeWeightRange" : "筆の太さ：{from}〜{to}",
+      "slider-translationChance" : "平行移動の確率：{value}%",
+      "slider-translationRange" : "平行移動の範囲：{from}〜{to}"
    }
 };
 

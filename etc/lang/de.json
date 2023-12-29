@@ -27,7 +27,13 @@
     "slider-numTilesY": "Anzahl der vertikalen Kacheln: {value}",
     "slider-alphaRange": "Transparenz-Bereich (Alpha): {from} bis {to}",
     "slider-rotationChance": "Wahrscheinlichkeit: {value}%",
-    "slider-rotationAngleRange": "Winkel-Bereich: {from}° bis {to}°",
+    "slider-rotationRange": "Bereich: {from}° bis {to}°",
+    "slider-scaleChance": "Wahrscheinlichkeit: {value}%",
+    "slider-scaleRange": "Bereich: {from} bis {to}",
+    "slider-translationChance": "Wahrscheinlichkeit: {value}%",
+    "slider-translationRange": "Bereich: {from} bis {to}",
+    "slider-strokeChance": "Wahrscheinlichkeit: {value}%",
+    "slider-strokeRange": "Bereich: {from} bis {to}",
 
     "checkbox-hasTileBorder": "Kachelrand: ",
 

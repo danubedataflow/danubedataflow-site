@@ -36,5 +36,7 @@
     </section>
     <script src="sketch.js"></script>
 </main>
+<script src="/js/i18n-dicts.js"></script>
+<script src="/js/i18n.js"></script>
 
 [% END %]
