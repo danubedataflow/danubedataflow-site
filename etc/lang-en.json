@@ -33,6 +33,11 @@
     "slider-translationChance": "Translation probability: {value}%",
     "slider-translationRange": "Translation range: {from} to {to}",
     "slider-strokeWeightChance": "Stroke weight probability: {value}%",
+    "slider-squareLengthRange": "Side lengths are {from}% to {to}% of the canvas",
+    "slider-numSquares": "Number of squares: {value}",
+    "slider-numLines": "Number of lines: {value}",
+    "slider-numTriangles": "Number of triangles: {value}",
+    "slider-numObjects": "Number of objects: {value}",
 
     "checkbox-hasTileBorder": "Tile border: ",
 

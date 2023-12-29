@@ -6,7 +6,7 @@ function setupForm() {
             makeSelectColorMap(),
             makeSlider('numColors', 'XXX', 2, 16, 8),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT]),
-            makeSlider('alphaRange', 'Transparenz (Alpha)', 30, 90, [60, 70]),
+            makeSlider('alphaRange', 'XXX', 30, 90, [60, 70]),
         ),
         makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
         makeSlider('divisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),

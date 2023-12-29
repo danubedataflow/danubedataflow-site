@@ -9,7 +9,7 @@ function setupForm() {
             makeSlider('colorAngle', 'Winkel auf dem Farbenkreis', 0, 359, 0),
             makeSlider('saturation', 'Farbsättigung', 40, 100, [60, 80]),
             makeSlider('brightness', 'Helligkeit', 40, 100, [60, 80]),
-            makeSlider('alphaRange', 'Transparenz (Alpha)', 1, 255, [50, 200]),
+            makeSlider('alphaRange', 'XXX', 1, 255, [50, 200]),
         ),
     );
 }
