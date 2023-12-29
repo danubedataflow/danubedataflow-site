@@ -16,8 +16,8 @@ function setupForm() {
             makeSlider('translationRange', 'XXX', -50, 50, [-20, 20]),
         ),
         makeFieldset('stroke',
-            makeSlider('strokeChance', 'XXX', 0, 100, 5),
-            makeSlider('strokeRange', 'XXX', 1, 4, [2, 3]),
+            makeSlider('strokeWeightChance', 'XXX', 0, 100, 5),
+            makeSlider('strokeWeightRange', 'XXX', 1, 4, [2, 3]),
         ),
     );
 }
@@ -40,7 +40,7 @@ function drawSketch() {
             if (random(100) < ctrl.translationChance) translate(
                 dim * random(...ctrl.translationRange) / 100,
                 dim * random(...ctrl.translationRange) / 100);
-            if (random(100) < ctrl.strokeChance) strokeWeight(random(...ctrl.strokeRange));
+            if (random(100) < ctrl.strokeWeightChance) strokeWeight(random(...ctrl.strokeWeightRange));
             rect(0, 0, dim, dim);
 
             pop();
