@@ -33,6 +33,11 @@
     "slider-translationChance": "平行移動の確率：{value}%",
     "slider-translationRange": "平行移動の範囲：{from}〜{to}",
     "slider-strokeWeightChance": "筆の太さの確率：{value}%",
+    "slider-squareLengthRange": "辺の長さはキャンバスの{from}%〜{to}%",
+    "slider-numSquares": "正方形の数：{value}",
+    "slider-numLines": "行数：{value}",
+    "slider-numTriangles": "三角形の数：{value}",
+    "slider-numObjects": "物の数：{value}",
 
     "checkbox-hasTileBorder": "タイルの境界線：",
 

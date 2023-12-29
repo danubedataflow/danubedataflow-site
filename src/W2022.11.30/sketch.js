@@ -6,7 +6,7 @@ function setupForm() {
         makeSlider('numRects', 'Anzahl der Rechtecke', 2, 20, 10),
         makeSlider('scale', 'Skalierung', 0, 1, 0.9, 0.1),
         makeSlider('strokeWeightRange', 'XXX', 1, 20, [10, 12]),
-        makeSlider('alphaRange', 'Transparenz (Alpha)', 0, 255, [200, 255]),
+        makeSlider('alphaRange', 'XXX', 0, 255, [200, 255]),
     );
 }
 

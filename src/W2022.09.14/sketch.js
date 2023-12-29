@@ -8,10 +8,10 @@ function setupForm() {
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
             makeSlider('numColors', 'XXX', 1, 32, 16),
-            makeSlider('alphaRange', 'Transparenz (Alpha)', 0, 100, [20, 80]),
+            makeSlider('alphaRange', 'XXX', 0, 100, [20, 80]),
         ),
-        makeSlider('numSquares', 'Anzahl der Quadrate', 20, 1000, 100, 20),
-        makeSlider('size', 'Größe (%)', 1, 100, [5, 30]),
+        makeSlider('numSquares', 'XXX', 20, 1000, 100, 20),
+        makeSlider('squareLengthRange', 'XXX', 1, 100, [5, 30]),
     );
 }
 
@@ -31,8 +31,8 @@ function drawSketch() {
         c.setAlpha(randomIntRange(...ctrl.alphaRange.map(n => n * 255 / 100)));
         fill(c);
 
-        let [minSize, maxSize] = ctrl.size;
-        let s = int(random(width * minSize / 100, height * maxSize / 100));
+        let [minLength, maxLength] = ctrl.squareLengthRange;
+        let s = int(random(width * minLength / 100, height * maxLength / 100));
         rect(int(random(width)), int(random(height)), s, s);
     }
 }

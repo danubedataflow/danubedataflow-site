@@ -33,6 +33,11 @@
     "slider-translationChance": "Translations-Wahrscheinlichkeit: {value}%",
     "slider-translationRange": "Translations-Bereich: {from} bis {to}",
     "slider-strokeWeightChance": "Strichstärken-Wahrscheinlichkeit: {value}%",
+    "slider-squareLengthRange": "Seitenlängen sind {from}% bis {to}% der Leinwand",
+    "slider-numSquares": "Anzahl der Quadrate: {value}",
+    "slider-numLines": "Anzahl der Linien: {value}",
+    "slider-numTriangles": "Anzahl der Dreiecke: {value}",
+    "slider-numObjects": "Anzahl der Objekte: {value}",
 
     "checkbox-hasTileBorder": "Kachelrand: ",
 

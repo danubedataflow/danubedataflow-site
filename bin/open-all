@@ -2,19 +2,45 @@
 use ScriptTools::features;
 use FindBin qw($Bin);
 use Path::Tiny;
-my @urls;
-for (path($Bin)->parent->child('src')->children) {
-    my $b = $_->basename;
-    if ($b =~ /^[WT]20\d\d\.\d\d\.\d\d$/) {
-        push @urls, "http://danubedataflow.localhost/$b/";
+my %open_work;    # hash to dedup
+chomp(my @input = <STDIN>) unless -t STDIN;
+my $work_re = qr/\b[WT]20\d\d\.\d\d\.\d\d\b/;
+for (@input) {
+    if (/($work_re)/) {
+        $open_work{$1}++;
     }
 }
+
+# By default, open everything
+unless (keys %open_work) {
+    for (path($Bin)->parent->child('src')->children) {
+        my $b = $_->basename;
+        if ($b =~ /^$work_re$/) {
+            $open_work{$b}++;
+        }
+    }
+}
+my @urls = map { "http://danubedataflow.localhost/$_/" } sort keys %open_work;
 exec open => sort @urls;
 
 =pod
 
-Open all sketches (works and techniques) in the browser. Useful if you have
-made a large-scale change and want to see whether everything still works.
+Open a list of sketches (works and techniques) in the browser. It takes an
+optional list of strings that mention a sketch directories on STDIN. The exact
+string doesn't matter as long as it includes a sketch directory
+(<W20xx.xx.xx>).
+
+This means you can use C<ack> to filter for sketches that you want to open:
+
+    ack -w alpha **/sketch.js | ./bin/open-all
+
+The corresponding sketches are then opened in the browser.
+
+If no paths are given on STDIN, it looks for all sketch directoies and opens
+them all.
+
+Useful if you have made a large-scale change and want to see whether everything
+still works.
 
 =cut
 

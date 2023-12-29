@@ -5,7 +5,7 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numLines', 'Anzahl der Zeilen', 1, 1500, 500),
+        makeSlider('numLines', 'XXX', 1, 1500, 500),
         makeSlider('randomDelta', 'Zufalls-Delta', 1, 20, 5),
     );
 }

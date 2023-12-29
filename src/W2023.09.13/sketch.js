@@ -4,7 +4,7 @@ function setupForm() {
     makeForm(
         makeSlider('numRects', 'Anzahl der Rechtecke', 10, 100, 50),
         makeSlider('strokeWeightRange', 'XXX', 1, 20, [2, 4]),
-        makeSlider('alphaRange', 'Transparenz (Alpha)', 0, 255, [200, 255]),
+        makeSlider('alphaRange', 'XXX', 0, 255, [200, 255]),
     );
 }
 

@@ -61,7 +61,7 @@ function setupForm() {
             makeSlider('alphaRange', 'XXX', 30, 90, [80, 100]),
         ),
         makeSlider('numTiles', 'XXX', 1, 16, 8),
-        makeSlider('numObjects', 'Anzahl der Objekte', 20, 1000, 100, 20),
+        makeSlider('numObjects', 'XXX', 20, 1000, 100, 20),
         makeSlider('strokeWeightRange', 'XXX', 1, 25, [10, 20]),
         makeSlider('scaleFactor', 'Skalierung', 0.5, 1.5, [0.7, 1], 0.1),
     );
