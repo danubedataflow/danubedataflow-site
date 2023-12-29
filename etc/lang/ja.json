@@ -26,8 +26,14 @@
     "slider-numTilesX": "水平タイルの数：{value}",
     "slider-numTilesY": "垂直タイルの数：{value}",
     "slider-alphaRange": "透明度の範囲（アルファ）：{from}〜{to}",
-    "slider-rotationChance": "確率：{value}%",
-    "slider-rotationAngleRange": "角の範囲：{from}°〜{to}°",
+    "slider-rotationChance": "回転移動の確率：{value}%",
+    "slider-rotationRange": "回転移動の範囲：{from}°〜{to}°",
+    "slider-scaleChance": "拡大縮小の確率：{value}%",
+    "slider-scaleRange": "拡大縮小の範囲：{from}〜{to}",
+    "slider-translationChance": "平行移動の確率：{value}%",
+    "slider-translationRange": "平行移動の範囲：{from}〜{to}",
+    "slider-strokeChance": "筆の確率：{value}%",
+    "slider-strokeRange": "筆の範囲：{from}〜{to}",
 
     "checkbox-hasTileBorder": "タイルの境界線：",
 
