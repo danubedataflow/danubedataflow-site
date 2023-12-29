@@ -284,6 +284,7 @@ const translations = {
       "sketch-randomParameters" : "ランダムパラメータ",
       "sketch-saveCanvas" : "保存",
       "sketch-sourceCode" : "ソースコード",
+      "slider-alphaRange" : "透明度の範囲（アルファ）：{from}〜{to}",
       "slider-exponentsRange" : "指数：{from}〜{to}",
       "slider-lineGap" : "最新の点の距離：{value}",
       "slider-maxMovement" : "最大の動き：{value}",
@@ -292,7 +293,7 @@ const translations = {
       "slider-numTiles" : "軸あたりのタイル数：{value}",
       "slider-numTilesX" : "水平タイルの数：{value}",
       "slider-numTilesY" : "垂直タイルの数：{value}",
-      "slider-rotationAngleRange" : "角の範囲（アルファ）：{from}°〜{to}°",
+      "slider-rotationAngleRange" : "角の範囲：{from}°〜{to}°",
       "slider-rotationChance" : "確率：{value}%",
       "slider-strokeWeight" : "筆の太さ：{value}",
       "slider-strokeWeightRange" : "筆の太さ：{from}〜{to}"
