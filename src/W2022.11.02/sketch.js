@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('xFactor', 'Horizontaler Faktor', 1, 5, 2.5, 0.1),
+        makeSlider('horizontalSineFactor', 'Horizontaler Sinus-Faktor', 1, 5, 2.5, 0.1),
         makeSlider('alpha', 'Transparenz (Alpha)', 1, 255, 70),
-        makeSlider('angleStep', 'Winkel-Delta', 0.1, 10, 0.5, 0.1),
+        makeSlider('angleStep', 'Winkel-Schritt', 0.1, 10, 0.5, 0.1),
         makeSlider('squareSize', 'Größe der Quadrate', 1, 100, [30, 50]),
     );
 }
@@ -21,7 +21,7 @@ function drawSketch() {
 
         // x-factor 2 produces the "infinity sign"
 
-        let x = sin(i * ctrl.xFactor) * (width / 3);
+        let x = sin(i * ctrl.horizontalSineFactor) * (width / 3);
         let y = sin(i) * (height / 3);
 
         // Draw random squares around each point, drawn at 10% alpha, produces

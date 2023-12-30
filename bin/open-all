@@ -3,7 +3,9 @@ use ScriptTools::features;
 use FindBin qw($Bin);
 use Path::Tiny;
 my %open_work;    # hash to dedup
-chomp(my @input = <STDIN>) unless -t STDIN;
+my @input;
+chomp(@input = <STDIN>) unless -t STDIN;
+push @input, @ARGV;
 my $work_re = qr/\b[WT]20\d\d\.\d\d\.\d\d\b/;
 for (@input) {
     if (/($work_re)/) {
@@ -26,13 +28,15 @@ exec open => sort @urls;
 =pod
 
 Open a list of sketches (works and techniques) in the browser. It takes an
-optional list of strings that mention a sketch directories on STDIN. The exact
-string doesn't matter as long as it includes a sketch directory
-(<W20xx.xx.xx>).
+optional list of strings that mention a sketch directories on STDIN or on ARGV. The exact string doesn't matter as long as it includes a sketch directory (<W20xx.xx.xx>).
 
 This means you can use C<ack> to filter for sketches that you want to open:
 
     ack -w alpha **/sketch.js | ./bin/open-all
+
+or
+
+    ./bin/open-all src/W2022.10.*
 
 The corresponding sketches are then opened in the browser.
 
