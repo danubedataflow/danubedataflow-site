@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('resolutionDivisor', 'Auflösungs-Divisor', 4, 16, 10),
-        makeSlider('lineDensity', 'Liniendichte', 3, 8, 5),
-        makeSlider('rotation', 'Rotation', 0, 270, 0, 90),
+        makeSlider('resolutionDivisor', 4, 16, 10),
+        makeSlider('lineDensity', 3, 8, 5),
+        makeSlider('rotation', 0, 270, 0, 90),
     );
 }
 

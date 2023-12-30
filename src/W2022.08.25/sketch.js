@@ -6,7 +6,7 @@ function setupForm() {
             makeSelectColorMap(),
             makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
         ),
-        makeSlider('numLines', 'XXX', 1, 1500, 500),
+        makeSlider('numLines', 1, 1500, 500),
     );
 }
 

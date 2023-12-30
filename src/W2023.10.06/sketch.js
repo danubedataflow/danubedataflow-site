@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 1, 5, 3),
-        makeSlider('lineGap', 'XXX', 5, 100, 50),
-        makeSlider('maxMovement', 'XXX', 5, 20, 10),
+        makeSlider('numTiles', 1, 5, 3),
+        makeSlider('lineGap', 5, 100, 50),
+        makeSlider('maxMovement', 5, 20, 10),
     );
 }
 

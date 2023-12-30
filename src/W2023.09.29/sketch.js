@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 3, 10, 4),
-        makeSlider('maxOffsetPerAxis', 'Maximaler Versatz pro Achse', 0, 30, 15),
-        makeSlider('numSquaresPerTile', 'Anzahl der Quadrate pro Kachel', 2, 20, 10),
+        makeSlider('numTiles', 3, 10, 4),
+        makeSlider('maxOffsetPerAxis', 0, 30, 15),
+        makeSlider('numSquaresPerTile', 2, 20, 10),
     );
 }
 

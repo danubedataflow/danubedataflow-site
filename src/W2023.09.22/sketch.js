@@ -2,11 +2,11 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTilesX', 'XXX', 10, 100, 50),
-        makeSlider('numTilesY', 'XXX', 10, 100, 50),
-        makeSlider('scale', 'Skalierung', 0.5, 1.5, 1, 0.1),
-        makeSlider('maxOffsetPerAxis', 'Maximaler Versatz pro Achse', 0, 10, 2),
-        makeSlider('strokeWeight', 'XXX', 1, 6, 1),
+        makeSlider('numTilesX', 10, 100, 50),
+        makeSlider('numTilesY', 10, 100, 50),
+        makeSlider('scale', 0.5, 1.5, 1, 0.1),
+        makeSlider('maxOffsetPerAxis', 0, 10, 2),
+        makeSlider('strokeWeight', 1, 6, 1),
     );
 }
 

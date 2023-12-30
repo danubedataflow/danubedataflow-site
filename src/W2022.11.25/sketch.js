@@ -2,8 +2,8 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 2, 20, 10),
-        makeSlider('numRects', 'Anzahl der Rechtecke', 2, 20, 10),
+        makeSlider('numTiles', 2, 20, 10),
+        makeSlider('numRects', 2, 20, 10),
     );
 }
 

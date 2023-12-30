@@ -4,13 +4,13 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'XXX', 2, 16, 8),
+            makeSlider('numColors', 2, 16, 8),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT]),
-            makeSlider('alphaRange', 'XXX', 30, 90, [60, 70]),
+            makeSlider('alphaRange', 30, 90, [60, 70]),
         ),
-        makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
-        makeSlider('segmentDivisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
-        makeSlider('strokeWeight', 'XXX', 1, 8, 1),
+        makeSlider('numGrids', 2, 10, 4),
+        makeSlider('segmentDivisorRange', 2, 20, [3, 10]),
+        makeSlider('strokeWeight', 1, 8, 1),
     );
 }
 

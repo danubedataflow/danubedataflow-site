@@ -3,16 +3,16 @@
 function setupForm() {
     makeForm(
         makeFieldset('tiles',
-            makeSlider('tileCountX', 'Anzahl der horizontalen Kacheln', 1, 100, 30),
-            makeSlider('tileCountY', 'Anzahl der vertikalen Kacheln', 1, 100, 15),
-            makeSlider('tileSizeMultiplier', 'Kachelgrößen-Multiplikator', 1, 10, 3, 0.1),
+            makeSlider('tileCountX', 1, 100, 30),
+            makeSlider('tileCountY', 1, 100, 15),
+            makeSlider('tileSizeMultiplier', 1, 10, 3, 0.1),
         ),
         makeFieldset('noise',
-            makeSlider('noiseOffsetX', 'Horizontaler Rausch-Versatz', 0, 30, 4),
-            makeSlider('noiseOffsetY', 'Vertikaler Rausch-Versatz', 1, 100, 15),
-            makeSlider('noiseDivisor', 'Rausch-Teiler', 1, 30, 9),
+            makeSlider('noiseOffsetX', 0, 30, 4),
+            makeSlider('noiseOffsetY', 1, 100, 15),
+            makeSlider('noiseDivisor', 1, 30, 9),
         ),
-        makeSlider('margin', 'Rand', 0, 200, 15, 5),
+        makeSlider('margin', 0, 200, 15, 5),
     );
 }
 

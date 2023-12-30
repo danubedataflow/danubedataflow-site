@@ -7,11 +7,11 @@ function setupForm() {
         makeFieldset('colors',
             makeSelectColorMap(),
             makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
-            makeSlider('numColors', 'XXX', 1, 32, 16),
-            makeSlider('alphaRange', 'XXX', 0, 100, [20, 80]),
+            makeSlider('numColors', 1, 32, 16),
+            makeSlider('alphaRange', 0, 100, [20, 80]),
         ),
-        makeSlider('numSquares', 'XXX', 20, 1000, 100, 20),
-        makeSlider('squareLengthRange', 'XXX', 1, 100, [5, 30]),
+        makeSlider('numSquares', 20, 1000, 100, 20),
+        makeSlider('squareLengthRange', 1, 100, [5, 30]),
     );
 }
 

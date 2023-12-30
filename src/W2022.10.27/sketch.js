@@ -5,8 +5,8 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numLines', 'XXX', 1, 1500, 500),
-        makeSlider('randomPointOffset', 'Zufalls-Versatz der Punkte', 1, 20, 5),
+        makeSlider('numLines', 1, 1500, 500),
+        makeSlider('randomPointOffset', 1, 20, 5),
     );
 }
 

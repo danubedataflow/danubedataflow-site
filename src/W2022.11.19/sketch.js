@@ -2,14 +2,14 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numHorizontalLines', 'Anzahl der horizontalen Striche', 1, 10, 5),
-        makeSlider('numVerticalLines', 'Anzahl der vertikalen Striche', 1, 10, 5),
-        makeSlider('strokeWeightRangeRelative', 'Strichdicke als Prozentsatz der Leinwandgröße', 1, 20, [9, 13]),
+        makeSlider('numHorizontalLines', 1, 10, 5),
+        makeSlider('numVerticalLines', 1, 10, 5),
+        makeSlider('strokeWeightRangeRelative', 1, 20, [9, 13]),
         makeFieldset('colors',
-            makeSlider('colorAngle', 'Winkel auf dem Farbenkreis', 0, 359, 0),
-            makeSlider('saturationRange', 'Farbsättigung', 40, 100, [60, 80]),
-            makeSlider('brightnessRange', 'Helligkeit', 40, 100, [60, 80]),
-            makeSlider('alphaRange', 'XXX', 1, 255, [50, 200]),
+            makeSlider('colorAngle', 0, 359, 0),
+            makeSlider('saturationRange', 40, 100, [60, 80]),
+            makeSlider('brightnessRange', 40, 100, [60, 80]),
+            makeSlider('alphaRange', 1, 255, [50, 200]),
         ),
     );
 }
