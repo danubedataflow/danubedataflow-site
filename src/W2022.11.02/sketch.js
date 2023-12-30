@@ -5,7 +5,7 @@ function setupForm() {
         makeSlider('horizontalSineFactor', 'Horizontaler Sinus-Faktor', 1, 5, 2.5, 0.1),
         makeSlider('alpha', 'Transparenz (Alpha)', 1, 255, 70),
         makeSlider('angleStep', 'Winkel-Schritt', 0.1, 10, 0.5, 0.1),
-        makeSlider('squareSize', 'Größe der Quadrate', 1, 100, [30, 50]),
+        makeSlider('squareSizeRange', 'Größe der Quadrate', 1, 100, [30, 50]),
     );
 }
 
@@ -27,7 +27,7 @@ function drawSketch() {
         // Draw random squares around each point, drawn at 10% alpha, produces
         // a fuzzy shape.
 
-        let dim = random(...ctrl.squareSize);
+        let dim = random(...ctrl.squareSizeRange);
         rect(x, y, dim, dim);
     }
 }

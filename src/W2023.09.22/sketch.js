@@ -5,7 +5,7 @@ function setupForm() {
         makeSlider('numTilesX', 'XXX', 10, 100, 50),
         makeSlider('numTilesY', 'XXX', 10, 100, 50),
         makeSlider('scale', 'Skalierung', 0.5, 1.5, 1, 0.1),
-        makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 10, 2),
+        makeSlider('maxOffsetPerAxis', 'Maximaler Versatz pro Achse', 0, 10, 2),
         makeSlider('strokeWeight', 'XXX', 1, 6, 1),
     );
 }
@@ -28,8 +28,8 @@ function drawTile(tile) {
         scale(ctrl.scale);
         rotate(30 * int(random(12)));
         translate(
-            randomIntPlusMinus(ctrl.maxOffset),
-            randomIntPlusMinus(ctrl.maxOffset),
+            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
         );
         line(...tile.leftMiddle, ...tile.rightMiddle);
     }

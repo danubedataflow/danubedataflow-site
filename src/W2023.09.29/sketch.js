@@ -3,8 +3,8 @@
 function setupForm() {
     makeForm(
         makeSlider('numTiles', 'XXX', 3, 10, 4),
-        makeSlider('maxOffset', 'Maximaler Versatz pro Achse', 0, 30, 15),
-        makeSlider('repetitions', 'Anzahl der Wiederholungen', 2, 20, 10),
+        makeSlider('maxOffsetPerAxis', 'Maximaler Versatz pro Achse', 0, 30, 15),
+        makeSlider('numSquaresPerTile', 'Anzahl der Quadrate pro Kachel', 2, 20, 10),
     );
 }
 
@@ -23,11 +23,11 @@ function drawSketch() {
 }
 
 function drawTile(tile) {
-    for (let i = 0; i < ctrl.repetitions; i++) {
+    for (let i = 0; i < ctrl.numSquaresPerTile; i++) {
         push();
         translate(
-            randomIntPlusMinus(ctrl.maxOffset),
-            randomIntPlusMinus(ctrl.maxOffset),
+            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
         );
         rect(...tile.upperLeft, ...tile.lowerRight);
         pop();
