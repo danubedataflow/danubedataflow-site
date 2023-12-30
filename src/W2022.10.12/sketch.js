@@ -9,7 +9,7 @@ function setupForm() {
         ),
         makeFieldset('scale',
             makeSlider('scaleRange', 1, 100, [5, 80]),
-            makeSlider('scaleDelta', 1, 5, 2),
+            makeSlider('scaleStep', 1, 5, 2),
         ),
     );
 }
@@ -27,7 +27,7 @@ function drawSketch() {
 
     // for some reason roughCanvas.polygon() and .linearPoath() don't do anything
 
-    for (let f = minScale / 100; f < maxScale / 100; f += ctrl.scaleDelta / 100) {
+    for (let f = minScale / 100; f < maxScale / 100; f += ctrl.scaleStep / 100) {
         getPointsForPolygon(ctrl.numSides, width * f, 180).pairwise((current, next) => {
             roughCanvas.line(...current, ...next, {
                 stroke: palette[colorIndex],
