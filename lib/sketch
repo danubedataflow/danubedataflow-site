@@ -19,12 +19,12 @@
             <p>
                 <span id="sketchTitle">[% title %]</span> |
                 <span id="canvasSize"></span> |
-                <a href="source.html" target="_blank" data-i18n-key="sketch-sourceCode">Quellcode</a> |
-                <a href="javascript:redrawWithNewSeed();" data-i18n-key="sketch-newSeed">Neuer Seed</a> |
-                <a href="javascript:setControlsRandomly();" data-i18n-key="sketch-randomParameters">Zufallsparameter</a> |
-                <a href="javascript:saveCanvasAsPNG();" data-i18n-key="sketch-saveCanvas">Speichern</a> |
-                <a href="javascript:copyLink();" data-i18n-key="sketch-copyLink">Link&nbsp;kopieren</a> |
-                <a href="javascript:window.open('print.html' + window.location.search, '_blank');" data-i18n-key="sketch-printView">Druckansicht</a>
+                <a href="source.html" target="_blank" data-i18n-key="sketch-sourceCode"></a> |
+                <a href="javascript:redrawWithNewSeed();" data-i18n-key="sketch-newSeed"></a> |
+                <a href="javascript:setControlsRandomly();" data-i18n-key="sketch-randomParameters"></a> |
+                <a href="javascript:saveCanvasAsPNG();" data-i18n-key="sketch-saveCanvas"></a> |
+                <a href="javascript:copyLink();" data-i18n-key="sketch-copyLink"></a> |
+                <a href="javascript:window.open('print.html' + window.location.search, '_blank');" data-i18n-key="sketch-printView"></a>
             </p>
 
             <form id="controls-form">
