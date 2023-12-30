@@ -3,5 +3,17 @@
     "note-2023.09.18-text-01": "Manche Künstler sind mehr am Erfolg als an der Kunst interessiert. Die Kunstwelt wird von Verbindungen und Geld beherrscht, und das sind Menschen, die Karriere machen wollen und sich an Kunstkritiker, Galerien und Museen anbiedern.",
     "note-2023.09.18-text-02": "Weil ich durch meinem Brotberuf, der Software-Entwicklung, finanziell unabhängig geworden bin, habe ich den Luxus, frei von monetären Zwängen arbeiten zu können.",
     "note-2023.09.18-text-03": "Ich ziehe es vor, über einen eigenen Lebensunterhalt und ein eigenes Einkommen zu verfügen und die Freiheit zu haben, kreativ zu sein, ohne mich kommerziellen Interessen beugen zu müssen.",
-    "note-2023.09.18-text-04": "Ein Digitalkünstler muß kein extrem teures Kunstatelier in New York mieten. Es fallen nur sehr geringe Kosten an. Ich benötige lediglich einen Laptop, eine Internetverbindung und eine Website usw. Und solange meine Grundbedürfnisse gedeckt sind, kann ich mich auf die kreative Arbeit konzentrieren."
+    "note-2023.09.18-text-04": "Ein Digitalkünstler muß kein extrem teures Kunstatelier in New York mieten. Es fallen nur sehr geringe Kosten an. Ich benötige lediglich einen Laptop, eine Internetverbindung und eine Website usw. Und solange meine Grundbedürfnisse gedeckt sind, kann ich mich auf die kreative Arbeit konzentrieren.",
+    "note-2023.09.16-title": "Selbstauferlegte Beschränkungen",
+    "note-2023.09.16-text-01": "Ich habe mir folgende Beschränkungen selbst auferlegt:",
+    "note-2023.09.16-text-02": "Die Formen sollen minimal sein—Linien, Rechtecke, Dreiecke.",
+    "note-2023.09.16-text-03": "Möglichst zweidimensionale flache Zeichnungen.",
+    "note-2023.09.16-text-04": "Nicht figurativ, nur abstrakt.",
+    "note-2023.09.16-text-05": "Kurze Algorithmen sind besser, weil sie eher die komplexen geometrischen Muster zeigen, die aus einfachen mathematischen und algorithmischen Zusammenhängen entstehen.",
+    "note-2023.09.16-text-06": "Nicht iterativ. Wenn möglich, vermeide \"zuerst zeichne diesen Teil, dann zeichne jenen Teil \". Das ganze Bild sollte aus einer einzelnen Idee, einem einzelnen Algorithmus, entstehen. (Das ist nicht immer möglich.)",
+    "note-2023.09.16-text-07": "Kein Text oder Emoji. Einzelne Buchstaben, Kanji oder andere Unicode-Schriftzeichen, die abstrahiert werden, sind möglich.",
+    "note-2023.09.16-text-08": "Keine externen Ressourcen wie Bilder oder Schriftarten. Der Quellcode muß vollständig eigenständig und unabhängig sein.",
+    "note-2023.09.16-text-09": "Keine Datenvisualisierung wie etwa Diagramme; keine Infographiken.",
+    "note-2023.09.16-text-10": "Keine Interaktivität mit der Maus, dem Trackpad oder der Kamera.",
+    "note-2023.09.16-text-11": "Keine Animationen."
 }

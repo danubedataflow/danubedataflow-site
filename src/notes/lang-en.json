@@ -3,5 +3,17 @@
     "note-2023.09.18-text-01": "Some artists are more interested in success than art. The art world is ruled by connections and money, and these are people who want to make a career and ingratiate themselves with art critics, galleries and museums.",
     "note-2023.09.18-text-02": "Because I have become financially independent through my day job, software development, I have the luxury of being able to work free of monetary constraints.",
     "note-2023.09.18-text-03": "I prefer to have my own livelihood and income and the freedom to be creative without having to bow to commercial interests.",
-    "note-2023.09.18-text-04": "A digital artist doesn't have to rent an extremely expensive art studio in New York. There are very few costs involved. All I need is a laptop, an internet connection and a website, etc. And as long as my basic needs are met, I can focus on creative work."
+    "note-2023.09.18-text-04": "A digital artist doesn't have to rent an extremely expensive art studio in New York. There are very few costs involved. All I need is a laptop, an internet connection and a website, etc. And as long as my basic needs are met, I can focus on creative work.",
+    "note-2023.09.16-title": "Self-imposed restrictions",
+    "note-2023.09.16-text-01": "I have imposed the following restrictions on myself:",
+    "note-2023.09.16-text-02": "The shapes should be minimal—lines, rectangles, triangles.",
+    "note-2023.09.16-text-03": "Two-dimensional flat drawings if possible.",
+    "note-2023.09.16-text-04": "Not figurative, just abstract.",
+    "note-2023.09.16-text-05": "Short algorithms are better because they are more likely to show the complex geometric patterns that arise from simple mathematical and algorithmic relationships.",
+    "note-2023.09.16-text-06": "Not iterative. If possible, avoid \"first draw this part, then draw that part.\" The whole picture should emerge from a single idea, a single algorithm. (This is not always possible.)",
+    "note-2023.09.16-text-07": "No text or emoji. Individual letters, kanji or other Unicode characters that are abstracted are possible.",
+    "note-2023.09.16-text-08": "No external resources like images or fonts. The source code must be completely standalone and independent.",
+    "note-2023.09.16-text-09": "No data visualization such as charts; no infographics.",
+    "note-2023.09.16-text-10": "No interactivity with the mouse, trackpad or camera.",
+    "note-2023.09.16-text-11": "No animations."
 }
