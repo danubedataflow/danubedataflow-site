@@ -6,12 +6,12 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'XXX', 2, 32, 16),
+            makeSlider('numColors', 2, 32, 16),
         ),
-        makeSlider('coloredTileChance', 'Wahrscheinlichkeit einer gefärbten Kachel (%)', 0, 100, 50),
-        makeSlider('coloredDiamondChance', 'Wahrscheinlichkeit einer gefärbten Raute (%)', 0, 100, 50),
-        makeSlider('numTilesX', 'XXX', 4, 40, 10),
-        makeSlider('numTilesY', 'XXX', 4, 40, 10),
+        makeSlider('coloredTileChance', 0, 100, 50),
+        makeSlider('coloredDiamondChance', 0, 100, 50),
+        makeSlider('numTilesX', 4, 40, 10),
+        makeSlider('numTilesY', 4, 40, 10),
     );
 }
 

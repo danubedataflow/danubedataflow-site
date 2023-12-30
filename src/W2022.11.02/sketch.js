@@ -2,10 +2,10 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('horizontalSineFactor', 'Horizontaler Sinus-Faktor', 1, 5, 2.5, 0.1),
-        makeSlider('alpha', 'Transparenz (Alpha)', 1, 255, 70),
-        makeSlider('angleStep', 'Winkel-Schritt', 0.1, 10, 0.5, 0.1),
-        makeSlider('squareSizeRange', 'Größe der Quadrate', 1, 100, [30, 50]),
+        makeSlider('horizontalSineFactor', 1, 5, 2.5, 0.1),
+        makeSlider('alpha', 1, 255, 70),
+        makeSlider('angleStep', 0.1, 10, 0.5, 0.1),
+        makeSlider('squareSizeRange', 1, 100, [30, 50]),
     );
 }
 

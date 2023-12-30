@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 3, 10, 5),
-        makeSlider('colorAngle', 'Winkel auf dem Farbenkreis', 0, 359, 0),
-        makeSlider('scaleInner', 'Skalierung der inneren Quadrate', 0.3, 0.7, 0.5, 0.05),
+        makeSlider('numTiles', 3, 10, 5),
+        makeSlider('colorAngle', 0, 359, 0),
+        makeSlider('scaleInner', 0.3, 0.7, 0.5, 0.05),
     );
 }
 

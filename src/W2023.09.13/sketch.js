@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numRects', 'Anzahl der Rechtecke', 10, 100, 50),
-        makeSlider('strokeWeightRange', 'XXX', 1, 20, [2, 4]),
-        makeSlider('alphaRange', 'XXX', 0, 255, [200, 255]),
+        makeSlider('numRects', 10, 100, 50),
+        makeSlider('strokeWeightRange', 1, 20, [2, 4]),
+        makeSlider('alphaRange', 0, 255, [200, 255]),
     );
 }
 

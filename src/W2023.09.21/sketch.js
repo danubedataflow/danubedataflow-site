@@ -3,10 +3,10 @@
 function setupForm() {
     makeForm(
         makeFieldset('repetitions',
-            makeSlider('numTiles', 'XXX', 4, 12, 9),
-            makeSlider('scale', 'Skalierung', 0.6, 1, 0.8, 0.05),
+            makeSlider('numTiles', 4, 12, 9),
+            makeSlider('scale', 0.6, 1, 0.8, 0.05),
         ),
-        makeSlider('numPointsPerSide', 'Anzahl der Punkte pro Seite im Quadrat', 4, 8, 4),
+        makeSlider('numPointsPerSide', 4, 8, 4),
     );
 }
 

@@ -2,22 +2,22 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 4, 40, 20),
+        makeSlider('numTiles', 4, 40, 20),
         makeFieldset('rotation',
-            makeSlider('rotationChance', 'XXX', 0, 100, 5),
-            makeSlider('rotationRange', 'XXX', -45, 45, [-10, 10]),
+            makeSlider('rotationChance', 0, 100, 5),
+            makeSlider('rotationRange', -45, 45, [-10, 10]),
         ),
         makeFieldset('scale',
-            makeSlider('scaleChance', 'XXX', 0, 100, 5),
-            makeSlider('scaleRange', 'XXX', 50, 150, [80, 120]),
+            makeSlider('scaleChance', 0, 100, 5),
+            makeSlider('scaleRange', 50, 150, [80, 120]),
         ),
         makeFieldset('translation',
-            makeSlider('translationChance', 'XXX', 0, 100, 5),
-            makeSlider('translationRange', 'XXX', -50, 50, [-20, 20]),
+            makeSlider('translationChance', 0, 100, 5),
+            makeSlider('translationRange', -50, 50, [-20, 20]),
         ),
         makeFieldset('stroke',
-            makeSlider('strokeWeightChance', 'XXX', 0, 100, 5),
-            makeSlider('strokeWeightRange', 'XXX', 1, 4, [2, 3]),
+            makeSlider('strokeWeightChance', 0, 100, 5),
+            makeSlider('strokeWeightRange', 1, 4, [2, 3]),
         ),
     );
 }

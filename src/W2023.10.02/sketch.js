@@ -28,12 +28,12 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 3, 5, 4),
-        makeSlider('numPointsX', 'Anzahl der horizontalen Punkte', 3, 5, 4),
-        makeSlider('numPointsY', 'Anzahl der vertikalen Punkte', 3, 5, 4),
-        makeSlider('strokeWeight', 'XXX', 8, 20, 12),
-        makeSlider('percentConnections', 'Prozent der Verbindungen', 30, 70, 50, 5),
-        makeSlider('scale', 'Skalierung', 0.5, 0.8, 0.6, 0.05),
+        makeSlider('numTiles', 3, 5, 4),
+        makeSlider('numPointsX', 3, 5, 4),
+        makeSlider('numPointsY', 3, 5, 4),
+        makeSlider('strokeWeight', 8, 20, 12),
+        makeSlider('percentConnections', 30, 70, 50, 5),
+        makeSlider('scale', 0.5, 0.8, 0.6, 0.05),
     );
 }
 

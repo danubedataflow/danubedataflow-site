@@ -307,7 +307,7 @@ function setIntlAttributes(element, config) {
     }
 }
 
-function makeSlider(id, label, min, max, value, step = 1) {
+function makeSlider(id, min, max, value, step = 1) {
     value = valueWithSearchParam(id, value);
 
     let containerDiv = document.createElement('div');
@@ -418,7 +418,7 @@ function makeOptGroup(label, ...contents) {
         target: 'label'
     });
 
-    // We need to translate the 'label' attr, not any innterText.
+    // We need to translate the 'label' attr, not any innerText.
     el.setAttribute('data-i18n-target', 'label');
     contents.forEach(child => el.appendChild(child));
     return el;

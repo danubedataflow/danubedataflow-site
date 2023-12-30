@@ -4,12 +4,12 @@ let palette, shouldFillArray;
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 3, 10, 4),
-        makeSlider('maxOffsetPerAxis', 'Maximaler Versatz pro Achse', 0, 20, 10),
+        makeSlider('numTiles', 3, 10, 4),
+        makeSlider('maxOffsetPerAxis', 0, 20, 10),
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'XXX', 1, 8, 2),
-            makeSlider('ratioColoredTiles', 'Färbe eine in so vielen Kacheln', 8, 32, 16),
+            makeSlider('numColors', 1, 8, 2),
+            makeSlider('ratioColoredTiles', 8, 32, 16),
         ),
     );
 }

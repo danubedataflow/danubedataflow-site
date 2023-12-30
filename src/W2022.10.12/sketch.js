@@ -2,14 +2,14 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numSides', 'Anzahl der Seiten', 3, 10, 5),
+        makeSlider('numSides', 3, 10, 5),
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'XXX', 2, 32, 16),
+            makeSlider('numColors', 2, 32, 16),
         ),
         makeFieldset('scale',
-            makeSlider('scaleRange', 'Bereich (%)', 1, 100, [5, 80]),
-            makeSlider('scaleDelta', 'Delta (%)', 1, 5, 2),
+            makeSlider('scaleRange', 1, 100, [5, 80]),
+            makeSlider('scaleDelta', 1, 5, 2),
         ),
     );
 }

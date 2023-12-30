@@ -4,8 +4,8 @@ let palette, c1, c2;
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 4, 40, 20),
-        makeSlider('diagonalOrientationChance', 'Wahrscheinlichkeit der Ausrichtung der Diagonale (%)', 0, 100, 50),
+        makeSlider('numTiles', 4, 40, 20),
+        makeSlider('diagonalOrientationChance', 0, 100, 50),
         makeSelect('colorStrategy', [
             makeOption('random', 'XXX'),
             makeOption('adjacent', 'XXX'),

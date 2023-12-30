@@ -2,11 +2,11 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 4, 40, 20),
-        makeSlider('horizontalLineChance', 'Wahrscheinlichkeit einer horizontalen Linie (%)', 0, 100, 30),
-        makeSlider('verticalLineChance', 'Wahrscheinlichkeit einer vertikalen Linie (%)', 0, 100, 30),
-        makeSlider('diagonalUpwardsLineChance', 'Wahrscheinlichkeit einer diagonalen Aufwärtslinie (%)', 0, 100, 30),
-        makeSlider('diagonalDownwardsLineChance', 'Wahrscheinlichkeit einer diagonalen Abwärtslinie (%)', 0, 100, 30),
+        makeSlider('numTiles', 4, 40, 20),
+        makeSlider('horizontalLineChance', 0, 100, 30),
+        makeSlider('verticalLineChance', 0, 100, 30),
+        makeSlider('diagonalUpwardsLineChance', 0, 100, 30),
+        makeSlider('diagonalDownwardsLineChance', 0, 100, 30),
         makeCheckbox('hasTileBorder'),
     );
 }

@@ -4,9 +4,9 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSlider('numColors', 'XXX', 2, 32, 16),
+            makeSlider('numColors', 2, 32, 16),
         ),
-        makeSlider('numSides', 'Anzahl der Seiten', 3, 50, 10),
+        makeSlider('numSides', 3, 50, 10),
     );
 }
 

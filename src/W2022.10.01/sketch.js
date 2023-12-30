@@ -8,10 +8,10 @@ let palette;
 
 function setupForm() {
     makeForm(
-        makeSlider('numSides', 'Anzahl der Seiten', 3, 10, 5),
-        makeSlider('diameter', 'Durchmesser', 1, 100, 30),
-        makeSlider('rotDelta', 'Rotations-Delta', 0, 360, 180),
-        makeSlider('maxDepth', 'Maximale Tiefe', 0, 4, 1),
+        makeSlider('numSides', 3, 10, 5),
+        makeSlider('diameter', 1, 100, 30),
+        makeSlider('rotationDelta', 0, 360, 180),
+        makeSlider('maxDepth', 0, 4, 1),
     );
 }
 
@@ -24,10 +24,10 @@ function drawSketch() {
     background('white');
 
     drawPolygons(0, 0, ctrl.numSides, ctrl.diameter * width / 100,
-        0, ctrl.rotDelta, ctrl.maxDepth);
+        0, ctrl.rotationDelta, ctrl.maxDepth);
 }
 
-function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, depth = 0) {
+function drawPolygons(x, y, sides, diameter, rotation, rotationDelta, maxDepth = 0, depth = 0) {
     let points = getPointsForPolygon(sides, diameter, rotation);
     points.forEach(p => {
         push();
@@ -43,7 +43,7 @@ function drawPolygons(x, y, sides, diameter, rotation, rotDelta, maxDepth = 0, d
 
         if (depth < maxDepth) {
             drawPolygons(p.x, p.y, sides, diameter,
-                rotation + rotDelta / sides, rotDelta, maxDepth, depth + 1);
+                rotation + rotationDelta / sides, rotationDelta, maxDepth, depth + 1);
         }
 
         pop();

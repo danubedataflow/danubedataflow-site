@@ -2,9 +2,9 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('numTiles', 'XXX', 3, 5, 4),
-        makeSlider('numPoints', 'XXX', 4, 10, 7),
-        makeSlider('exponentsRange', 'XXX', 0.2, 5, [2, 3], 0.1),
+        makeSlider('numTiles', 3, 5, 4),
+        makeSlider('numPoints', 4, 10, 7),
+        makeSlider('exponentsRange', 0.2, 5, [2, 3], 0.1),
     );
 }
 
