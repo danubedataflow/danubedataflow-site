@@ -38,6 +38,7 @@
     "slider-numLines": "行数：{value}",
     "slider-numTriangles": "三角形の数：{value}",
     "slider-numObjects": "物の数：{value}",
+    "slider-alpha": "透明度（アルファ）：{value}",
 
     "checkbox-hasTileBorder": "タイルの境界線：",
 
