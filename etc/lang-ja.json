@@ -3,8 +3,8 @@
     "nav-Notes": "日記",
     "nav-Quotes": "引用",
     "section-Works": "作品",
-    "section-Notes": "日記（ドイツ語）",
-    "section-Quotes": "引用(英語）",
+    "section-Notes": "日記（ほとんど英語）",
+    "section-Quotes": "引用(ほとんど英語）",
 
     "sketch-sourceCode": "ソースコード",
     "sketch-newSeed": "新しいシード",
@@ -113,6 +113,8 @@
     "select-colorMap": "色パレット：",
     "select-blendMode": "ブレンドモード：",
     "select-colorStrategy": "色の選択：",
+
+    "publish-date": "{publishDate}に発行",
 
     "description-inspired-vm": "ヴェラ・モルナール氏に影響された。",
     "description-W2022.12.07": "「隣接」色の選択では、前のタイルの色が使用されます。"

@@ -3,8 +3,8 @@
         <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
         <div class="subheading">
             <a href="/" data-i18n-key="nav-Works">Werke</a>
-            | <a href="/notizen.html" data-i18n-key="nav-Notes">Notizen</a>
-            | <a href="/zitate.html" data-i18n-key="nav-Quotes">Zitate</a>
+            | <a href="/notes/" data-i18n-key="nav-Notes">Notizen</a>
+            | <a href="/quotes/" data-i18n-key="nav-Quotes">Zitate</a>
             |
 
           <select data-i18n-switcher class="locale-switcher">
