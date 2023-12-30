@@ -3,8 +3,8 @@
 function setupForm() {
     makeForm(
         makeFieldset('tiles',
-            makeSlider('tileCountX', 'Horizontale Kacheln', 1, 100, 30),
-            makeSlider('tileCountY', 'Vertikale Kacheln', 1, 100, 15),
+            makeSlider('tileCountX', 'Anzahl der horizontalen Kacheln', 1, 100, 30),
+            makeSlider('tileCountY', 'Anzahl der vertikalen Kacheln', 1, 100, 15),
             makeSlider('tileSizeMultiplier', 'Kachelgrößen-Multiplikator', 1, 10, 3, 0.1),
         ),
         makeFieldset('noise',

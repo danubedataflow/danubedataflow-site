@@ -63,7 +63,7 @@ function setupForm() {
         makeSlider('numTiles', 'XXX', 1, 16, 8),
         makeSlider('numObjects', 'XXX', 20, 1000, 100, 20),
         makeSlider('strokeWeightRange', 'XXX', 1, 25, [10, 20]),
-        makeSlider('scaleFactor', 'Skalierung', 0.5, 1.5, [0.7, 1], 0.1),
+        makeSlider('scaleRange', 'XXX', 0.5, 1.5, [0.7, 1], 0.1),
     );
 
     let activeShapes = myShape.types.filter(i => controls['shape' + i].getValue());
@@ -102,7 +102,7 @@ function drawSketch() {
             .setSize(offset)
             .setStrokeWeight(randomIntRange(...ctrl.strokeWeightRange))
             .setAlpha(randomIntRange(...ctrl.alphaRange))
-            .setScale(random(...ctrl.scaleFactor))
+            .setScale(random(...ctrl.scaleRange))
             .display();
     }
 }

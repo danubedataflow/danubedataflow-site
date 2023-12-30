@@ -6,7 +6,7 @@
 function setupForm() {
     makeForm(
         makeSlider('numLines', 'XXX', 1, 1500, 500),
-        makeSlider('randomDelta', 'Zufalls-Delta', 1, 20, 5),
+        makeSlider('randomPointOffset', 'Zufalls-Versatz der Punkte', 1, 20, 5),
     );
 }
 
@@ -27,7 +27,7 @@ function drawSketch() {
         if (x1 > width) x1d = -rnd(2);
         if (y1 > height) y1d = -rnd(8);
         if (x2 < 0) x2d = rnd(6);
-        if (y2 < 0) y2d = -rnd(5);
+        if (y2 < 0) y2d = rnd(5);
         if (x1 < 0) x1d = rnd(2);
         if (y1 < 0) y1d = rnd(3);
         if (x2 > width) x2d = rnd(8);
@@ -41,5 +41,5 @@ function drawSketch() {
 }
 
 function rnd(mid) {
-    return int(random(mid - ctrl.randomDelta, mid + ctrl.randomDelta + 1));
+    return int(random(mid - ctrl.randomPointOffset, mid + ctrl.randomPointOffset + 1));
 }
