@@ -2,8 +2,9 @@
 //
 // See deps/LICENSE-javascript-l10n-ultimate-guide.txt
 
-// The locale our app first shows
-const defaultLocale = "de";
+// The locale our app first shows; also the fallback locale for missing
+// translations.
+const defaultLocale = "en";
 
 const fullyQualifiedLocaleDefaults = {
     de: 'de-AT',

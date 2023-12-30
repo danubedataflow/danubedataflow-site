@@ -4,7 +4,7 @@
     "nav-Quotes": "Zitate",
     "section-Works": "Werke",
     "section-Notes": "Notizen",
-    "section-Quotes": "Zitate",
+    "section-Quotes": "Zitate (Englisch)",
 
     "sketch-sourceCode": "Quellcode",
     "sketch-newSeed": "Neuer Seed",
@@ -113,6 +113,8 @@
     "select-colorMap": "Farbpalette: ",
     "select-blendMode": "Farbmischung: ",
     "select-colorStrategy": "Farbwahl-Strategie: ",
+
+    "publish-date": "Veröffentlicht am {publishDate}",
 
     "description-inspired-vm": "Inspiriert von Vera Molnár.",
     "description-W2022.12.07": "Die \"angrenzende\" Farbwahl-Strategie verwendet eine Farbe der vorigen Kachel."
