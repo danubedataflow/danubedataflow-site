@@ -5,7 +5,7 @@ let palette, c1, c2;
 function setupForm() {
     makeForm(
         makeSlider('numTiles', 'XXX', 4, 40, 20),
-        makeSlider('chanceDiagonal', 'Wahrscheinlichkeit der Ausrichtung der Diagonale (%)', 0, 100, 50),
+        makeSlider('diagonalOrientationChance', 'Wahrscheinlichkeit der Ausrichtung der Diagonale (%)', 0, 100, 50),
         makeSelect('colorStrategy', [
             makeOption('random', 'XXX'),
             makeOption('adjacent', 'XXX'),
@@ -29,7 +29,7 @@ function drawSketch() {
             let lr = [dim, dim];
 
             chooseColors();
-            if (random(100) < ctrl.chanceDiagonal) {
+            if (random(100) < ctrl.diagonalOrientationChance) {
                 // upper left to lower right
                 fill(c1);
                 triangle(...ul, ...lr, ...ll);

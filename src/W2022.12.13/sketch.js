@@ -9,7 +9,7 @@ function setupForm() {
             makeSlider('alphaRange', 'XXX', 30, 90, [60, 70]),
         ),
         makeSlider('numGrids', 'Anzahl der Gitter', 2, 10, 4),
-        makeSlider('divisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
+        makeSlider('segmentDivisorRange', 'Segment-Teilerbereich', 2, 20, [3, 10]),
         makeSlider('strokeWeight', 'XXX', 1, 8, 1),
     );
 }
@@ -23,7 +23,7 @@ function drawSketch() {
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     for (let i = 0; i < ctrl.numGrids; i++) {
         let drawType = random(['plain', 'diagonal']);
-        let maxDivisor = randomIntRange(...ctrl.divisorRange);
+        let maxDivisor = randomIntRange(...ctrl.segmentDivisorRange);
         let minDivisor = int(maxDivisor * 1.5);
         drawGrid(width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange));
     }

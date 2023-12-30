@@ -2,14 +2,14 @@
 
 function setupForm() {
     makeForm(
-        makeSlider('resolutionFactor', 'Auflösung', 4, 16, 10),
+        makeSlider('resolutionDivisor', 'Auflösungs-Divisor', 4, 16, 10),
         makeSlider('lineDensity', 'Liniendichte', 3, 8, 5),
         makeSlider('rotation', 'Rotation', 0, 270, 0, 90),
     );
 }
 
 function drawSketch() {
-    let pgDim = width / ctrl.resolutionFactor;
+    let pgDim = width / ctrl.resolutionDivisor;
     let pg = createGraphics(pgDim, pgDim);
 
     canvas.imageSmoothingEnabled = false;

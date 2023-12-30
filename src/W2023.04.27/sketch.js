@@ -8,8 +8,8 @@ function setupForm() {
             makeSelectColorMap(),
             makeSlider('numColors', 'XXX', 2, 32, 16),
         ),
-        makeSlider('chanceTileColor', 'Wahrscheinlichkeit einer gefärbten Kachel (%)', 0, 100, 50),
-        makeSlider('chanceDiamondColor', 'Wahrscheinlichkeit einer gefärbten Raute (%)', 0, 100, 50),
+        makeSlider('coloredTileChance', 'Wahrscheinlichkeit einer gefärbten Kachel (%)', 0, 100, 50),
+        makeSlider('coloredDiamondChance', 'Wahrscheinlichkeit einer gefärbten Raute (%)', 0, 100, 50),
         makeSlider('numTilesX', 'XXX', 4, 40, 10),
         makeSlider('numTilesY', 'XXX', 4, 40, 10),
     );
@@ -29,18 +29,18 @@ function drawSketch() {
 
 function drawTile(tile) {
 
-    fill(random(100) < ctrl.chanceTileColor ? random(palette) : "white");
+    fill(random(100) < ctrl.coloredTileChance ? random(palette) : "white");
     rect(...tile.upperLeft, ...tile.lowerRight);
 
-    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
     triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
 
-    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
     triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
 
-    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
     triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
 
-    fill(random(100) < ctrl.chanceDiamondColor ? random(palette) : "white");
+    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
     triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
 }
