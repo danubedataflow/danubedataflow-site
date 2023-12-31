@@ -1,0 +1,3 @@
+{
+    "W2023.10.04-description": "To create an 8-bit effect, lines are drawn into a graphics buffer, which is then scaled to the size of the canvas."
+}

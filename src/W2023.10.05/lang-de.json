@@ -1,3 +1,3 @@
 {
-    "description-W2023.10.05": "Nimm einen Wahrscheinlichkeitswert, der von 0 ganz oben bis 1 ganz unten geht. Damit in einer Reihe ein Quadrat gezeichnet wird, muß eine Zufallszahl größer sein als der Wahrscheinlichkeitswert potenziert mit einem gegebenen Wert. Je höher also der Exponent ist, desto niedriger wird der Schwellwert, und umso wahrscheinlicher ist es, daß ein Quadrat gezeichnet wird."
+    "W2023.10.05-description": "Nimm einen Wahrscheinlichkeitswert, der von 0 ganz oben bis 1 ganz unten geht. Damit in einer Reihe ein Quadrat gezeichnet wird, muß eine Zufallszahl größer sein als der Wahrscheinlichkeitswert potenziert mit einem gegebenen Wert. Je höher also der Exponent ist, desto niedriger wird der Schwellwert, und umso wahrscheinlicher ist es, daß ein Quadrat gezeichnet wird."
 }
