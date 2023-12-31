@@ -1,4 +1,3 @@
-"slider-alpha": "透明度（アルファ）：{value}",
 "slider-angleStep": "Angle step：{value}",
 "slider-brightnessRange": "Brightness range：{from}〜{to}",
 "slider-colorAngle": "Angle on the color wheel：{value}",

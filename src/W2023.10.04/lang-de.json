@@ -1,0 +1,3 @@
+{
+    "W2023.10.04-description": "Um einen 8-Bit-Effekt zu erzeugen, werden Linien in einen Grafikbuffer gezeichnet, der dann auf die Größe der Canvas skaliert wird."
+}
