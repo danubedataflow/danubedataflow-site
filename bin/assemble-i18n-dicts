@@ -3,23 +3,22 @@ use ScriptTools::features;
 use ScriptTools::JSON;
 use Path::Tiny;
 use open qw(:std :utf8);
-
-# Assuming there are JSON files named after locales like path/to/lang-en.json,
-# path/to/lang-ja.json etc., use
-#
-#     ./bin/assemble-i18n-dicts **/lang-??.json >src/js/i18n-dicts.js
-#
-# Dictionaries with the same locale will be merged. This makes it possible to
-# define longer or one-off translations in the directory where they belong, and
-# they don't clutter up the main dictionaries in etc/. The per-dir JSON files
-# will be ignored in ttreerc.
 my $combined = {};
 for my $filename (@ARGV) {
-    my $p      = path($filename);
-    my $locale = $p->basename('.json') =~ s/^lang-//r;    # 'lang-ja.json' => 'ja'
-    my $data   = json_decode($p->slurp_utf8);
-    $combined->{$locale} //= {};
-    $combined->{$locale}->%* = ($combined->{$locale}->%*, $data->%*);
+    my $p = path($filename);
+    my $filename_locale =
+      $p->basename('.json') =~ s/^lang-//r;    # 'lang-ja.json' => 'ja'
+    my $data = json_decode($p->slurp_utf8);
+    my $translation;
+    while (my ($key, $value) = each $data->%*) {
+        if (ref $value eq ref {}) {
+            while (my ($locale, $translation) = each $value->%*) {
+                register($locale, $key, $translation);
+            }
+        } else {
+            register($filename_locale, $key, $value);
+        }
+    }
 }
 my $json = json_encode($combined);
 1 while chomp $json;
@@ -29,3 +28,31 @@ my $js = <<~EOJS;
     const translations = $json;
     EOJS
 say $js;
+
+sub register ($locale, $key, $translation) {
+    $combined->{$locale}{$key} = $translation;
+}
+
+=pod
+
+Assuming there are JSON files named after locales like C<path/to/lang-en.json>,
+C<path/to/lang-ja.json> etc., use
+
+    ./bin/assemble-i18n-dicts **/lang*.json >src/js/i18n-dicts.js
+
+Dictionaries with the same locale will be merged. This makes it possible to
+define longer or one-off translations in the directory where they belong, and
+they don't clutter up the main dictionaries in etc/. The per-dir JSON files
+will be ignored in ttreerc.
+
+We iterate over each key-value pair. If the value is a hash itself, its key is
+interpreted to be a locale and its value the translation for that locale. That
+way you can have multiple definitions for the same data-i18n-key in the same
+file, which keeps things more compact. Example:
+
+   { "some-key" : { "de" => "...", "en" => "...", "ja" => "..." }
+
+If a locale is specified this way, it overrides a possible locale in the
+filename.
+
+=cut

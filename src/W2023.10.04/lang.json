@@ -1,0 +1,7 @@
+{
+    "W2023.10.04-description": {
+        "de": "Um einen 8-Bit-Effekt zu erzeugen, werden Linien in einen Grafikbuffer gezeichnet, der dann auf die Größe der Canvas skaliert wird.",
+        "en": "To create an 8-bit effect, lines are drawn into a graphics buffer, which is then scaled to the size of the canvas.",
+        "ja": "8 ビット効果を作成するには、線がグラフィック バッファーに描画され、キャンバスのサイズに合わせて拡大縮小されます。"
+    }
+}
