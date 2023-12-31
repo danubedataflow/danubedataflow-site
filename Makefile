@@ -5,7 +5,7 @@ DEPS = src/deps
 
 site: clean
 	@ttree -f etc/ttreerc
-	@find . -name lang-\?\?.json | xargs ./bin/assemble-i18n-dicts >$(WWW)/js/i18n-dicts.js
+	@find . -name lang\*.json | xargs ./bin/assemble-i18n-dicts >$(WWW)/js/i18n-dicts.js
 
 deps:
 	mkdir -p $(DEPS)
