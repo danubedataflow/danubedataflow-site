@@ -31,6 +31,10 @@
             </form>
 
             [% content %]
+
+            [% IF description %]
+                <p data-i18n-key="[% description %]"></p>
+            [% END %]
         </div>
     </section>
     <script src="sketch.js"></script>
