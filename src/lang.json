@@ -1,0 +1,627 @@
+{
+   "back-to-work" : {
+      "de" : "Zurück zum Werk",
+      "en" : "Back to the work",
+      "ja" : "作品へ戻る"
+   },
+   "checkbox-hasTileBorder" : {
+      "de" : "Kachelrand: ",
+      "en" : "Tile border: ",
+      "ja" : "タイルの境界線："
+   },
+   "description-inspired-vm" : {
+      "de" : "Inspiriert von Vera Molnár.",
+      "en" : "Inspired by Vera Molnár.",
+      "ja" : "ヴェラ・モルナール氏に影響された。"
+   },
+   "display-seed" : {
+      "en" : "Seed: ",
+      "ja" : "シード："
+   },
+   "fieldset-colors" : {
+      "de" : "Farben",
+      "en" : "Colors",
+      "ja" : "色"
+   },
+   "fieldset-noise" : {
+      "de" : "Rauschen",
+      "en" : "Noise",
+      "ja" : "ノイズ"
+   },
+   "fieldset-repetitions" : {
+      "de" : "Wiederholungen",
+      "en" : "Repetitions",
+      "ja" : "繰り返し"
+   },
+   "fieldset-rotation" : {
+      "en" : "Rotation",
+      "ja" : "回転移動"
+   },
+   "fieldset-scale" : {
+      "de" : "Skalierung",
+      "en" : "Scale",
+      "ja" : "拡大縮小"
+   },
+   "fieldset-stroke" : {
+      "de" : "Strich",
+      "en" : "Stroke",
+      "ja" : "筆"
+   },
+   "fieldset-tiles" : {
+      "de" : "Kacheln",
+      "en" : "Tiles",
+      "ja" : "タイル"
+   },
+   "fieldset-translation" : {
+      "en" : "Translation",
+      "ja" : "平行移動"
+   },
+   "nav-Notes" : {
+      "de" : "Notizen",
+      "en" : "Notes",
+      "ja" : "日記"
+   },
+   "nav-Quotes" : {
+      "de" : "Zitate",
+      "en" : "Quotes",
+      "ja" : "引用"
+   },
+   "nav-Works" : {
+      "de" : "Werke",
+      "en" : "Works",
+      "ja" : "作品"
+   },
+   "optgroup-diverging" : {
+      "de" : "Divergierend",
+      "en" : "Diverging",
+      "ja" : "発散"
+   },
+   "optgroup-qualitative" : {
+      "de" : "Qualitativ",
+      "en" : "Qualitative",
+      "ja" : "定性"
+   },
+   "optgroup-sequential" : {
+      "de" : "Sequentiell",
+      "en" : "Sequential",
+      "ja" : "順次"
+   },
+   "option-Accent" : {
+      "en" : "Accent"
+   },
+   "option-Blues" : {
+      "en" : "Blues"
+   },
+   "option-BrBG" : {
+      "en" : "BrBG"
+   },
+   "option-BuGn" : {
+      "en" : "BuGn"
+   },
+   "option-BuPu" : {
+      "en" : "BuPu"
+   },
+   "option-Dark2" : {
+      "en" : "Dark2"
+   },
+   "option-GnBu" : {
+      "en" : "GnBu"
+   },
+   "option-Greens" : {
+      "en" : "Greens"
+   },
+   "option-Greys" : {
+      "en" : "Greys"
+   },
+   "option-OrRd" : {
+      "en" : "OrRd"
+   },
+   "option-Oranges" : {
+      "en" : "Oranges"
+   },
+   "option-PRGn" : {
+      "en" : "PRGn"
+   },
+   "option-Paired" : {
+      "en" : "Paired"
+   },
+   "option-Pastel1" : {
+      "en" : "Pastel1"
+   },
+   "option-Pastel2" : {
+      "en" : "Pastel2"
+   },
+   "option-PiYG" : {
+      "en" : "PiYG"
+   },
+   "option-PuBu" : {
+      "en" : "PuBu"
+   },
+   "option-PuBuGn" : {
+      "en" : "PuBuGn"
+   },
+   "option-PuOr" : {
+      "en" : "PuOr"
+   },
+   "option-PuRd" : {
+      "en" : "PuRd"
+   },
+   "option-Purples" : {
+      "en" : "Purples"
+   },
+   "option-RdBu" : {
+      "en" : "RdBu"
+   },
+   "option-RdGy" : {
+      "en" : "RdGy"
+   },
+   "option-RdPu" : {
+      "en" : "RdPu"
+   },
+   "option-RdYlBu" : {
+      "en" : "RdYlBu"
+   },
+   "option-RdYlGn" : {
+      "en" : "RdYlGn"
+   },
+   "option-Reds" : {
+      "en" : "Reds"
+   },
+   "option-Set1" : {
+      "en" : "Set1"
+   },
+   "option-Set2" : {
+      "en" : "Set2"
+   },
+   "option-Set3" : {
+      "en" : "Set3"
+   },
+   "option-Spectral" : {
+      "en" : "Spectral"
+   },
+   "option-Viridis" : {
+      "en" : "Viridis"
+   },
+   "option-YlGn" : {
+      "en" : "YlGn"
+   },
+   "option-YlGnBu" : {
+      "en" : "YlGnBu"
+   },
+   "option-YlOrBr" : {
+      "en" : "YlOrBr"
+   },
+   "option-YlOrRd" : {
+      "en" : "YlOrRd"
+   },
+   "option-adjacent" : {
+      "de" : "Angrenzend",
+      "en" : "Adjacent",
+      "ja" : "隣接"
+   },
+   "option-color-burn" : {
+      "en" : "Burn"
+   },
+   "option-color-dodge" : {
+      "en" : "Dodge"
+   },
+   "option-copy" : {
+      "en" : "Copy"
+   },
+   "option-darken" : {
+      "en" : "Darkest"
+   },
+   "option-destination-out" : {
+      "en" : "Remove"
+   },
+   "option-difference" : {
+      "en" : "Difference"
+   },
+   "option-exclusion" : {
+      "en" : "Exclusion"
+   },
+   "option-hard-light" : {
+      "en" : "Hard light"
+   },
+   "option-lighten" : {
+      "en" : "Lighten"
+   },
+   "option-lighter" : {
+      "en" : "Lighter"
+   },
+   "option-multiply" : {
+      "en" : "Multiply"
+   },
+   "option-overlay" : {
+      "en" : "Overlay"
+   },
+   "option-random" : {
+      "de" : "Zufällig",
+      "en" : "Random",
+      "ja" : "ランダム"
+   },
+   "option-screen" : {
+      "en" : "Screen"
+   },
+   "option-soft-light" : {
+      "en" : "Soft light"
+   },
+   "option-source-over" : {
+      "en" : "Blend"
+   },
+   "publish-date" : {
+      "de" : "Veröffentlicht am {publishDate}",
+      "en" : "Published {publishDate}",
+      "ja" : "{publishDate}に発行"
+   },
+   "section-Notes" : {
+      "de" : "Notizen",
+      "en" : "Notes",
+      "ja" : "日記（ほとんど英語）"
+   },
+   "section-Quotes" : {
+      "de" : "Zitate",
+      "en" : "Quotes",
+      "ja" : "引用"
+   },
+   "section-Works" : {
+      "de" : "Werke",
+      "en" : "Works",
+      "ja" : "作品"
+   },
+   "select-blendMode" : {
+      "de" : "Farbmischung: ",
+      "en" : "Blend mode: ",
+      "ja" : "ブレンドモード："
+   },
+   "select-colorMap" : {
+      "de" : "Farbpalette: ",
+      "en" : "Color map: ",
+      "ja" : "色パレット："
+   },
+   "select-colorStrategy" : {
+      "de" : "Farbwahl-Strategie: ",
+      "en" : "Color strategy: ",
+      "ja" : "色の選択："
+   },
+   "sketch-copyLink" : {
+      "de" : "Link kopieren",
+      "en" : "Copy link",
+      "ja" : "リンクをコピー"
+   },
+   "sketch-newSeed" : {
+      "de" : "Neuer Seed",
+      "en" : "New seed",
+      "ja" : "新しいシード"
+   },
+   "sketch-printView" : {
+      "de" : "Druckansicht",
+      "en" : "Print view",
+      "ja" : "プリンタービュー"
+   },
+   "sketch-randomParameters" : {
+      "de" : "Zufallsparameter",
+      "en" : "Random parameters",
+      "ja" : "ランダムパラメータ"
+   },
+   "sketch-saveCanvas" : {
+      "de" : "Speichern",
+      "en" : "Save",
+      "ja" : "保存"
+   },
+   "sketch-sourceCode" : {
+      "de" : "Quellcode",
+      "en" : "Source code",
+      "ja" : "ソースコード"
+   },
+   "slider-alpha" : {
+      "de" : "Transparenz (Alpha): {value}",
+      "en" : "Transparency (alpha): {value}",
+      "ja" : "透明度（アルファ）：{value}"
+   },
+   "slider-alphaRange" : {
+      "de" : "Transparenz-Bereich (Alpha): {from} bis {to}",
+      "en" : "Transparency range (alpha): {from} to {to}",
+      "ja" : "透明度の範囲（アルファ）：{from}〜{to}"
+   },
+   "slider-angleStep" : {
+      "de" : "Winkel-Schritt: {value}",
+      "en" : "Angle step: {value}"
+   },
+   "slider-brightnessRange" : {
+      "de" : "Helligkeits-Bereich: {from} bis {to}",
+      "en" : "Brightness range: {from} to {to}"
+   },
+   "slider-colorAngle" : {
+      "de" : "Winkel auf dem Farbenkreis: {value}",
+      "en" : "Angle on the color wheel: {value}"
+   },
+   "slider-coloredDiamondChance" : {
+      "de" : "Wahrscheinlichkeit einer gefärbten Raute: {value}%",
+      "en" : "Probability of a colored rhombus: {value}%"
+   },
+   "slider-coloredTileChance" : {
+      "de" : "Wahrscheinlichkeit einer gefärbten Kachel: {value}%",
+      "en" : "Probability of a colored tile: {value}%"
+   },
+   "slider-diagonalDownwardsLineChance" : {
+      "de" : "Wahrscheinlichkeit einer diagonalen Abwärtslinie: {value}%",
+      "en" : "Probability of a diagonal downwards line: {value}%"
+   },
+   "slider-diagonalOrientationChance" : {
+      "de" : "Wahrscheinlichkeit der Ausrichtung der Diagonale: {value}%",
+      "en" : "Probability of the diagonal's orientation: {value}%"
+   },
+   "slider-diagonalUpwardsLineChance" : {
+      "de" : "Wahrscheinlichkeit einer diagonalen Aufwärtslinie: {value}%",
+      "en" : "Probability of a diagonal upwards line: {value}%"
+   },
+   "slider-diameter" : {
+      "de" : "Durchmesser: {value}",
+      "en" : "Diameter: {value}"
+   },
+   "slider-exponentsRange" : {
+      "de" : "Exponenten-Bereich: {from} bis {to}",
+      "en" : "Exponent range: {from} to {to}",
+      "ja" : "指数：{from}〜{to}"
+   },
+   "slider-horizontalLineChance" : {
+      "de" : "Wahrscheinlichkeit einer horizontalen Linie: {value}%",
+      "en" : "Probability of a horizontal line: {value}%"
+   },
+   "slider-horizontalSineFactor" : {
+      "de" : "Horizontaler Sinus-Faktor: {value}",
+      "en" : "Horizontal sine faktor: {value}"
+   },
+   "slider-lineDensity" : {
+      "de" : "Liniendichte: {value}",
+      "en" : "Line density: {value}"
+   },
+   "slider-lineGap" : {
+      "de" : "Distanz der Anfangspunkte: {value}",
+      "en" : "Distanz of initial points: {value}",
+      "ja" : "最新の点の距離：{value}"
+   },
+   "slider-margin" : {
+      "de" : "Rand: {value}",
+      "en" : "Margin: {value}"
+   },
+   "slider-maxDepth" : {
+      "de" : "Maximale Tiefe: {value}",
+      "en" : "Maximum depth: {value}"
+   },
+   "slider-maxLength" : {
+      "de" : "Maximale Länge: {value}",
+      "en" : "Maximum length: {value}"
+   },
+   "slider-maxMovement" : {
+      "de" : "Maximale Bewegung: {value}",
+      "en" : "Maximum movement: {value}",
+      "ja" : "最大の動き：{value}"
+   },
+   "slider-maxOffsetPerAxis" : {
+      "de" : "Maximaler Versatz pro Achse: {value}",
+      "en" : "Maximum offset per axis: {value}"
+   },
+   "slider-modulus" : {
+      "en" : "Modulus: {value}"
+   },
+   "slider-noiseDivisor" : {
+      "de" : "Rausch-Teiler: {value}",
+      "en" : "Noise divisor: {value}"
+   },
+   "slider-noiseOffsetX" : {
+      "de" : "Horizontaler Rausch-Versatz: {value}",
+      "en" : "Horizontal noise offset: {value}"
+   },
+   "slider-noiseOffsetY" : {
+      "de" : "Vertikaler Rausch-Versatz: {value}",
+      "en" : "Vertical noise offset: {value}"
+   },
+   "slider-numColors" : {
+      "de" : "Anzahl der Farben: {value}",
+      "en" : "Number of colors: {value}",
+      "ja" : "色の数：{value}"
+   },
+   "slider-numCurves" : {
+      "de" : "Anzahl der Kurven: {value}",
+      "en" : "Number of curves: {value}"
+   },
+   "slider-numGrids" : {
+      "de" : "Anzahl der Gitter: {value}",
+      "en" : "Number of grids: {value}"
+   },
+   "slider-numHorizontalLines" : {
+      "de" : "Anzahl der horizontalen Striche: {value}",
+      "en" : "Number of horizonal lines: {value}"
+   },
+   "slider-numLines" : {
+      "de" : "Anzahl der Linien: {value}",
+      "en" : "Number of lines: {value}",
+      "ja" : "行数：{value}"
+   },
+   "slider-numObjects" : {
+      "de" : "Anzahl der Objekte: {value}",
+      "en" : "Number of objects: {value}",
+      "ja" : "物の数：{value}"
+   },
+   "slider-numPoints" : {
+      "de" : "Anzahl der Punkte pro Kachel: {value}",
+      "en" : "Number of points per tile: {value}",
+      "ja" : "タイルあたりのポイント数：{value}"
+   },
+   "slider-numPointsPerSide" : {
+      "de" : "Anzahl der Punkte pro Seite im Quadrat: {value}",
+      "en" : "Number of points per side in a square: {value}"
+   },
+   "slider-numPointsX" : {
+      "de" : "Anzahl der horizontalen Punkte: {value}",
+      "en" : "Number of horizontal points: {value}"
+   },
+   "slider-numPointsY" : {
+      "de" : "Anzahl der vertikalen Punkte: {value}",
+      "en" : "Number of vertical points: {value}"
+   },
+   "slider-numRects" : {
+      "de" : "Anzahl der Rechtecke: {value}",
+      "en" : "Number of rectangles: {value}"
+   },
+   "slider-numSides" : {
+      "de" : "Anzahl der Seiten: {value}",
+      "en" : "Number of sides: {value}"
+   },
+   "slider-numSquares" : {
+      "de" : "Anzahl der Quadrate: {value}",
+      "en" : "Number of squares: {value}",
+      "ja" : "正方形の数：{value}"
+   },
+   "slider-numSquaresPerTile" : {
+      "de" : "Anzahl der Quadrate pro Kachel: {value}",
+      "en" : "Number of squares per tile: {value}"
+   },
+   "slider-numTiles" : {
+      "de" : "Anzahl der Kacheln pro Achse: {value}",
+      "en" : "Number of tiles per axis: {value}",
+      "ja" : "軸あたりのタイル数：{value}"
+   },
+   "slider-numTilesX" : {
+      "de" : "Anzahl der horizontalen Kacheln: {value}",
+      "en" : "Number of horizontal tiles: {value}",
+      "ja" : "水平タイルの数：{value}"
+   },
+   "slider-numTilesY" : {
+      "de" : "Anzahl der vertikalen Kacheln: {value}",
+      "en" : "Number of vertical tiles: {value}",
+      "ja" : "垂直タイルの数：{value}"
+   },
+   "slider-numTriangles" : {
+      "de" : "Anzahl der Dreiecke: {value}",
+      "en" : "Number of triangles: {value}",
+      "ja" : "三角形の数：{value}"
+   },
+   "slider-numVerticalLines" : {
+      "de" : "Anzahl der vertikalen Striche: {value}",
+      "en" : "Number of vertical lines: {value}"
+   },
+   "slider-percentConnections" : {
+      "de" : "Verbindungen: {value}%",
+      "en" : "Connections: {value}%"
+   },
+   "slider-randomPointOffset" : {
+      "de" : "Zufalls-Versatz der Punkte: {value}",
+      "en" : "Random point offset: {value}"
+   },
+   "slider-ratioColoredTiles" : {
+      "de" : "Färbe eine in so vielen Kacheln: {value}",
+      "en" : "Ratio of colored tiles: {value}"
+   },
+   "slider-resolutionDivisor" : {
+      "de" : "Auflösungs-Divisor: {value}",
+      "en" : "Resolution divisor: {value}"
+   },
+   "slider-rotation" : {
+      "en" : "Rotation: {value}"
+   },
+   "slider-rotationChance" : {
+      "de" : "Rotations-Wahrscheinlichkeit: {value}%",
+      "en" : "Rotation probability: {value}%",
+      "ja" : "回転移動の確率：{value}%"
+   },
+   "slider-rotationRange" : {
+      "de" : "Rotations-Bereich: {from}° bis {to}°",
+      "en" : "Rotation range: {from}° to {to}°",
+      "ja" : "回転移動の範囲：{from}°〜{to}°"
+   },
+   "slider-rotationStep" : {
+      "de" : "Rotations-Schritt: {value}",
+      "en" : "Rotation step: {value}"
+   },
+   "slider-saturationRange" : {
+      "de" : "Farbsättigungs-Bereich: {from} bis {to}",
+      "en" : "Saturation range: {from} to {to}"
+   },
+   "slider-scale" : {
+      "de" : "Skalierung: {value}",
+      "en" : "Scale: {value}"
+   },
+   "slider-scaleChance" : {
+      "de" : "Skalierungs-Wahrscheinlichkeit: {value}%",
+      "en" : "Scale probability: {value}%",
+      "ja" : "拡大縮小の確率：{value}%"
+   },
+   "slider-scaleInner" : {
+      "de" : "Skalierung der inneren Quadrate: {value}",
+      "en" : "Scale of the inner squares: {value}"
+   },
+   "slider-scaleRange" : {
+      "de" : "Skalierungs-Bereich: {from} bis {to}",
+      "en" : "Scale range: {from} to {to}",
+      "ja" : "拡大縮小の範囲：{from}〜{to}"
+   },
+   "slider-scaleStep" : {
+      "de" : "Skalierungs-Schritt: {value}%",
+      "en" : "Scale step: {value}%"
+   },
+   "slider-segmentDivisorRange" : {
+      "de" : "Segment-Teilerbereich: {from} bis {to}",
+      "en" : "Segment divisor range: {from} to {to}"
+   },
+   "slider-squareLengthRange" : {
+      "de" : "Seitenlängen sind {from}% bis {to}% der Leinwand",
+      "en" : "Side lengths are {from}% to {to}% of the canvas",
+      "ja" : "辺の長さはキャンバスの{from}%〜{to}%"
+   },
+   "slider-squareSizeRange" : {
+      "de" : "Bereich der Größe der Quadrate: {from} bis {to}",
+      "en" : "Square size range: {from} to {to}"
+   },
+   "slider-strokeWeight" : {
+      "de" : "Strichstärke: {value}",
+      "en" : "Stroke weight: {value}",
+      "ja" : "筆の太さ：{value}"
+   },
+   "slider-strokeWeightChance" : {
+      "de" : "Strichstärken-Wahrscheinlichkeit: {value}%",
+      "en" : "Stroke weight probability: {value}%",
+      "ja" : "筆の太さの確率：{value}%"
+   },
+   "slider-strokeWeightRange" : {
+      "de" : "Strichstärken-Bereich: {from} bis {to}",
+      "en" : "Stroke weight range: {from} to {to}",
+      "ja" : "筆の太さの範囲：{from}〜{to}"
+   },
+   "slider-strokeWeightRangeRelative" : {
+      "de" : "Strichdicke-Bereich: {from}% bis {to}% der Leinwandgröße",
+      "en" : "Stroke weight range: {from}% to {to}% of the canvas"
+   },
+   "slider-tileCountX" : {
+      "de" : "Anzahl der horizontalen Kacheln: {value}",
+      "en" : "Number of horizontal tiles: {value}"
+   },
+   "slider-tileCountY" : {
+      "de" : "Anzahl der vertikalen Kacheln: {value}",
+      "en" : "Number of vertical tiles: {value}"
+   },
+   "slider-tileSizeMultiplier" : {
+      "de" : "Kachelgrößen-Multiplikator: {value}",
+      "en" : "Tile size multiplier: {value}"
+   },
+   "slider-timesTable" : {
+      "de" : "Einmaleins: {value}",
+      "en" : "Times table: {value}"
+   },
+   "slider-translationChance" : {
+      "de" : "Translations-Wahrscheinlichkeit: {value}%",
+      "en" : "Translation probability: {value}%",
+      "ja" : "平行移動の確率：{value}%"
+   },
+   "slider-translationRange" : {
+      "de" : "Translations-Bereich: {from} bis {to}",
+      "en" : "Translation range: {from} to {to}",
+      "ja" : "平行移動の範囲：{from}〜{to}"
+   },
+   "slider-verticalLineChance" : {
+      "de" : "Wahrscheinlichkeit einer vertikalen Linie: {value}%",
+      "en" : "Probability of a vertical line: {value}%"
+   }
+}
