@@ -236,9 +236,6 @@ function makeForm(...contents) {
      * twice because draw() will call random(), and you wouldn't be able
      * to get the exact same image even with the same seed.
      */
-
-    // readControls();
-    // updateURL();
 }
 
 function makeFieldset(legend, ...contents) {
@@ -284,13 +281,21 @@ function setIntlAttributes(element, config) {
         let opt = {};
         if (Array.isArray(config.opt)) {
             if (config.opt.length == 1) {
-                opt.value = { number: config.opt[0] };
+                opt.value = {
+                    number: config.opt[0]
+                };
             } else {
-                opt.from = { number: config.opt[0] };
-                opt.to = { number: config.opt[1] };
+                opt.from = {
+                    number: config.opt[0]
+                };
+                opt.to = {
+                    number: config.opt[1]
+                };
             }
         } else {
-            opt.value = { number: config.opt };
+            opt.value = {
+                number: config.opt
+            };
         }
         element.setAttribute('data-i18n-opt', JSON.stringify(opt));
     }
@@ -556,11 +561,13 @@ function readControls() {
     }
 }
 
-function getCurrentURL() {
+function getCurrentURL(config = {}) {
     let urlParams = new URLSearchParams();
     for (const [key, value] of Object.entries(controls)) {
         urlParams.set(key, value.getValue());
     }
+
+    if (config.timestamp) urlParams.set('timestamp', Date.now());
 
     /* Replace the URL in the browser's URL bar using the current control
      * values, without reloading the page.
@@ -705,7 +712,9 @@ function padSketch(_scale = 0.97) {
 
 function copyLink() {
     if (window.isSecureContext) {
-        navigator.clipboard.writeText(getCurrentURL());
+        navigator.clipboard.writeText(getCurrentURL({
+            timestamp: 1
+        }));
     } else {
         alert("Eine sichere Verbindung ist nötig, um ins Clipboard schreiben zu können.");
     }
@@ -730,7 +739,9 @@ function setPageType() {
 }
 
 function setupQRCode() {
-    new QRCode(document.getElementById("qrcode"), getCurrentURL());
+    new QRCode(document.getElementById("qrcode"), getCurrentURL({
+        timestamp: 1
+    }));
 
 }
 
