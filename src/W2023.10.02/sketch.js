@@ -38,9 +38,7 @@ function setupForm() {
 }
 
 function drawSketch() {
-    noStroke();
-    noFill();
-    background("white");
+    background('white');
     stroke('black');
     strokeWeight(ctrl.strokeWeight);
 
