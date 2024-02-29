@@ -1,0 +1,16 @@
+[%
+    WRAPPER html;
+        INCLUDE head title="Danube Dataflow";
+        WRAPPER body;
+%]
+            <section class="wide">
+                <h1 data-i18n-key="section-Experiments"></h1>
+            </section>
+
+            <section class="wide">
+                [% INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("E") %]
+            </section>
+[%
+        END;
+    END;
+%]
