@@ -21,7 +21,7 @@ function drawSketch() {
 }
 
 function drawTile(tile) {
-    scale(ctrl.repScale);
+    scale(ctrl.scale);
     let points = [];
     for (let y = 0; y < ctrl.numPointsPerSide; y++) {
         for (let x = 0; x < ctrl.numPointsPerSide; x++) {
