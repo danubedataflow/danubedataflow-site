@@ -23,6 +23,10 @@
       "en" : "Colors",
       "ja" : "色"
    },
+   "fieldset-curves" : {
+      "de" : "Kurven",
+      "en" : "Curves"
+   },
    "fieldset-noise" : {
       "de" : "Rauschen",
       "en" : "Noise",
@@ -349,6 +353,10 @@
       "de" : "Wahrscheinlichkeit einer gefärbten Kachel: {value}%",
       "en" : "Probability of a colored tile: {value}%"
    },
+   "slider-curveScale" : {
+      "de" : "Kurvenskalierung: {value}",
+      "en" : "Curve scale: {value}"
+   },
    "slider-diagonalDownwardsLineChance" : {
       "de" : "Wahrscheinlichkeit einer diagonalen Abwärtslinie: {value}%",
       "en" : "Probability of a diagonal downwards line: {value}%"
@@ -386,6 +394,10 @@
       "de" : "Distanz der Anfangspunkte: {value}",
       "en" : "Distanz of initial points: {value}",
       "ja" : "最新の点の距離：{value}"
+   },
+   "slider-lineScale" : {
+      "de" : "Linienskalierung: {value}",
+      "en" : "Line scale: {value}"
    },
    "slider-margin" : {
       "de" : "Rand: {value}",
