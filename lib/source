@@ -1,5 +1,7 @@
-[%- DEFAULT file = 'sketch.js' -%]
-[% WRAPPER html %]
+[%
+    THROW undefined 'lib/source: file' UNLESS file.defined;
+    WRAPPER html;
+%]
 
 [% WRAPPER head %]
     <link href="/deps/highlight.min.css" rel="stylesheet">
@@ -8,7 +10,7 @@
 
 [% WRAPPER body %]
     <section class="narrow">
-        <p><a href="index.html" data-i18n-key="back-to-work"></a></p>
+[% content %]
         <pre><code class="language-javascript" id="source">
         </code></pre>
     </section>
