@@ -1,7 +1,7 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site deps watch nginx live icons clean test open-all
+.PHONY: site deps watch nginx live icons clean test open-all npm-update
 
 site: clean
 	@ttree -f etc/ttreerc
@@ -46,3 +46,7 @@ test:
 
 open-all:
 	./bin/open-all
+
+npm-update:
+	npm update --save
+
