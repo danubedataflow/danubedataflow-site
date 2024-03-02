@@ -4,9 +4,12 @@ function setupForm() {
     makeForm(
         makeSlider('numTilesX', 10, 70, 50),
         makeSlider('numTilesY', 10, 70, 50),
-        makeSlider('numCurves', 2, 100, 30),
         makeSlider('angleStep', 2, 32, 16),
-        makeSlider('scale', 1, 2, 1.5, 0.1),
+        makeSlider('lineScale', 1, 2, 1.5, 0.1),
+        makeFieldset('curves',
+            makeSlider('numCurves', 2, 100, 30),
+            makeSlider('curveScale', 0.5, 1, 0.6, 0.05),
+        ),
     );
 }
 
@@ -29,9 +32,8 @@ function drawSketch() {
              */
 
             const angle = (360 / ctrl.angleStep) * int(random(ctrl.angleStep));
-            // FIXME ctrl.lineScale; add to lang.json
-            const lineX = ctrl.scale * (sin(angle) * width / ctrl.numTilesX / 2);
-            const lineY = ctrl.scale * (cos(angle) * height / ctrl.numTilesY / 2);
+            const lineX = ctrl.lineScale * (sin(angle) * width / ctrl.numTilesX / 2);
+            const lineY = ctrl.lineScale * (cos(angle) * height / ctrl.numTilesY / 2);
 
             // draw the line between opposing endpoints on the circle
             line(p[0] + lineX, p[1] + lineY, p[0] - lineX, p[1] - lineY);
@@ -54,12 +56,10 @@ function randomPath(n) {
     let pathOffsetX = randomIntPlusMinus(width / 2);
     let pathOffsetY = randomIntPlusMinus(height / 2);
 
-    let curveScale = 0.67; // FIXME ctrl.curveScale; add to lang.json
-
     let randomPoint = () => {
         return [
-            int(random(width * curveScale)) + pathOffsetX,
-            int(random(height * curveScale)) + pathOffsetY
+            int(random(width * ctrl.curveScale)) + pathOffsetX,
+            int(random(height * ctrl.curveScale)) + pathOffsetY
         ]
     };
 
