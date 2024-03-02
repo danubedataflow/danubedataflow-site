@@ -8,7 +8,13 @@
             </section>
 
             <section class="wide">
-                [% INCLUDE frame FOREACH dir IN t.get_subdirs_starting_with("E") %]
+                <ul>
+[%
+    FOREACH dir IN t.get_subdirs_starting_with("E");
+        '<li><a href="' _ dir _ '/">' _ dir _ '</a></li>';
+    END;
+%]
+                </ul>
             </section>
 [%
         END;
