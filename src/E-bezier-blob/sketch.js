@@ -16,55 +16,50 @@ function drawSketch() {
 
     stroke('black');
 
-    const tileWidth = width / ctrl.numTilesX;
-    const tileHeight = height / ctrl.numTilesY;
-    for (let y = 1; y <= ctrl.numTilesY; y++) {
-        for (let x = 1; x <= ctrl.numTilesX; x++) {
-            const centerX = (x - 1) * tileWidth + tileWidth / 2;
-            const centerY = (y - 1) * tileHeight + tileHeight / 2;
+    let d = pixelDensity(); // I have no idea why this is necessary.
+    gridCenters(ctrl.numTilesX, ctrl.numTilesY)
+        .filter(p => !drawingContext.isPointInPath(path, d * p[0], d * p[1]))
+        .forEach(p => {
+            /*
+             * Draw a line at a random angle.
+             *
+             * lineX and lineY are the coordinates of one endpoint of this line
+             * on an imaginary circle around (centerX, centerY) that spans the
+             * whole tile, multiplied by a random length factor.
+             */
 
-            // I have no idea why pixelDensity() and the offsets are necessary
-            // here.
-            const isPointInPath = drawingContext.isPointInPath(
-                path,
-                pixelDensity() * centerX,
-                pixelDensity() * centerY
-            );
+            const angle = (360 / ctrl.angleStep) * int(random(ctrl.angleStep));
+            // FIXME ctrl.lineScale; add to lang.json
+            const lineX = ctrl.scale * (sin(angle) * width / ctrl.numTilesX / 2);
+            const lineY = ctrl.scale * (cos(angle) * height / ctrl.numTilesY / 2);
 
-            if (!isPointInPath) {
+            // draw the line between opposing endpoints on the circle
+            line(p[0] + lineX, p[1] + lineY, p[0] - lineX, p[1] - lineY);
+        });
+}
 
-                /*
-                 * Draw a line at a random angle.
-                 *
-                 * lineX and lineY are the coordinates of one endpoint of this
-                 * line on an imaginary circle around (centerX, centerY) that
-                 * spans the whole tile, multiplied by a random length factor.
-                 */
-
-                const angle = (360 / ctrl.angleStep) * int(random(ctrl.angleStep));
-                // FIXME ctrl.lineScale; add to lang.json
-                const lineX = ctrl.scale * (sin(angle) * tileWidth / 2);
-                const lineY = ctrl.scale * (cos(angle) * tileHeight / 2);
-
-                // draw the line between opposing endpoints on the circle
-                line(centerX + lineX, centerY + lineY, centerX - lineX, centerY - lineY);
-            }
+function gridCenters(numX, numY) {
+    let p = [];
+    for (let y = 0; y < numY; y++) {
+        for (let x = 0; x < numX; x++) {
+            p.push([(x + 0.5) * width / numX, (y + 0.5) * height / numY]);
         }
     }
+    return p;
 }
 
 function randomPath(n) {
 
-    // pathOffsetX and pathOffsetY move the whole path
-    let pathOffsetX = int(random(width / 2));
-    let pathOffsetY = int(random(height / 2));
+    // this offset applies to the whole path
+    let pathOffsetX = randomIntPlusMinus(width / 2);
+    let pathOffsetY = randomIntPlusMinus(height / 2);
 
-    let blobScale = 0.67; // FIXME ctrl.blobScale; add to lang.json
+    let curveScale = 0.67; // FIXME ctrl.curveScale; add to lang.json
 
     let randomPoint = () => {
         return [
-            int(random(width * blobScale)) + pathOffsetX,
-            int(random(height * blobScale)) + pathOffsetY
+            int(random(width * curveScale)) + pathOffsetX,
+            int(random(height * curveScale)) + pathOffsetY
         ]
     };
 
