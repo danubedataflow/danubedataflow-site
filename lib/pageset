@@ -1,6 +1,15 @@
 [%
     DEFAULT title=t.get_default_name;
     INCLUDE sketch;
-    INCLUDE source FILTER redirect("${t.get_current_parent_path}/source.html");
-    INCLUDE print  FILTER redirect("${t.get_current_parent_path}/print.html");
+
+    FILTER redirect("${t.get_current_parent_path}/source.html");
+        WRAPPER source file='sketch.js';
+            '<p><a href="index.html" data-i18n-key="back-to-work"></a></p>';
+            '<p><a href="/source-js-utils.html">utils.js</a></p>';
+        END;
+    END;
+
+    FILTER redirect("${t.get_current_parent_path}/print.html");
+        INCLUDE print;
+    END;
 %]
