@@ -515,23 +515,23 @@ function makeSelectColorMap() {
 }
 
 function makeSelectBlendMode(options) {
-    // use [] because these are const names
+    // see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
     let nameFor = {
-        [ADD]: 'Lighter',
-        [BLEND]: 'Blend',
-        [BURN]: 'Burn',
-        [DARKEST]: 'Darkest',
-        [DIFFERENCE]: 'Difference',
-        [DODGE]: 'Dodge',
-        [EXCLUSION]: 'Exclusion',
-        [HARD_LIGHT]: 'Hard light',
-        [LIGHTEST]: 'Lighten',
-        [MULTIPLY]: 'Multiply',
-        [OVERLAY]: 'Overlay',
-        [REMOVE]: 'Remove',
-        [REPLACE]: 'Copy',
-        [SCREEN]: 'Screen',
-        [SOFT_LIGHT]: 'Soft light',
+        'lighter': 'Lighter',
+        'source-over': 'Blend',
+        'color-burn': 'Burn',
+        'darken': 'Darkest',
+        'difference': 'Difference',
+        'color-dodge': 'Dodge',
+        'exclusion': 'Exclusion',
+        'hard-light': 'Hard light',
+        'lighten': 'Lighten',
+        'multiply': 'Multiply',
+        'overlay': 'Overlay',
+        'destination-out': 'Remove',
+        'copy': 'Copy',
+        'screen': 'Screen',
+        'soft-light': 'Soft light',
     };
 
     if (options == null) {
