@@ -1,7 +1,9 @@
 [% WRAPPER html %]
 
 [% WRAPPER head %]
+    [% UNLESS raw %]
     <script src="/deps/p5.min.js"></script>
+    [% END %]
     <link href="/deps/nouislider.min.css" rel="stylesheet">
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
@@ -13,7 +15,7 @@
 
 [% WRAPPER body %]
     <section id="sketch-container">
-        <div id="sketch"></div>
+        <div id="sketch">[% IF raw %]<canvas></canvas>[% END %]</div>
 
         <div id="controls">
             <p>
