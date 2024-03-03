@@ -14,7 +14,8 @@ function setupForm() {
 }
 
 function drawSketch() {
-    background('white');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
 
     let path = randomPath(ctrl.numCurves);

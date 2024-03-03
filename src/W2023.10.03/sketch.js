@@ -9,9 +9,8 @@ function setupForm() {
 }
 
 function drawSketch() {
-    noStroke();
-    background("white");
-    colorMode(HSB, 360, 100, 100)
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
@@ -20,9 +19,9 @@ function drawSketch() {
 }
 
 function drawTile(tile) {
-    fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
-    rect(...tile.upperLeft, ...tile.lowerRight);
-    scale(ctrl.scaleInner);
-    fill(ctrl.colorAngle, 100, randomIntRange(40, 100));
-    rect(...tile.upperLeft, ...tile.lowerRight);
+    ctx.fillStyle = hsv_to_hsl_color(ctrl.colorAngle, 1, 0.4 + random() * 0.6);
+    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
+    ctx.scale(ctrl.scaleInner, ctrl.scaleInner);
+    ctx.fillStyle = hsv_to_hsl_color(ctrl.colorAngle, 1, 0.4 + random() * 0.6);
+    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
 }

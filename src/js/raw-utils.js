@@ -671,8 +671,8 @@ function makeGrid(args) {
     let tileHeight = gridHeight / numTilesY;
     for (let y = 1; y <= numTilesY; y++) {
         for (let x = 1; x <= numTilesX; x++) {
-            push();
-            translate((x - 1) * tileWidth, (y - 1) * tileHeight);
+            ctx.save();
+            ctx.translate((x - 1) * tileWidth, (y - 1) * tileHeight);
 
             let subdivisions = numSubdivisions(depth);
             // make a sub-grid that is as big as the tile
@@ -687,11 +687,11 @@ function makeGrid(args) {
                     tileCallback: tileCallback
                 });
             } else {
-                push();
+                ctx.save();
 
                 // Move to the tile center so that rotation and scaling happen
                 // around that center.
-                translate(tileWidth / 2, tileHeight / 2);
+                ctx.translate(tileWidth / 2, tileHeight / 2);
 
                 let tile = {
                     width: tileWidth,
@@ -713,17 +713,17 @@ function makeGrid(args) {
 
                 tileCallback(tile);
 
-                pop();
+                ctx.restore();
             }
-            pop();
+            ctx.restore();
         }
     }
 }
 
 function padSketch(_scale = 0.97) {
-    translate(width / 2, height / 2);
-    scale(_scale);
-    translate(-width / 2, -height / 2);
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(_scale, _scale);
+    ctx.translate(-width / 2, -height / 2);
 }
 
 function copyLink() {
@@ -785,9 +785,23 @@ function circle(x, y, d) {
     ctx.stroke();
 }
 
-function background(color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, width, height);
+// h is between 0 and 360, s and v are between 0 and 1. Returns a CSS hsl color
+// that can be used for ctx.fillStyle.
+function hsv_to_hsl_color(h, s, v) {
+    // both hsv and hsl values are in [0, 1]
+    var l = (2 - s) * v / 2;
+
+    if (l != 0) {
+        if (l == 1) {
+            s = 0;
+        } else if (l < 0.5) {
+            s = s * v / (l * 2);
+        } else {
+            s = s * v / (2 - l * 2);
+        }
+    }
+
+    return `hsl(${h} ${Math.floor(s * 100)}% ${Math.floor(l * 100)}%)`;
 }
 
 addEventListener('load', (e) => {
