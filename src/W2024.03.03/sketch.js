@@ -15,13 +15,12 @@ function setupForm() {
 
 function drawSketch() {
     background('white');
+    ctx.strokeStyle = 'black';
+
     let path = randomPath(ctrl.numCurves);
 
-    stroke('black');
-
-    let d = pixelDensity(); // I have no idea why this is necessary.
     gridCenters(ctrl.numTilesX, ctrl.numTilesY)
-        .filter(p => !drawingContext.isPointInPath(path, d * p[0], d * p[1]))
+        .filter(p => !ctx.isPointInPath(path, p[0], p[1]))
         .forEach(p => {
             /*
              * Draw a line at a random angle.
@@ -31,11 +30,14 @@ function drawSketch() {
              * whole tile, multiplied by a random length factor.
              */
 
-            const angle = (360 / ctrl.angleStep) * int(random(ctrl.angleStep));
-            const lineX = ctrl.lineScale * (sin(angle) * width / ctrl.numTilesX / 2);
-            const lineY = ctrl.lineScale * (cos(angle) * height / ctrl.numTilesY / 2);
+            let angle = (360 / ctrl.angleStep) * Math.floor(random() * ctrl.angleStep);
+            angle = angle * Math.PI / 180; // degrees to radians
+            const lineX = ctrl.lineScale * (Math.sin(angle) * width / ctrl.numTilesX / 2);
+            const lineY = ctrl.lineScale * (Math.cos(angle) * height / ctrl.numTilesY / 2);
 
             // draw the line between opposing endpoints on the circle
+
+            ctx.lineWidth = 1;
             line(p[0] + lineX, p[1] + lineY, p[0] - lineX, p[1] - lineY);
         });
 }
@@ -58,8 +60,8 @@ function randomPath(n) {
 
     let randomPoint = () => {
         return [
-            int(random(width * ctrl.curveScale)) + pathOffsetX,
-            int(random(height * ctrl.curveScale)) + pathOffsetY
+            Math.floor(random() * width * ctrl.curveScale) + pathOffsetX,
+            Math.floor(random() * height * ctrl.curveScale) + pathOffsetY
         ]
     };
 
