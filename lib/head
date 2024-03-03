@@ -9,6 +9,11 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link href="/css/style.css" rel="stylesheet">
+    [% IF raw %]
+    <script src="utils-raw.js"></script>
+    <script src="math.js"></script>
+    [% ELSE %]
     <script src="/js/utils.js"></script>
+    [% END %]
     [% content %]
 </head>
