@@ -1,17 +1,34 @@
 'use strict';
 
 let controls = {},
-    canvas,
-    ctx,
-    pageType;
+    canvas, width, height, ctx, pageType;
 
-// also show the canvas size on the web page
 function setCanvasDimension() {
     let headerHeight = 100 * window.devicePixelRatio;
-    let dim = Math.min(window.innerWidth, window.innerHeight - headerHeight);
-    canvas.width = dim;
-    canvas.height = dim;
-    document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
+    width = height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
+
+    /* Set up the canvas for high-resolution drawing.
+     *
+     * 1. Multiply the canvas's width and height by the devicePixelRatio
+     *
+     * 2. Force it to display at the original (logical) size with CSS or style
+     * attributes.
+     *
+     * 3. Scale the context so you can draw on it without considering the
+     * ratio.
+     */
+
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
+    ctx.scale(ratio, ratio);
+
+    // also show the canvas size on the web page
+    document.getElementById('canvasSize').innerText = `${width} x ${height}`;
 }
 
 function saveCanvasAsPNG() {
@@ -42,16 +59,6 @@ function getPointsForPolygon(sides, diameter, rotation) {
     }
     return points;
 }
-
-function randomIntRange(lowerBound, upperBound) {
-    return lowerBound + Math.floor(random() * (upperBound + 1 - lowerBound));
-}
-
-// generate a random integer in the range [-n, n].
-function randomIntPlusMinus(n) {
-    return Math.floor(random() * 2 * n - n);
-}
-
 
 // Move elements matching a selector function to the front of the array.
 Array.prototype.putFirst = function(selector) {
@@ -532,6 +539,7 @@ function makeSelectBlendMode(options) {
         'copy': 'Copy',
         'screen': 'Screen',
         'soft-light': 'Soft light',
+        'xor': 'Exclusive or',
     };
 
     if (options == null) {
@@ -769,6 +777,17 @@ function line(x1, y1, x2, y2) {
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
+}
+
+function circle(x, y, d) {
+    ctx.beginPath();
+    ctx.arc(x, y, d, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+function background(color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, height);
 }
 
 addEventListener('load', (e) => {
