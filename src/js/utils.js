@@ -757,8 +757,7 @@ function setup() {
     setupForm(); // sketches need to implement this
 
     if (pageType) {
-        // So CSS can differentiate between the page type, add it as a class to
-        // all DOM elements
+        // add page type as class to all DOM elements so CSS can differentiate
         document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
     }
     if (pageType == 'print') setupQRCode();
@@ -778,20 +777,14 @@ function windowResized() {
     resizeCanvas(...getCanvasDimension());
 }
 
-function handleStandardKeys() {
-    let keyHandlers = {
-        s: saveCanvasAsPNG,
-        r: redrawWithNewSeed,
-        p: setControlsRandomly,
-    };
-    let handler = keyHandlers[key];
-    if (handler) handler();
-}
-
 function keyPressed() {
     /* only handle keypresses in the main sketch view. For example, in the
      * print view, it doesn't make sense, and they even interfere with "Cmd-P"
      * for printing.
      */
-    if (pageType == 'screen') handleStandardKeys();
+    if (pageType == 'screen') {
+        if (key == 's') saveCanvasAsPNG();
+        if (key == 'r') redrawWithNewSeed();
+        if (key == 'p') setControlsRandomly();
+    }
 }
