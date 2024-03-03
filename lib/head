@@ -10,8 +10,8 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link href="/css/style.css" rel="stylesheet">
     [% IF raw %]
-    <script src="utils-raw.js"></script>
-    <script src="math.js"></script>
+    <script src="/js/raw-utils.js"></script>
+    <script src="/js/raw-math.js"></script>
     [% ELSE %]
     <script src="/js/utils.js"></script>
     [% END %]
