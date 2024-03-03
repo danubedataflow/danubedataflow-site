@@ -1,10 +1,5 @@
 'use strict';
 
-onload = (e) => {
-    setup();
-    draw();
-};
-
 function setupForm() {
     makeForm(
         makeSlider('numTilesX', 10, 70, 50),
@@ -37,15 +32,12 @@ function drawSketch() {
              */
 
             let angle = (360 / ctrl.angleStep) * Math.floor(random() * ctrl.angleStep);
-            angle = angle * Math.PI / 180;  // degrees to radians
+            angle = angle * Math.PI / 180; // degrees to radians
             const lineX = ctrl.lineScale * (Math.sin(angle) * canvas.width / ctrl.numTilesX / 2);
             const lineY = ctrl.lineScale * (Math.cos(angle) * canvas.height / ctrl.numTilesY / 2);
 
             // draw the line between opposing endpoints on the circle
-            ctx.beginPath();
-            ctx.moveTo(p[0] + lineX, p[1] + lineY);
-            ctx.lineTo(p[0] - lineX, p[1] - lineY);
-            ctx.stroke();
+            line(p[0] + lineX, p[1] + lineY, p[0] - lineX, p[1] - lineY);
         });
 }
 
