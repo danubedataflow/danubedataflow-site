@@ -78,11 +78,20 @@ function randomSeed(seedStr) {
 
     // four 32-bit component hashes provide the seed for sfc32()
     random = sfc32(seed[0], seed[1], seed[2], seed[3]);
+
+	// Now you can call random() to generate a random number betweem 0 and 1.
 }
 
 // init
 let seedStr = Math.random().toString(36).slice(2, 10);
 randomSeed(seedStr);
 
-// Now you can call random() to generate a random number betweem 0 and 1.
+function randomIntRange(lowerBound, upperBound) {
+    return lowerBound + Math.floor(random() * (upperBound + 1 - lowerBound));
+}
+
+// generate a random integer in the range [-n, n].
+function randomIntPlusMinus(n) {
+    return Math.floor(random() * 2 * n - n);
+}
 

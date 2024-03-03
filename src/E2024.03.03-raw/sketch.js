@@ -14,8 +14,7 @@ function setupForm() {
 }
 
 function drawSketch() {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    background('white');
     ctx.strokeStyle = 'black';
 
     let path = randomPath(ctrl.numCurves);
@@ -33,10 +32,12 @@ function drawSketch() {
 
             let angle = (360 / ctrl.angleStep) * Math.floor(random() * ctrl.angleStep);
             angle = angle * Math.PI / 180; // degrees to radians
-            const lineX = ctrl.lineScale * (Math.sin(angle) * canvas.width / ctrl.numTilesX / 2);
-            const lineY = ctrl.lineScale * (Math.cos(angle) * canvas.height / ctrl.numTilesY / 2);
+            const lineX = ctrl.lineScale * (Math.sin(angle) * width / ctrl.numTilesX / 2);
+            const lineY = ctrl.lineScale * (Math.cos(angle) * height / ctrl.numTilesY / 2);
 
             // draw the line between opposing endpoints on the circle
+
+            ctx.lineWidth = 1;
             line(p[0] + lineX, p[1] + lineY, p[0] - lineX, p[1] - lineY);
         });
 }
@@ -45,7 +46,7 @@ function gridCenters(numX, numY) {
     let p = [];
     for (let y = 0; y < numY; y++) {
         for (let x = 0; x < numX; x++) {
-            p.push([(x + 0.5) * canvas.width / numX, (y + 0.5) * canvas.height / numY]);
+            p.push([(x + 0.5) * width / numX, (y + 0.5) * height / numY]);
         }
     }
     return p;
@@ -54,13 +55,13 @@ function gridCenters(numX, numY) {
 function randomPath(n) {
 
     // this offset applies to the whole path
-    let pathOffsetX = randomIntPlusMinus(canvas.width / 2);
-    let pathOffsetY = randomIntPlusMinus(canvas.height / 2);
+    let pathOffsetX = randomIntPlusMinus(width / 2);
+    let pathOffsetY = randomIntPlusMinus(height / 2);
 
     let randomPoint = () => {
         return [
-            Math.floor(random() * canvas.width * ctrl.curveScale) + pathOffsetX,
-            Math.floor(random() * canvas.height * ctrl.curveScale) + pathOffsetY
+            Math.floor(random() * width * ctrl.curveScale) + pathOffsetX,
+            Math.floor(random() * height * ctrl.curveScale) + pathOffsetY
         ]
     };
 
