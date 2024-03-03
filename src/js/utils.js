@@ -48,15 +48,6 @@ Array.prototype.putFirst = function(selector) {
     ];
 }
 
-// sort an array of objects by a key
-Array.prototype.sortByKey = function(key) {
-    return this.sort(function(a, b) {
-        var x = a[key];
-        var y = b[key];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-}
-
 // call a function with elements [0. 1], then [1, 2] etc.
 Array.prototype.pairwise = function(func) {
     for (let i = 0; i < this.length - 1; i++) {
