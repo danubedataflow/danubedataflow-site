@@ -19,7 +19,7 @@
             <p>
                 <span id="sketchTitle">[% title %]</span> |
                 <span id="canvasSize"></span> |
-                <a href="source.html" target="_blank" data-i18n-key="sketch-sourceCode"></a> |
+                <a href="source.html" target="_blank" data-i18n-key="sourceCode"></a> |
                 <a href="javascript:redrawWithNewSeed();" data-i18n-key="sketch-newSeed"></a> |
                 <a href="javascript:setControlsRandomly();" data-i18n-key="sketch-randomParameters"></a> |
                 <a href="javascript:saveCanvasAsPNG();" data-i18n-key="sketch-saveCanvas"></a> |
