@@ -318,11 +318,6 @@
       "en" : "Save",
       "ja" : "保存"
    },
-   "sketch-sourceCode" : {
-      "de" : "Quellcode",
-      "en" : "Source code",
-      "ja" : "ソースコード"
-   },
    "slider-alpha" : {
       "de" : "Transparenz (Alpha): {value}",
       "en" : "Transparency (alpha): {value}",
@@ -640,5 +635,10 @@
    "slider-verticalLineChance" : {
       "de" : "Wahrscheinlichkeit einer vertikalen Linie: {value}%",
       "en" : "Probability of a vertical line: {value}%"
+   },
+   "sourceCode" : {
+      "de" : "Quellcode",
+      "en" : "Source code",
+      "ja" : "ソースコード"
    }
 }
