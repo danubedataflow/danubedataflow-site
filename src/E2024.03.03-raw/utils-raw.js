@@ -6,16 +6,28 @@ let controls = {},
     pageType;
 
 // also show the canvas size on the web page
-function getCanvasDimension() {
+function setCanvasDimension() {
     let headerHeight = 100 * window.devicePixelRatio;
     let dim = Math.min(window.innerWidth, window.innerHeight - headerHeight);
+    canvas.width = dim;
+    canvas.height = dim;
     document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
-    return [dim, dim];
 }
 
 function saveCanvasAsPNG() {
-    let name = location.href.split('/').slice(-3, -1).join("--");
-    saveCanvas(decodeURI(name) + '.png');
+    canvas.toBlob(blob => {
+        var element = document.createElement('a');
+        element.setAttribute('href', URL.createObjectURL(blob));
+        let filename = decodeURI(location.href.split('/').slice(-3, -1).join("--")) + '.png';
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    });
 }
 
 function getPointsForPolygon(sides, diameter, rotation) {
@@ -174,7 +186,7 @@ class SeedControl {
          * click "redraw with new seed" or "randomize controls" you don't get
          * the same result on both sketches.
          */
-        value ||= Math.random().toString(36).slice(2, 10);
+        value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
         randomSeed(value);
         // noiseSeed(value);
@@ -716,22 +728,8 @@ function copyLink() {
     }
 }
 
-function basename() {
-    let path = window.location.pathname;
-    if (path.endsWith('/')) {
-        return 'index.html';
-    } else {
-        return path.split('/').reverse()[0];
-    }
-}
-
 function setPageType() {
-    let b = basename();
-    if (b == 'index.html') {
-        pageType = 'screen';
-    } else if (b == 'print.html') {
-        pageType = 'print';
-    }
+    pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
 }
 
 function setupQRCode() {
@@ -750,9 +748,7 @@ function setup() {
     setPageType();
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
-    let dim = getCanvasDimension();
-    canvas.width = dim[0];
-    canvas.height = dim[1];
+    setCanvasDimension();
     setupForm(); // sketches need to implement this
 
     if (pageType) {
@@ -768,10 +764,17 @@ function draw() {
     drawSketch();
 }
 
-function windowResized() {
-    controls.seed.setSameSeedAgain();
-    resizeCanvas(...getCanvasDimension());
+function line(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
 }
+
+addEventListener('load', (e) => {
+    setup();
+    draw();
+});
 
 addEventListener('keypress', (e) => {
     /* only handle keypresses in the main sketch view. For example, in the
@@ -783,4 +786,10 @@ addEventListener('keypress', (e) => {
         if (e.code == 'KeyR') redrawWithNewSeed();
         if (e.code == 'KeyP') setControlsRandomly();
     }
+});
+
+addEventListener('resize', (e) => {
+    controls.seed.setSameSeedAgain();
+    setCanvasDimension();
+    draw();
 });
