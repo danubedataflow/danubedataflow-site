@@ -86,6 +86,10 @@ function randomSeed(seedStr) {
 let seedStr = Math.random().toString(36).slice(2, 10);
 randomSeed(seedStr);
 
+function randomIntUpTo(n) {
+    return Math.floor(random() * n);
+}
+
 function randomIntRange(lowerBound, upperBound) {
     return lowerBound + Math.floor(random() * (upperBound + 1 - lowerBound));
 }

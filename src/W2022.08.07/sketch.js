@@ -1,16 +1,20 @@
 'use strict';
 
-function setupForm() {}
+function setupForm() {
+    makeForm();
+}
 
 function drawSketch() {
-    pixelDensity(1);
-    let img = createImage(width, height);
-    for (let x = 0; x < img.width; x++) {
-        for (let y = 0; y < img.height; y++) {
-            img.set(x, y, color(random(255)));
-        }
+    const imageData = ctx.createImageData(width, height);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        let grey = randomIntUpTo(255);
+        imageData.data[i + 0] = grey; // R value
+        imageData.data[i + 1] = grey; // G value
+        imageData.data[i + 2] = grey; // B value
+        imageData.data[i + 3] = 255; // A value
     }
-    img.updatePixels();
-    img.resize(width * pixelDensity(), height * pixelDensity());
-    image(img, 0, 0);
+
+    ctx.putImageData(imageData, 0, 0);
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    ctx.drawImage(ctx.canvas, 0, 0);
 }
