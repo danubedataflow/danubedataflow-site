@@ -140,8 +140,7 @@ class CheckboxControl {
     }
 
     setValue(value) {
-        // convert string values that could come from URL query
-        // parameters
+        // convert string values from URL query parameters
         if (value === "true") value = true;
         if (value === "false") value = false;
 
@@ -220,12 +219,15 @@ class SelectControl {
     setValue(value) {
         // The spread syntax (`...`) turns the HTMLOptionsCollection into a
         // standard array.
-        let optionValues = [...this.element.options].map(o => o.value)
-        if (optionValues.includes(value)) {
+        if (this.getOptionValues().includes(value)) {
             this.element.value = value;
         } else {
             console.log(`${this.id}: value "${value}" is not a valid option`);
         }
+    }
+
+    getOptionValues() {
+        return [...this.element.options].map(o => o.value);
     }
 }
 
@@ -632,8 +634,7 @@ function setControlsRandomly() {
             }
 
         } else if (c instanceof SelectControl) {
-            let optionValues = [...c.element.options].map(o => o.value)
-            c.setValue(optionValues.randomElement());
+            c.setValue(c.getOptionValues().randomElement());
 
         } else if (c instanceof CheckboxControl) {
             c.setValue([true, false].randomElement());
