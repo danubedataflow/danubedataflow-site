@@ -35,7 +35,7 @@ function saveCanvasAsPNG() {
     canvas.toBlob(blob => {
         var element = document.createElement('a');
         element.setAttribute('href', URL.createObjectURL(blob));
-        let filename = decodeURI(location.href.split('/').slice(-3, -1).join("--")) + '.png';
+        let filename = decodeURI(location.href.split('/').slice(-3, -1).join('--')) + '.png';
         element.setAttribute('download', filename);
 
         element.style.display = 'none';
@@ -141,8 +141,8 @@ class CheckboxControl {
 
     setValue(value) {
         // convert string values from URL query parameters
-        if (value === "true") value = true;
-        if (value === "false") value = false;
+        if (value === 'true') value = true;
+        if (value === 'false') value = false;
 
         // validate
         if (typeof value === 'boolean') {
@@ -389,9 +389,7 @@ function makeCheckbox(id, value = true) {
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
-    checkboxEl.oninput = function() {
-        redrawWithSameSeed();
-    };
+    checkboxEl.oninput = redrawWithSameSeed;
     containerDiv.appendChild(checkboxEl);
 
     controls[id] = new CheckboxControl(id, checkboxEl);
@@ -459,9 +457,7 @@ function makeSelect(id, contents, value) {
     selectEl.setAttribute('id', id);
     contents.forEach(el => selectEl.appendChild(el));
 
-    selectEl.onchange = function() {
-        redrawWithSameSeed();
-    };
+    selectEl.onchange = redrawWithSameSeed;
     containerDiv.appendChild(selectEl);
 
     controls[id] = new SelectControl(id, selectEl);
@@ -556,7 +552,7 @@ function makeSelectBlendMode(options) {
     // The default value is 'blend' if it is an option, or the first
     // sorted element if it isn't.
 
-    let defaultValue = options.putFirst(el => el == BLEND).at(0);
+    let defaultValue = options.putFirst(el => el == 'source-over').at(0);
     return makeSelect(
         'blendMode',
         options.map(c => makeOption(c)),
@@ -590,7 +586,7 @@ function getCurrentURL(config = {}) {
     /* Replace the URL in the browser's URL bar using the current control
      * values, without reloading the page.
      */
-    return window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
+    return window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + urlParams.toString();
 }
 
 /* Update the URL according to controls. But don't update it if it hasn't
@@ -737,12 +733,8 @@ function copyLink() {
     }
 }
 
-function setPageType() {
-    pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
-}
-
 function setupQRCode() {
-    new QRCode(document.getElementById("qrcode"), getCurrentURL({
+    new QRCode(document.getElementById('qrcode'), getCurrentURL({
         timestamp: 1
     }));
 
@@ -754,7 +746,7 @@ function setupQRCode() {
  * drawSketch().
  */
 function setup() {
-    setPageType();
+    pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
