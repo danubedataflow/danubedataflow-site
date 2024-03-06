@@ -433,9 +433,7 @@ function makeSelect(id, contents, value) {
     selectEl.setAttribute('id', id);
     contents.forEach(el => selectEl.appendChild(el));
 
-    selectEl.onchange = function() {
-        redrawWithSameSeed();
-    };
+    selectEl.onchange = redrawWithSameSeed;
     containerDiv.appendChild(selectEl);
 
     controls[id] = new SelectControl(id, selectEl);
