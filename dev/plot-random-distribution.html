@@ -13,11 +13,12 @@
 
 randomSeed(Math.random().toString(36).slice(2, 10));
 
-let dist = Array(10).fill(0);
+const max = 50;
+let dist = Array(max).fill(0);
 
-for (let i = 0; i < 100000; i++) {
-    let n = randomIntUpTo(10);
-    dist[n]++;
+for (let i = 0; i < 5_000_000; i++) {
+    let r = randomIntUpTo(max);
+    dist[r]++;
 }
 plot(dist, 'random() generated this number that many times');
 
@@ -28,7 +29,7 @@ function plot(dist, label) {
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [...Array(10).keys()],   // 0..9
+      labels: [...Array(max).keys()],   // 0..9
       datasets: [{
         label: label,
         data: dist,
