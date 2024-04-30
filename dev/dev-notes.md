@@ -347,3 +347,10 @@ need to use the values of these constants.
 - REPLACE == copy
 - SCREEN == screen
 - SOFT_LIGHT == soft-light
+
+===
+
+Vera Molnár
+
+"Ich bin Malerin. Was mich umtreibt und schon immer fasziniert hat, ist die Kunst, Formen und Farben zu kombinieren, indem ich sie auf einer Fläche anordne. Die Grundelemente meiner Arbeit sind die einfachsten geometrischen Formen: Quadrate, Rechtecke. Ich war schon immer fasziniert von der Schönheit, der kristallinen Reinheit bestimmter Formen, bestimmter elementarer Konstruktionen."
+
