@@ -354,3 +354,112 @@ Vera Molnár
 
 "Ich bin Malerin. Was mich umtreibt und schon immer fasziniert hat, ist die Kunst, Formen und Farben zu kombinieren, indem ich sie auf einer Fläche anordne. Die Grundelemente meiner Arbeit sind die einfachsten geometrischen Formen: Quadrate, Rechtecke. Ich war schon immer fasziniert von der Schönheit, der kristallinen Reinheit bestimmter Formen, bestimmter elementarer Konstruktionen."
 
+===
+
+math art
+
+10:50 500 ml Apfel-Karottensaft
+
+nestedLoops(
+    [0, 1, 80],
+    [0, 1, 80],
+    function (u, v) { … })
+
+poo callback
+split args into scalars and arrays
+split arrays into first and remaining
+
+if first array {
+    for (element in spec) {
+        nestedLoops(scalars, element, remaining arrays, callback)
+    }
+} else {
+    callback(scalars)
+}
+
+===
+
+danubedataflow
+
+Max Bense
+Vera Molnar
+Herbert W. Franke
+Manfred Mohr
+A. Michael Noll
+Frieder Nake
+Georg Nees
+
+===
+
+Matrix multiplication (Frieder Nake)
+https://stackoverflow.com/questions/27205018/multiply-2-matrices-in-javascript
+
+===
+
+existenzermittlung
+
+https://www.slideshare.net/jowe/slides-long-talk-bordeaux2017
+
+http://digitalart.joachim-wedekind.de/
+https://www.slideshare.net/jowe/slides-long-talk-bordeaux2017
+
+https://zkm.de/de/werk/matritzenmultiplikation-serie-32
+http://dada.compart-bremen.de/item/agent/68
+
+http://dada.compart-bremen.de/item/artwork/4
+http://dada.compart-bremen.de/item/publication/233
+http://dada.compart-bremen.de/item/artwork/381
+http://dada.compart-bremen.de/item/artwork/648
+http://dada.compart-bremen.de/item/artwork/649
+http://dada.compart-bremen.de/item/artwork/1157
+https://www.slideshare.net/jowe/kunst-und-computer
+
+makeSchotterGrid() has a callback that is called with coordinates and an angle; the callback then draws a tile.
+In the simplest form, the callback just draws a rectangle, filled or empty
+The rectangle could be drawn with a black fill and an alpha corresponding to y.
+The rectangle could be drawn with a fill whose color is determined by a palette. Choose randomly from the palette, or by iterating )modulo) through the palette.
+
+===
+
+W2023.09.22:
+- redo like W2024.03.03
+- add tiling; each tile gets its own sketch
+
+W2022.10.22:
+- use W2024.03.03\s randomPath()
+
+
+math.js
+array.js
+dom.js = makeSlider…, SelectControl…, makeDiv, makeLabel, setIntlAttributes etc.
+
+angleMode(DEGREES);
+rectMode(CORNERS);
+
+sin(), cos(): Math.sin(radians), Math.cos(radians)
+
+random(array) -> array.randomElement()
+random(n) -> random() *n
+random(m, n) -> m + random() * (n - m)
+
+circle => arc
+push() => ctx.save()
+pop() => ctx.restore()
+stroke(color) => ctx.strokeStyle = color
+scale
+translate
+rotate
+shear
+
+ack 'blendMode\(BLEND\)' => ctx,globalCompositeOperation = 'source-over'
+add missing blend modes? 'xor'
+
+remove "p5.js" from <meta> in lib/head, package.json, deps, licences etc.
+
+utils: circle(): fill or stroke? note third parameter is radius vs p5.js's diameter
+
+===
+
+James Juszczyk
+Robert Swain
+
