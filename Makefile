@@ -1,7 +1,8 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site deps watch nginx live icons clean test open-all npm-update
+.PHONY: site deps watch nginx icons clean test open-all npm-update
+# live
 
 site: clean
 	@ttree -f etc/ttreerc
@@ -31,9 +32,9 @@ nginx:
 	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
 	nginx -s reload
 
-live:
-	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
-	ssh hetzner 'sudo bin/fix-permissions'
+# live:
+# 	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
+# 	ssh hetzner 'sudo bin/fix-permissions'
 
 icons:
 	bin/make-favicon
