@@ -61,7 +61,7 @@ function randomPath(n) {
     /*
      * Create a path of possibly overlapping bezier curves. Each curve extends
      * the current path and has two control points and an end point. Because of
-     * the overlaps and isPointInPath()'s algoithms, this creates the effect of
+     * the overlaps and isPointInPath()'s algorithms, this creates the effect of
      * islands within the greater path.
      */
 
