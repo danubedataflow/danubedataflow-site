@@ -4,26 +4,32 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSelectBlendMode([ADD, BLEND, DIFFERENCE, EXCLUSION, HARD_LIGHT, LIGHTEST, SCREEN]),
+            makeSelectBlendMode(['lighter', 'source-over', 'difference', 'exclusion', 'hard-light', 'lighten', 'screen']),
         ),
         makeSlider('numLines', 1, 1500, 500),
     );
 }
 
 function drawSketch() {
-    blendMode(BLEND); // so background() actually clears the canvas
-    background('black');
-    blendMode(ctrl.blendMode);
+    ctx.globalCompositeOperation = 'source-over'; // so we actually clear the canvas
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.globalCompositeOperation = ctrl.blendMode;
     let colorScale = chroma.scale(ctrl.colorMap);
-    translate(width / 2, height / 2);
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
 
     for (let i = 1; i <= ctrl.numLines; i++) {
         let radius = width * 0.4;
-        let angle = random(360);
+        let angle = random() * 2 * Math.PI;
 
-        let c = color(colorScale(random()).toString());
-        stroke(c);
-
-        line(0, 0, sin(angle) * radius, cos(angle) * radius);
+        let c = colorScale(random()).rgb();
+        ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},1)`;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
+        ctx.stroke();
     }
+    ctx.restore();
 }
