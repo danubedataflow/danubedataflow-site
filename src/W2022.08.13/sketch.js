@@ -4,27 +4,33 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, HARD_LIGHT, MULTIPLY]),
+            makeSelectBlendMode(['source-over', 'darken', 'difference', 'hard-light', 'multiply']),
         ),
         makeSlider('numTriangles', 1, 500, 100),
     );
 }
 
 function drawSketch() {
-    blendMode(BLEND); // so background() actually clears the canvas
-    background('white');
-    blendMode(ctrl.blendMode);
-    noStroke();
+    ctx.globalCompositeOperation = 'source-over'; // so we actually clear the canvas
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.globalCompositeOperation = ctrl.blendMode;
+    let colorScale = chroma.scale(ctrl.colorMap);
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration
     for (let i = 1; i <= ctrl.numTriangles + 2; i++) {
-        p.push([random(width), random(height)]);
+        p.push([randomIntUpTo(width), randomIntUpTo(height)]);
         if (p.length == 3) {
-            let colorScale = chroma.scale(ctrl.colorMap);
-            let c = color(colorScale(random()).toString());
-            c.setAlpha(random(128));
-            fill(c);
-            triangle(...p[0], ...p[1], ...p[2]);
+            let c = colorScale(random()).rgb();
+            let alpha = random();
+            ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(...p[0]);
+            ctx.lineTo(...p[1]);
+            ctx.lineTo(...p[2]);
+            ctx.closePath();
+            ctx.fill();
             p.shift();
         }
     }
