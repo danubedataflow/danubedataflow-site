@@ -12,6 +12,7 @@
     [% IF raw %]
     <script src="/js/raw-utils.js"></script>
     <script src="/js/raw-math.js"></script>
+    <script src="/deps/perlin.js"></script>
     [% ELSE %]
     <script src="/js/utils.js"></script>
     [% END %]

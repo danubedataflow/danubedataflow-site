@@ -195,7 +195,9 @@ class SeedControl {
         value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
         randomSeed(value);
-        // noiseSeed(value);
+
+        // perlin.js's noise.seed takes a float between 0 and 1
+        noise.seed(random());
     }
 
     // After resizing the canvas or changing sliders, we want to draw
