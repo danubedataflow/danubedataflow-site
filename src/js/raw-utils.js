@@ -780,6 +780,14 @@ function circle(x, y, d) {
     ctx.stroke();
 }
 
+function triangle(p1, p2, p3) {
+    ctx.beginPath();
+    ctx.moveTo(...p1);
+    ctx.lineTo(...p2);
+    ctx.lineTo(...p3);
+    ctx.closePath();
+}
+
 // h is between 0 and 360, s and v are between 0 and 1. Returns a CSS hsl color
 // that can be used for ctx.fillStyle.
 function hsv_to_hsl_color(h, s, v) {
