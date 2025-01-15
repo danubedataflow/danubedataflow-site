@@ -11,19 +11,26 @@ function setupForm() {
 }
 
 function drawSketch() {
-    let x1 = int(random(width / 2));
-    let y1 = int(random(height / 2));
-    let x2 = int(random(width / 2)) + width / 2;
-    let y2 = int(random(height / 2)) + height / 2;
+    let x1 = Math.round(randomIntUpTo(width / 2));
+    let y1 = Math.round(randomIntUpTo(height / 2));
+    let x2 = Math.round(randomIntUpTo(width / 2)) + width / 2;
+    let y2 = Math.round(randomIntUpTo(height / 2)) + height / 2;
     let x1d = rnd(6);
     let y1d = rnd(5);
     let x2d = rnd(2);
     let y2d = rnd(7);
-    stroke("white");
-    background("black");
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = 'white';
 
     for (let i = 1; i <= ctrl.numLines; i++) {
-        line(x1, y1, x2, y2);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
         if (x1 > width) x1d = -rnd(2);
         if (y1 > height) y1d = -rnd(8);
         if (x2 < 0) x2d = rnd(6);
@@ -41,5 +48,5 @@ function drawSketch() {
 }
 
 function rnd(mid) {
-    return int(random(mid - ctrl.randomPointOffset, mid + ctrl.randomPointOffset + 1));
+    return randomIntRange(mid - ctrl.randomPointOffset, mid + ctrl.randomPointOffset + 1);
 }
