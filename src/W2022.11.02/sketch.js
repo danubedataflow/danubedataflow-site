@@ -3,31 +3,35 @@
 function setupForm() {
     makeForm(
         makeSlider('horizontalSineFactor', 1, 5, 2.5, 0.1),
-        makeSlider('alpha', 1, 255, 70),
+        makeSlider('alpha', 1, 100, 30),
         makeSlider('angleStep', 0.1, 10, 0.5, 0.1),
         makeSlider('squareSizeRange', 1, 100, [30, 50]),
     );
 }
 
 function drawSketch() {
-    stroke(0, ctrl.alpha);
-    strokeWeight(1);
-    noFill();
-    rectMode(CENTER);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
 
-    background(255);
-    translate(width / 2, height / 2);
+    ctx.strokeStyle = `rgba(0,0,0,${ ctrl.alpha / 100 })`;
+    ctx.lineWidth = 1;
+
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
     for (let i = 0; i < 360; i += ctrl.angleStep) {
+
+        let rad = i / 180 * Math.PI;
 
         // x-factor 2 produces the "infinity sign"
 
-        let x = sin(i * ctrl.horizontalSineFactor) * (width / 3);
-        let y = sin(i) * (height / 3);
+        let x = Math.sin(rad * ctrl.horizontalSineFactor) * (width / 3);
+        let y = Math.sin(rad) * (height / 3);
 
         // Draw random squares around each point, drawn at 10% alpha, produces
         // a fuzzy shape.
 
-        let dim = random(...ctrl.squareSizeRange);
-        rect(x, y, dim, dim);
+        let dim = randomIntRange(...ctrl.squareSizeRange);
+        ctx.strokeRect(x, y, dim, dim);
     }
+    ctx.restore();
 }
