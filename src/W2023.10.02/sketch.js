@@ -38,23 +38,26 @@ function setupForm() {
 }
 
 function drawSketch() {
-    background('white');
-    stroke('black');
-    strokeWeight(ctrl.strokeWeight);
+    ctx.save();
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = ctrl.strokeWeight;
 
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
         tileCallback: drawTile,
     });
+    ctx.restore();
 }
 
 function drawTile(tile) {
-    scale(ctrl.scale);
+    ctx.scale(ctrl.scale, ctrl.scale);
 
     // makeGrid() translates to each tile's center, but here we want
     // (0, 0) to be in the tile's upper left corner.
-    translate(...tile.upperLeft);
+    ctx.translate(...tile.upperLeft);
 
     let coords = (x, y) => {
         return [
@@ -66,7 +69,11 @@ function drawTile(tile) {
     for (let y = 1; y <= ctrl.numPointsY; y++) {
         for (let x = 1; x <= ctrl.numPointsX; x++) {
             let c = coords(x, y);
-            point(...c);
+
+            // draw a dot
+            ctx.fillStyle = 'black';
+            let w = ctrl.strokeWeight;
+            ctx.fillRect(c[0] - w/2, c[1] - w/2, w, w);
 
             // connection to the neighbor to the right?
             if (x < ctrl.numPointsX) {
@@ -78,8 +85,13 @@ function drawTile(tile) {
                 connections.push([c, coords(x, y + 1)]);
             }
         }
-        shuffle(connections, true);
+        connections = connections.shuffle();
         connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
-        connections.forEach(el => line(...el[0], ...el[1]));
+        ctx.beginPath();
+        connections.forEach(el => {
+            ctx.moveTo(...el[0]);
+            ctx.lineTo(...el[1]);
+        });
+        ctx.stroke();
     }
 }
