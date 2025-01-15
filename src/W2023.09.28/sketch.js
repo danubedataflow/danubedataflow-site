@@ -15,9 +15,11 @@ function setupForm() {
 }
 
 function drawSketch() {
-    noStroke();
-    background("white");
-    stroke('black');
+    ctx.save();
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+    ctx.strokeStyle = 'black';
+
     padSketch(0.9);
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
@@ -35,30 +37,30 @@ function drawSketch() {
      * elements, then shuffle the array.
      */
 
-    let numTilesTotal = pow(ctrl.numTiles, 2);
-    let numFilled = max(1, round(numTilesTotal / ctrl.ratioColoredTiles));
-    shouldFillArray = shuffle(Array.from(Array(numTilesTotal))
+    let numTilesTotal = Math.pow(ctrl.numTiles, 2);
+    let numFilled = Math.max(1, Math.round(numTilesTotal / ctrl.ratioColoredTiles));
+    shouldFillArray = Array.from(Array(numTilesTotal))
         .map((el, index) => {
             return index < numFilled
-        }));
+        }).shuffle();
 
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
         tileCallback: drawTile,
     });
+    ctx.restore();
 }
 
 function drawTile(tile) {
-    translate(
+    ctx.translate(
         randomIntPlusMinus(ctrl.maxOffsetPerAxis),
         randomIntPlusMinus(ctrl.maxOffsetPerAxis),
     );
     let shouldFill = shouldFillArray.shift();
     if (shouldFill) {
-        fill(random(palette));
-    } else {
-        noFill();
+        ctx.fillStyle = palette.randomElement();
+        ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
     }
-    rect(...tile.upperLeft, ...tile.lowerRight);
+    ctx.strokeRect(...tile.upperLeft, tile.width, tile.height);
 }
