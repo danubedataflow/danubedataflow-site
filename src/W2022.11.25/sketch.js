@@ -8,10 +8,10 @@ function setupForm() {
 }
 
 function drawSketch() {
-    background('#777777');
+    ctx.fillStyle = '#777777';
+    ctx.fillRect(0, 0, width, height);
+
     let palette = ['white', '#aaaaaa', 'black'];
-    noStroke();
-    rectMode(CORNER);
     let tileDim = width / ctrl.numTiles; // square canvas
 
     for (let i = 0; i <= ctrl.numRects; i++) {
@@ -20,7 +20,7 @@ function drawSketch() {
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
 
-        fill(random(palette));
-        rect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
+        ctx.fillStyle = palette.randomElement();
+        ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }
