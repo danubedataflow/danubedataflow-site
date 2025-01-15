@@ -112,3 +112,7 @@ Array.prototype.shuffle = function() {
     return this;
 };
 
+
+Array.prototype.randomElement = function() {
+    return this[Math.floor(random() * this.length)];
+}
