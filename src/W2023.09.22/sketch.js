@@ -12,27 +12,34 @@ function setupForm() {
 }
 
 function drawSketch() {
-    noStroke();
-    background("white");
-    strokeWeight(ctrl.strokeWeight);
-    stroke('black');
+    ctx.save();
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.lineWidth = ctrl.strokeWeight;
+    ctx.strokeStyle = 'black';
+
     padSketch();
     makeGrid({
         numTilesX: ctrl.numTilesX,
         numTilesY: ctrl.numTilesY,
         tileCallback: drawTile,
     });
+
+    ctx.restore();
 }
 
 function drawTile(tile) {
-    if (1) {
-        rotate((360 / ctrl.angleStep) * int(random(ctrl.angleStep)));
-        translate(
-            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-        );
+    ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
+    ctx.translate(
+        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+    );
 
-        // `scale(ctrl.scale)` instead would also change the line weight.
-        line(...tile.leftMiddle.map(n => n * ctrl.scale), ...tile.rightMiddle.map(n => n * ctrl.scale));
-    }
+    // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
+    ctx.beginPath();
+    ctx.moveTo(...tile.leftMiddle.map(n => n * ctrl.scale));
+    ctx.lineTo(...tile.rightMiddle.map(n => n * ctrl.scale));
+    ctx.stroke();
 }
