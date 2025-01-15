@@ -767,19 +767,6 @@ function draw() {
     drawSketch();
 }
 
-function line(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
-}
-
-function circle(x, y, d) {
-    ctx.beginPath();
-    ctx.arc(x, y, d, 0, 2 * Math.PI);
-    ctx.stroke();
-}
-
 function triangle(p1, p2, p3) {
     ctx.beginPath();
     ctx.moveTo(...p1);
