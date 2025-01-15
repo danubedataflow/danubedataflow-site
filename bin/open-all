@@ -6,7 +6,7 @@ my %open_work;    # hash to dedup
 my @input;
 chomp(@input = <STDIN>) unless -t STDIN;
 push @input, @ARGV;
-my $work_re = qr/\b[WT]20\d\d\.\d\d\.\d\d\b/;
+my $work_re = qr/\b[WT]20\d\d\.\d\d\.\d\d\b.*/;
 for (@input) {
     if (/($work_re)/) {
         $open_work{$1}++;
