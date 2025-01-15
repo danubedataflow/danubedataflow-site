@@ -99,3 +99,16 @@ function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
 }
 
+// https://gist.github.com/motoishmz/5239619
+// Fisher-Yates
+Array.prototype.shuffle = function() {
+    var i = this.length;
+    while (i) {
+        var j = Math.floor(Math.random() * i);
+        var t = this[--i];
+        this[i] = this[j];
+        this[j] = t;
+    }
+    return this;
+};
+
