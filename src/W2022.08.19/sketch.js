@@ -11,7 +11,8 @@ function setupForm() {
 }
 
 function drawSketch() {
-    ctx.globalCompositeOperation = 'source-over'; // so we actually clear the canvas
+    // actually clear the canvas
+    ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
 
