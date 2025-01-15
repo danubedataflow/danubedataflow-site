@@ -16,36 +16,45 @@ function setupForm() {
 }
 
 function drawSketch() {
-    palette = shuffle(colors).slice(0, ctrl.maxDepth + 1);
-    strokeWeight(1);
-    stroke('black');
+    palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'black';
 
-    translate(width / 2, height / 2);
-    background('white');
+    // actually clear the canvas
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
 
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
+
+console.log(palette);
     drawPolygons(0, 0, ctrl.numSides, ctrl.diameter * width / 100,
         0, ctrl.rotationStep, ctrl.maxDepth);
+    ctx.restore();
 }
 
 function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
     let points = getPointsForPolygon(sides, diameter, rotation);
     points.forEach(p => {
-        push();
-        translate(...p);
+        ctx.save();
+        ctx.translate(...p);
 
-        let fillColor = color(palette[depth]);
-        fillColor.setAlpha(25 - 5 * depth);
-        fill(fillColor);
+        let c = chroma(palette[depth]).rgb();
+        let alpha = (25 - 5 * depth) / 100;
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
 
-        beginShape();
-        points.forEach(p => vertex(...p));
-        endShape(CLOSE);
+        ctx.beginPath();
+        points.forEach(p => ctx.lineTo(...p));
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
 
         if (depth < maxDepth) {
             drawPolygons(p.x, p.y, sides, diameter,
                 rotation + rotationStep / sides, rotationStep, maxDepth, depth + 1);
         }
 
-        pop();
+        ctx.restore();
     });
 }
