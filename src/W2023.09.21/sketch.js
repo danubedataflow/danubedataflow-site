@@ -11,8 +11,9 @@ function setupForm() {
 }
 
 function drawSketch() {
-    background('white');
-    stroke('black');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+    ctx.strokeStyle = 'black';
     makeGrid({
         numTilesX: ctrl.numTiles,
         numTilesY: ctrl.numTiles,
@@ -21,18 +22,21 @@ function drawSketch() {
 }
 
 function drawTile(tile) {
-    scale(ctrl.scale);
+    ctx.scale(ctrl.scale, ctrl.scale);
     let points = [];
     for (let y = 0; y < ctrl.numPointsPerSide; y++) {
         for (let x = 0; x < ctrl.numPointsPerSide; x++) {
             points.push([
-                int(x * tile.width / (ctrl.numPointsPerSide - 1) - tile.width / 2),
-                int(y * tile.height / (ctrl.numPointsPerSide - 1) - tile.height / 2)
+                Math.round(x * tile.width / (ctrl.numPointsPerSide - 1) - tile.width / 2),
+                Math.round(y * tile.height / (ctrl.numPointsPerSide - 1) - tile.height / 2)
             ]);
         }
     }
-    shuffle(points, true);
+    points = points.shuffle();
     for (let i = 0; i < points.length - 1; i++) {
-        line(...points[i], ...points[i + 1]);
+        ctx.beginPath();
+        ctx.moveTo(...points[i]);
+        ctx.lineTo(...points[i + 1]);
+        ctx.stroke();
     }
 }
