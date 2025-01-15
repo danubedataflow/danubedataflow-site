@@ -28,7 +28,6 @@ function drawSketch() {
     ctx.save();
     ctx.translate(width / 2, height / 2);
 
-console.log(palette);
     drawPolygons(0, 0, ctrl.numSides, ctrl.diameter * width / 100,
         0, ctrl.rotationStep, ctrl.maxDepth);
     ctx.restore();
