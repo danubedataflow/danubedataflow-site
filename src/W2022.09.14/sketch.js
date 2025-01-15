@@ -6,7 +6,7 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSelectBlendMode([BLEND, DIFFERENCE, HARD_LIGHT, OVERLAY]),
+            makeSelectBlendMode(['source-over', 'difference','hard-light', 'overlay']),
             makeSlider('numColors', 1, 32, 16),
             makeSlider('alphaRange', 0, 100, [20, 80]),
         ),
@@ -18,21 +18,28 @@ function setupForm() {
 function drawSketch() {
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    blendMode(BLEND); // so background() actually clears the canvas
-    background(int(random(palette)));
-    blendMode(ctrl.blendMode);
-    rectMode(CENTER);
-    noStroke();
+    // actually clear the canvas
+    ctx.globalCompositeOperation = 'source-over';
+
+    // random color from the palette
+    ctx.fillStyle = palette[Math.floor(random() * palette.length)];
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.globalCompositeOperation = ctrl.blendMode;
 
     for (let i = 0; i < ctrl.numSquares; i++) {
-        let c = color(random(palette));
+        let c = palette[Math.floor(random() * palette.length)];
 
-        // map [0,100]% to [0,255]
-        c.setAlpha(randomIntRange(...ctrl.alphaRange.map(n => n * 255 / 100)));
-        fill(c);
+        // turn RGB hex string into [R, G, B]
+        c = chroma(c).rgb();
+
+        // map [0,100]% to [0, 1]
+        let alpha = randomIntRange(...ctrl.alphaRange) / 100;
+
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
 
         let [minLength, maxLength] = ctrl.squareLengthRange;
-        let s = int(random(width * minLength / 100, height * maxLength / 100));
-        rect(int(random(width)), int(random(height)), s, s);
+        let s = randomIntRange(width * minLength / 100, height * maxLength / 100);
+        ctx.fillRect(randomIntUpTo(width), randomIntUpTo(height), s, s);
     }
 }
