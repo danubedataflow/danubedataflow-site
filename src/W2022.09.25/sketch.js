@@ -11,10 +11,13 @@ function setupForm() {
 }
 
 function drawSketch() {
-    background("black");
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, width, height);
+
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    translate(width / 2, height / 2);
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
 
     let points = getPointsForPolygon(ctrl.numSides, width * 0.9, 0);
 
@@ -23,9 +26,13 @@ function drawSketch() {
     points.forEach((p, i) => {
         points.forEach((p2, j) => {
             if (i == j) return;
-            stroke(palette[colorIndex]);
+            ctx.strokeStyle = palette[colorIndex];
             colorIndex = (colorIndex + 1 + palette.length) % palette.length;
-            line(...p, ...p2);
+            ctx.beginPath();
+            ctx.moveTo(...p);
+            ctx.lineTo(...p2);
+            ctx.stroke();
         });
     });
+    ctx.restore();
 }
