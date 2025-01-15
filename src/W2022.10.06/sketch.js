@@ -9,7 +9,7 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
+            makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
         ),
         // the modulus is the number of points on the circle
         makeSlider('modulus', 10, 300, 100),
@@ -18,35 +18,43 @@ function setupForm() {
 }
 
 function drawSketch() {
-    fill('white');
-    strokeWeight(1);
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 
-    blendMode(BLEND); // so background() actually clears the canvas
-    background('#cccccc');
-    blendMode(ctrl.blendMode);
+    // actually clear the canvas
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#cccccc';
+    ctx.fillRect(0, 0, width, height);
 
-    translate(width / 2, height / 2);
-    circle(0, 0, width);
+    ctx.globalCompositeOperation = ctrl.blendMode;
+
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = 1;
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
+    ctx.beginPath();
+    ctx.arc(0, 0, width, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
 
     const radius = width / 2;
     for (let i = 0; i < ctrl.modulus; i++) {
 
         // cycle through all colors in the palette; wrap around
         const colorIndex = (i + palette.length) % palette.length;
-        stroke(palette[colorIndex]);
+        ctx.strokeStyle = palette[colorIndex];
 
-        line(
-            ...pointOnCircle(angle(i), radius),
-            ...pointOnCircle(angle(i * ctrl.timesTable), radius)
-        );
+        ctx.beginPath();
+        ctx.moveTo(...pointOnCircle(angle(i), radius));
+        ctx.lineTo(...pointOnCircle(angle(i * ctrl.timesTable), radius));
+        ctx.stroke();
     }
+    ctx.restore();
 }
 
 function angle(n) {
-    return n * 360 / ctrl.modulus;
+    return n * Math.PI * 2 / ctrl.modulus;
 }
 
 function pointOnCircle(angle, radius) {
-    return [sin(angle) * radius, cos(angle) * radius];
+    return [Math.sin(angle) * radius, Math.cos(angle) * radius];
 }
