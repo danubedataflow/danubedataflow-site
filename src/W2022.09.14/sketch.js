@@ -22,13 +22,13 @@ function drawSketch() {
     ctx.globalCompositeOperation = 'source-over';
 
     // random color from the palette
-    ctx.fillStyle = palette[Math.floor(random() * palette.length)];
+    ctx.fillStyle = palette.randomElement();
     ctx.fillRect(0, 0, width, height);
 
     ctx.globalCompositeOperation = ctrl.blendMode;
 
     for (let i = 0; i < ctrl.numSquares; i++) {
-        let c = palette[Math.floor(random() * palette.length)];
+        let c = palette.randomElement();
 
         // turn RGB hex string into [R, G, B]
         c = chroma(c).rgb();
