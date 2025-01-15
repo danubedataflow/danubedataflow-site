@@ -9,36 +9,35 @@ function setupForm() {
             makeSlider('colorAngle', 0, 359, 0),
             makeSlider('saturationRange', 40, 100, [60, 80]),
             makeSlider('brightnessRange', 40, 100, [60, 80]),
-            makeSlider('alphaRange', 1, 255, [50, 200]),
+            makeSlider('alphaRange', 1, 100, [20, 80]),
         ),
     );
 }
 
 function setRandomFillColor() {
-    fill(
-        ctrl.colorAngle,
-        randomIntRange(...ctrl.saturationRange),
-        randomIntRange(...ctrl.brightnessRange),
-        randomIntRange(...ctrl.alphaRange)
-    );
+    let h = ctrl.colorAngle;
+    let s = randomIntRange(...ctrl.saturationRange);
+    let l = randomIntRange(...ctrl.brightnessRange);
+    let alpha = randomIntRange(...ctrl.alphaRange) / 100;
+    ctx.fillStyle = `hsla(${h}, ${s}%, ${l}%, ${alpha})`;
 }
 
 function drawSketch() {
-    background('white');
-    noStroke();
-    fill('black');
-    colorMode(HSB, 360, 100, 100, 100);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = 'black';
 
     for (let i = 0; i <= ctrl.numHorizontalLines; i++) {
-        let x1 = int(random(width));
-        let w = int(random(...ctrl.strokeWeightRangeRelative.map(x => x * width / 100)));
+        let x1 = randomIntUpTo(width);
+        let w = randomIntRange(...ctrl.strokeWeightRangeRelative) * width / 100;
         setRandomFillColor();
-        rect(x1, 0, x1 + w, height);
+        ctx.fillRect(x1, 0, w, height);
     }
     for (let i = 0; i <= ctrl.numVerticalLines; i++) {
-        let y1 = int(random(width));
-        let h = int(random(...ctrl.strokeWeightRangeRelative.map(x => x * height / 100)));
+        let y1 = randomIntUpTo(width);
+        let h = randomIntRange(...ctrl.strokeWeightRangeRelative) * height / 100;
         setRandomFillColor();
-        rect(0, y1, width, y1 + h);
+        ctx.fillRect(0, y1, width, h);
     }
 }
