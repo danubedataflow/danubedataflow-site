@@ -4,7 +4,7 @@ function setupForm() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),
-            makeSelectBlendMode([BLEND, DARKEST, DIFFERENCE, EXCLUSION, HARD_LIGHT, MULTIPLY]),
+            makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
             makeSlider('numColors', 1, 32, 25),
         ),
         makeSlider('maxLength', 3, 19, 11, 2),
@@ -12,29 +12,32 @@ function setupForm() {
 }
 
 function drawSketch() {
-    angleMode(RADIANS);
-    blendMode(BLEND); // so background() actually clears the canvas
-    background('white');
-    blendMode(ctrl.blendMode);
-    noStroke();
-    translate(width / 2, height / 2);
+    // actually clear the canvas
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
 
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-    let colorIndex = int(random(palette.length));
+    let colorIndex = randomIntUpTo(palette.length);
 
-    let magnify = int(width / ctrl.maxLength);
+    let magnify = Math.round(width / ctrl.maxLength);
     let numPoints = Math.pow(ctrl.maxLength, 2);
 
-    rectMode(CENTER);
     iterateSquareSpiral(numPoints, (x, y, n) => {
-        let direction = random([-1, 1]);
+        let direction = randomIntUpTo(2) - 1; // [-1, +1]
 
         // wrap around
         colorIndex = (palette.length + colorIndex + direction) % palette.length;
 
-        fill(palette[colorIndex]);
-        rect(x * magnify, y * magnify, magnify, magnify);
+        let c = palette[colorIndex];
+        ctx.fillStyle = c;
+        ctx.beginPath();
+        ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
     });
+    ctx.restore();
 }
 
 /* See https://math.stackexchange.com/a/4128516
@@ -51,9 +54,9 @@ function iterateSquareSpiral(max, callback) {
         y = 0;
     callback(x, y, 0);
     for (let k = 1; k < max; k++) {
-        let term = PI / 2 * Math.floor(sqrt(4 * k - 3));
-        x += sin(term);
-        y += cos(term);
+        let term = Math.PI / 2 * Math.floor(Math.sqrt(4 * k - 3));
+        x += Math.sin(term);
+        y += Math.cos(term);
         callback(x, y, k);
     }
 }
