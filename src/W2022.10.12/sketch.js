@@ -15,12 +15,13 @@ function setupForm() {
 }
 
 function drawSketch() {
-    let roughCanvas = rough.canvas(canvas.elt);
+    let roughCanvas = rough.canvas(canvas);
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    background('white');
-    noFill();
-    translate(width / 2, height / 2);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
 
     let colorIndex = 0;
     let [minScale, maxScale] = ctrl.scaleRange;
@@ -36,4 +37,5 @@ function drawSketch() {
             colorIndex = (colorIndex + 1) % palette.length;
         });
     }
+    ctx.restore();
 }
