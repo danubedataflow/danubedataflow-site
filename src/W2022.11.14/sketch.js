@@ -23,27 +23,36 @@ function setupForm() {
 }
 
 function drawSketch() {
-    strokeWeight(1);
-    stroke('black');
-    noFill();
+    ctx.save();
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
     padSketch();
-    background('white');
+
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'black';
+
     let dim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
-            push();
+            ctx.save();
             // `+ 0.5` to move to the tile's center
-            translate((x - 1) * (dim + 0.5), (y - 1) * (dim + 0.5));
+            ctx.translate((x - 1) * (dim + 0.5), (y - 1) * (dim + 0.5));
 
-            if (random(100) < ctrl.rotationChance) rotate(random(...ctrl.rotationRange));
-            if (random(100) < ctrl.scaleChance) scale(random(...ctrl.scaleRange) / 100);
-            if (random(100) < ctrl.translationChance) translate(
-                dim * random(...ctrl.translationRange) / 100,
-                dim * random(...ctrl.translationRange) / 100);
-            if (random(100) < ctrl.strokeWeightChance) strokeWeight(random(...ctrl.strokeWeightRange));
-            rect(0, 0, dim, dim);
+            if (randomIntUpTo(100) < ctrl.rotationChance) ctx.rotate(randomIntRange(...ctrl.rotationRange) * Math.PI / 180);
+            if (randomIntUpTo(100) < ctrl.scaleChance) {
+                let s = randomIntRange(...ctrl.scaleRange) / 100;
+                ctx.scale(s, s);
+            }
+            if (randomIntUpTo(100) < ctrl.translationChance) ctx.translate(
+                dim * randomIntRange(...ctrl.translationRange) / 100,
+                dim * randomIntRange(...ctrl.translationRange) / 100);
+            if (randomIntUpTo(100) < ctrl.strokeWeightChance) ctx.lineWidth = randomIntRange(...ctrl.strokeWeightRange);
+            ctx.strokeRect(0, 0, dim, dim);
 
-            pop();
+            ctx.restore();
         }
     }
+    ctx.restore();
 }
