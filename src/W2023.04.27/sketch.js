@@ -16,8 +16,9 @@ function setupForm() {
 }
 
 function drawSketch() {
-    noStroke();
-    background("white");
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     makeGrid({
@@ -29,18 +30,22 @@ function drawSketch() {
 
 function drawTile(tile) {
 
-    fill(random(100) < ctrl.coloredTileChance ? random(palette) : "white");
-    rect(...tile.upperLeft, ...tile.lowerRight);
+    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? palette.randomElement() : 'white';
+    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
 
-    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
-    triangle(...tile.upperMiddle, ...tile.center, ...tile.leftMiddle);
+    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+    triangle(tile.upperMiddle, tile.center, tile.leftMiddle);
+    ctx.fill();
 
-    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
-    triangle(...tile.upperMiddle, ...tile.center, ...tile.rightMiddle);
+    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+    triangle(tile.upperMiddle, tile.center, tile.rightMiddle);
+    ctx.fill();
 
-    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
-    triangle(...tile.lowerMiddle, ...tile.center, ...tile.leftMiddle);
+    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+    triangle(tile.lowerMiddle, tile.center, tile.leftMiddle);
+    ctx.fill();
 
-    fill(random(100) < ctrl.coloredDiamondChance ? random(palette) : "white");
-    triangle(...tile.lowerMiddle, ...tile.center, ...tile.rightMiddle);
+    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+    triangle(tile.lowerMiddle, tile.center, tile.rightMiddle);
+    ctx.fill();
 }
