@@ -19,20 +19,21 @@ function drawSketch() {
         curves.push([randomPoint(), randomPoint(), randomPoint()]);
     }
 
-    drawingContext.fillStyle = color(0);
-    drawingContext.lineWidth = 1;
-    drawingContext.strokeStyle = color(100);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
 
-    background("white");
+    ctx.fillStyle = '#000000';
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#707070';
 
     let path = new Path2D();
     curves.forEach((c) => {
         path.bezierCurveTo(...c[0], ...c[1], ...c[2]);
     });
     path.closePath();
-    drawingContext.fill(path, "evenodd");
+    ctx.fill(path, "evenodd");
 }
 
 function randomPoint() {
-    return [int(random(width)), int(random(width))];
+    return [ randomIntUpTo(width), randomIntUpTo(height) ];
 }
