@@ -26,11 +26,7 @@ function drawSketch() {
             let c = colorScale(random()).rgb();
             let alpha = random();
             ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
-            ctx.beginPath();
-            ctx.moveTo(...p[0]);
-            ctx.lineTo(...p[1]);
-            ctx.lineTo(...p[2]);
-            ctx.closePath();
+            triangle(p[0], p[1], p[2]);
             ctx.fill();
             p.shift();
         }
