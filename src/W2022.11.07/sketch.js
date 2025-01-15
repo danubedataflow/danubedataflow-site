@@ -13,10 +13,11 @@ function setupForm() {
 
 function drawSketch() {
     ctx.save();
-    padSketch();
 
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
+
+    padSketch();
 
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
