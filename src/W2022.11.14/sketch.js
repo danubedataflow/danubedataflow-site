@@ -16,8 +16,8 @@ function setupControls() {
             makeSlider('translationRange', -50, 50, [-20, 20]),
         ),
         makeFieldset('stroke',
-            makeSlider('strokeWeightChance', 0, 100, 5),
-            makeSlider('strokeWeightRange', 1, 4, [2, 3]),
+            makeSlider('lineWidthChance', 0, 100, 5),
+            makeSlider('lineWidthRange', 1, 4, [2, 3]),
         ),
     );
 }
@@ -48,7 +48,7 @@ function drawSketch() {
             if (randomIntUpTo(100) < ctrl.translationChance) ctx.translate(
                 dim * randomIntRange(...ctrl.translationRange) / 100,
                 dim * randomIntRange(...ctrl.translationRange) / 100);
-            if (randomIntUpTo(100) < ctrl.strokeWeightChance) ctx.lineWidth = randomIntRange(...ctrl.strokeWeightRange);
+            if (randomIntUpTo(100) < ctrl.lineWidthChance) ctx.lineWidth = randomIntRange(...ctrl.lineWidthRange);
             ctx.strokeRect(0, 0, dim, dim);
 
             ctx.restore();

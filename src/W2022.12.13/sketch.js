@@ -10,7 +10,7 @@ function setupControls() {
         ),
         makeSlider('numGrids', 2, 10, 4),
         makeSlider('segmentDivisorRange', 2, 20, [3, 10]),
-        makeSlider('strokeWeight', 1, 8, 1),
+        makeSlider('lineWidth', 1, 8, 1),
     );
 }
 
@@ -25,7 +25,7 @@ function drawSketch() {
     ctx.globalCompositeOperation = ctrl.blendMode;
 
     ctx.strokeStyle = 'black';
-    ctx.lineWidth = ctrl.strokeWeight;
+    ctx.lineWidth = ctrl.lineWidth;
 
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     for (let i = 0; i < ctrl.numGrids; i++) {

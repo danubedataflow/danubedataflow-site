@@ -41,7 +41,7 @@
     "slider-scaleInner": "Scale of the inner squares：{value}",
     "slider-segmentDivisorRange": "Segment divisor range：{from}〜{to}",
     "slider-squareSizeRange": "Square size range：{from}〜{to}",
-    "slider-strokeWeightRangeRelative": "Stroke weight range：{from}% to {to}% of the canvas",
+    "slider-lineWidthRangeRelative": "Stroke weight range：{from}% to {to}% of the canvas",
     "slider-tileCountX": "Number of horizontal tiles：{value}",
     "slider-tileCountY": "Number of vertical tiles：{value}",
     "slider-tileSizeMultiplier": "Tile size multiplier：{value}",

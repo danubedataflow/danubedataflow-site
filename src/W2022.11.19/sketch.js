@@ -4,7 +4,7 @@ function setupControls() {
     makeForm(
         makeSlider('numHorizontalLines', 1, 10, 5),
         makeSlider('numVerticalLines', 1, 10, 5),
-        makeSlider('strokeWeightRangeRelative', 1, 20, [9, 13]),
+        makeSlider('lineWidthRangeRelative', 1, 20, [9, 13]),
         makeFieldset('colors',
             makeSlider('colorAngle', 0, 359, 0),
             makeSlider('saturationRange', 40, 100, [60, 80]),
@@ -30,13 +30,13 @@ function drawSketch() {
 
     for (let i = 0; i <= ctrl.numHorizontalLines; i++) {
         let x1 = randomIntUpTo(width);
-        let w = randomIntRange(...ctrl.strokeWeightRangeRelative) * width / 100;
+        let w = randomIntRange(...ctrl.lineWidthRangeRelative) * width / 100;
         setRandomFillColor();
         ctx.fillRect(x1, 0, w, height);
     }
     for (let i = 0; i <= ctrl.numVerticalLines; i++) {
         let y1 = randomIntUpTo(width);
-        let h = randomIntRange(...ctrl.strokeWeightRangeRelative) * height / 100;
+        let h = randomIntRange(...ctrl.lineWidthRangeRelative) * height / 100;
         setRandomFillColor();
         ctx.fillRect(0, y1, width, h);
     }

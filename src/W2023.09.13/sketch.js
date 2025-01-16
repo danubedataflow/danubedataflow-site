@@ -3,7 +3,7 @@
 function setupControls() {
     makeForm(
         makeSlider('numRects', 10, 100, 50),
-        makeSlider('strokeWeightRange', 1, 20, [2, 4]),
+        makeSlider('lineWidthRange', 1, 20, [2, 4]),
         makeSlider('alphaRange', 0, 100, [80, 100]),
     );
 }
@@ -20,7 +20,7 @@ function drawSketch() {
         let w = randomIntUpTo(width - ulX);
         let h = randomIntUpTo(height - ulY);
 
-        ctx.lineWidth = randomIntRange(...ctrl.strokeWeightRange);
+        ctx.lineWidth = randomIntRange(...ctrl.lineWidthRange);
         let alpha = randomIntRange(...ctrl.alphaRange) / 100;
         ctx.strokeStyle = `rgba(0,0,0,${alpha})`;
         ctx.strokeRect(ulX, ulY, w, h);

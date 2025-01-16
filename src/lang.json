@@ -587,22 +587,22 @@
       "de" : "Bereich der Größe der Quadrate: {from} bis {to}",
       "en" : "Square size range: {from} to {to}"
    },
-   "slider-strokeWeight" : {
+   "slider-lineWidth" : {
       "de" : "Strichstärke: {value}",
       "en" : "Stroke weight: {value}",
       "ja" : "筆の太さ：{value}"
    },
-   "slider-strokeWeightChance" : {
+   "slider-lineWidthChance" : {
       "de" : "Strichstärken-Wahrscheinlichkeit: {value}%",
       "en" : "Stroke weight probability: {value}%",
       "ja" : "筆の太さの確率：{value}%"
    },
-   "slider-strokeWeightRange" : {
+   "slider-lineWidthRange" : {
       "de" : "Strichstärken-Bereich: {from} bis {to}",
       "en" : "Stroke weight range: {from} to {to}",
       "ja" : "筆の太さの範囲：{from}〜{to}"
    },
-   "slider-strokeWeightRangeRelative" : {
+   "slider-lineWidthRangeRelative" : {
       "de" : "Strichdicke-Bereich: {from}% bis {to}% der Leinwandgröße",
       "en" : "Stroke weight range: {from}% to {to}% of the canvas"
    },

@@ -31,7 +31,7 @@ function setupControls() {
         makeSlider('numTiles', 3, 5, 4),
         makeSlider('numPointsX', 3, 5, 4),
         makeSlider('numPointsY', 3, 5, 4),
-        makeSlider('strokeWeight', 8, 20, 12),
+        makeSlider('lineWidth', 8, 20, 12),
         makeSlider('percentConnections', 30, 70, 50, 5),
         makeSlider('scale', 0.5, 0.8, 0.6, 0.05),
     );
@@ -42,7 +42,7 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-    ctx.lineWidth = ctrl.strokeWeight;
+    ctx.lineWidth = ctrl.lineWidth;
 
     makeGrid({
         numTilesX: ctrl.numTiles,
@@ -72,7 +72,7 @@ function drawTile(tile) {
 
             // draw a dot
             ctx.fillStyle = 'black';
-            let w = ctrl.strokeWeight;
+            let w = ctrl.lineWidth;
             ctx.fillRect(c[0] - w/2, c[1] - w/2, w, w);
 
             // connection to the neighbor to the right?

@@ -7,7 +7,7 @@ function setupControls() {
         makeSlider('scale', 1, 2, 1.5, 0.1),
         makeSlider('angleStep', 2, 32, 16),
         makeSlider('maxOffsetPerAxis', 0, 10, 2),
-        makeSlider('strokeWeight', 1, 6, 1),
+        makeSlider('lineWidth', 1, 6, 1),
     );
 }
 
@@ -17,7 +17,7 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
-    ctx.lineWidth = ctrl.strokeWeight;
+    ctx.lineWidth = ctrl.lineWidth;
     ctx.strokeStyle = 'black';
 
     padSketch();

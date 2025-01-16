@@ -5,7 +5,7 @@ function setupControls() {
         makeSlider('numTiles', 2, 20, 10),
         makeSlider('numRects', 2, 20, 10),
         makeSlider('scale', 0.5, 1, 0.9, 0.1),
-        makeSlider('strokeWeightRange', 1, 20, [10, 12]),
+        makeSlider('lineWidthRange', 1, 20, [10, 12]),
         makeSlider('alphaRange', 0, 100, [80, 100]),
     );
 }
@@ -29,7 +29,7 @@ function drawSketch() {
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
 
-        ctx.lineWidth = (randomIntRange(...ctrl.strokeWeightRange));
+        ctx.lineWidth = (randomIntRange(...ctrl.lineWidthRange));
         let alpha = randomIntRange(...ctrl.alphaRange) / 100;
         ctx.strokeStyle = `rgba(0,0,0,${alpha})`;
         ctx.strokeRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
