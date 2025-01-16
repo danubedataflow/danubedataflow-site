@@ -730,9 +730,12 @@ function copyLink() {
 }
 
 function setupQRCode() {
-    new QRCode(document.getElementById('qrcode'), getCurrentURL({
-        timestamp: 1
-    }));
+    let code = getCurrentURL({ timestamp: 1 });
+    // There is a bug in the QRCode library where it fails to
+    // generate the QR code with a "code length overflow" error if
+    // the input string is between 192 and 220 characters long.
+    code = code.padEnd(221);
+    new QRCode(document.getElementById('qrcode'), code);
 
 }
 
