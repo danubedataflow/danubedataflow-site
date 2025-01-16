@@ -6,7 +6,7 @@ const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'
 
 let palette;
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numSides', 3, 10, 5),
         makeSlider('diameter', 1, 100, 30),

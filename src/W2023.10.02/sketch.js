@@ -26,7 +26,7 @@
  * remaining lines.
  */
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numTiles', 3, 5, 4),
         makeSlider('numPointsX', 3, 5, 4),

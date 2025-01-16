@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numSides', 3, 10, 5),
         makeFieldset('colors',

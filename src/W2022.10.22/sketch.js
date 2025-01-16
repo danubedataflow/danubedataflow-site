@@ -5,7 +5,7 @@
  * Also see https://openprocessing.org/sketch/1626688 ("0576_2" by kusakari)
  */
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numCurves', 2, 100, 30),
     );

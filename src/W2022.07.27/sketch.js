@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeFieldset('tiles',
             makeSlider('tileCountX', 1, 100, 30),

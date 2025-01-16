@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('horizontalSineFactor', 1, 5, 2.5, 0.1),
         makeSlider('alpha', 1, 100, 30),

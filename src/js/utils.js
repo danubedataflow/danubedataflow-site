@@ -746,7 +746,7 @@ function setup() {
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
-    setupForm(); // sketches need to implement this
+    setupControls(); // sketches need to implement this
 
     if (pageType) {
         // add page type as class to all DOM elements so CSS can differentiate

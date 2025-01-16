@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numRects', 10, 100, 50),
         makeSlider('strokeWeightRange', 1, 20, [2, 4]),

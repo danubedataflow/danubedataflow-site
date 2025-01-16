@@ -2,7 +2,7 @@
 
 let palette;
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),

@@ -3,7 +3,7 @@
 // based on Jon Stanley's program "lines" for the Tektronix 4052
 // https://www.electronixandmore.com/resources/teksystem/
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numLines', 1, 1500, 500),
         makeSlider('randomPointOffset', 1, 20, 5),

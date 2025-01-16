@@ -5,7 +5,7 @@
  * https://www.youtube.com/watch?v=qhbuKbxJsk8
  */
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeFieldset('colors',
             makeSelectColorMap(),

@@ -2,7 +2,7 @@
 
 let palette, shouldFillArray;
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numTiles', 3, 10, 4),
         makeSlider('maxOffsetPerAxis', 0, 20, 10),

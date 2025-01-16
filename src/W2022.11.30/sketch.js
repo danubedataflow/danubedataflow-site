@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numTiles', 2, 20, 10),
         makeSlider('numRects', 2, 20, 10),

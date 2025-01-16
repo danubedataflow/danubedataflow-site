@@ -2,7 +2,7 @@
 
 let palette, c1, c2;
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numTiles', 4, 40, 20),
         makeSlider('diagonalOrientationChance', 0, 100, 50),

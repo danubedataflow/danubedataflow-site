@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeFieldset('repetitions',
             makeSlider('numTiles', 4, 12, 9),

@@ -1,6 +1,6 @@
 'use strict';
 
-function setupForm() {
+function setupControls() {
     makeForm(
         makeSlider('numTiles', 3, 10, 5),
         makeSlider('colorAngle', 0, 359, 0),
