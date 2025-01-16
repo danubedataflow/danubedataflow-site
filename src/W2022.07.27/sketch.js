@@ -40,11 +40,11 @@ function drawSketch() {
 
             let diameter = Math.floor(n * ctrl.tileSizeMultiplier * Math.min(tileWidth, tileHeight));
 
-            let path = new Path2D();
+            ctx.beginPath();
             let points = getPointsForPolygon(6, diameter, 30);
-            points.forEach(p => path.lineTo(...p));
-            path.closePath();
-            ctx.stroke(path);
+            points.forEach(p => ctx.lineTo(...p));
+            ctx.closePath();
+            ctx.stroke();
 
             ctx.restore();
         }
