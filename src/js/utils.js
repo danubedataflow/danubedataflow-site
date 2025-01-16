@@ -1,20 +1,50 @@
 'use strict';
 
 let controls = {},
-    canvas,
-    pageType;
+    canvas, width, height, ctx, pageType;
 
-// also show the canvas size on the web page
-function getCanvasDimension() {
-    let headerHeight = 100 * pixelDensity();
-    let dim = min(windowWidth, windowHeight - headerHeight);
-    document.getElementById('canvasSize').innerText = `${dim} x ${dim}`;
-    return [dim, dim];
+function setCanvasDimension() {
+    let headerHeight = 100 * window.devicePixelRatio;
+    width = height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
+
+    /* Set up the canvas for high-resolution drawing.
+     *
+     * 1. Multiply the canvas's width and height by the devicePixelRatio
+     *
+     * 2. Force it to display at the original (logical) size with CSS or style
+     * attributes.
+     *
+     * 3. Scale the context so you can draw on it without considering the
+     * ratio.
+     */
+
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
+    ctx.scale(ratio, ratio);
+
+    // also show the canvas size on the web page
+    document.getElementById('canvasSize').innerText = `${width} x ${height}`;
 }
 
 function saveCanvasAsPNG() {
-    let name = location.href.split('/').slice(-3, -1).join("--");
-    saveCanvas(decodeURI(name) + '.png');
+    canvas.toBlob(blob => {
+        var element = document.createElement('a');
+        element.setAttribute('href', URL.createObjectURL(blob));
+        let filename = decodeURI(location.href.split('/').slice(-3, -1).join('--')) + '.png';
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    });
 }
 
 function getPointsForPolygon(sides, diameter, rotation) {
@@ -30,16 +60,6 @@ function getPointsForPolygon(sides, diameter, rotation) {
     return points;
 }
 
-function randomIntRange(lowerBound, upperBound) {
-    return int(random(lowerBound, upperBound + 1));
-}
-
-// generate a random integer in the range [-n, n].
-function randomIntPlusMinus(n) {
-    return int(random(2 * n) - n);
-}
-
-
 // Move elements matching a selector function to the front of the array.
 Array.prototype.putFirst = function(selector) {
     return [
@@ -53,6 +73,11 @@ Array.prototype.pairwise = function(func) {
     for (let i = 0; i < this.length - 1; i++) {
         func(this[i], this[i + 1]);
     }
+}
+
+// return a random array element
+Array.prototype.randomElement = function() {
+    return this[randomIntUpTo(this.length)];
 }
 
 class SliderControl {
@@ -115,10 +140,9 @@ class CheckboxControl {
     }
 
     setValue(value) {
-        // convert string values that could come from URL query
-        // parameters
-        if (value === "true") value = true;
-        if (value === "false") value = false;
+        // convert string values from URL query parameters
+        if (value === 'true') value = true;
+        if (value === 'false') value = false;
 
         // validate
         if (typeof value === 'boolean') {
@@ -131,24 +155,23 @@ class CheckboxControl {
 
 /* Seed handling
  *
- * If a seed is given in URL's query string, that is used. If
- * not, a random seed is used.
+ * If a seed is given in URL's query string, that is used. If not, a random
+ * seed is used.
  *
  * The seed that is used is shown below the form controls.
  *
- * Both the "redraw with new seed" button and the "randomize
- * parameters" button will generate a new seed. That is because
- * if the redraw button didn't generate a new seed, you couldn't
- * get the exact same image with the shown seed because every
- * time you redraw it calls random() again.
+ * Both the "redraw with new seed" button and the "randomize parameters" button
+ * will generate a new seed. That is because if the redraw button didn't
+ * generate a new seed, you couldn't get the exact same image with the shown
+ * seed because every time you redraw it calls random() again.
  *
  * Note that you have to generate a new seed every time you redraw the sketch.
  * If you just redraw without generating a new seed, you won't get the same
  * image even if you copy the URL including the seed because every time you
  * just redraw you get different random numbers.
  *
- * To be able to regenerate the exact same image, copy the URL
- * including the seed. The "copy link" button does that as well.
+ * To be able to regenerate the exact same image, copy the URL including the
+ * seed. The "copy link" button does that as well.
  */
 
 class SeedControl {
@@ -169,10 +192,12 @@ class SeedControl {
          * click "redraw with new seed" or "randomize controls" you don't get
          * the same result on both sketches.
          */
-        if (!/^\d{3,9}$/.test(value)) value = int(Math.random() * 1000000000);
+        value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
         randomSeed(value);
-        noiseSeed(value);
+
+        // perlin.js's noise.seed takes a float between 0 and 1
+        noise.seed(random());
     }
 
     // After resizing the canvas or changing sliders, we want to draw
@@ -196,12 +221,15 @@ class SelectControl {
     setValue(value) {
         // The spread syntax (`...`) turns the HTMLOptionsCollection into a
         // standard array.
-        let optionValues = [...this.element.options].map(o => o.value)
-        if (optionValues.includes(value)) {
+        if (this.getOptionValues().includes(value)) {
             this.element.value = value;
         } else {
             console.log(`${this.id}: value "${value}" is not a valid option`);
         }
+    }
+
+    getOptionValues() {
+        return [...this.element.options].map(o => o.value);
     }
 }
 
@@ -221,12 +249,6 @@ function makeForm(...contents) {
     let form = document.getElementById('controls-form');
     contents.push(makeSeed()),
         contents.forEach(child => form.appendChild(child));
-
-    /* like controlsDidChange() but don't call redraw(). That's because
-     * draw() will be called anyway by p5.js and we don't want to call it
-     * twice because draw() will call random(), and you wouldn't be able
-     * to get the exact same image even with the same seed.
-     */
 }
 
 function makeFieldset(legend, ...contents) {
@@ -363,9 +385,7 @@ function makeCheckbox(id, value = true) {
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
-    checkboxEl.oninput = function() {
-        redrawWithSameSeed();
-    };
+    checkboxEl.oninput = redrawWithSameSeed;
     containerDiv.appendChild(checkboxEl);
 
     controls[id] = new CheckboxControl(id, checkboxEl);
@@ -496,23 +516,24 @@ function makeSelectColorMap() {
 }
 
 function makeSelectBlendMode(options) {
-    // use [] because these are const names
+    // see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
     let nameFor = {
-        [ADD]: 'Lighter',
-        [BLEND]: 'Blend',
-        [BURN]: 'Burn',
-        [DARKEST]: 'Darkest',
-        [DIFFERENCE]: 'Difference',
-        [DODGE]: 'Dodge',
-        [EXCLUSION]: 'Exclusion',
-        [HARD_LIGHT]: 'Hard light',
-        [LIGHTEST]: 'Lighten',
-        [MULTIPLY]: 'Multiply',
-        [OVERLAY]: 'Overlay',
-        [REMOVE]: 'Remove',
-        [REPLACE]: 'Copy',
-        [SCREEN]: 'Screen',
-        [SOFT_LIGHT]: 'Soft light',
+        'lighter': 'Lighter',
+        'source-over': 'Blend',
+        'color-burn': 'Burn',
+        'darken': 'Darkest',
+        'difference': 'Difference',
+        'color-dodge': 'Dodge',
+        'exclusion': 'Exclusion',
+        'hard-light': 'Hard light',
+        'lighten': 'Lighten',
+        'multiply': 'Multiply',
+        'overlay': 'Overlay',
+        'destination-out': 'Remove',
+        'copy': 'Copy',
+        'screen': 'Screen',
+        'soft-light': 'Soft light',
+        'xor': 'Exclusive or',
     };
 
     if (options == null) {
@@ -527,7 +548,7 @@ function makeSelectBlendMode(options) {
     // The default value is 'blend' if it is an option, or the first
     // sorted element if it isn't.
 
-    let defaultValue = options.putFirst(el => el == BLEND).at(0);
+    let defaultValue = options.putFirst(el => el == 'source-over').at(0);
     return makeSelect(
         'blendMode',
         options.map(c => makeOption(c)),
@@ -561,7 +582,7 @@ function getCurrentURL(config = {}) {
     /* Replace the URL in the browser's URL bar using the current control
      * values, without reloading the page.
      */
-    return window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
+    return window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + urlParams.toString();
 }
 
 /* Update the URL according to controls. But don't update it if it hasn't
@@ -605,11 +626,10 @@ function setControlsRandomly() {
             }
 
         } else if (c instanceof SelectControl) {
-            let optionValues = [...c.element.options].map(o => o.value)
-            c.setValue(random(optionValues));
+            c.setValue(c.getOptionValues().randomElement());
 
         } else if (c instanceof CheckboxControl) {
-            c.setValue(random([true, false]));
+            c.setValue([true, false].randomElement());
         }
 
         // No need to set the seed value (for SeedControl); that's done in
@@ -620,12 +640,12 @@ function setControlsRandomly() {
 
 function redrawWithSameSeed() {
     controls.seed.setSameSeedAgain();
-    redraw();
+    draw();
 }
 
 function redrawWithNewSeed() {
     controls.seed.setValue(); // trigger new random seed
-    redraw();
+    draw();
 }
 
 function makeGrid(args) {
@@ -644,8 +664,8 @@ function makeGrid(args) {
     let tileHeight = gridHeight / numTilesY;
     for (let y = 1; y <= numTilesY; y++) {
         for (let x = 1; x <= numTilesX; x++) {
-            push();
-            translate((x - 1) * tileWidth, (y - 1) * tileHeight);
+            ctx.save();
+            ctx.translate((x - 1) * tileWidth, (y - 1) * tileHeight);
 
             let subdivisions = numSubdivisions(depth);
             // make a sub-grid that is as big as the tile
@@ -660,11 +680,11 @@ function makeGrid(args) {
                     tileCallback: tileCallback
                 });
             } else {
-                push();
+                ctx.save();
 
                 // Move to the tile center so that rotation and scaling happen
                 // around that center.
-                translate(tileWidth / 2, tileHeight / 2);
+                ctx.translate(tileWidth / 2, tileHeight / 2);
 
                 let tile = {
                     width: tileWidth,
@@ -686,17 +706,17 @@ function makeGrid(args) {
 
                 tileCallback(tile);
 
-                pop();
+                ctx.restore();
             }
-            pop();
+            ctx.restore();
         }
     }
 }
 
 function padSketch(_scale = 0.97) {
-    translate(width / 2, height / 2);
-    scale(_scale);
-    translate(-width / 2, -height / 2);
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(_scale, _scale);
+    ctx.translate(-width / 2, -height / 2);
 }
 
 function copyLink() {
@@ -709,26 +729,8 @@ function copyLink() {
     }
 }
 
-function basename() {
-    let path = window.location.pathname;
-    if (path.endsWith('/')) {
-        return 'index.html';
-    } else {
-        return path.split('/').reverse()[0];
-    }
-}
-
-function setPageType() {
-    let b = basename();
-    if (b == 'index.html') {
-        pageType = 'screen';
-    } else if (b == 'print.html') {
-        pageType = 'print';
-    }
-}
-
 function setupQRCode() {
-    new QRCode(document.getElementById("qrcode"), getCurrentURL({
+    new QRCode(document.getElementById('qrcode'), getCurrentURL({
         timestamp: 1
     }));
 
@@ -736,13 +738,14 @@ function setupQRCode() {
 
 /* Sketch skeleton
  *
- * setup(), draw(), windowResized() and keyPressed() are used by p5.js.
- * They are pretty much the same for every sketch. Invidual sketches just
- * need to set up the form and to implement drawSketch().
+ * Individual sketches just need to set up the form and to implement
+ * drawSketch().
  */
 function setup() {
-    setPageType();
-    canvas = createCanvas(...getCanvasDimension()).parent('sketch');
+    pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
+    canvas = document.getElementsByTagName('canvas')[0];
+    ctx = canvas.getContext('2d');
+    setCanvasDimension();
     setupForm(); // sketches need to implement this
 
     if (pageType) {
@@ -750,9 +753,6 @@ function setup() {
         document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
     }
     if (pageType == 'print') setupQRCode();
-    angleMode(DEGREES);
-    rectMode(CORNERS);
-    noLoop();
 }
 
 function draw() {
@@ -761,19 +761,52 @@ function draw() {
     drawSketch();
 }
 
-function windowResized() {
-    controls.seed.setSameSeedAgain();
-    resizeCanvas(...getCanvasDimension());
+function triangle(p1, p2, p3) {
+    ctx.beginPath();
+    ctx.moveTo(...p1);
+    ctx.lineTo(...p2);
+    ctx.lineTo(...p3);
+    ctx.closePath();
 }
 
-function keyPressed() {
+// h is between 0 and 360, s and v are between 0 and 1. Returns a CSS hsl color
+// that can be used for ctx.fillStyle.
+function hsv_to_hsl_color(h, s, v) {
+    // both hsv and hsl values are in [0, 1]
+    var l = (2 - s) * v / 2;
+
+    if (l != 0) {
+        if (l == 1) {
+            s = 0;
+        } else if (l < 0.5) {
+            s = s * v / (l * 2);
+        } else {
+            s = s * v / (2 - l * 2);
+        }
+    }
+
+    return `hsl(${h} ${Math.floor(s * 100)}% ${Math.floor(l * 100)}%)`;
+}
+
+addEventListener('load', (e) => {
+    setup();
+    draw();
+});
+
+addEventListener('keypress', (e) => {
     /* only handle keypresses in the main sketch view. For example, in the
      * print view, it doesn't make sense, and they even interfere with "Cmd-P"
      * for printing.
      */
     if (pageType == 'screen') {
-        if (key == 's') saveCanvasAsPNG();
-        if (key == 'r') redrawWithNewSeed();
-        if (key == 'p') setControlsRandomly();
+        if (e.code == 'KeyS') saveCanvasAsPNG();
+        if (e.code == 'KeyR') redrawWithNewSeed();
+        if (e.code == 'KeyP') setControlsRandomly();
     }
-}
+});
+
+addEventListener('resize', (e) => {
+    controls.seed.setSameSeedAgain();
+    setCanvasDimension();
+    draw();
+});

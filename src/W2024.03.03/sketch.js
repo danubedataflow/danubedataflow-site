@@ -30,7 +30,10 @@ function drawSketch() {
             ctx.save();
             ctx.translate(...p);
             ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
-            line(-lineLength / 2, 0, lineLength / 2, 0);
+            ctx.beginPath();
+            ctx.moveTo(-lineLength / 2, 0);
+            ctx.lineTo(lineLength / 2, 0);
+            ctx.stroke();
             ctx.restore();
         });
 }

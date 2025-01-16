@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "p5.js",
     "creative coding"
   ],
   "author": "Marcel Gruenauer",
@@ -20,7 +19,6 @@
   "dependencies": {
     "chroma-js": "^2.4.2",
     "nouislider": "^15.7.1",
-    "p5": "^1.9.1",
     "roughjs": "^4.6.6"
   }
 }

@@ -18,8 +18,6 @@ deps:
 	cp node_modules/nouislider/dist/nouislider.min.css $(DEPS)/
 	cp node_modules/nouislider/dist/nouislider.min.js $(DEPS)/
 	cp node_modules/nouislider/LICENSE.md $(DEPS)/LICENSE-nouislider.md
-	cp node_modules/p5/lib/p5.min.js $(DEPS)/
-	cp node_modules/p5/license.txt $(DEPS)/LICENSE-p5.js.txt
 	cp more-deps/highlight.js/*.{css,js} $(DEPS)/
 	cp more-deps/highlight.js/LICENSE $(DEPS)/LICENSE-highlight.js.txt
 	cp more-deps/qrcode.js/qrcode.min.js $(DEPS)/
