@@ -87,11 +87,9 @@ function drawTile(tile) {
         }
         connections = connections.shuffle();
         connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
-        ctx.beginPath();
         connections.forEach(el => {
-            ctx.moveTo(...el[0]);
-            ctx.lineTo(...el[1]);
+            line(...el);
+            ctx.stroke();
         });
-        ctx.stroke();
     }
 }

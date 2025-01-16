@@ -34,9 +34,7 @@ function drawTile(tile) {
     }
     points = points.shuffle();
     for (let i = 0; i < points.length - 1; i++) {
-        ctx.beginPath();
-        ctx.moveTo(...points[i]);
-        ctx.lineTo(...points[i + 1]);
+        line(points[i], points[i + 1]);
         ctx.stroke();
     }
 }

@@ -28,9 +28,7 @@ function drawSketch() {
             if (i == j) return;
             ctx.strokeStyle = palette[colorIndex];
             colorIndex = (colorIndex + 1 + palette.length) % palette.length;
-            ctx.beginPath();
-            ctx.moveTo(...p);
-            ctx.lineTo(...p2);
+            line(p, p2);
             ctx.stroke();
         });
     });

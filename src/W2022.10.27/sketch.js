@@ -26,9 +26,7 @@ function drawSketch() {
     ctx.strokeStyle = 'white';
 
     for (let i = 1; i <= ctrl.numLines; i++) {
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
+        line([x1, y1], [x2, y2]);
         ctx.stroke();
 
         if (x1 > width) x1d = -rnd(2);

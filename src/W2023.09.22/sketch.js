@@ -38,8 +38,9 @@ function drawTile(tile) {
     );
 
     // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
-    ctx.beginPath();
-    ctx.moveTo(...tile.leftMiddle.map(n => n * ctrl.scale));
-    ctx.lineTo(...tile.rightMiddle.map(n => n * ctrl.scale));
+    line(
+        tile.leftMiddle.map(n => n * ctrl.scale),
+        tile.rightMiddle.map(n => n * ctrl.scale)
+    );
     ctx.stroke();
 }

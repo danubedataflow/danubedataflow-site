@@ -43,9 +43,7 @@ function drawSketch() {
         const colorIndex = (i + palette.length) % palette.length;
         ctx.strokeStyle = palette[colorIndex];
 
-        ctx.beginPath();
-        ctx.moveTo(...pointOnCircle(angle(i), radius));
-        ctx.lineTo(...pointOnCircle(angle(i * ctrl.timesTable), radius));
+        line(pointOnCircle(angle(i), radius), pointOnCircle(angle(i * ctrl.timesTable), radius));
         ctx.stroke();
     }
     ctx.restore();

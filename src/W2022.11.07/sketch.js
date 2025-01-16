@@ -29,22 +29,29 @@ function drawSketch() {
             ctx.translate((x - 1) * dim, (y - 1) * dim);
 
             if (ctrl.hasTileBorder) ctx.strokeRect(0, 0, dim, dim);
-            if (randomIntUpTo(100) < ctrl.horizontalLineChance) drawLine(0, dim / 2, dim, dim / 2);
-            if (randomIntUpTo(100) < ctrl.verticalLineChance) drawLine(dim / 2, 0, dim / 2, dim);
-            if (randomIntUpTo(100) < ctrl.diagonalUpwardsLineChance) drawLine(0, dim, dim, 0);
-            if (randomIntUpTo(100) < ctrl.diagonalDownwardsLineChance) drawLine(0, 0, dim, dim);
+
+            if (randomIntUpTo(100) < ctrl.horizontalLineChance) {
+                line([0, dim / 2], [dim, dim / 2]);
+                ctx.stroke();
+            }
+
+            if (randomIntUpTo(100) < ctrl.verticalLineChance) {
+                line([dim / 2, 0], [dim / 2, dim]);
+                ctx.stroke();
+            }
+
+            if (randomIntUpTo(100) < ctrl.diagonalUpwardsLineChance) {
+                line([0, dim], [dim, 0]);
+                ctx.stroke();
+            }
+
+            if (randomIntUpTo(100) < ctrl.diagonalDownwardsLineChance) {
+                line([0, 0], [dim, dim]);
+                ctx.stroke();
+            }
 
             ctx.restore();
         }
     }
     ctx.restore();
 }
-
-function drawLine(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
-
-}
-
