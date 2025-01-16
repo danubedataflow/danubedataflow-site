@@ -736,7 +736,6 @@ function setupQRCode() {
     // the input string is between 192 and 220 characters long.
     code = code.padEnd(221);
     new QRCode(document.getElementById('qrcode'), code);
-
 }
 
 /* Sketch skeleton
@@ -764,6 +763,12 @@ function draw() {
     drawSketch();
 }
 
+function line(p1, p2) {
+    ctx.beginPath();
+    ctx.moveTo(...p1);
+    ctx.lineTo(...p2);
+}
+
 function triangle(p1, p2, p3) {
     ctx.beginPath();
     ctx.moveTo(...p1);
@@ -772,23 +777,21 @@ function triangle(p1, p2, p3) {
     ctx.closePath();
 }
 
-// h is between 0 and 360, s and v are between 0 and 1. Returns a CSS hsl color
-// that can be used for ctx.fillStyle.
-function hsv_to_hsl_color(h, s, v) {
-    // both hsv and hsl values are in [0, 1]
-    var l = (2 - s) * v / 2;
+// generate color value for ctx.fillStyle and ctx.strokeStyle.
+function colorRGB(r, g, b) {
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
-    if (l != 0) {
-        if (l == 1) {
-            s = 0;
-        } else if (l < 0.5) {
-            s = s * v / (l * 2);
-        } else {
-            s = s * v / (2 - l * 2);
-        }
-    }
+function colorRGBA(r, g, b, alpha) {
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
-    return `hsl(${h} ${Math.floor(s * 100)}% ${Math.floor(l * 100)}%)`;
+function colorHSL(h, s, l) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+function colorHSLA(h, s, l, alpha) {
+    return `hsla(${h}, ${s}%, ${l}%, ${alpha})`;
 }
 
 addEventListener('load', (e) => {

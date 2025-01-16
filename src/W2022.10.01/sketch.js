@@ -41,7 +41,7 @@ function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 
 
         let c = chroma(palette[depth]).rgb();
         let alpha = (25 - 5 * depth) / 100;
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
+        ctx.fillStyle = colorRGBA(...c, alpha);
 
         ctx.beginPath();
         points.forEach(p => ctx.lineTo(...p));

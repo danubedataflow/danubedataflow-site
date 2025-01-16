@@ -15,11 +15,12 @@ function setupControls() {
 }
 
 function setRandomFillColor() {
-    let h = ctrl.colorAngle;
-    let s = randomIntRange(...ctrl.saturationRange);
-    let l = randomIntRange(...ctrl.brightnessRange);
-    let alpha = randomIntRange(...ctrl.alphaRange) / 100;
-    ctx.fillStyle = `hsla(${h}, ${s}%, ${l}%, ${alpha})`;
+    ctx.fillStyle = colorHSLA(
+        ctrl.colorAngle,
+        randomIntRange(...ctrl.saturationRange),
+        randomIntRange(...ctrl.brightnessRange),
+        randomIntRange(...ctrl.alphaRange) / 100
+    );
 }
 
 function drawSketch() {

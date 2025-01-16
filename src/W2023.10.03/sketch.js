@@ -19,9 +19,10 @@ function drawSketch() {
 }
 
 function drawTile(tile) {
-    ctx.fillStyle = hsv_to_hsl_color(ctrl.colorAngle, 1, 0.4 + random() * 0.6);
+    ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
     ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
     ctx.scale(ctrl.scaleInner, ctrl.scaleInner);
-    ctx.fillStyle = hsv_to_hsl_color(ctrl.colorAngle, 1, 0.4 + random() * 0.6);
+    ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
     ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
 }
+

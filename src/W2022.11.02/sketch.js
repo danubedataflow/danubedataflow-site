@@ -13,7 +13,7 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
-    ctx.strokeStyle = `rgba(0,0,0,${ ctrl.alpha / 100 })`;
+    ctx.strokeStyle = colorRGBA(0, 0, 0, ctrl.alpha / 100);
     ctx.lineWidth = 1;
 
     ctx.save();

@@ -35,10 +35,7 @@ function drawWalkers(tile) {
     for (let startY = 0; startY <= tile.height; startY += ctrl.lineGap) {
         let y = startY;
 
-        let r = randomIntUpTo(255);
-        let g = randomIntUpTo(255);
-        let b = randomIntUpTo(255);
-        ctx.fillStyle = `rgba(${r},${g},${b},0.2)`;
+        ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
 
         /* Make a shape that borders the left, top and right side; the bottom
          * is determined by the walker. We use a random semitransparent fill

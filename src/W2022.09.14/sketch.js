@@ -36,7 +36,7 @@ function drawSketch() {
         // map [0,100]% to [0, 1]
         let alpha = randomIntRange(...ctrl.alphaRange) / 100;
 
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
+        ctx.fillStyle = colorRGBA(...c, alpha);
 
         let [minLength, maxLength] = ctrl.squareLengthRange;
         let s = randomIntRange(width * minLength / 100, height * maxLength / 100);

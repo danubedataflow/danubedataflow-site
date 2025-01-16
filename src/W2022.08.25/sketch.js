@@ -26,14 +26,10 @@ function drawSketch() {
     ctx.translate(width / 2, height / 2);
 
     for (let i = 1; i <= ctrl.numLines; i++) {
-        let c = colorScale(random()).rgb();
-        ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},1)`;
-
+        ctx.strokeStyle = colorScale(random()).toString();
         let angle2 = random() * 2 * Math.PI;
         let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
-        ctx.beginPath();
-        ctx.moveTo(...p);
-        ctx.lineTo(...p2);
+        line(p, p2);
         ctx.stroke();
         p = p2;
     }

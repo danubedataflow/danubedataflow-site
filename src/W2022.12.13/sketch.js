@@ -56,8 +56,7 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         hsegments.push(dim);
         hsegments.pairwise((hcurrent, hnext) => {
             if (drawType == 'plain') {
-                let [r, g, b] = chroma(palette.randomElement()).rgb();
-                ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+                ctx.fillStyle = colorRGBA(...chroma(palette.randomElement()).rgb(), alpha);
                 ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
             } else if ((drawType == 'diagonal')) {
@@ -66,13 +65,11 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
                 do {
                     c2 = palette.randomElement();
                 } while (c1 == c2);
-                let [r, g, b] = chroma(c1).rgb();
-                ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+                ctx.fillStyle = colorRGBA(...chroma(c1).rgb(), alpha);
 
                 ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
-                [r, g, b] = chroma(c2).rgb();
-                ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+                ctx.fillStyle = colorRGBA(...chroma(c2).rgb(), alpha);
 
                 if (random() < 0.5) {
                     triangle([ hcurrent, vcurrent ], [ hnext, vcurrent ], [ hnext, vnext ]);

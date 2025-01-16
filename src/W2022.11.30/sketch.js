@@ -31,7 +31,7 @@ function drawSketch() {
 
         ctx.lineWidth = (randomIntRange(...ctrl.lineWidthRange));
         let alpha = randomIntRange(...ctrl.alphaRange) / 100;
-        ctx.strokeStyle = `rgba(0,0,0,${alpha})`;
+        ctx.strokeStyle = colorRGBA(0, 0, 0, alpha);
         ctx.strokeRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
     ctx.restore();

@@ -10,10 +10,7 @@ function setupControls() {
 
 function drawSketch() {
     // random color, saturation and brightness
-    let h = randomIntRange(0, 350);
-    let s = randomIntRange(50, 100);
-    let l = randomIntRange(50, 100);
-    ctx.fillStyle = `hsl(${h}, ${s}%, ${l}%)`;
+    ctx.fillStyle = colorHSL(randomIntRange(0, 350), randomIntRange(50, 100), randomIntRange(50, 100));
     ctx.fillRect(0, 0, width, height);
 
     makeGrid({
@@ -64,4 +61,3 @@ function drawTile(tile) {
 function randomFloatRange(lowerBound, upperBound) {
     return lowerBound + random() * (upperBound + 1 - lowerBound);
 }
-

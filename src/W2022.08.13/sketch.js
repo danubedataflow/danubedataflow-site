@@ -24,8 +24,7 @@ function drawSketch() {
         p.push([randomIntUpTo(width), randomIntUpTo(height)]);
         if (p.length == 3) {
             let c = colorScale(random()).rgb();
-            let alpha = random();
-            ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
+            ctx.fillStyle = colorRGBA(...c, random());
             triangle(p[0], p[1], p[2]);
             ctx.fill();
             p.shift();
