@@ -4,6 +4,10 @@
       "en" : "Back to the work",
       "ja" : "作品へ戻る"
    },
+   "checkbox-hasBend" : {
+      "de" : "Knick: ",
+      "en" : "Bend: "
+   },
    "checkbox-hasTileBorder" : {
       "de" : "Kachelrand: ",
       "en" : "Tile border: ",
@@ -332,9 +336,9 @@
       "de" : "Winkel-Schritt: {value}",
       "en" : "Angle step: {value}"
    },
-   "slider-brightnessRange" : {
+   "slider-lightnessRange" : {
       "de" : "Helligkeits-Bereich: {from} bis {to}",
-      "en" : "Brightness range: {from} to {to}"
+      "en" : "Ligntness range: {from} to {to}"
    },
    "slider-colorAngle" : {
       "de" : "Winkel auf dem Farbenkreis: {value}",

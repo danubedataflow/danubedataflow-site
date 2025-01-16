@@ -1,6 +1,6 @@
 {
     "slider-angleStep": "Angle step：{value}",
-    "slider-brightnessRange": "Brightness range：{from}〜{to}",
+    "slider-lightnessRange": "Lightness range：{from}〜{to}",
     "slider-colorAngle": "Angle on the color wheel：{value}",
     "slider-coloredDiamondChance": "Probability of a colored rhombus：{value}%",
     "slider-coloredTileChance": "Probability of a colored tile：{value}%",

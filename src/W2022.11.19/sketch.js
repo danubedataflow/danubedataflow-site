@@ -8,7 +8,7 @@ function setupControls() {
         makeFieldset('colors',
             makeSlider('colorAngle', 0, 359, 0),
             makeSlider('saturationRange', 40, 100, [60, 80]),
-            makeSlider('brightnessRange', 40, 100, [60, 80]),
+            makeSlider('lightnessRange', 40, 100, [60, 80]),
             makeSlider('alphaRange', 1, 100, [20, 80]),
         ),
     );
@@ -18,7 +18,7 @@ function setRandomFillColor() {
     ctx.fillStyle = colorHSLA(
         ctrl.colorAngle,
         randomIntRange(...ctrl.saturationRange),
-        randomIntRange(...ctrl.brightnessRange),
+        randomIntRange(...ctrl.lightnessRange),
         randomIntRange(...ctrl.alphaRange) / 100
     );
 }
