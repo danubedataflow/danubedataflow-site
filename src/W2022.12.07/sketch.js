@@ -18,11 +18,11 @@ function drawSketch() {
 
     ctx.save();
 
-    let dim = width / ctrl.numTiles;
+    let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-            ctx.translate((x - 1) * dim, (y - 1) * dim);
+            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
 
             chooseColors();
             if (randomIntUpTo(100) < ctrl.diagonalOrientationChance) {
@@ -30,16 +30,16 @@ function drawSketch() {
                 ctx.fillStyle = c1;
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
-                ctx.lineTo(dim, dim);
-                ctx.lineTo(0, dim);
+                ctx.lineTo(tileDim, tileDim);
+                ctx.lineTo(0, tileDim);
                 ctx.closePath();
                 ctx.fill();
 
                 ctx.fillStyle = c2;
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
-                ctx.lineTo(dim, dim);
-                ctx.lineTo(dim, 0);
+                ctx.lineTo(tileDim, tileDim);
+                ctx.lineTo(tileDim, 0);
                 ctx.closePath();
                 ctx.fill();
 
@@ -48,17 +48,17 @@ function drawSketch() {
                 // upper right to lower left
                 ctx.fillStyle = c1;
                 ctx.beginPath();
-                ctx.moveTo(dim, 0);
-                ctx.lineTo(0, dim);
+                ctx.moveTo(tileDim, 0);
+                ctx.lineTo(0, tileDim);
                 ctx.lineTo(0, 0);
                 ctx.closePath();
                 ctx.fill();
 
                 ctx.fillStyle = c2;
                 ctx.beginPath();
-                ctx.moveTo(dim, 0);
-                ctx.lineTo(0, dim);
-                ctx.lineTo(dim, dim);
+                ctx.moveTo(tileDim, 0);
+                ctx.lineTo(0, tileDim);
+                ctx.lineTo(tileDim, tileDim);
                 ctx.closePath();
                 ctx.fill();
             }

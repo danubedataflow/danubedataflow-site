@@ -25,38 +25,39 @@ function drawSketch() {
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
 
-    let dim = width / ctrl.numTiles;
+    let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-            ctx.translate((x - 1) * dim, (y - 1) * dim);
+            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
 
-            if (ctrl.hasTileBorder) ctx.strokeRect(0, 0, dim, dim);
+            if (ctrl.hasTileBorder) ctx.strokeRect(0, 0, tileDim, tileDim);
 
             if (randomIntUpTo(100) < ctrl.horizontalLineChance) {
                 ctx.beginPath();
-                ctx.moveTo(0, dim / 2);
-                ctx.lineTo(dim, dim / 2);
+                ctx.moveTo(0, tileDim / 2);
+                ctx.lineTo(tileDim, tileDim / 2);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.verticalLineChance) {
                 ctx.beginPath();
-                ctx.moveTo(dim / 2, 0);
-                ctx.lineTo(dim / 2, dim);
+                ctx.moveTo(tileDim / 2, 0);
+                ctx.lineTo(tileDim / 2, tileDim);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.diagonalUpwardsLineChance) {
                 ctx.beginPath();
-                ctx.moveTo(0, dim);
-                ctx.lineTo(dim, 0);
+                ctx.moveTo(0, tileDim);
+                ctx.lineTo(tileDim, 0);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.diagonalDownwardsLineChance) {
                 ctx.beginPath();
-                ctx.lineTo(dim, dim);
+                ctx.moveTo(0, 0);
+                ctx.lineTo(tileDim, tileDim);
                 ctx.stroke();
             }
 
