@@ -76,11 +76,6 @@ Array.prototype.pairwise = function(func) {
     }
 }
 
-// return a random array element
-Array.prototype.randomElement = function() {
-    return this[randomIntUpTo(this.length)];
-}
-
 class SliderControl {
 
     constructor(_id, _element) {
