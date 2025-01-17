@@ -10,7 +10,6 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link href="/css/style.css" rel="stylesheet">
     <script src="/js/utils.js"></script>
-    <script src="/js/math.js"></script>
     <script src="/deps/perlin.js"></script>
     [% content %]
 </head>
