@@ -697,20 +697,6 @@ function draw() {
     drawSketch();
 }
 
-function line(p1, p2) {
-    ctx.beginPath();
-    ctx.moveTo(...p1);
-    ctx.lineTo(...p2);
-}
-
-function triangle(p1, p2, p3) {
-    ctx.beginPath();
-    ctx.moveTo(...p1);
-    ctx.lineTo(...p2);
-    ctx.lineTo(...p3);
-    ctx.closePath();
-}
-
 // generate color value for ctx.fillStyle and ctx.strokeStyle.
 function colorRGB(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;

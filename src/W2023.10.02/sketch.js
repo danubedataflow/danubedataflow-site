@@ -83,7 +83,9 @@ function drawSketch() {
                 connections = connections.shuffle();
                 connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
                 connections.forEach(el => {
-                    line(...el);
+                    ctx.beginPath();
+                    ctx.moveTo(...el[0]);
+                    ctx.lineTo(...el[1]);
                     ctx.stroke();
                 });
             }

@@ -15,28 +15,29 @@ function drawSketch() {
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
 
-    let tileWidth = width / ctrl.numTiles;
-    let tileHeight = height / ctrl.numTiles;
+    let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
             // move to the tile center so rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileWidth, (y - 0.5) * tileHeight);
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
 
             ctx.scale(ctrl.scale, ctrl.scale);
             let points = [];
-            for (let y = 0; y < ctrl.numPointsPerSide; y++) {
-                for (let x = 0; x < ctrl.numPointsPerSide; x++) {
+            for (let py = 0; py < ctrl.numPointsPerSide; py++) {
+                for (let px = 0; px < ctrl.numPointsPerSide; px++) {
                     points.push([
-                        Math.round(x * tileWidth / (ctrl.numPointsPerSide - 1) - tileWidth / 2),
-                        Math.round(y * tileHeight / (ctrl.numPointsPerSide - 1) - tileHeight / 2)
+                        Math.round(px * tileDim / (ctrl.numPointsPerSide - 1) - tileDim / 2),
+                        Math.round(py * tileDim / (ctrl.numPointsPerSide - 1) - tileDim / 2)
                     ]);
                 }
             }
             points = points.shuffle();
             for (let i = 0; i < points.length - 1; i++) {
-                line(points[i], points[i + 1]);
+                ctx.beginPath();
+                ctx.moveTo(...points[i]);
+                ctx.lineTo(...points[i + 1]);
                 ctx.stroke();
             }
 

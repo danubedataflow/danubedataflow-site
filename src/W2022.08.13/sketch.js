@@ -25,7 +25,14 @@ function drawSketch() {
         if (p.length == 3) {
             let c = colorScale(random()).rgb();
             ctx.fillStyle = colorRGBA(...c, random());
-            triangle(p[0], p[1], p[2]);
+
+            // draw a triangle
+            ctx.beginPath();
+            ctx.moveTo(...p[0]);
+            ctx.lineTo(...p[1]);
+            ctx.lineTo(...p[2]);
+            ctx.closePath();
+
             ctx.fill();
             p.shift();
         }

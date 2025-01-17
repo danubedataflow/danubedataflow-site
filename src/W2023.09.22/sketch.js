@@ -41,10 +41,9 @@ function drawSketch() {
             );
 
             // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
-            line(
-                [ctrl.scale * -tileWidth / 2, 0],
-                [ctrl.scale * tileWidth / 2, 0]
-            );
+            ctx.beginPath();
+            ctx.moveTo(ctrl.scale * -tileWidth / 2, 0);
+            ctx.lineTo(ctrl.scale * tileWidth / 2, 0);
             ctx.stroke();
 
             ctx.restore();

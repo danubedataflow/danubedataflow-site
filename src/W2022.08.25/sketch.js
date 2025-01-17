@@ -29,7 +29,9 @@ function drawSketch() {
         ctx.strokeStyle = colorScale(random()).toString();
         let angle2 = random() * 2 * Math.PI;
         let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
-        line(p, p2);
+        ctx.beginPath();
+        ctx.moveTo(...p);
+        ctx.lineTo(...p2);
         ctx.stroke();
         p = p2;
     }

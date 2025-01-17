@@ -72,11 +72,23 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
                 ctx.fillStyle = colorRGBA(...chroma(c2).rgb(), alpha);
 
                 if (random() < 0.5) {
-                    triangle([ hcurrent, vcurrent ], [ hnext, vcurrent ], [ hnext, vnext ]);
+
+                    // draw a triangle
+                    ctx.beginPath();
+                    ctx.moveTo(hcurrent, vcurrent);
+                    ctx.lineTo(hnext, vcurrent);
+                    ctx.lineTo(hnext, vnext);
+                    ctx.closePath();
                     ctx.fill();
                     ctx.stroke();
                 } else {
-                    triangle([ hnext, vcurrent ], [ hnext, vnext ], [ hcurrent, vnext ]);
+
+                    // draw a triangle
+                    ctx.beginPath();
+                    ctx.moveTo(hnext, vcurrent);
+                    ctx.lineTo(hnext, vnext);
+                    ctx.lineTo(hcurrent, vnext);
+                    ctx.closePath();
                     ctx.fill();
                     ctx.stroke();
                 }

@@ -34,22 +34,29 @@ function drawSketch() {
             if (ctrl.hasTileBorder) ctx.strokeRect(0, 0, dim, dim);
 
             if (randomIntUpTo(100) < ctrl.horizontalLineChance) {
-                line([0, dim / 2], [dim, dim / 2]);
+                ctx.beginPath();
+                ctx.moveTo(0, dim / 2);
+                ctx.lineTo(dim, dim / 2);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.verticalLineChance) {
-                line([dim / 2, 0], [dim / 2, dim]);
+                ctx.beginPath();
+                ctx.moveTo(dim / 2, 0);
+                ctx.lineTo(dim / 2, dim);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.diagonalUpwardsLineChance) {
-                line([0, dim], [dim, 0]);
+                ctx.beginPath();
+                ctx.moveTo(0, dim);
+                ctx.lineTo(dim, 0);
                 ctx.stroke();
             }
 
             if (randomIntUpTo(100) < ctrl.diagonalDownwardsLineChance) {
-                line([0, 0], [dim, dim]);
+                ctx.beginPath();
+                ctx.lineTo(dim, dim);
                 ctx.stroke();
             }
 

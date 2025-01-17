@@ -43,7 +43,10 @@ function drawSketch() {
         const colorIndex = (i + palette.length) % palette.length;
         ctx.strokeStyle = palette[colorIndex];
 
-        line(pointOnCircle(angle(i), radius), pointOnCircle(angle(i * ctrl.timesTable), radius));
+        let j = i * ctrl.timesTable;
+        ctx.beginPath();
+        ctx.moveTo(Math.sin(angle(i)) * radius, Math.cos(angle(i)) * radius);
+        ctx.lineTo(Math.sin(angle(j)) * radius, Math.cos(angle(j)) * radius);
         ctx.stroke();
     }
     ctx.restore();
@@ -51,8 +54,4 @@ function drawSketch() {
 
 function angle(n) {
     return n * Math.PI * 2 / ctrl.modulus;
-}
-
-function pointOnCircle(angle, radius) {
-    return [Math.sin(angle) * radius, Math.cos(angle) * radius];
 }

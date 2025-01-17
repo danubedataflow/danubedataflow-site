@@ -21,12 +21,14 @@ function drawSketch() {
     ctx.save();
     ctx.translate(width / 2, height / 2);
 
-    for (let i = 1; i <= ctrl.numLines; i++) {
-        let radius = width * 0.4;
-        let angle = random() * 2 * Math.PI;
+    let radius = width * 0.4;
 
+    for (let i = 1; i <= ctrl.numLines; i++) {
         ctx.strokeStyle = colorScale(random()).toString();
-        line([0, 0], [Math.sin(angle) * radius, Math.cos(angle) * radius]);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        let angle = random() * 2 * Math.PI;
+        ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
         ctx.stroke();
     }
     ctx.restore();

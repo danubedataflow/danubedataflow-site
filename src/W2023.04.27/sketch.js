@@ -33,20 +33,38 @@ function drawSketch() {
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? palette.randomElement() : 'white';
             ctx.fillRect(-tileWidth / 2, -tileHeight / 2, tileWidth, tileHeight);
 
+            // draw triangles
+
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-            triangle([0, -tileHeight / 2], [0, 0], [-tileWidth / 2, 0]);
+            ctx.beginPath();
+            ctx.moveTo(0, -tileHeight / 2);
+            ctx.lineTo(0, 0);
+            ctx.lineTo(-tileWidth / 2, 0);
+            ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-            triangle([0, -tileHeight / 2], [0, 0], [tileWidth / 2, 0]);
+            ctx.beginPath();
+            ctx.moveTo(0, -tileHeight / 2);
+            ctx.lineTo(0, 0);
+            ctx.lineTo(tileWidth / 2, 0);
+            ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-            triangle([0, tileHeight / 2], [0, 0], [-tileWidth / 2, 0]);
+            ctx.beginPath();
+            ctx.moveTo(0, tileHeight / 2);
+            ctx.lineTo(0, 0);
+            ctx.lineTo(-tileWidth / 2, 0);
+            ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-            triangle([0, tileHeight / 2], [0, 0], [tileWidth / 2, 0]);
+            ctx.beginPath();
+            ctx.moveTo(0, tileHeight / 2);
+            ctx.lineTo(0, 0);
+            ctx.lineTo(tileWidth / 2, 0);
+            ctx.closePath();
             ctx.fill();
 
             ctx.restore();

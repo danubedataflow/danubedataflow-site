@@ -24,30 +24,42 @@ function drawSketch() {
             ctx.save();
             ctx.translate((x - 1) * dim, (y - 1) * dim);
 
-            let ul = [0, 0];
-            let ur = [dim, 0];
-            let ll = [0, dim];
-            let lr = [dim, dim];
-
             chooseColors();
             if (randomIntUpTo(100) < ctrl.diagonalOrientationChance) {
                 // upper left to lower right
                 ctx.fillStyle = c1;
-                triangle(ul, lr, ll);
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(dim, dim);
+                ctx.lineTo(0, dim);
+                ctx.closePath();
                 ctx.fill();
 
                 ctx.fillStyle = c2;
-                triangle(ul, lr, ur);
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(dim, dim);
+                ctx.lineTo(dim, 0);
+                ctx.closePath();
                 ctx.fill();
 
             } else {
+
                 // upper right to lower left
                 ctx.fillStyle = c1;
-                triangle(ur, ll, ul);
+                ctx.beginPath();
+                ctx.moveTo(dim, 0);
+                ctx.lineTo(0, dim);
+                ctx.lineTo(0, 0);
+                ctx.closePath();
                 ctx.fill();
 
                 ctx.fillStyle = c2;
-                triangle(ur, ll, lr);
+                ctx.beginPath();
+                ctx.moveTo(dim, 0);
+                ctx.lineTo(0, dim);
+                ctx.lineTo(dim, dim);
+                ctx.closePath();
                 ctx.fill();
             }
             c1 = c2;
