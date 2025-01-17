@@ -9,7 +9,6 @@ function setupControls() {
 }
 
 function drawSketch() {
-    ctx.save();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -30,7 +29,6 @@ function drawSketch() {
             ctx.restore();
         }
     }
-    ctx.restore();
 }
 
 function drawWalkers(tileDim) {

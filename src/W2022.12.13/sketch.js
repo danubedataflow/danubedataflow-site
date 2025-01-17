@@ -15,8 +15,6 @@ function setupControls() {
 }
 
 function drawSketch() {
-    ctx.save();
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
@@ -34,7 +32,6 @@ function drawSketch() {
         let minDivisor = Math.round(maxDivisor * 1.5);
         drawGrid(width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange) / 100);
     }
-    ctx.restore();
 }
 
 function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {

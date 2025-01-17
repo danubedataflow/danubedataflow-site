@@ -16,8 +16,6 @@ function setupControls() {
 function drawSketch() {
     palette = ['white', '#777777', 'black'];
 
-    ctx.save();
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
@@ -67,8 +65,6 @@ function drawSketch() {
             ctx.restore();
         }
     }
-
-    ctx.restore();
 }
 
 function chooseColors() {

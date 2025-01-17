@@ -17,6 +17,8 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
+    ctx.globalCompositeOperation = ctrl.blendMode;
+
     ctx.save();
     ctx.translate(width / 2, height / 2);
 
