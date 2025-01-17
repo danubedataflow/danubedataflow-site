@@ -20,27 +20,36 @@ function drawSketch() {
     ctx.lineWidth = ctrl.lineWidth;
     ctx.strokeStyle = 'black';
 
-    padSketch();
-    makeGrid({
-        numTilesX: ctrl.numTilesX,
-        numTilesY: ctrl.numTilesY,
-        tileCallback: drawTile,
-    });
+    // pad the sketch
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(0.97, 0.97);
+    ctx.translate(-width / 2, -height / 2);
+
+    let tileWidth = width / ctrl.numTilesX;
+    let tileHeight = height / ctrl.numTilesY;
+    for (let y = 1; y <= ctrl.numTilesY; y++) {
+        for (let x = 1; x <= ctrl.numTilesX; x++) {
+            ctx.save();
+
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileWidth, (y - 0.5) * tileHeight);
+
+            ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
+            ctx.translate(
+                randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+                randomIntPlusMinus(ctrl.maxOffsetPerAxis),
+            );
+
+            // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
+            line(
+                [ctrl.scale * -tileWidth / 2, 0],
+                [ctrl.scale * tileWidth / 2, 0]
+            );
+            ctx.stroke();
+
+            ctx.restore();
+        }
+    }
 
     ctx.restore();
-}
-
-function drawTile(tile) {
-    ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
-    ctx.translate(
-        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-    );
-
-    // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
-    line(
-        tile.leftMiddle.map(n => n * ctrl.scale),
-        tile.rightMiddle.map(n => n * ctrl.scale)
-    );
-    ctx.stroke();
 }

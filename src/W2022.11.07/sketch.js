@@ -17,7 +17,10 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
-    padSketch();
+    // pad the sketch
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(0.97, 0.97);
+    ctx.translate(-width / 2, -height / 2);
 
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';

@@ -11,18 +11,22 @@ function setupControls() {
 function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-}
 
-function drawTile(tile) {
-    ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
-    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
-    ctx.scale(ctrl.scaleInner, ctrl.scaleInner);
-    ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
-    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
-}
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            ctx.save();
 
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+
+            ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+            ctx.scale(ctrl.scaleInner, ctrl.scaleInner);
+            ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+
+            ctx.restore();
+        }
+    }
+}

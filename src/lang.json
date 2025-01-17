@@ -277,11 +277,6 @@
       "en" : "Works",
       "ja" : "作品"
    },
-   "section-Experiments" : {
-      "de" : "Experimente",
-      "en" : "Experiments",
-      "ja" : "実験"
-   },
    "select-blendMode" : {
       "de" : "Farbmischung: ",
       "en" : "Blend mode: ",

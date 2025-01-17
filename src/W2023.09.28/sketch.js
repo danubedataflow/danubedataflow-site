@@ -20,7 +20,11 @@ function drawSketch() {
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
 
-    padSketch(0.9);
+    // pad the sketch
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(0.9, 0.9);
+    ctx.translate(-width / 2, -height / 2);
+
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     /* Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
@@ -37,30 +41,25 @@ function drawSketch() {
      * elements, then shuffle the array.
      */
 
-    let numTilesTotal = Math.pow(ctrl.numTiles, 2);
-    let numFilled = Math.max(1, Math.round(numTilesTotal / ctrl.ratioColoredTiles));
-    shouldFillArray = Array.from(Array(numTilesTotal))
-        .map((el, index) => {
-            return index < numFilled
-        }).shuffle();
+    let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
+    shouldFillArray = Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+        .map((el, index) => index < numFilled).shuffle();
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-    ctx.restore();
-}
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            let tileULX = (x - 1) * tileDim;
+            let tileULY = (y - 1) * tileDim;
+            let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
+            let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
 
-function drawTile(tile) {
-    ctx.translate(
-        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-        randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-    );
-    let shouldFill = shouldFillArray.shift();
-    if (shouldFill) {
-        ctx.fillStyle = palette.randomElement();
-        ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
+            let shouldFill = shouldFillArray.shift();
+            if (shouldFill) {
+                ctx.fillStyle = palette.randomElement();
+                ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+            }
+            ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+        }
     }
-    ctx.strokeRect(...tile.upperLeft, tile.width, tile.height);
+    ctx.restore();
 }

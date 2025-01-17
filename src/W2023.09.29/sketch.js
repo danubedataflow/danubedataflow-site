@@ -13,24 +13,24 @@ function drawSketch() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-    padSketch(0.9);
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-    ctx.restore();
-}
+    // pad the sketch
+    ctx.translate(width / 2, height / 2);
+    ctx.scale(0.9, 0.9);
+    ctx.translate(-width / 2, -height / 2);
 
-function drawTile(tile) {
-    for (let i = 0; i < ctrl.numSquaresPerTile; i++) {
-        ctx.save();
-        ctx.translate(
-            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-            randomIntPlusMinus(ctrl.maxOffsetPerAxis),
-        );
-        ctx.strokeRect(...tile.upperLeft, tile.width, tile.height);
-        ctx.restore();
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            let tileULX = (x - 1) * tileDim;
+            let tileULY = (y - 1) * tileDim;
+
+            for (let i = 0; i < ctrl.numSquaresPerTile; i++) {
+                let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
+                let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
+                ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+            }
+        }
     }
+    ctx.restore();
 }

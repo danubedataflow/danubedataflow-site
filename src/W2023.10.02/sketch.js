@@ -12,11 +12,10 @@
  * to bottom. Then you only have to check the potential neighbors to the
  * right and below.
  *
- * The tile has (0,0) in the upper left corner and (tile.width, tile.height) in
+ * The tile has [0,0] in the upper left corner and [tileDim, tileDim] in
  * the lower right corner. Assume that there are 3 points horizontally, the
- * x-coordinates o the points will be tile.width * 0 / 2, tile.width * 1 / 2
- * and tile.width * 2 / 2. y-coordinates are calculated the same way, using
- * ratios and tile.height.
+ * x-coordinates of the points will be tileDim * 0 / 2, tileDim * 1 / 2
+ * and tileDim * 2 / 2. y-coordinates are calculated the same way.
  *
  * Connections are stored in an array where each element has the coordinates of
  * the two endpoints of the line. That is, [ [x1, y1], [x2, y2] ].
@@ -38,58 +37,58 @@ function setupControls() {
 }
 
 function drawSketch() {
-    ctx.save();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = ctrl.lineWidth;
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-    ctx.restore();
-}
-
-function drawTile(tile) {
-    ctx.scale(ctrl.scale, ctrl.scale);
-
-    // makeGrid() translates to each tile's center, but here we want
-    // (0, 0) to be in the tile's upper left corner.
-    ctx.translate(...tile.upperLeft);
+    let tileDim = width / ctrl.numTiles;
 
     let coords = (x, y) => {
         return [
-            (x - 1) / (ctrl.numPointsX - 1) * tile.width,
-            (y - 1) / (ctrl.numPointsY - 1) * tile.height
+            (x - 1) / (ctrl.numPointsX - 1) * tileDim,
+            (y - 1) / (ctrl.numPointsY - 1) * tileDim
         ];
     };
-    let connections = [];
-    for (let y = 1; y <= ctrl.numPointsY; y++) {
-        for (let x = 1; x <= ctrl.numPointsX; x++) {
-            let c = coords(x, y);
 
-            // draw a dot
-            ctx.fillStyle = 'black';
-            let w = ctrl.lineWidth;
-            ctx.fillRect(c[0] - w/2, c[1] - w/2, w, w);
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            ctx.save();
 
-            // connection to the neighbor to the right?
-            if (x < ctrl.numPointsX) {
-                connections.push([c, coords(x + 1, y)]);
+            // scale around tile center, but then move back to the upper left
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            ctx.scale(ctrl.scale, ctrl.scale);
+            ctx.translate(-tileDim / 2, -tileDim / 2);
+
+            let connections = [];
+            for (let y = 1; y <= ctrl.numPointsY; y++) {
+                for (let x = 1; x <= ctrl.numPointsX; x++) {
+                    let c = coords(x, y);
+
+                    // draw a dot
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(
+                        c[0] - ctrl.lineWidth / 2,
+                        c[1] - ctrl.lineWidth / 2,
+                        ctrl.lineWidth,
+                        ctrl.lineWidth
+                    );
+
+                    // connection to the neighbor to the right?
+                    if (x < ctrl.numPointsX) connections.push([c, coords(x + 1, y)]);
+
+                    // connection to the neighbor below?
+                    if (y < ctrl.numPointsY) connections.push([c, coords(x, y + 1)]);
+                }
+                connections = connections.shuffle();
+                connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
+                connections.forEach(el => {
+                    line(...el);
+                    ctx.stroke();
+                });
             }
 
-            // connection to the neighbor below?
-            if (y < ctrl.numPointsY) {
-                connections.push([c, coords(x, y + 1)]);
-            }
+            ctx.restore();
         }
-        connections = connections.shuffle();
-        connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
-        connections.forEach(el => {
-            line(...el);
-            ctx.stroke();
-        });
     }
 }

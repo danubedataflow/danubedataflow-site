@@ -21,31 +21,35 @@ function drawSketch() {
 
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    makeGrid({
-        numTilesX: ctrl.numTilesX,
-        numTilesY: ctrl.numTilesY,
-        tileCallback: drawTile,
-    });
-}
+    let tileWidth = width / ctrl.numTilesX;
+    let tileHeight = height / ctrl.numTilesY;
+    for (let y = 1; y <= ctrl.numTilesY; y++) {
+        for (let x = 1; x <= ctrl.numTilesX; x++) {
+            ctx.save();
 
-function drawTile(tile) {
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileWidth, (y - 0.5) * tileHeight);
 
-    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? palette.randomElement() : 'white';
-    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
+            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? palette.randomElement() : 'white';
+            ctx.fillRect(-tileWidth / 2, -tileHeight / 2, tileWidth, tileHeight);
 
-    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-    triangle(tile.upperMiddle, tile.center, tile.leftMiddle);
-    ctx.fill();
+            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+            triangle([0, -tileHeight / 2], [0, 0], [-tileWidth / 2, 0]);
+            ctx.fill();
 
-    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-    triangle(tile.upperMiddle, tile.center, tile.rightMiddle);
-    ctx.fill();
+            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+            triangle([0, -tileHeight / 2], [0, 0], [tileWidth / 2, 0]);
+            ctx.fill();
 
-    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-    triangle(tile.lowerMiddle, tile.center, tile.leftMiddle);
-    ctx.fill();
+            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+            triangle([0, tileHeight / 2], [0, 0], [-tileWidth / 2, 0]);
+            ctx.fill();
 
-    ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
-    triangle(tile.lowerMiddle, tile.center, tile.rightMiddle);
-    ctx.fill();
+            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
+            triangle([0, tileHeight / 2], [0, 0], [tileWidth / 2, 0]);
+            ctx.fill();
+
+            ctx.restore();
+        }
+    }
 }

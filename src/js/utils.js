@@ -648,47 +648,6 @@ function redrawWithNewSeed() {
     draw();
 }
 
-function makeGrid(args) {
-    const {
-        numTilesX,
-        numTilesY,
-        tileCallback
-    } = args;
-    let tileWidth = Math.floor(width / numTilesX);
-    let tileHeight = Math.floor(height / numTilesY);
-    for (let y = 1; y <= numTilesY; y++) {
-        for (let x = 1; x <= numTilesX; x++) {
-            ctx.save();
-            ctx.translate((x - 1) * tileWidth, (y - 1) * tileHeight);
-
-            // Move to the tile center so that rotation and scaling happen
-            // around that center.
-            ctx.translate(tileWidth / 2, tileHeight / 2);
-
-            let tile = {
-                width: tileWidth,
-                height: tileHeight,
-                upperLeft: [-tileWidth / 2, -tileHeight / 2],
-                upperMiddle: [0, -tileHeight / 2],
-                rightMiddle: [tileWidth / 2, 0],
-                lowerMiddle: [0, tileHeight / 2],
-                leftMiddle: [-tileWidth / 2, 0],
-                center: [0, 0],
-            };
-
-            tileCallback(tile);
-
-            ctx.restore();
-        }
-    }
-}
-
-function padSketch(_scale = 0.97) {
-    ctx.translate(width / 2, height / 2);
-    ctx.scale(_scale, _scale);
-    ctx.translate(-width / 2, -height / 2);
-}
-
 function copyLink() {
     if (window.isSecureContext) {
         navigator.clipboard.writeText(getCurrentURL({

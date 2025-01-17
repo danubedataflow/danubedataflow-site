@@ -15,30 +15,32 @@ function drawSketch() {
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-    ctx.restore();
-}
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            ctx.save();
 
-function drawTile(tile) {
-    ctx.scale(0.9, 0.9);
-    ctx.save();
-    ctx.translate(...tile.upperLeft);
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
 
-    ctx.lineWidth = ctrl.lineWidth;
-    for (let i = 0; i < ctrl.numLines; i++) {
-        ctx.beginPath();
-        ctx.moveTo(randomIntUpTo(tile.width), 0);
-        if (ctrl.hasBend) ctx.lineTo(randomIntUpTo(tile.width), randomIntUpTo(tile.height));
-        ctx.lineTo(randomIntUpTo(tile.width), tile.height);
-        ctx.stroke();
+            ctx.scale(0.9, 0.9);
+            ctx.translate(-tileDim / 2, -tileDim / 2);
+
+            ctx.lineWidth = ctrl.lineWidth;
+            for (let i = 0; i < ctrl.numLines; i++) {
+                ctx.beginPath();
+                ctx.moveTo(randomIntUpTo(tileDim), 0);
+                if (ctrl.hasBend) ctx.lineTo(randomIntUpTo(tileDim), randomIntUpTo(tileDim));
+                ctx.lineTo(randomIntUpTo(tileDim), tileDim);
+                ctx.stroke();
+            }
+
+            // draw a border
+            ctx.lineWidth = 1;
+            ctx.strokeRect(0, 0, tileDim, tileDim);
+
+            ctx.restore();
+        }
     }
-
-    // draw a border
-    ctx.lineWidth = 1;
-    ctx.strokeRect(0, 0, tile.width, tile.height);
     ctx.restore();
 }

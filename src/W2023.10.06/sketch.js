@@ -14,25 +14,29 @@ function drawSketch() {
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
+            ctx.save();
+
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+
+            ctx.scale(0.9, 0.9);
+            drawWalkers(tileDim);
+            ctx.rotate(Math.PI / 2);
+            drawWalkers(tileDim);
+
+            ctx.restore();
+        }
+    }
     ctx.restore();
 }
 
-function drawTile(tile) {
-    ctx.scale(0.9, 0.9);
-    drawWalkers(tile);
-    ctx.rotate(Math.PI / 2);
-    drawWalkers(tile);
-}
-
-function drawWalkers(tile) {
+function drawWalkers(tileDim) {
     ctx.save();
-    ctx.translate(...tile.upperLeft);
-    for (let startY = 0; startY <= tile.height; startY += ctrl.lineGap) {
+    ctx.translate(-tileDim / 2, -tileDim / 2);
+    for (let startY = 0; startY <= tileDim; startY += ctrl.lineGap) {
         let y = startY;
 
         ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
@@ -45,21 +49,21 @@ function drawWalkers(tile) {
          */
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        for (let x = 0; x <= tile.width; x += ctrl.maxMovement) {
+        for (let x = 0; x <= tileDim; x += ctrl.maxMovement) {
             ctx.lineTo(x, y);
 
             // random movement but constrain to the tile size
             y += randomIntPlusMinus(ctrl.maxMovement);
             if (y < 0) y = 0;
-            if (y > tile.height) y = tile.height;
+            if (y > tileDim) y = tileDim;
         }
-        ctx.lineTo(tile.width, 0);
+        ctx.lineTo(tileDim, 0);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
     }
 
     // draw a border
-    ctx.strokeRect(0, 0, tile.width, tile.height);
+    ctx.strokeRect(0, 0, tileDim, tileDim);
     ctx.restore();
 }

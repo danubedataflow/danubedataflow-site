@@ -13,49 +13,49 @@ function drawSketch() {
     ctx.fillStyle = colorHSL(randomIntRange(0, 350), randomIntRange(50, 100), randomIntRange(50, 100));
     ctx.fillRect(0, 0, width, height);
 
-    makeGrid({
-        numTilesX: ctrl.numTiles,
-        numTilesY: ctrl.numTiles,
-        tileCallback: drawTile,
-    });
-}
-
-function drawTile(tile) {
-    ctx.save();
-
-    // Tile background: scale down to leave space between tiles
-    ctx.scale(0.8, 0.8);
-    ctx.fillStyle = 'white';
-    ctx.fillRect(...tile.upperLeft, tile.width, tile.height);
-
-    // Draw the tile. Scale down to leave a border on each tile.
-    ctx.scale(0.8, 0.8);
-    ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
-
-    // The following code assumes that (0, 0) is in the tile's upper left
-    ctx.translate(...tile.upperLeft);
-
-    // Get a random exponent for each tile
-    let exponent = randomFloatRange(...ctrl.exponentsRange);
-    let dim = tile.width / ctrl.numPoints;
-    for (let y = 1; y <= ctrl.numPoints; y++) {
-        for (let x = 1; x <= ctrl.numPoints; x++) {
+    let tileDim = width / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-            ctx.translate((x - 1) * dim, (y - 1) * dim);
 
-            // 0 < yPercent < 1, so the higher the exponent the more
-            // likely a rectangle will be drawn.
-            let yPercent = (y - 1) / ctrl.numPoints;
-            ctx.scale(0.9, 0.9); // to have space between the squares
-            if (random() > Math.pow(yPercent, exponent)) {
-                ctx.fillStyle = 'black';
-                ctx.fillRect(0, 0, dim, dim);
+            // move to the tile center so rotate() and scale() happen there
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+
+            // Tile background: scale down to leave space between tiles
+            ctx.scale(0.8, 0.8);
+            ctx.fillStyle = 'white';
+            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+
+            // Draw the tile. Scale down to leave a border on each tile.
+            ctx.scale(0.8, 0.8);
+            ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
+
+            // The following code assumes that (0, 0) is in the tile's upper left
+            ctx.translate(-tileDim / 2, -tileDim / 2);
+
+            // Get a random exponent for each tile
+            let exponent = randomFloatRange(...ctrl.exponentsRange);
+            let dim = tileDim / ctrl.numPoints;
+            for (let y = 1; y <= ctrl.numPoints; y++) {
+                for (let x = 1; x <= ctrl.numPoints; x++) {
+                    ctx.save();
+                    ctx.translate((x - 1) * dim, (y - 1) * dim);
+
+                    // 0 < yPercent < 1, so the higher the exponent the more
+                    // likely a rectangle will be drawn.
+                    let yPercent = (y - 1) / ctrl.numPoints;
+                    ctx.scale(0.9, 0.9); // to have space between the squares
+                    if (random() > Math.pow(yPercent, exponent)) {
+                        ctx.fillStyle = 'black';
+                        ctx.fillRect(0, 0, dim, dim);
+                    }
+
+                    ctx.restore();
+                }
             }
-
             ctx.restore();
         }
     }
-    ctx.restore();
 }
 
 function randomFloatRange(lowerBound, upperBound) {
