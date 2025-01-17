@@ -571,18 +571,6 @@ function getCurrentURL(config = {}) {
     return window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + urlParams.toString();
 }
 
-/* Update the URL according to controls. But don't update it if it hasn't
- * changed. Because if you continuously resize the window, Safari produces a
- * "SecurityError: Attempt to use history.replaceState() more than 100 times
- * per 30 seconds".
- */
-function updateURL() {
-    let currentURL = getCurrentURL();
-    if (currentURL != window.location.href) {
-        window.history.replaceState(null, '', currentURL);
-    }
-}
-
 function setControlsRandomly() {
     Object.values(controls).forEach(c => {
         if (c instanceof SliderControl) {
@@ -677,19 +665,31 @@ function setup() {
     if (pageType == 'print') setupQRCode();
 }
 
-/* Copy the current control values into the `ctrl` object. This way the
- * sketches don't have to call `controls.someControl.getValue()` but can
- * just use `ctrl.someControl`. Note that the former is a function call,
- * so it would be expensive to call this several times, leading to new
- * temporary variables. The latter is just a variable.
- */
 function draw() {
+    /* Copy the current control values into the `ctrl` object. This way
+     * the sketches don't have to call `controls.someControl.getValue()`
+     * but can just use `ctrl.someControl`. Note that the former is a
+     * function call, so it would be expensive to call this several
+     * times, leading to new temporary variables. The latter is just a
+     * variable.
+     */
+
     ctrl = {};
     for (const [key, value] of Object.entries(controls)) {
         ctrl[key] = value.getValue();
     }
 
-    updateURL();
+    /* Update the URL according to controls. But don't update it if it
+     * hasn't changed. Because if you continuously resize the window,
+     * Safari produces a "SecurityError: Attempt to use
+     * history.replaceState() more than 100 times per 30 seconds".
+     */
+
+    let currentURL = getCurrentURL();
+    if (currentURL != window.location.href) {
+        window.history.replaceState(null, '', currentURL);
+    }
+
     drawSketch();
 }
 
