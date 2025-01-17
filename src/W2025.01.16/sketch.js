@@ -10,7 +10,6 @@ function setupControls() {
 }
 
 function drawSketch() {
-    ctx.save();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -20,9 +19,8 @@ function drawSketch() {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
-            // move to the tile center so rotate() and scale() happen there
+            // move to tile center to scale, then back to UL corner
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-
             ctx.scale(0.9, 0.9);
             ctx.translate(-tileDim / 2, -tileDim / 2);
 
@@ -42,5 +40,4 @@ function drawSketch() {
             ctx.restore();
         }
     }
-    ctx.restore();
 }
