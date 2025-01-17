@@ -40,9 +40,6 @@ icons:
 clean:
 	@rm -rf $(WWW) build.noindex
 
-test:
-	perl t/sketches.t
-
 open-all:
 	./bin/open-all
 
