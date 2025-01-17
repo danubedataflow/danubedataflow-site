@@ -1,6 +1,7 @@
 'use strict';
 
 let controls = {},
+    ctrl = {},
     canvas, width, height, ctx, pageType;
 
 function setCanvasDimension() {
@@ -556,21 +557,6 @@ function makeSelectBlendMode(options) {
     );
 }
 
-/* Copy the current control values into the `ctrl` object. This way the
- * sketches don't have to call `controls.someControl.getValue()` but can
- * just use `ctrl.someControl`. Note that the former is a function call,
- * so it would be expensive to call this several times, leading to new
- * temporary variables. The latter is just a variable.
- */
-let ctrl = {};
-
-function readControls() {
-    ctrl = {};
-    for (const [key, value] of Object.entries(controls)) {
-        ctrl[key] = value.getValue();
-    }
-}
-
 function getCurrentURL(config = {}) {
     let urlParams = new URLSearchParams();
     for (const [key, value] of Object.entries(controls)) {
@@ -691,8 +677,18 @@ function setup() {
     if (pageType == 'print') setupQRCode();
 }
 
+/* Copy the current control values into the `ctrl` object. This way the
+ * sketches don't have to call `controls.someControl.getValue()` but can
+ * just use `ctrl.someControl`. Note that the former is a function call,
+ * so it would be expensive to call this several times, leading to new
+ * temporary variables. The latter is just a variable.
+ */
 function draw() {
-    readControls();
+    ctrl = {};
+    for (const [key, value] of Object.entries(controls)) {
+        ctrl[key] = value.getValue();
+    }
+
     updateURL();
     drawSketch();
 }
