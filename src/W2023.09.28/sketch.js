@@ -1,7 +1,5 @@
 'use strict';
 
-let palette, shouldFillArray;
-
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 3, 10, 4),
@@ -25,7 +23,7 @@ function drawSketch() {
     ctx.scale(0.9, 0.9);
     ctx.translate(-width / 2, -height / 2);
 
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     /* Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
      * is 9, we want to fill one in nine tiles.
@@ -42,7 +40,7 @@ function drawSketch() {
      */
 
     let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
-    shouldFillArray = Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+    let shouldFillArray = Array(ctrl.numTiles * ctrl.numTiles).fill(false)
         .map((el, index) => index < numFilled).shuffle();
 
     let tileDim = width / ctrl.numTiles;
