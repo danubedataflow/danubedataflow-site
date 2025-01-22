@@ -13,6 +13,14 @@
       "en" : "Tile border: ",
       "ja" : "タイルの境界線："
    },
+   "checkbox-useColors" : {
+      "de" : "Farben verwenden: ",
+      "en" : "Use colors: "
+   },
+   "checkbox-useLayers" : {
+      "de" : "Schichten verwenden: ",
+      "en" : "Use layers: "
+   },
    "description-inspired-vm" : {
       "de" : "Inspiriert von Vera Molnár.",
       "en" : "Inspired by Vera Molnár.",
@@ -30,6 +38,10 @@
    "fieldset-curves" : {
       "de" : "Kurven",
       "en" : "Curves"
+   },
+   "fieldset-layers" : {
+      "de" : "Schichten",
+      "en" : "Layers"
    },
    "fieldset-noise" : {
       "de" : "Rauschen",
@@ -445,6 +457,10 @@
    "slider-numHorizontalLines" : {
       "de" : "Anzahl der horizontalen Striche: {value}",
       "en" : "Number of horizonal lines: {value}"
+   },
+   "slider-numLayers" : {
+      "de" : "Anzahl der Schichten: {value}",
+      "en" : "Number of layers: {value}"
    },
    "slider-numLines" : {
       "de" : "Anzahl der Linien: {value}",
