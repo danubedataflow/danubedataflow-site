@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Watch files. On any change, regenerate the site and reload the frontmost
 # Chrome tab. This assumes that your frontmost Chrome tab shows the sketch you

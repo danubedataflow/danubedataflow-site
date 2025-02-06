@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 ICON="resources/icons/apple-touch-icon.png"
 BUILD="build/icons"
