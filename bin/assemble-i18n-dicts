@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
-use ScriptTools::features;
-use ScriptTools::JSON;
+use GoGameTools::features;
+use GoGameTools::JSON;
 use Path::Tiny;
 use open qw(:std :utf8);
 my $combined = {};
