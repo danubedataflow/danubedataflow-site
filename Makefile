@@ -22,6 +22,8 @@ deps:
 	cp more-deps/highlight.js/LICENSE $(DEPS)/LICENSE-highlight.js.txt
 	cp more-deps/qrcode.js/qrcode.min.js $(DEPS)/
 	cp more-deps/qrcode.js/LICENSE $(DEPS)/LICENSE-qrcode.js.txt
+	cp more-deps/lindenmayer/dist/lindenmayer.browser.min.js $(DEPS)/
+	cp more-deps/lindenmayer/LICENSE $(DEPS)/LICENSE-lindenmayer.txt
 
 watch:
 	bin/live-reload

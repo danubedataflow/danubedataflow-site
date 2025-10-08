@@ -5,6 +5,7 @@
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
     [% IF with_rough %]<script src="/deps/rough.js"></script>[% END %]
+    [% IF with_lindenmayer %]<script src="/deps/lindenmayer.browser.min.js"></script>[% END %]
     [% IF t.does_file_exist_in_current_dir("sketch.css") %]
     <link href="sketch.css" rel="stylesheet">
     [% END %]
