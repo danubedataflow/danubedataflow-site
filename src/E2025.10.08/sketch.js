@@ -3,6 +3,7 @@
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 10, 100, 5),
+        makeSlider('numSymbols', 2, 20, 1),
         makeSlider('borderChangeChance', 0, 100, 70),
         makeSlider('middleChangeChance', 0, 100, 50),
     );
@@ -24,20 +25,26 @@ function drawSketch() {
             // move to tile center to rotate
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
 
-            // interpret the characters in each iteration for the canvas
-            //
-            // A = fill 0% (blank)
-            // B = fill 25%
-            // C = fill 50%
-            // D = fill 75%
-            // E = fill 100% (opaque)
-            let instruction = spec.charAt(x - 1);
-            let alpha;
-            if (instruction === 'A') alpha = 0;
-            if (instruction === 'B') alpha = 25;
-            if (instruction === 'C') alpha = 50;
-            if (instruction === 'D') alpha = 75;
-            if (instruction === 'E') alpha = 100;
+            /* interpret the symbols in each iteration as greyscale values. For
+             * ctrl.numSymbols == 5, this would be:
+             *
+             * A = fill 0% (blank)
+             * B = fill 25%
+             * C = fill 50%
+             * D = fill 75%
+             * E = fill 100% (opaque)
+             *
+             * 'A' has alphaIndex 0; 'E' has alphaIndex 4. Then maps this value
+             * to an alpha value of 0% to 100%. alphaIndex 0 means 0% alpha;
+             * alphaIndex 4 means 100% alpha.
+             */
+            let symbol = spec.charAt(x - 1);
+
+            // 0 <= alphaIndex <= ctrl.numSymbols - 1
+            let alphaIndex = symbol.charCodeAt(0) - 'A'.charCodeAt(0);
+
+            // 0% <= alpha <= 100%
+            let alpha = mapRange(alphaIndex, 0, ctrl.numSymbols - 1, 0, 100);
             ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
             ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
 
@@ -47,25 +54,50 @@ function drawSketch() {
     }
 }
 
+/* The L-system has n symbols, 2 <= n <= 25. Each symbol is an uppercase
+ * letter. Productions for the first and last symbol use borderChangeChance;
+ * other symbols use middleChangeChance.
+ *
+ * For example, for 5 symbols, this corresponds to:
+ *
+ *    lsystem.setProduction('A', () => (random() < borderChangeChance) ? 'B' : 'A')
+ *    lsystem.setProduction('B', () => (random() < middleChangeChance) ? 'A' : 'C')
+ *    lsystem.setProduction('C', () => (random() < middleChangeChance) ? 'B' : 'D')
+ *    lsystem.setProduction('D', () => (random() < middleChangeChance) ? 'C' : 'E')
+ *    lsystem.setProduction('E', () => (random() < borderChangeChance) ? 'D' : 'E')
+ */
 function makeLsystem() {
+    let numSymbols = ctrl.numSymbols;
     let borderChangeChance = ctrl.borderChangeChance / 100;;
     let middleChangeChance = ctrl.middleChangeChance / 100;
 
     let lsystem = new LSystem({});
-    lsystem.setAxiom(makeAxiom(ctrl.numTiles));
-    lsystem.setProduction('A', () => (random() < borderChangeChance) ? 'B' : 'A')
-    lsystem.setProduction('B', () => (random() < middleChangeChance) ? 'A' : 'C')
-    lsystem.setProduction('C', () => (random() < middleChangeChance) ? 'B' : 'D')
-    lsystem.setProduction('D', () => (random() < middleChangeChance) ? 'C' : 'E')
-    lsystem.setProduction('E', () => (random() < borderChangeChance) ? 'D' : 'E')
+    let charCode = 'A'.charCodeAt(0);
+    let symbolsForAxiom = '';
+    for (let i = 0; i < numSymbols; i++) {
+        let symbol = String.fromCharCode(charCode);
+        symbolsForAxiom += symbol;
+        let nextSymbol = String.fromCharCode(charCode + 1);
+        let prevSymbol = String.fromCharCode(charCode - 1);
+        if (i == 0) {
+            lsystem.setProduction(symbol, () => (random() < borderChangeChance) ? nextSymbol : symbol)
+        } else if (i == numSymbols - 1) {
+            lsystem.setProduction(symbol, () => (random() < borderChangeChance) ? prevSymbol : symbol)
+        } else {
+            lsystem.setProduction(symbol, () => (random() < middleChangeChance) ? prevSymbol : nextSymbol)
+        }
+        charCode++;
+    }
+
+    lsystem.setAxiom(makeAxiom(symbolsForAxiom, ctrl.numTiles));
+    console.log(lsystem);
     return lsystem;
 }
 
-function makeAxiom(length) {
+function makeAxiom(symbolsForAxiom, length) {
     var result = '';
-    var characters = 'ABCDE';
     for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(random() * characters.length));
+        result += symbolsForAxiom.charAt(Math.floor(random() * symbolsForAxiom.length));
     }
     return result;
 }

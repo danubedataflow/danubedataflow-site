@@ -645,7 +645,9 @@ function copyLink() {
 }
 
 function setupQRCode() {
-    let code = getCurrentURL({ timestamp: 1 });
+    let code = getCurrentURL({
+        timestamp: 1
+    });
 
     // the QR code should lead to the interactive page, not the print view
     code = code.replace('print.html', '');
@@ -828,7 +830,7 @@ function randomSeed(seedStr) {
     // four 32-bit component hashes provide the seed for sfc32()
     random = sfc32(seed[0], seed[1], seed[2], seed[3]);
 
-	// Now you can call random() to generate a random number betweem 0 and 1.
+    // Now you can call random() to generate a random number betweem 0 and 1.
 }
 
 // init
@@ -846,4 +848,17 @@ function randomIntRange(lowerBound, upperBound) {
 // generate a random integer in the range [-n, n].
 function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
+}
+
+// like map() in p5.js, this function linearly maps value from the range (a..b)
+// to (c..d).
+//
+// From https://stackoverflow.com/questions/48802987/is-there-a-map-function-in-vanilla-javascript-like-p5-js
+function mapRange(value, a, b, c, d) {
+
+    // first map value from (a..b) to (0..1)
+    value = (value - a) / (b - a);
+
+    // then map it from (0..1) to (c..d) and return it
+    return c + value * (d - c);
 }

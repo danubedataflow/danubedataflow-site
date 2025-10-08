@@ -1,4 +1,8 @@
 {
+    "slider-numSymbols": {
+        "de": "Anzahl der Graustufen: {value}",
+        "en": "Number of gray levels: {value}"
+    },
     "slider-borderChangeChance": {
         "de": "Wahrscheinlichkeit der Farbänderung am Rand der Farbskala: {value}%",
         "en": "Probability of a color change at the border of the color scale: {value}%"
