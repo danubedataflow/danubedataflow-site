@@ -5,7 +5,7 @@
             <a href="/" data-i18n-key="section-Works"></a>
             | <a href="/notes/" data-i18n-key="section-Notes"></a>
             | <a href="/quotes/" data-i18n-key="section-Quotes"></a>
-            | <a href="/experiments.html" data-i18n-key="section-Experiments"></a>
+            | <a href="/experiments/" data-i18n-key="section-Experiments"></a>
             <!-- | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank" data-i18n-key="sourceCode"></a> -->
             |
 
