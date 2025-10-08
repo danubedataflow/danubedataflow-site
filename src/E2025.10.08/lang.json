@@ -1,4 +1,8 @@
 {
+    "E2025.10.08-description": {
+        "de": "Dies ist ein L-System, bei dem die in einer Reihe von Kacheln angeordneten Symbole Graustufen entsprechen. Jede Iteration des L-Systems entspricht einer Zeile. Die Produktionen geben an, wie sich jedes Symbol von Iteration zu Iteration verändert.",
+        "en": "This is an L-system where the symbols, arranged in a row of tiles, correspond to gray levels. Each iteration of the L-system corresponds to a row. The productions specify how each symbol changes from iteration to the next."
+    },
     "slider-numSymbols": {
         "de": "Anzahl der Graustufen: {value}",
         "en": "Number of gray levels: {value}"
