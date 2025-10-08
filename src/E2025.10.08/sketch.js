@@ -2,7 +2,7 @@
 
 function setupControls() {
     makeForm(
-        makeSlider('numTiles', 10, 100, 5),
+        makeSlider('numTiles', 10, 100, 40),
         makeSlider('numSymbols', 2, 20, 9),
         makeSlider('borderChangeChance', 0, 100, 70),
         makeSlider('middleChangeChance', 0, 100, 50),
