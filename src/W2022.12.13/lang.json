@@ -1,6 +1,6 @@
 {
     "W2022.12.13-description": {
-        "de": "Anmerkung: Die Zufallswerte in diesem Werk hängen von der Leinwandgröße ab, daher werden selbst mit dem gleichen Seed bei unterschiedlichen Leinwandgrößen unterschiedliche Bilder generiert.",
+        "de": "Anmerkung: Die Zufallswerte in diesem Werk hängen von der Leinwandgröße ab, daher werden selbst mit dem gleichen Startwert bei unterschiedlichen Leinwandgrößen unterschiedliche Bilder generiert.",
         "en": "Note: The random values in this work depend on the canvas size, so even with the same seed, different canvas sizes will generate different images.",
         "ja": "注: この作品のランダム値はキャンバス サイズに依存するため、同じシードであっても、キャンバス サイズが異なると異なる画像が生成されます。"
     }

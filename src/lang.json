@@ -28,6 +28,7 @@
    },
    "display-seed" : {
       "en" : "Seed: ",
+      "de" : "Startwert: ",
       "ja" : "シード："
    },
    "fieldset-colors" : {
@@ -300,7 +301,7 @@
       "ja" : "リンクをコピー"
    },
    "sketch-newSeed" : {
-      "de" : "Neuer Seed",
+      "de" : "Neuer Startwert",
       "en" : "New seed",
       "ja" : "新しいシード"
    },
