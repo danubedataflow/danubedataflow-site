@@ -76,21 +76,6 @@
       "en" : "Translation",
       "ja" : "平行移動"
    },
-   "nav-Notes" : {
-      "de" : "Notizen",
-      "en" : "Notes",
-      "ja" : "日記"
-   },
-   "nav-Quotes" : {
-      "de" : "Zitate",
-      "en" : "Quotes",
-      "ja" : "引用"
-   },
-   "nav-Works" : {
-      "de" : "Werke",
-      "en" : "Works",
-      "ja" : "作品"
-   },
    "optgroup-diverging" : {
       "de" : "Divergierend",
       "en" : "Diverging",
@@ -277,7 +262,7 @@
    "section-Notes" : {
       "de" : "Notizen",
       "en" : "Notes",
-      "ja" : "日記（ほとんど英語）"
+      "ja" : "日記"
    },
    "section-Quotes" : {
       "de" : "Zitate",
@@ -288,6 +273,11 @@
       "de" : "Werke",
       "en" : "Works",
       "ja" : "作品"
+   },
+   "section-Experiments" : {
+      "de" : "Experiments",
+      "en" : "Experiments",
+      "ja" : "実験"
    },
    "select-blendMode" : {
       "de" : "Farbmischung: ",
