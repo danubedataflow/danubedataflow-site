@@ -1,0 +1,10 @@
+{
+    "slider-borderChangeChance": {
+        "de": "Wahrscheinlichkeit der Farbänderung am Rand der Farbskala: {value}%",
+        "en": "Probability of a color change at the border of the color scale: {value}%"
+    },
+    "slider-middleChangeChance": {
+        "de": "Wahrscheinlichkeit der Farbänderung in der Mitte der Farbskala: {value}%",
+        "en": "Probability of a color change in the middle of the color scale: {value}%"
+    }
+}
