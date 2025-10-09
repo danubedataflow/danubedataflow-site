@@ -27,8 +27,8 @@
       "ja" : "ヴェラ・モルナール氏に影響された。"
    },
    "display-seed" : {
-      "en" : "Seed: ",
-      "de" : "Startwert: ",
+      "en" : "Random seed: ",
+      "de" : "Zufallsgenerator-Startwert: ",
       "ja" : "シード："
    },
    "fieldset-colors" : {
