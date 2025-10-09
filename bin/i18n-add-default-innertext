@@ -17,9 +17,23 @@ my $iter     = path($opt{www})->iterator({ recurse => 1 });
 while (my $next = $iter->()) {
     next unless $next =~ /\.html$/;
     my $html = $next->slurp_utf8;
-    $html =~
-      s!\bdata-i18n-key="(.*?)".*?>\K(?=<)! $combined->{en}{$1} // "missing key: $1" !ge;
+    $html =~ s!\bdata-i18n-key="(.*?)".*?>\K(?=<)! get_string_for_key($1) !ge;
     $next->spew_utf8($html);
+}
+
+sub get_string_for_key ($key) {
+    if (defined(my $string = $combined->{en}{$key})) {
+        return $string;
+    } else {
+
+        # If a key is used in multiple files, we only want one warning.
+        our %did_warn_for_key;
+        unless ($did_warn_for_key{$key}) {
+            warn "missing key for language 'en': $key\n";
+            $did_warn_for_key{$key}++;
+        }
+        return "missing key: $1";
+    }
 }
 
 =pod
