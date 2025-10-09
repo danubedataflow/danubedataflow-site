@@ -12,7 +12,6 @@
           <select data-i18n-switcher class="locale-switcher">
             <option value="en">English</option>
             <option value="de">German (Deutsch)</option>
-            <option value="ja">Japanese (日本語)</option>
           </select>
         </div>
     </header>
