@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
-use GoGameTools::features;
+use strict;
+use warnings;
+use feature qw(:5.36);
 use FindBin qw($Bin);
 use Path::Tiny;
 my %open_work;    # hash to dedup

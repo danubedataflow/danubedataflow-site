@@ -1,6 +1,8 @@
 package DanubeDataflow;
-use GoGameTools::features;
-use GoGameTools::JSON;
+use strict;
+use warnings;
+use feature qw(:5.36);
+use JSON::PP;
 use Path::Tiny;
 
 sub import {
@@ -18,7 +20,7 @@ sub i18n_assemble_dicts ($dir) {
         next unless $next =~ /lang(-\w\w)?\.json$/;
         my $filename_locale =
           $next->basename('.json') =~ s/^lang-//r;    # 'lang-ja.json' => 'ja'
-        my $data = json_decode($next->slurp_utf8);
+        my $data = JSON::PP->new->allow_nonref->pretty->decode($next->slurp_utf8);
         my $translation;
         while (my ($key, $value) = each $data->%*) {
             if (ref $value eq ref {}) {

@@ -1,12 +1,16 @@
 #!/usr/bin/env perl
-use GoGameTools::features;
+use strict;
+use warnings;
+use feature qw(:5.36);
 use FindBin qw($Bin);
 use lib "$Bin/../perllib";
-use GoGameTools::Getopt;
+use Getopt::Long;
 use DanubeDataflow;
 use Path::Tiny;
 use open qw(:std :utf8);
-my %opt      = get_options(qw(+src|s=s +www|w=s));
+my %opt;
+GetOptions(\%opt, qw(src|s=s www|w=s)) or die;
+for (qw(src www)) { defined $opt{$_} or die "need --$_\n" }
 my $combined = i18n_assemble_dicts($opt{src});
 my $iter     = path($opt{www})->iterator({ recurse => 1 });
 
