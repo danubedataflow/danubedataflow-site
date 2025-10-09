@@ -87,7 +87,6 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-
 }
 
 #controls {
@@ -103,6 +102,12 @@ a:hover {
 
 #controls label {
     text-align: left;
+}
+
+input#seed {
+    font-size: 100%;
+    background-color: none;
+    border: none;
 }
 
 div.slider-wrapper.screen {
@@ -158,7 +163,7 @@ form {
 }
 
 form.print {
-    pointer-events:none;
+    pointer-events: none;
 }
 
 fieldset.print {
