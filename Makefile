@@ -1,12 +1,12 @@
 WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site deps watch nginx icons clean test open-all npm-update
-# live
+.PHONY: site deps watch nginx icons clean test open-all npm-update live
 
 site: clean
 	@ttree -f etc/ttreerc
-	@find src -name lang\*.json | xargs ./bin/assemble-i18n-dicts >$(WWW)/js/i18n-dicts.js
+	@./bin/i18n-assemble-dicts --dir src >$(WWW)/js/i18n-dicts.js
+	@./bin/i18n-add-default-innertext --src src --www $(WWW)
 	@find $(WWW) -name \*.html | xargs html-beautify -m 1 -r -q
 
 deps:

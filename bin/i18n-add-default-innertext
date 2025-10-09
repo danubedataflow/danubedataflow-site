@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+use GoGameTools::features;
+use FindBin qw($Bin);
+use lib "$Bin/../perllib";
+use GoGameTools::Getopt;
+use DanubeDataflow;
+use Path::Tiny;
+use open qw(:std :utf8);
+my %opt      = get_options(qw(+src|s=s +www|w=s));
+my $combined = i18n_assemble_dicts($opt{src});
+my $iter     = path($opt{www})->iterator({ recurse => 1 });
+
+while (my $next = $iter->()) {
+    next unless $next =~ /\.html$/;
+    my $html = $next->slurp_utf8;
+    $html =~
+      s!\bdata-i18n-key="(.*?)".*?>\K(?=<)! $combined->{en}{$1} // "missing key: $1" !ge;
+    $next->spew_utf8($html);
+}
+
+=pod
+
+This program crudely adds English texts as the inner texts of tags that use the
+C<data-i18n-key> attribute.
+
+This way the English texts are already on the live site so Google can index
+them.
+
+=cut
