@@ -11,6 +11,7 @@ pre_process = pre
 copy = \.(png|js|css)$
 
 ignore = lang-.*\.json
+ignore = lang.json
 ignore = ^#
 ignore = \.swp$
 ignore = ~$
