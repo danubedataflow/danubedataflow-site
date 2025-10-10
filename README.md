@@ -2,10 +2,14 @@
 
 Code für die Website.
 
-Um die Website zu erstellen, installiere den
-[Template::Toolkit](https://metacpan.org/pod/Template::Toolkit) von CPAN.
+Um die Website zu erstellen, installiere die Perl-Abhängigkeiten von CPAN. Dazu
+installiere zuerst `cpanminus`, entweder über einen Package Manager wie
+homebrew, oder manuell.
 
-Installiere auch die Abhängigkeiten:
+    brew install cpanminus
+    cpanm Template Path::Tiny
+
+Installiere auch die anderen Abhängigkeiten:
 
     npm install
 
