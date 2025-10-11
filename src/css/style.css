@@ -1,12 +1,13 @@
 :root {
     --maincolor: #de600c;
-    --sans-serif: Candara, Ubuntu, system-ui, "Segoe UI", sans-serif;
+    --sans-serif: system-ui, "Segoe UI", sans-serif;
 }
 
 body {
     font-family: var(--sans-serif);
     font-size: var(--font-size);
     line-height: 1.5em;
+    text-transform: lowercase;
 }
 
 main {
@@ -147,7 +148,6 @@ section.narrow {
 blockquote {
     font-size: 1.2em;
     line-height: 1.5em;
-    font-style: italic;
     margin-left: 1em;
     border-left: 10px solid #ccc;
     padding: 0.5em 10px;
