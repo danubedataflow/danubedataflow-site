@@ -1,6 +1,6 @@
 :root {
     --maincolor: #de600c;
-    --sans-serif: system-ui, "Segoe UI", sans-serif;
+    --sans-serif: "Helvetica Neue", system-ui, "Segoe UI", sans-serif;
 }
 
 body {
