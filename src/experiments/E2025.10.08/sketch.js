@@ -22,8 +22,8 @@ function drawSketch() {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
-            // move to tile center to rotate
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            // move to the tile's upper left corner
+            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
 
             /* interpret the symbols in each iteration as greyscale values. For
              * ctrl.numSymbols == 5, this would be:
@@ -46,7 +46,7 @@ function drawSketch() {
             // 0% <= alpha <= 100%
             let alpha = mapRange(alphaIndex, 0, ctrl.numSymbols - 1, 0, 100);
             ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
-            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+            ctx.fillRect(0, 0, tileDim, tileDim);
 
             ctx.restore();
         }
