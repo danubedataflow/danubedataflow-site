@@ -2,23 +2,14 @@
     <header>
         <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
         <div class="subheading">
-            <a href="/" data-i18n-key="section-Works"></a>
-            | <a href="/experiments/" data-i18n-key="section-Experiments"></a>
-            | <a href="/notes/" data-i18n-key="section-Notes"></a>
-            | <a href="/quotes/" data-i18n-key="section-Quotes"></a>
-            <!-- | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank" data-i18n-key="sourceCode"></a> -->
-            |
-
-          <select data-i18n-switcher class="locale-switcher">
-            <option value="en">English</option>
-            <option value="de">Deutsch (German)</option>
-          </select>
+            <a href="/">Works</a>
+            | <a href="/experiments/">Experiments</a>
+            | <a href="/notes/">Notes</a>
+            | <a href="/quotes/">Quotes</a>
         </div>
     </header>
 
     <main>
 [% content %]
     </main>
-    <script src="/js/i18n-dicts.js"></script>
-    <script src="/js/i18n.js"></script>
 </body>

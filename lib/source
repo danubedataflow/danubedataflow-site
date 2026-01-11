@@ -1,7 +1,8 @@
 [%
     THROW undefined 'lib/source: file' UNLESS file.defined;
-    WRAPPER html;
 %]
+<!DOCTYPE html>
+<html lang="en">
 
 [% WRAPPER head %]
     <link href="/deps/highlight.min.css" rel="stylesheet">
@@ -10,7 +11,7 @@
 
 [% WRAPPER body %]
     <section class="narrow">
-[% content %]
+        <p><a href="/source-js-utils.html">utils.js</a></p>
         <pre><code class="language-javascript" id="source">
         </code></pre>
     </section>
@@ -29,4 +30,4 @@ window.addEventListener('load', () => {
 
 </script>
 
-[% END %]
+</html>

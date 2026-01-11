@@ -1,28 +1,24 @@
-[% WRAPPER html %]
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 [% WRAPPER head %]
     <link href="/deps/nouislider.min.css" rel="stylesheet">
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
-    [% IF with_rough %]<script src="/deps/rough.js"></script>[% END %]
-    [% IF with_lindenmayer %]<script src="/deps/lindenmayer.browser.min.js"></script>[% END %]
+    <script src="/deps/rough.js"></script>
+    <script src="/deps/lindenmayer.browser.min.js"></script>
     <script src="/deps/qrcode.min.js"></script>
-    [% IF t.does_file_exist_in_current_dir("sketch.css") %]
-    <link href="sketch.css" rel="stylesheet">
-    [% END %]
 [% END %]
 
 <main>
     <h1>Danube Dataflow</h1>
-    <section id="sketch-container">
-        <div id="sketch"><canvas></canvas></div>
+    <section id="work-container">
+        <div id="work"><canvas></canvas></div>
 
         <div id="tools-container">
             <div id="controls">
                 <p>
-                    <span id="sketchTitle">[% title %]</span> |
+                    <span id="workTitle">[% title %]</span> |
                     <span id="canvasSize"></span>
                 </p>
 
@@ -34,9 +30,7 @@
             </div>
         </div>
     </section>
-    <script src="sketch.js"></script>
+    <script src="work.js"></script>
 </main>
-<script src="/js/i18n-dicts.js"></script>
-<script src="/js/i18n.js"></script>
 
-[% END %]
+<html>

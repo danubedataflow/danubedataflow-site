@@ -1,9 +1,0 @@
-<p>[% author %]:</p>
-
-[% IF i18n %]
-    <blockquote data-i18n-key="[% i18n %]"></blockquote>
-[% ELSE %]
-    <blockquote>
-        [% content %]
-    </blockquote>
-[% END %]

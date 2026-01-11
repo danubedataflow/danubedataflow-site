@@ -1,37 +1,43 @@
-[% WRAPPER html %]
+<!DOCTYPE html>
+<html lang="en">
 
 [% INCLUDE head title="Zitate" index=1 %]
 
 [% WRAPPER body %]
     <section class="wide">
-        <h1 data-i18n-key="section-Quotes"></h1>
+        <h1>Quotes</h1>
     </section>
 
     <section class="narrow">
 
-    [% WRAPPER quote author="Joan Mitchell" %]
+    <p>Joan Mitchell:</p>
+    <blockquote>
         You ask me why did I put white lines. You also ask me why did I put red
         lines and stuff. You also ask me why I paint. I don't know. The moment
         you put the bla bla bla on it, it destroys the whole thing.
-    [% END %]
+    </blockquote>
 
-    [% WRAPPER quote author="Vera Molnár" %]
+    <p>Vera Molnár:</p>
+    <blockquote>
         I have no regrets. My life is squares, triangles, lines.
-    [% END %]
+    </blockquote>
 
-    [% WRAPPER quote author="Pierre Soulages" %]
+    <p>Pierre Soulages:</p>
+    <blockquote>
         It is what I do that teaches me what I'm looking for.
-    [% END %]
+    </blockquote>
 
-    [% WRAPPER quote author="Sol LeWitt" %]
+    <p>Sol LeWitt:</p>
+    <blockquote>
         In conceptual art, the idea or the concept is the most important aspect
         of the work. When an artist uses a conceptual form of art, it means
         that all of the planning and decisions are made beforehand and the
         execution is a perfunctory affair. The idea becomes a machine that
         makes the art.
-    [% END %]
+    </blockquote>
 
-    [% WRAPPER quote author="Jean-Michel Jarre" %]
+    <p>Jean-Michel Jarre:</p>
+    <blockquote>
         Technology, and the Internet also, make you think that everything has
         been done. You wake up with a fresh idea, and you check on the
         Internet, and by noon you think that it's a very old idea that has been
@@ -60,13 +66,25 @@
 
         So it's not a matter of saying that there is nothing new that I can
         achieve.
-    [% END %]
+    </blockquote>
 
-    [% INCLUDE quote author="El Lissitzky" i18n="quote-lissitzky-1" %]
+    <p>El Lissitzky:</p>
+    <blockquote>
+        The machine has not separated us from nature; through it we have
+        discovered a new nature never before surmised.
+    </blockquote>
 
-    [% INCLUDE quote author="El Lissitzky" i18n="quote-lissitzky-2" %]
+    <p>El Lissitzky:</p>
+    <blockquote>
+        [Art], like science, has broken down form down to its basic elements in
+        order to rebuild it according to the universal laws of nature. And they
+        both came to the same formula: every form is the frozen snapshot of a
+        process. This a work of art is a stopping point on the road of
+        becoming, and not the fixed goal.
+    </blockquote>
 
-    [% WRAPPER quote author="Frieder Nake" %]
+    <p>Frieder Nake:</p>
+    <blockquote>
         Each and every individual piece of algorithmic art is no more than only
         one instance of the potentially infinitely many from the class of works
         defined by the algorithm. The tragedy is that the algorithm itself does
@@ -75,9 +93,9 @@
         of the algorithm. It is one of its traces, a left-over, a consolation
         for those who need to see rather than think. If you want to find the
         masterpiece, you must compare algorithms.
-    [% END %]
+    </blockquote>
 
     </section>
 [% END %]
 
-[% END %]
+</html>

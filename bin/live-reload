@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Watch files. On any change, regenerate the site and reload the frontmost
-# Chrome tab. This assumes that your frontmost Chrome tab shows the sketch you
+# Chrome tab. This assumes that your frontmost Chrome tab shows the work you
 # are working on.
 
 fswatch -E -e ".*" -i "\\.(js|css|html)$" --batch-marker=EOF -xn src | while read file event;

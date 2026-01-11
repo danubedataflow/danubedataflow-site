@@ -1,20 +1,17 @@
 # danubedataflow.com
 
-Code für die Website.
-
-Um die Website zu erstellen, installiere die Perl-Abhängigkeiten von CPAN. Dazu
-installiere zuerst `cpanminus`, entweder über einen Package Manager wie
-homebrew, oder manuell.
+To build the website, install the CPAN Perl dependencies. First, install
+`cpanminus`, either via a package manager like Homebrew, or manually.
 
     brew install cpanminus
     cpanm Template Path::Tiny
 
-Installiere auch die anderen Abhängigkeiten:
+Also install the other dependencies:
 
     npm install
 
-Dann:
+Then:
 
     make site
 
-Das installiert die Website in `~/www/danubedataflow`.
+This installs the website in `~/www/danubedataflow`.

@@ -1,7 +1,0 @@
-{
-    "W2023.10.05-description": {
-        "de": "Nimm einen Wahrscheinlichkeitswert, der von 0 ganz oben bis 1 ganz unten geht. Damit in einer Reihe ein Quadrat gezeichnet wird, muß eine Zufallszahl größer sein als der Wahrscheinlichkeitswert potenziert mit einem gegebenen Wert. Je höher also der Exponent ist, desto niedriger wird der Schwellwert, und umso wahrscheinlicher ist es, daß ein Quadrat gezeichnet wird.",
-        "en": "Take a probability value that goes from 0 at the top to 1 at the bottom. In order for a square to be drawn in a row, a random number must be larger than the probability value raised to the power of a given value. So the higher the exponent, the lower the threshold becomes, and the more likely it is that a square will be drawn.",
-        "ja": "上部の 0 から下部の 1 までの確率値を取得します。 正方形を連続して描画するには、乱数が確率値の指定値の累乗よりも大きくなければなりません。 したがって、指数が高くなるほど、しきい値は低くなり、正方形が描画される可能性が高くなります。"
-    }
-}

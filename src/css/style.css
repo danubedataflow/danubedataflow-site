@@ -66,20 +66,20 @@ a:hover {
     text-decoration: none;
 }
 
-#sketch-container {
+#work-container {
     min-width: 100%;
 }
 
-#sketch-container.screen {
+#work-container.screen {
     display: inline-flex;
     flex-flow: row wrap;
 }
 
-#sketch {
+#work {
     padding: 10px;
 }
 
-#sketch.screen {
+#work.screen {
     flex: 1;
 }
 
@@ -182,7 +182,7 @@ legend.print {
     font-weight: bold;
 }
 
-#sketchTitle {
+#workTitle {
     font-weight: bold;
 }
 

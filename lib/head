@@ -1,8 +1,8 @@
 <head>
     <meta charset="utf-8">
     <title>[% title %]</title>
-    <meta name="keywords" content="Generative Gestaltung, Algorithmische Kunst, Kreatives Programmieren, Digitale Kunst, Creative Coding">
-    <meta name="description" content="Generative Gestaltung aus der Donaumetropole. Minimale algorithmische Kunst">
+    <meta name="keywords" content="Generative design, algorithmic art, creative programming, digital art, creative coding">
+    <meta name="description" content="Generative design from the Danube metropolis. Minimal algorithmic art.">
     <meta name="author" content="Marcel Gruenauer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="mobile-web-app-capable" content="yes">

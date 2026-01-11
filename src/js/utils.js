@@ -78,15 +78,20 @@ Array.prototype.pairwise = function(func) {
 
 // https://gist.github.com/motoishmz/5239619
 // Fisher-Yates
+//
+// First copy the array so we don't modify the original array in-place.
 Array.prototype.shuffle = function() {
-    var i = this.length;
+    const copy = this.slice(); // or [...this]
+    let i = copy.length;
+
     while (i) {
-        var j = Math.floor(random() * i);
-        var t = this[--i];
-        this[i] = this[j];
-        this[j] = t;
+        const j = Math.floor(random() * i);
+        const t = copy[--i];
+        copy[i] = copy[j];
+        copy[j] = t;
     }
-    return this;
+
+    return copy;
 };
 
 Array.prototype.randomElement = function() {
@@ -178,7 +183,7 @@ class CheckboxControl {
  * generate a new seed, you couldn't get the exact same image with the shown
  * seed because every time you redraw it calls random() again.
  *
- * Note that you have to generate a new seed every time you redraw the sketch.
+ * Note that you have to generate a new seed every time you redraw the work.
  * If you just redraw without generating a new seed, you won't get the same
  * image even if you copy the URL including the seed because every time you
  * just redraw you get different random numbers.
@@ -201,9 +206,9 @@ class SeedControl {
     }
 
     setValue(value) {
-        /* Use Math.random() so that when you have two identical sketches and
+        /* Use Math.random() so that when you have two identical works and
          * click "redraw with new seed" or "randomize controls" you don't get
-         * the same result on both sketches.
+         * the same result on both works.
          */
         value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
@@ -267,9 +272,7 @@ function makeForm(...contents) {
 function makeFieldset(legend, ...contents) {
     let fieldsetEl = document.createElement('fieldset');
     let legendEl = document.createElement('legend');
-    setIntlAttributes(legendEl, {
-        key: 'fieldset-' + legend
-    });
+    legendEl.innerText = legend;
     fieldsetEl.appendChild(legendEl);
     contents.forEach(child => fieldsetEl.appendChild(child));
     return fieldsetEl;
@@ -284,70 +287,20 @@ function makeDiv(config, ...contents) {
     return el;
 }
 
-// 'id' is the value of the 'for' attribute. The <label>'s innerText
-// will be set by the i18n code.
+// 'id' is the value of the 'for' attribute.
 function makeLabel(id) {
     let el = document.createElement('label');
     el.setAttribute('for', id);
     return el;
 }
 
-function setIntlAttributes(element, config) {
-    element.setAttribute('data-i18n-key', config.key);
-
-    // Create the 'data-i18n-opt' attribute only if config.opt is given. For
-    // example, slider labels have options (placeholders), checkbox labels do
-    // not.
-
-    if (typeof config.opt !== 'undefined') {
-        // Handle scalar values. one-element arrays and two-element
-        // arrays. The initial call to makeSlider can have a scalar
-        // value. But the slider 'update' event will always return an
-        // array, even for sliders with one handle.
-        let opt = {};
-        if (Array.isArray(config.opt)) {
-            if (config.opt.length == 1) {
-                opt.value = {
-                    number: config.opt[0]
-                };
-            } else {
-                opt.from = {
-                    number: config.opt[0]
-                };
-                opt.to = {
-                    number: config.opt[1]
-                };
-            }
-        } else {
-            opt.value = {
-                number: config.opt
-            };
-        }
-        element.setAttribute('data-i18n-opt', JSON.stringify(opt));
-    }
-
-    // By default we translate the innerText of the given element. If
-    // config.target is given, we want to translate the attribute with that
-    // name instead.
-
-    if (typeof config.target !== 'undefined') {
-        element.setAttribute('data-i18n-target', config.target);
-        element.setAttribute(config.target, translateElement(element));
-    } else {
-        element.innerText = translateElement(element);
-    }
-}
-
-function makeSlider(id, min, max, value, step = 1) {
+function makeSlider(id, label, min, max, value, step = 1) {
     value = valueWithSearchParam(id, value);
 
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, {
-        key: 'slider-' + id,
-        opt: value
-    });
+    labelEl.innerText = label.replace('{0}', parseFloat(value));
     containerDiv.appendChild(labelEl);
 
     // <div class="slider-wrapper"><div id="foo"></div></div>
@@ -374,10 +327,8 @@ function makeSlider(id, min, max, value, step = 1) {
         behaviour: 'tap-drag'
     });
     slider.on('update', function(values, handle) {
-        setIntlAttributes(labelEl, {
-            key: 'slider-' + id,
-            opt: values
-        });
+        // This event will always return an array, even for sliders with one handle.
+        labelEl.innerText = label.replace(/{(\d+)}/g, (_, num) => parseFloat(values[num]));
     });
     slider.on('slide', function(values, handle) {
         redrawWithSameSeed();
@@ -386,13 +337,11 @@ function makeSlider(id, min, max, value, step = 1) {
     return containerDiv;
 }
 
-function makeCheckbox(id, value = true) {
+function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, {
-        key: 'checkbox-' + id
-    });
+    labelEl.innerText = label;
     containerDiv.appendChild(labelEl);
 
     let checkboxEl = document.createElement('input');
@@ -413,10 +362,7 @@ function makeSeed() {
         containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, {
-        key: 'display-' + id,
-        opt: 0
-    });
+    labelEl.innerText = 'Random seed:';
     containerDiv.appendChild(labelEl);
 
     let inputEl = document.createElement('input');
@@ -429,37 +375,25 @@ function makeSeed() {
     return containerDiv;
 }
 
-// The <option>'s innerText will be set by the i18n code.
 function makeOption(value) {
     let el = document.createElement('option');
     el.setAttribute('value', value);
-    setIntlAttributes(el, {
-        key: 'option-' + value
-    });
+    el.innerText = value;
     return el;
 }
 
 function makeOptGroup(label, ...contents) {
     let el = document.createElement('optGroup');
     el.setAttribute('label', label);
-    setIntlAttributes(el, {
-        key: 'optgroup-' + label,
-        target: 'label'
-    });
-
-    // We need to translate the 'label' attr, not any innerText.
-    el.setAttribute('data-i18n-target', 'label');
     contents.forEach(child => el.appendChild(child));
     return el;
 }
 
-function makeSelect(id, contents, value) {
+function makeSelect(id, label, contents, value) {
     let containerDiv = document.createElement('div');
 
     let labelEl = makeLabel(id);
-    setIntlAttributes(labelEl, {
-        key: 'select-' + id
-    });
+    labelEl.innerText = label;
     containerDiv.appendChild(labelEl);
 
     let selectEl = document.createElement('select');
@@ -479,8 +413,8 @@ function makeSelect(id, contents, value) {
 
 function makeSelectColorMap() {
     let containerDiv = makeSelect(
-        'colorMap', [
-            makeOptGroup('sequential',
+        'colorMap', 'Color map: ', [
+            makeOptGroup('Sequential',
                 makeOption('OrRd'),
                 makeOption('PuBu'),
                 makeOption('BuPu'),
@@ -501,7 +435,7 @@ function makeSelectColorMap() {
                 makeOption('PuBuGn'),
                 makeOption('Viridis'),
             ),
-            makeOptGroup('diverging',
+            makeOptGroup('Diverging',
                 makeOption('Spectral'),
                 makeOption('RdYlGn'),
                 makeOption('RdBu'),
@@ -512,7 +446,7 @@ function makeSelectColorMap() {
                 makeOption('RdGy'),
                 makeOption('PuOr'),
             ),
-            makeOptGroup('qualitative',
+            makeOptGroup('Qualitative',
                 makeOption('Set2'),
                 makeOption('Accent'),
                 makeOption('Set1'),
@@ -563,7 +497,7 @@ function makeSelectBlendMode(options) {
 
     let defaultValue = options.putFirst(el => el == 'source-over').at(0);
     return makeSelect(
-        'blendMode',
+        'blendMode', 'Blend mode: ',
         options.map(c => makeOption(c)),
         defaultValue
     );
@@ -662,7 +596,7 @@ function setupQRCode() {
 
 /* Sketch skeleton
  *
- * Individual sketches just need to set up the form and to implement
+ * Individual works just need to set up the form and to implement
  * drawSketch().
  */
 function setup() {
@@ -670,7 +604,7 @@ function setup() {
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
-    setupControls(); // sketches need to implement this
+    setupControls(); // works need to implement this
 
     if (pageType) {
         // add page type as class to all DOM elements so CSS can differentiate
@@ -681,7 +615,7 @@ function setup() {
 
 function draw() {
     /* Copy the current control values into the `ctrl` object. This way
-     * the sketches don't have to call `controls.someControl.getValue()`
+     * the works don't have to call `controls.someControl.getValue()`
      * but can just use `ctrl.someControl`. Note that the former is a
      * function call, so it would be expensive to call this several
      * times, leading to new temporary variables. The latter is just a
@@ -730,7 +664,7 @@ addEventListener('load', (e) => {
 });
 
 addEventListener('keypress', (e) => {
-    /* only handle keypresses in the main sketch view. For example, in the
+    /* only handle keypresses in the main work view. For example, in the
      * print view, it doesn't make sense, and they even interfere with "Cmd-P"
      * for printing.
      */
