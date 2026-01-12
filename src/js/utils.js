@@ -772,9 +772,3 @@ function randomIntRange(lowerBound, upperBound) {
 function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
 }
-
-// linearly map value from the range (a..b) to (c..d).
-function mapRange(value, a, b, c, d) {
-    value = (value - a) / (b - a); // map from (a..b) to (0..1)
-    return c + value * (d - c);    // map from (0..1) to (c..d)
-}

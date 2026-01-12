@@ -43,8 +43,8 @@ function drawSketch() {
             // 0 <= alphaIndex <= ctrl.numSymbols - 1
             let alphaIndex = symbol.charCodeAt(0) - 'A'.charCodeAt(0);
 
-            // 0% <= alpha <= 100%
-            let alpha = mapRange(alphaIndex, 0, ctrl.numSymbols - 1, 0, 100);
+            // map alpha from the range (0..ctrl.numSymbols - 1) to (0..100)
+            let alpha = (alphaIndex / (ctrl.numSymbols - 1)) * 100;
             ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
             ctx.fillRect(0, 0, tileDim, tileDim);
 
