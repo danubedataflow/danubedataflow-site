@@ -1,11 +1,9 @@
-WWW = ~/www/danubedataflow
 DEPS = src/deps
 
-.PHONY: site deps watch nginx icons clean test npm-update live
+.PHONY: tidy deps nginx icons test npm-update live
 
-site: clean
-	@ttree -f etc/ttreerc
-	@find $(WWW) -name \*.html | xargs html-beautify -m 1 -r -q
+tidy:
+	@find src -name \*.html | xargs html-beautify -m 1 -r -q
 
 deps:
 	mkdir -p $(DEPS)
@@ -21,22 +19,16 @@ deps:
 	cp more-deps/lindenmayer/lindenmayer.browser.min.js $(DEPS)/
 	cp more-deps/lindenmayer/LICENSE $(DEPS)/LICENSE-lindenmayer.txt
 
-watch:
-	bin/live-reload
-
 nginx:
 	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
 	nginx -s reload
 
 live:
-	rsync -av --delete $(WWW)/ hetzner:www/danubedataflow.com/
+	rsync -av --delete src/ hetzner:www/danubedataflow.com/
 	ssh hetzner 'sudo bin/fix-permissions'
 
 icons:
 	bin/make-favicon
-
-clean:
-	@rm -rf $(WWW) build.noindex
 
 npm-update:
 	npm update --save

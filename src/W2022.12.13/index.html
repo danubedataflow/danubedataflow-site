@@ -2,7 +2,17 @@
 <html lang="en">
 
 <head>
-    [% INCLUDE metadata %]
+    <!-- BEGIN metadata -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="Generative design, algorithmic art, creative programming, digital art, creative coding">
+    <meta name="description" content="Generative design from the Danube metropolis. Minimal algorithmic art.">
+    <meta name="author" content="Marcel Gruenauer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- END metadata -->
     <title>W2022.12.13</title>
     <script src="/js/utils.js"></script>
     <link href="/deps/nouislider.min.css" rel="stylesheet">
@@ -11,21 +21,41 @@
 </head>
 
 <body>
-    [% INCLUDE header %]
+    <!-- BEGIN header -->
+    <header>
+        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+        <div class="subheading">
+            <a href="/">Works</a>
+            | <a href="/notes/">Notes</a>
+            | <a href="/quotes/">Quotes</a>
+        </div>
+    </header>
+    <!-- END header -->
 
     <main>
         <section id="work-container">
             <div id="work"><canvas></canvas></div>
 
             <div id="controls">
-                [% INCLUDE worknav %]
+                <!-- BEGIN worknav -->
+                <p>
+                    <span id="workTitle"></span> |
+                    <span id="canvasSize"></span> |
+                    <a href="" id="sourceLink" target="_blank">Source code</a> |
+                    <a href="javascript:redrawWithNewSeed();">New seed</a> |
+                    <a href="javascript:setControlsRandomly();">Random parameters</a> |
+                    <a href="javascript:saveCanvasAsPNG();">Save</a> |
+                    <a href="javascript:copyLink();">Copy link</a> |
+                    <a href="javascript:window.open('print.html' + window.location.search, '_blank');">Print view</a>
+                </p>
+                <!-- END worknav -->
 
                 <form id="controls-form">
                 </form>
 
                 <p>Note: The random values in this work depend on the canvas
-                size, so even with the same seed, different canvas sizes will
-                generate different images.</p>
+                    size, so even with the same seed, different canvas sizes will
+                    generate different images.</p>
             </div>
         </section>
         <script src="work.js"></script>

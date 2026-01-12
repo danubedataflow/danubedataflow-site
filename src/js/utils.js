@@ -608,8 +608,12 @@ function setup() {
     let title = document.getElementsByTagName("title")[0].innerText;
     document.getElementById('workTitle').innerText = title;
 
-    document.getElementById('sourceLink').setAttribute('href',
-        `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${title}/work.js`);
+    // <a id="sourceLink"> exists in index.html but not print.html
+    let sourceLink = document.getElementById('sourceLink');
+    if (sourceLink !== null) {
+        sourceLink.setAttribute('href',
+            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${title}/work.js`);
+    }
 
     setupControls(); // works need to implement this
 

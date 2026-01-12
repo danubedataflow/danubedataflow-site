@@ -1,0 +1,125 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Path::Tiny;
+my %replace;
+
+# The 'header' block
+$replace{header} = <<~BLOCK;
+    <header>
+        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+        <div class="subheading">
+            <a href="/">Works</a>
+            | <a href="/notes/">Notes</a>
+            | <a href="/quotes/">Quotes</a>
+        </div>
+    </header>
+    BLOCK
+
+# The 'metadata' block
+$replace{metadata} = <<~BLOCK;
+    <meta charset="utf-8">
+    <meta name="keywords" content="Generative design, algorithmic art, creative programming, digital art, creative coding">
+    <meta name="description" content="Generative design from the Danube metropolis. Minimal algorithmic art.">
+    <meta name="author" content="Marcel Gruenauer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    BLOCK
+
+# The 'printbody' block
+$replace{printbody} = <<~BLOCK;
+    <h1>Danube Dataflow</h1>
+    <section id="work-container">
+        <div id="work"><canvas></canvas></div>
+
+        <div id="tools-container">
+            <div id="controls">
+                <p>
+                    <span id="workTitle"></span> |
+                    <span id="canvasSize"></span>
+                </p>
+
+                <form id="controls-form">
+                </form>
+            </div>
+
+            <div id="qrcode">
+            </div>
+        </div>
+    </section>
+    <script src="work.js"></script>
+    BLOCK
+
+# The 'worknav' block
+$replace{worknav} = <<~BLOCK;
+    <p>
+        <span id="workTitle"></span> |
+        <span id="canvasSize"></span> |
+        <a href="" id="sourceLink" target="_blank">Source code</a> |
+        <a href="javascript:redrawWithNewSeed();">New seed</a> |
+        <a href="javascript:setControlsRandomly();">Random parameters</a> |
+        <a href="javascript:saveCanvasAsPNG();">Save</a> |
+        <a href="javascript:copyLink();">Copy link</a> |
+        <a href="javascript:window.open('print.html' + window.location.search, '_blank');">Print view</a>
+    </p>
+    BLOCK
+my $iter = path('src')->iterator({ recurse => 1 });
+while (my $next = $iter->()) {
+    next unless $next =~ /.html$/;
+    my @html   = $next->lines_utf8;
+    my @output = replace_blocks(\@html, \%replace);
+    $next->spew_utf8(@output);
+}
+
+sub replace_blocks {
+    my ($lines_array, $replacement_hash) = @_;
+    my $current;
+    my @output;
+    for ($lines_array->@*) {
+
+        # detect BEGIN marker
+        if (/<!--\s*BEGIN\s+(\w+)\s*-->/) {
+            $current = $1;
+            push @output, $_;
+            next;
+        }
+
+        # detect END marker
+        if (/<!--\s*END\s+(\w+)\s*-->/) {
+            undef $current;
+            push @output, $_;
+            next;
+        }
+
+        # inside a block: replace content
+        if ($current && exists $replace{$current}) {
+            push @output, $replace{$current}, "\n";
+            next;
+        }
+
+        # outside any block
+        push @output, $_;
+    }
+    return @output;
+}
+
+=pod
+
+Iterates over all HTML files in src/. In each files, it tries to find delimited
+blocks like this:
+
+    <!-- BEGIN header -->
+    ...
+    <!-- END header -->
+
+and replaces their contents with the lines in the corresponding entry in the
+%replace hash.
+
+So this acts as a mini-templating engine. If you want to change anything within
+one of the reused blocks, change it here, then rerun this program. Then `make
+tidy`.
+
+=cut
