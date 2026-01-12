@@ -583,10 +583,10 @@ function setupQRCode() {
     new QRCode(document.getElementById('qrcode'), code);
 }
 
-/* Sketch skeleton
+/* Work skeleton
  *
  * Individual works just need to set up the form and to implement
- * drawSketch().
+ * drawWork().
  */
 function setup() {
     pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
@@ -632,7 +632,7 @@ function draw() {
         window.history.replaceState(null, '', currentURL);
     }
 
-    drawSketch();
+    drawWork();
 }
 
 // generate color value for ctx.fillStyle and ctx.strokeStyle.

@@ -8,7 +8,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';

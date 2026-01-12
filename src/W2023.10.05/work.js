@@ -8,7 +8,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     // random color, saturation and brightness
     ctx.fillStyle = colorHSL(randomIntRange(0, 350), randomIntRange(50, 100), randomIntRange(50, 100));
     ctx.fillRect(0, 0, width, height);

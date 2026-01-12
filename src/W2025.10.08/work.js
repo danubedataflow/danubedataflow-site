@@ -9,7 +9,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     let lsystem = makeLsystem();
 
     ctx.fillStyle = 'white';

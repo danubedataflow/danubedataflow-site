@@ -13,7 +13,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     palette = ['white', '#777777', 'black'];
 
     let tileDim = width / ctrl.numTiles;

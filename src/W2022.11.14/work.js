@@ -22,7 +22,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     ctx.save();
 
     ctx.fillStyle = 'white';

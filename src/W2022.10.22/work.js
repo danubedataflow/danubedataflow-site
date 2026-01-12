@@ -11,7 +11,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     let curves = [];
 
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.

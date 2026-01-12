@@ -11,7 +11,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'white';

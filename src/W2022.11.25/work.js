@@ -7,7 +7,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     ctx.fillStyle = '#777777';
     ctx.fillRect(0, 0, width, height);
 

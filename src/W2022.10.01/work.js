@@ -15,7 +15,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';

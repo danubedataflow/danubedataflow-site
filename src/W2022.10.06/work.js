@@ -17,7 +17,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 
     // actually clear the canvas

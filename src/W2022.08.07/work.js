@@ -4,7 +4,7 @@ function setupControls() {
     makeForm();
 }
 
-function drawSketch() {
+function drawWork() {
     const imageData = ctx.createImageData(width, height);
     for (let i = 0; i < imageData.data.length; i += 4) {
         let grey = randomIntUpTo(255);

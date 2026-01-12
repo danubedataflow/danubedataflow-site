@@ -10,7 +10,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     let x1 = Math.round(randomIntUpTo(width / 2));
     let y1 = Math.round(randomIntUpTo(height / 2));
     let x2 = Math.round(randomIntUpTo(width / 2)) + width / 2;

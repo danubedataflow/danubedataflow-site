@@ -14,7 +14,7 @@ function setupControls() {
     );
 }
 
-function drawSketch() {
+function drawWork() {
     let roughCanvas = rough.canvas(canvas);
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
