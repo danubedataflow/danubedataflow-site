@@ -14,27 +14,8 @@
     <script src="/deps/qrcode.min.js"></script>
 </head>
 
-<main>
-    <h1>Danube Dataflow</h1>
-    <section id="work-container">
-        <div id="work"><canvas></canvas></div>
-
-        <div id="tools-container">
-            <div id="controls">
-                <p>
-                    <span id="workTitle"></span> |
-                    <span id="canvasSize"></span>
-                </p>
-
-                <form id="controls-form">
-                </form>
-            </div>
-
-            <div id="qrcode">
-            </div>
-        </div>
-    </section>
-    <script src="work.js"></script>
-</main>
+<body>
+    [% INCLUDE printbody %]
+</body>
 
 </html>
