@@ -7,8 +7,8 @@ function setupControls() {
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
         makeSlider('diagonalOrientationChance', "Probability of the diagonal's orientation: {0}%", 0, 100, 50),
         makeSelect('colorStrategy', 'Color strategy: ', [
-            makeOption('Random', 'XXX'),
-            makeOption('Adjacent', 'XXX'),
+            makeOption('random', 'Random'),
+            makeOption('adjacent', 'Adjacent'),
         ]),
     );
 }
@@ -68,7 +68,7 @@ function drawSketch() {
 }
 
 function chooseColors() {
-    if (ctrl.colorStrategy === 'Random') {
+    if (ctrl.colorStrategy === 'random') {
         // choose two different random colors
 
         c1 = palette.randomElement();
@@ -76,7 +76,7 @@ function chooseColors() {
             c2 = palette.randomElement();
         } while (c1 == c2);
 
-    } else if (ctrl.colorStrategy === 'Adjacent') {
+    } else if (ctrl.colorStrategy === 'adjacent') {
         c1 = c2; // reuse previous color
         if (c1 === undefined) c1 = random(palette);
         do {

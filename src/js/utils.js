@@ -61,15 +61,7 @@ function getPointsForPolygon(sides, diameter, rotation) {
     return points;
 }
 
-// Move elements matching a selector function to the front of the array.
-Array.prototype.putFirst = function(selector) {
-    return [
-        ...this.filter(selector),
-        ...this.filter(el => !selector(el)),
-    ];
-}
-
-// call a function with elements [0. 1], then [1, 2] etc.
+// call a function with elements [0, 1], then [1, 2] etc.
 Array.prototype.pairwise = function(func) {
     for (let i = 0; i < this.length - 1; i++) {
         func(this[i], this[i + 1]);
@@ -326,13 +318,11 @@ function makeSlider(id, label, min, max, value, step = 1) {
         // Move handle on tap, bars are draggable
         behaviour: 'tap-drag'
     });
-    slider.on('update', function(values, handle) {
+    slider.on('update', function(values, _) {
         // This event will always return an array, even for sliders with one handle.
         labelEl.innerText = label.replace(/{(\d+)}/g, (_, num) => parseFloat(values[num]));
     });
-    slider.on('slide', function(values, handle) {
-        redrawWithSameSeed();
-    });
+    slider.on('slide', redrawWithSameSeed);
     controls[id] = new SliderControl(id, slider);
     return containerDiv;
 }
@@ -375,10 +365,13 @@ function makeSeed() {
     return containerDiv;
 }
 
-function makeOption(value) {
+function makeOption(value, name) {
+    if (name === undefined) {
+        name = value;
+    }
     let el = document.createElement('option');
     el.setAttribute('value', value);
-    el.innerText = value;
+    el.innerText = name;
     return el;
 }
 
@@ -415,46 +408,46 @@ function makeSelectColorMap() {
     let containerDiv = makeSelect(
         'colorMap', 'Color map: ', [
             makeOptGroup('Sequential',
-                makeOption('OrRd'),
-                makeOption('PuBu'),
-                makeOption('BuPu'),
+                makeOption('OrRd', 'Orange-Red'),
+                makeOption('PuBu', 'Purple-Blue'),
+                makeOption('BuPu', 'Blue-Purple'),
                 makeOption('Oranges'),
-                makeOption('BuGn'),
-                makeOption('YlOrBr'),
-                makeOption('YlGn'),
+                makeOption('BuGn', 'Blue-Green'),
+                makeOption('YlOrBr', 'Yellow-Orange-Brown'),
+                makeOption('YlGn', 'Yellow-Green'),
                 makeOption('Reds'),
-                makeOption('RdPu'),
+                makeOption('RdPu', 'Red-Purple'),
                 makeOption('Greens'),
-                makeOption('YlGnBu'),
+                makeOption('YlGnBu', 'Yellow-Green-Blue'),
                 makeOption('Purples'),
-                makeOption('GnBu'),
+                makeOption('GnBu', 'Green-Blue'),
                 makeOption('Greys'),
-                makeOption('YlOrRd'),
-                makeOption('PuRd'),
+                makeOption('YlOrRd', 'Yellow-Orange-Red'),
+                makeOption('PuRd', 'Purple-Red'),
                 makeOption('Blues'),
-                makeOption('PuBuGn'),
+                makeOption('PuBuGn', 'Purple-Blue-Green'),
                 makeOption('Viridis'),
             ),
             makeOptGroup('Diverging',
                 makeOption('Spectral'),
-                makeOption('RdYlGn'),
-                makeOption('RdBu'),
-                makeOption('PiYG'),
-                makeOption('PRGn'),
-                makeOption('RdYlBu'),
-                makeOption('BrBG'),
-                makeOption('RdGy'),
-                makeOption('PuOr'),
+                makeOption('RdYlGn', 'Red-Yellow-Green'),
+                makeOption('RdBu', 'Red-Blue'),
+                makeOption('PiYG', 'Pink-Yellow-Green'),
+                makeOption('PRGn', 'Purple-Green'),
+                makeOption('RdYlBu', 'Red-Yellow-Blue'),
+                makeOption('BrBG', 'Brown-Blue-Green'),
+                makeOption('RdGy', 'Red-Gray'),
+                makeOption('PuOr', 'Purple-Orange'),
             ),
             makeOptGroup('Qualitative',
-                makeOption('Set2'),
+                makeOption('Set2', 'Set 2'),
                 makeOption('Accent'),
-                makeOption('Set1'),
-                makeOption('Set3'),
-                makeOption('Dark2'),
+                makeOption('Set1', 'Set 1'),
+                makeOption('Set3', 'Set 3'),
+                makeOption('Dark2', 'Dark 2'),
                 makeOption('Paired'),
-                makeOption('Pastel2'),
-                makeOption('Pastel1'),
+                makeOption('Pastel2', 'Pastel 2'),
+                makeOption('Pastel1', 'Pastel 1'),
             )
         ],
         'Viridis'
@@ -480,7 +473,7 @@ function makeSelectBlendMode(options) {
         'copy': 'Copy',
         'screen': 'Screen',
         'soft-light': 'Soft light',
-        'xor': 'Exclusive or',
+        'xor': 'Exclusive-Or',
     };
 
     if (options == null) {
@@ -492,14 +485,10 @@ function makeSelectBlendMode(options) {
         nameFor[a].localeCompare(nameFor[b])
     });
 
-    // The default value is 'blend' if it is an option, or the first
-    // sorted element if it isn't.
-
-    let defaultValue = options.putFirst(el => el == 'source-over').at(0);
     return makeSelect(
         'blendMode', 'Blend mode: ',
-        options.map(c => makeOption(c)),
-        defaultValue
+        options.map(c => makeOption(c, nameFor[c])),
+        options[0]
     );
 }
 
@@ -784,15 +773,8 @@ function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
 }
 
-// like map() in p5.js, this function linearly maps value from the range (a..b)
-// to (c..d).
-//
-// From https://stackoverflow.com/questions/48802987/is-there-a-map-function-in-vanilla-javascript-like-p5-js
+// linearly map value from the range (a..b) to (c..d).
 function mapRange(value, a, b, c, d) {
-
-    // first map value from (a..b) to (0..1)
-    value = (value - a) / (b - a);
-
-    // then map it from (0..1) to (c..d) and return it
-    return c + value * (d - c);
+    value = (value - a) / (b - a); // map from (a..b) to (0..1)
+    return c + value * (d - c);    // map from (0..1) to (c..d)
 }
