@@ -765,7 +765,7 @@ function randomIntUpTo(n) {
 }
 
 function randomIntRange(lowerBound, upperBound) {
-    return lowerBound + Math.floor(random() * (upperBound + 1 - lowerBound));
+    return lowerBound + randomIntUpTo(upperBound + 1 - lowerBound);
 }
 
 // generate a random integer in the range [-n, n].
