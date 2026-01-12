@@ -1,4 +1,35 @@
-[% description = BLOCK %]
-    Note: The random values in this work depend on the canvas size, so even with the same seed, different canvas sizes will generate different images.
-[% END %]
-[% INCLUDE work title="W2022.12.13" %]
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    [% INCLUDE metadata %]
+    <title>W2022.12.13</title>
+    <script src="/js/utils.js"></script>
+    <link href="/deps/nouislider.min.css" rel="stylesheet">
+    <script src="/deps/nouislider.min.js"></script>
+    <script src="/deps/chroma.min.js"></script>
+</head>
+
+<body>
+    [% INCLUDE header %]
+
+    <main>
+        <section id="work-container">
+            <div id="work"><canvas></canvas></div>
+
+            <div id="controls">
+                [% INCLUDE worknav %]
+
+                <form id="controls-form">
+                </form>
+
+                <p>Note: The random values in this work depend on the canvas
+                size, so even with the same seed, different canvas sizes will
+                generate different images.</p>
+            </div>
+        </section>
+        <script src="work.js"></script>
+    </main>
+</body>
+
+</html>

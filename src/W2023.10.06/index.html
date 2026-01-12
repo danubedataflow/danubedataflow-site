@@ -1,1 +1,33 @@
-[% INCLUDE work title="W2023.10.06" %]
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    [% INCLUDE metadata %]
+    <title>W2023.10.06</title>
+    <script src="/js/utils.js"></script>
+    <link href="/deps/nouislider.min.css" rel="stylesheet">
+    <script src="/deps/nouislider.min.js"></script>
+    <script src="/deps/chroma.min.js"></script>
+</head>
+
+<body>
+    [% INCLUDE header %]
+
+    <main>
+        <section id="work-container">
+            <div id="work"><canvas></canvas></div>
+
+            <div id="controls">
+                [% INCLUDE worknav %]
+
+                <form id="controls-form">
+                </form>
+
+                <p>No description.</p>
+            </div>
+        </section>
+        <script src="work.js"></script>
+    </main>
+</body>
+
+</html>

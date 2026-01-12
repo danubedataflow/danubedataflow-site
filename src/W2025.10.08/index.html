@@ -1,4 +1,36 @@
-[% description = BLOCK %]
-    This is an L-system where the symbols, arranged in a row of tiles, correspond to gray levels. Each iteration of the L-system corresponds to a row. The productions specify how each symbol changes from iteration to the next."
-[% END %]
-[% INCLUDE work title="W2025.10.08" %]
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    [% INCLUDE metadata %]
+    <title>W2025.10.08</title>
+    <script src="/js/utils.js"></script>
+    <link href="/deps/nouislider.min.css" rel="stylesheet">
+    <script src="/deps/nouislider.min.js"></script>
+    <script src="/deps/chroma.min.js"></script>
+</head>
+
+<body>
+    [% INCLUDE header %]
+
+    <main>
+        <section id="work-container">
+            <div id="work"><canvas></canvas></div>
+
+            <div id="controls">
+                [% INCLUDE worknav %]
+
+                <form id="controls-form">
+                </form>
+
+                <p>This is an L-system where the symbols, arranged in a row of
+                tiles, correspond to gray levels. Each iteration of the
+                L-system corresponds to a row. The productions specify how each
+                symbol changes from iteration to the next."</p>
+            </div>
+        </section>
+        <script src="work.js"></script>
+    </main>
+</body>
+
+</html>
