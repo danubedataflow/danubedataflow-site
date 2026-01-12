@@ -1,6 +1,3 @@
-[%
-    THROW undefined 'lib/source: file' UNLESS file.defined;
-%]
 <!DOCTYPE html>
 <html lang="en">
 
