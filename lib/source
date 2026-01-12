@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-[% WRAPPER head %]
+<head>
+    [% INCLUDE metadata %]
+    <title>[% title %]</title>
     <link href="/deps/highlight.min.css" rel="stylesheet">
     <script src="/deps/highlight.min.js"></script>
-[% END %]
+</head>
 
-[% WRAPPER body %]
-    <section class="narrow">
-        <p><a href="/source-js-utils.html">utils.js</a></p>
-        <pre><code class="language-javascript" id="source">
-        </code></pre>
-    </section>
-[% END %]
+<body>
+    <header>
+        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+        [% INCLUDE nav %]
+    </header>
+
+    <main>
+        <section class="narrow">
+            <p><a href="/source-js-utils.html">utils.js</a></p>
+            <pre><code class="language-javascript" id="source">
+            </code></pre>
+        </section>
+    </main>
+</body>
 
 <script>
 

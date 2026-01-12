@@ -1,6 +1,5 @@
-<head>
+    <!-- BEGIN metadata -->
     <meta charset="utf-8">
-    <title>[% title %]</title>
     <meta name="keywords" content="Generative design, algorithmic art, creative programming, digital art, creative coding">
     <meta name="description" content="Generative design from the Danube metropolis. Minimal algorithmic art.">
     <meta name="author" content="Marcel Gruenauer">
@@ -9,9 +8,4 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link href="/css/style.css" rel="stylesheet">
-    [% UNLESS index %]
-    <script src="/js/utils.js"></script>
-    <script src="/deps/perlin.js"></script>
-    [% END %]
-    [% content %]
-</head>
+    <!-- END metadata -->

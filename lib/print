@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-[% WRAPPER head %]
+<head>
+    [% INCLUDE metadata %]
+    <title>[% title %]</title>
+    <script src="/js/utils.js"></script>
+    <script src="/deps/perlin.js"></script>
     <link href="/deps/nouislider.min.css" rel="stylesheet">
     <script src="/deps/nouislider.min.js"></script>
     <script src="/deps/chroma.min.js"></script>
     <script src="/deps/rough.js"></script>
     <script src="/deps/lindenmayer.browser.min.js"></script>
     <script src="/deps/qrcode.min.js"></script>
-[% END %]
+</head>
 
 <main>
     <h1>Danube Dataflow</h1>
@@ -18,7 +22,7 @@
         <div id="tools-container">
             <div id="controls">
                 <p>
-                    <span id="workTitle">[% title %]</span> |
+                    <span id="workTitle"></span> |
                     <span id="canvasSize"></span>
                 </p>
 
@@ -33,4 +37,4 @@
     <script src="work.js"></script>
 </main>
 
-<html>
+</html>

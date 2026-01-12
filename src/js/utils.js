@@ -593,6 +593,11 @@ function setup() {
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
+
+    // Take the work title from the page title so a work desn't have to
+    // set it twice.
+    document.getElementById('workTitle').innerText =
+        document.getElementsByTagName("title")[0].innerText;
     setupControls(); // works need to implement this
 
     if (pageType) {
