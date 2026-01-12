@@ -603,9 +603,14 @@ function setup() {
     setCanvasDimension();
 
     // Take the work title from the page title so a work desn't have to
-    // set it twice.
-    document.getElementById('workTitle').innerText =
-        document.getElementsByTagName("title")[0].innerText;
+    // set it twice. Also use the title to set the link to the GitHub source
+    // code page.
+    let title = document.getElementsByTagName("title")[0].innerText;
+    document.getElementById('workTitle').innerText = title;
+
+    document.getElementById('sourceLink').setAttribute('href',
+        `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${title}/work.js`);
+
     setupControls(); // works need to implement this
 
     if (pageType) {
