@@ -1,9 +1,12 @@
 DEPS = src/deps
 
-.PHONY: tidy deps nginx icons test npm-update live
+.PHONY: blocks tidy deps nginx icons test npm-update live
+
+blocks:
+	./bin/update-blocks
 
 tidy:
-	@find src -name \*.html | xargs html-beautify -m 1 -r -q
+	find src -name \*.html | xargs html-beautify -m 1 -r -q
 
 deps:
 	mkdir -p $(DEPS)

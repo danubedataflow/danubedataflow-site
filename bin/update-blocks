@@ -89,6 +89,7 @@ sub replace_blocks {
 
         # detect END marker
         if (/<!--\s*END\s+(\w+)\s*-->/) {
+            push @output, $replace{$current}, "\n";
             undef $current;
             push @output, $_;
             next;
@@ -96,7 +97,6 @@ sub replace_blocks {
 
         # inside a block: replace content
         if ($current && exists $replace{$current}) {
-            push @output, $replace{$current}, "\n";
             next;
         }
 
