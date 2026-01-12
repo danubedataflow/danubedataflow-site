@@ -1,3 +1,4 @@
+<!-- BEGIN printbody -->
 <h1>Danube Dataflow</h1>
 <section id="work-container">
     <div id="work"><canvas></canvas></div>
@@ -18,3 +19,4 @@
     </div>
 </section>
 <script src="work.js"></script>
+<!-- END printbody -->

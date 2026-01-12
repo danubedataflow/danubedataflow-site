@@ -206,8 +206,16 @@ class SeedControl {
         this.element.value = value;
         randomSeed(value);
 
+        // Support for perlin library, which may have been loaded.
+        // perlin.js assigns noise as a property on the global object (window
+        // in browsers).
+        //
+        // Any time we set a new seed value, we must tell perlin.js about it.
+        //
         // perlin.js's noise.seed takes a float between 0 and 1
-        noise.seed(random());
+        if (window.noise && typeof window.noise.foo === "function") {
+            noise.seed(random());
+        }
     }
 
     // After resizing the canvas or changing sliders, we want to draw

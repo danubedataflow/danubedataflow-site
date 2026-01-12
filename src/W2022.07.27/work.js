@@ -1,6 +1,7 @@
 'use strict';
 
 function setupControls() {
+
     makeForm(
         makeFieldset('Tiles',
             makeSlider('tileCountX', 'Number of horizontal tiles: {0}', 1, 100, 30),
