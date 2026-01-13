@@ -19,7 +19,6 @@
   "dependencies": {
     "chroma-js": "^2.4.2",
     "jslint": "^0.12.1",
-    "nouislider": "^15.7.1",
-    "roughjs": "^4.6.6"
+    "nouislider": "^15.7.1"
   }
 }

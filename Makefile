@@ -12,8 +12,6 @@ deps:
 	mkdir -p $(DEPS)
 	cp node_modules/chroma-js/chroma.min.js $(DEPS)/
 	cp node_modules/chroma-js/LICENSE $(DEPS)/LICENSE-chroma.js.txt
-	cp node_modules/roughjs/bundled/rough.js $(DEPS)/
-	cp node_modules/roughjs/LICENSE $(DEPS)/LICENSE-rough.js.txt
 	cp node_modules/nouislider/dist/nouislider.min.css $(DEPS)/
 	cp node_modules/nouislider/dist/nouislider.min.js $(DEPS)/
 	cp node_modules/nouislider/LICENSE.md $(DEPS)/LICENSE-nouislider.md
