@@ -1,7 +1,5 @@
 'use strict';
 
-// Helper functions are from https://github.com/danubedataflow/danubedataflow-site/blob/master/src/js/utils.js
-
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 100, 40),
