@@ -6,6 +6,9 @@ To build the website, install the dependencies:
 
 Then:
 
-    make site
+    make deps
 
-This installs the website in `~/www/danubedataflow`.
+This copies the dependencies to `src/`.
+
+The `src/` directory already contains the complete site; there is no more build
+step.
