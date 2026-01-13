@@ -1,16 +1,16 @@
 #!/usr/bin/env zsh
 
-ICON="resources/icons/apple-touch-icon.png"
-BUILD="build/icons"
+ICON="src/apple-touch-icon.png"
+BUILD="build"
 
 rm -rf ./$BUILD
-mkdir -p ./$BUILD
+mkdir ./$BUILD
 
 for i in 16 32 64 128 192
 do
-    convert -resize x$i -gravity center -crop ${i}x${i}+0+0 -flatten \
-        -colors 256 $ICON ./$BUILD/output-${i}x${i}.ico
+    magick $ICON -resize $ix$i ./$BUILD/output-${i}x${i}.ico
 done
 
-convert ./$BUILD/output-*.ico src/favicon.ico
-cp $ICON src/
+magick ./$BUILD/output-*.ico src/favicon.ico
+
+rm -rf ./$BUILD
