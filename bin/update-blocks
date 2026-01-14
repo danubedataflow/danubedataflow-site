@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Path::Tiny;
+use utf8;
 my %replace;
 
 # The 'header' block
@@ -19,9 +20,9 @@ $replace{header} = <<~BLOCK;
 # The 'metadata' block
 $replace{metadata} = <<~BLOCK;
     <meta charset="utf-8">
-    <meta name="keywords" content="Generative design, algorithmic art, creative programming, digital art, creative coding">
-    <meta name="description" content="Generative design from the Danube metropolis. Minimal algorithmic art.">
-    <meta name="author" content="Marcel Gruenauer">
+    <meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
+    <meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
+    <meta name="author" content="Marcel Grünauer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
