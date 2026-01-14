@@ -15,17 +15,16 @@ deps:
 	cp node_modules/nouislider/dist/nouislider.min.css $(DEPS)/
 	cp node_modules/nouislider/dist/nouislider.min.js $(DEPS)/
 	cp node_modules/nouislider/LICENSE.md $(DEPS)/LICENSE-nouislider.md
-	cp more-deps/qrcode.js/qrcode.min.js $(DEPS)/
-	cp more-deps/qrcode.js/LICENSE $(DEPS)/LICENSE-qrcode.js.txt
-	cp more-deps/lindenmayer/lindenmayer.browser.min.js $(DEPS)/
-	cp more-deps/lindenmayer/LICENSE $(DEPS)/LICENSE-lindenmayer.txt
 
 nginx:
 	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
 	nginx -s reload
 
 live:
-	rsync -av --delete src/ hetzner:www/danubedataflow.com/
+	rsync -av --prune-empty-dirs --delete \
+		--exclude={'.DS_Store','*.swp','*.un~'} \
+		--delete-excluded \
+		src/ hetzner:www/danubedataflow.com/
 	ssh hetzner 'sudo bin/fix-permissions'
 
 icons:
