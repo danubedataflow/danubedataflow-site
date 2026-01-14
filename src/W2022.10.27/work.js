@@ -11,10 +11,10 @@ function setupControls() {
 }
 
 function drawWork() {
-    let x1 = Math.round(randomIntUpTo(width / 2));
-    let y1 = Math.round(randomIntUpTo(height / 2));
-    let x2 = Math.round(randomIntUpTo(width / 2)) + width / 2;
-    let y2 = Math.round(randomIntUpTo(height / 2)) + height / 2;
+    let x1 = randomIntUpTo(width / 2);
+    let y1 = randomIntUpTo(height / 2);
+    let x2 = randomIntUpTo(width / 2) + width / 2;
+    let y2 = randomIntUpTo(height / 2) + height / 2;
     let x1d = rnd(6);
     let y1d = rnd(5);
     let x2d = rnd(2);
