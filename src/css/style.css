@@ -41,6 +41,12 @@ header>h1.site-title {
     margin-bottom: 12px;
 }
 
+header>h2.site-byline {
+    font-size: 130%;
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
 main {
     margin-left: 0;
     margin-right: 0;
@@ -48,8 +54,8 @@ main {
     padding: 0;
 }
 
-.subheading a,
-.subheading a:visited {
+.nav a,
+.nav a:visited {
     color: var(--maincolor);
     font-weight: bold;
     text-decoration: none;
