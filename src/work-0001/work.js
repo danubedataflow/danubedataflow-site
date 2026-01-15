@@ -25,18 +25,14 @@ function drawWork() {
     ctx.strokeStyle = 'white';
 
     let tileDim = Math.floor(width / ctrl.numTiles);
-
-    for (let tileX = 0; tileX < ctrl.numTiles; tileX++) {
-        for (let tileY = 0; tileY < ctrl.numTiles; tileY++) {
+    for (let x = 0; x < ctrl.numTiles; x++) {
+        for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
-
-            let centerX = (tileX + 0.5) * tileDim;
-            let centerY = (tileY + 0.5) * tileDim;
-            ctx.translate(centerX, centerY);
+            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
 
             let n = noise.simplex2(
-                ctrl.noiseOffsetX + tileX / ctrl.noiseDivisor,
-                ctrl.noiseOffsetY + tileY / ctrl.noiseDivisor
+                ctrl.noiseOffsetX + x / ctrl.noiseDivisor,
+                ctrl.noiseOffsetY + y / ctrl.noiseDivisor
             );
 
             let diameter = Math.floor(n * ctrl.polygonScaleFactor * tileDim);

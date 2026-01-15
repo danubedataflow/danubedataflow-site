@@ -18,12 +18,11 @@ function drawWork() {
 
     let colorScale = chroma.scale(ctrl.colorMap);
 
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
+    let tileDim = Math.floor(width / ctrl.numTiles);
+    for (let x = 0; x < ctrl.numTiles; x++) {
+        for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
-            // `+ 0.5` to move to the tile's center
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
 
             let radius = tileDim * 0.4;
             let numLines = randomIntRange(...ctrl.numLinesRange);
