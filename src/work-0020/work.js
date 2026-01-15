@@ -22,49 +22,48 @@ function drawWork() {
 
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    let tileWidth = width / ctrl.numTiles;
-    let tileHeight = height / ctrl.numTiles;
+    let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
             // move to the tile center so rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileWidth, (y - 0.5) * tileHeight);
+            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? palette.randomElement() : 'white';
-            ctx.fillRect(-tileWidth / 2, -tileHeight / 2, tileWidth, tileHeight);
+            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
 
             // draw triangles
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
             ctx.beginPath();
-            ctx.moveTo(0, -tileHeight / 2);
+            ctx.moveTo(0, -tileDim / 2);
             ctx.lineTo(0, 0);
-            ctx.lineTo(-tileWidth / 2, 0);
+            ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
             ctx.beginPath();
-            ctx.moveTo(0, -tileHeight / 2);
+            ctx.moveTo(0, -tileDim / 2);
             ctx.lineTo(0, 0);
-            ctx.lineTo(tileWidth / 2, 0);
+            ctx.lineTo(tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
             ctx.beginPath();
-            ctx.moveTo(0, tileHeight / 2);
+            ctx.moveTo(0, tileDim / 2);
             ctx.lineTo(0, 0);
-            ctx.lineTo(-tileWidth / 2, 0);
+            ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? palette.randomElement() : 'white';
             ctx.beginPath();
-            ctx.moveTo(0, tileHeight / 2);
+            ctx.moveTo(0, tileDim / 2);
             ctx.lineTo(0, 0);
-            ctx.lineTo(tileWidth / 2, 0);
+            ctx.lineTo(tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
 
