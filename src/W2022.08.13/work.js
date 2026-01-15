@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.08.13';
+
 function setupControls() {
     makeForm(
         makeFieldset('Colors',

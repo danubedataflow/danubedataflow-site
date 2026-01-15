@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.10.27';
+
 function setupControls() {
     makeForm(
         makeSlider('numLines', 'Number of lines: {0}', 1, 1500, 500),

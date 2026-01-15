@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.11.19';
+
 function setupControls() {
     makeForm(
         makeSlider('numHorizontalLines', 'Number of horizonal lines: {0}', 1, 10, 5),

@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2023.09.13';
+
 function setupControls() {
     makeForm(
         makeSlider('numRects', 'Number of rectangles: {0}', 10, 100, 50),

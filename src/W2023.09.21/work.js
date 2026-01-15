@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2023.09.21';
+
 function setupControls() {
     makeForm(
         makeFieldset('Repetitions',

@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.10.06';
+
 /* based on the Mathologer video
  * "Times Tables, Mandelbrot and the Heart of Mathematics"
  * https://www.youtube.com/watch?v=qhbuKbxJsk8

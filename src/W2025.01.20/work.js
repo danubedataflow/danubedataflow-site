@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2025.01.20';
+
 let palette;
 
 let shapes = [

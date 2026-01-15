@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.07.27';
+
 function setupControls() {
 
     makeForm(

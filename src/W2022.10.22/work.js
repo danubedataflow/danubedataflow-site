@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.10.22';
+
 /* Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
  * See https://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
  * Also see https://openprocessing.org/work/1626688 ("0576_2" by kusakari)

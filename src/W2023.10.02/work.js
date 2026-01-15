@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2023.10.02';
+
 /* Inspired by Vera Molnár, Journal Intimes 6 page 151-154.
  *
  * Each tile is a shape that has numPointsX * numPointsY points. All points

@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.11.30';
+
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 2, 20, 10),

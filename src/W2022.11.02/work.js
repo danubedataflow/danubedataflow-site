@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.11.02';
+
 function setupControls() {
     makeForm(
         makeSlider('horizontalSineFactor', 'Horizontal sine factor: {0}', 1, 5, 2.5, 0.1),

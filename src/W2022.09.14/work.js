@@ -1,5 +1,7 @@
 'use strict';
 
+let createdDate = '2022.09.14';
+
 let palette;
 
 function setupControls() {
