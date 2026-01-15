@@ -17,4 +17,4 @@ step.
 
 The site icons are from
 
-    http://danubedataflow.localhost/W2022.12.07/?numTiles=8&diagonalOrientationChance=39&colorStrategy=random&seed=geabw0jo
+    http://danubedataflow.localhost/work-0018/?numTiles=8&diagonalOrientationChance=39&colorStrategy=random&seed=geabw0jo
