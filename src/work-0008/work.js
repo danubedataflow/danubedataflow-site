@@ -6,19 +6,17 @@ let createdDate = '2022.10.01';
 
 const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
 
-let palette;
-
 function setupControls() {
     makeForm(
-        makeSlider('numSides', 'Number of sides: {0}', 3, 10, 5),
-        makeSlider('diameter', 'Diameter: {0}', 1, 100, 30),
-        makeSlider('rotationStep', 'Rotation step: {0}', 0, 360, 180),
-        makeSlider('maxDepth', 'Maximum depth: {0}', 0, 4, 1),
+        makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
+        makeSlider('numSidesRange', 'Number of sides: {0} to {1}', 3, 7, [4, 6]),
+        makeSlider('diameterRange', 'Diameter: {0} to {1}', 1, 100, [30, 50]),
+        makeSlider('rotationStepRange', 'Rotation step: {0} to {1}', 0, 360, [150, 210]),
+        makeSlider('maxDepthRange', 'Maximum depth: {0} to {1}', 1, 2, [1, 2]),
     );
 }
 
 function drawWork() {
-    palette = colors.shuffle().slice(0, ctrl.maxDepth + 1);
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
 
@@ -27,12 +25,21 @@ function drawWork() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
-    ctx.save();
-    ctx.translate(width / 2, height / 2);
+    let tileDim = Math.floor(width / ctrl.numTiles);
+    for (let x = 0; x < ctrl.numTiles; x++) {
+        for (let y = 0; y < ctrl.numTiles; y++) {
+            ctx.save();
+            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
 
-    drawPolygons(0, 0, ctrl.numSides, ctrl.diameter * width / 100,
-        0, ctrl.rotationStep, ctrl.maxDepth);
-    ctx.restore();
+            let numSides = randomIntRange(...ctrl.numSidesRange);
+            let diameter = randomIntRange(...ctrl.diameterRange);
+            let rotationStep = randomIntRange(...ctrl.rotationStepRange);
+            let maxDepth = randomIntRange(...ctrl.maxDepthRange);
+            drawPolygons(0, 0, numSides, diameter * tileDim / 100,
+                0, rotationStep, maxDepth);
+            ctx.restore();
+        }
+    }
 }
 
 function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
@@ -41,14 +48,9 @@ function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 
         ctx.save();
         ctx.translate(...p);
 
-        let c = chroma(palette[depth]).rgb();
-        let alpha = (25 - 5 * depth) / 100;
-        ctx.fillStyle = colorRGBA(...c, alpha);
-
         ctx.beginPath();
         points.forEach(p => ctx.lineTo(...p));
         ctx.closePath();
-        ctx.fill();
         ctx.stroke();
 
         if (depth < maxDepth) {
