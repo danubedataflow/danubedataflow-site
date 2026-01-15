@@ -19,12 +19,12 @@ function drawWork() {
     let colorScale = chroma.scale(ctrl.colorMap);
 
     let tileDim = Math.floor(width / ctrl.numTiles);
+    let radius = tileDim * 0.4;
     for (let x = 0; x < ctrl.numTiles; x++) {
         for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
             ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
 
-            let radius = tileDim * 0.4;
             let numLines = randomIntRange(...ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
                 ctx.strokeStyle = colorScale(random()).toString();

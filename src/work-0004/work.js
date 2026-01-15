@@ -4,11 +4,12 @@ let createdDate = '2022.08.25';
 
 function setupControls() {
     makeForm(
+        makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
         makeFieldset('Colors',
             makeSelectColorMap(),
             makeSelectBlendMode(['lighter', 'source-over', 'difference', 'exclusion', 'hard-light', 'lighten', 'screen']),
         ),
-        makeSlider('numLines', 'Number of lines: {0}', 1, 1500, 500),
+        makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
     );
 }
 
@@ -20,22 +21,31 @@ function drawWork() {
 
     ctx.globalCompositeOperation = ctrl.blendMode;
 
-    let radius = width * 0.4;
     let angle = random() * 2 * Math.PI;
-    let p = [Math.sin(angle) * radius, Math.cos(angle) * radius];
     let colorScale = chroma.scale(ctrl.colorMap);
-    ctx.save();
-    ctx.translate(width / 2, height / 2);
 
-    for (let i = 1; i <= ctrl.numLines; i++) {
-        ctx.strokeStyle = colorScale(random()).toString();
-        let angle2 = random() * 2 * Math.PI;
-        let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
-        ctx.beginPath();
-        ctx.moveTo(...p);
-        ctx.lineTo(...p2);
-        ctx.stroke();
-        p = p2;
+    let tileDim = Math.floor(width / ctrl.numTiles);
+    let radius = tileDim * 0.4;
+    let p = [Math.sin(angle) * radius, Math.cos(angle) * radius];
+    for (let x = 0; x < ctrl.numTiles; x++) {
+        for (let y = 0; y < ctrl.numTiles; y++) {
+            ctx.save();
+            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+
+            let numLines = randomIntRange(...ctrl.numLinesRange);
+            for (let i = 1; i <= numLines; i++) {
+                ctx.strokeStyle = colorScale(random()).toString();
+                let angle2 = random() * 2 * Math.PI;
+                let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
+                ctx.beginPath();
+                ctx.moveTo(...p);
+                ctx.lineTo(...p2);
+                ctx.stroke();
+                p = p2;
+            }
+
+            ctx.restore();
+        }
     }
-    ctx.restore();
+
 }
