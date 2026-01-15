@@ -607,6 +607,7 @@ function setup() {
     // code page.
     let title = document.getElementsByTagName("title")[0].innerText;
     document.getElementById('workTitle').innerText = title;
+    document.getElementById('createdDate').innerText = createdDate;
 
     // <a id="sourceLink"> exists in index.html but not print.html
     let sourceLink = document.getElementById('sourceLink');
