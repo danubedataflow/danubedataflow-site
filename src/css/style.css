@@ -61,6 +61,11 @@ main {
     text-decoration: none;
 }
 
+.nav-emoji {
+    font-size: 150%;
+    margin-right: 5px;
+}
+
 a,
 a:visited {
     color: var(--maincolor);
