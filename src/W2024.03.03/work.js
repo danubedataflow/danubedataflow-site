@@ -2,8 +2,7 @@
 
 function setupControls() {
     makeForm(
-        makeSlider('numTilesX', 'Number of horizontal tiles: {0}', 10, 70, 50),
-        makeSlider('numTilesY', 'Number of vertical tiles: {0}', 10, 70, 50),
+        makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
         makeSlider('angleStep', 'Angle step: {0}', 2, 32, 16),
         makeSlider('lineScale', 'Line scale: {0}', 0.5, 1.5, 1, 0.1),
         makeFieldset('Curves',
@@ -20,10 +19,10 @@ function drawWork() {
     ctx.lineWidth = 1;
 
     let path = randomPath(ctrl.numCurves);
-    const lineLength = ctrl.lineScale * width / ctrl.numTilesX;
+    const lineLength = ctrl.lineScale * width / ctrl.numTiles;
 
     let d = window.devicePixelRatio; // no idea why this is necessary
-    gridCenters(ctrl.numTilesX, ctrl.numTilesY)
+    gridCenters(ctrl.numTiles)
         .filter(p => !ctx.isPointInPath(path, p[0] * d, p[1] * d))
         .forEach(p => {
             // Draw a line at a random angle around the center of p.
@@ -40,11 +39,11 @@ function drawWork() {
         });
 }
 
-function gridCenters(numX, numY) {
+function gridCenters(num) {
     let p = [];
-    for (let y = 0; y < numY; y++) {
-        for (let x = 0; x < numX; x++) {
-            p.push([(x + 0.5) * width / numX, (y + 0.5) * height / numY]);
+    for (let y = 0; y < num; y++) {
+        for (let x = 0; x < num; x++) {
+            p.push([(x + 0.5) * width / num, (y + 0.5) * height / num]);
         }
     }
     return p;

@@ -4,8 +4,7 @@ function setupControls() {
 
     makeForm(
         makeFieldset('Tiles',
-            makeSlider('tileCountX', 'Number of horizontal tiles: {0}', 1, 100, 30),
-            makeSlider('tileCountY', 'Number of vertical tiles: {0}', 1, 100, 15),
+            makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 50, 25),
             makeSlider('tileSizeMultiplier', 'Tile size multiplier: {0}', 1, 10, 3, 0.1),
         ),
         makeFieldset('Noise',
@@ -13,7 +12,6 @@ function setupControls() {
             makeSlider('noiseOffsetY', 'Vertical noise offset: {0}', 1, 100, 15),
             makeSlider('noiseDivisor', 'Noise divisor: {0}', 1, 30, 9),
         ),
-        makeSlider('margin', 'Margin: {0}', 0, 200, 15, 5),
     );
 }
 
@@ -23,15 +21,15 @@ function drawWork() {
 
     ctx.strokeStyle = 'white';
 
-    let tileWidth = Math.floor((width - 2 * ctrl.margin) / ctrl.tileCountX);
-    let tileHeight = Math.floor((height - 2 * ctrl.margin) / ctrl.tileCountY);
+    let tileWidth = Math.floor(width / ctrl.numTiles);
+    let tileHeight = Math.floor(height / ctrl.numTiles);
 
-    for (let tileX = 0; tileX < ctrl.tileCountX; tileX++) {
-        for (let tileY = 0; tileY < ctrl.tileCountY; tileY++) {
+    for (let tileX = 0; tileX < ctrl.numTiles; tileX++) {
+        for (let tileY = 0; tileY < ctrl.numTiles; tileY++) {
             ctx.save();
 
-            let centerX = ctrl.margin + (tileX + 0.5) * tileWidth;
-            let centerY = ctrl.margin + (tileY + 0.5) * tileHeight;
+            let centerX = (tileX + 0.5) * tileWidth;
+            let centerY = (tileY + 0.5) * tileHeight;
             ctx.translate(centerX, centerY);
 
             let n = noise.simplex2(

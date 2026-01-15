@@ -4,14 +4,13 @@ let palette;
 
 function setupControls() {
     makeForm(
+        makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 10),
         makeFieldset('Colors',
             makeSelectColorMap(),
             makeSlider('numColors', 'Number of colors: {0}', 2, 32, 16),
         ),
         makeSlider('coloredTileChance', 'Probability of a colored tile: {0}%', 0, 100, 50),
         makeSlider('coloredDiamondChance', 'Probability of a colored rhombus: {0}%', 0, 100, 50),
-        makeSlider('numTilesX', 'Number of horizontal tiles: {0}', 4, 40, 10),
-        makeSlider('numTilesY', 'Number of vertical tiles: {0}', 4, 40, 10),
     );
 }
 
@@ -21,10 +20,10 @@ function drawWork() {
 
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
-    let tileWidth = width / ctrl.numTilesX;
-    let tileHeight = height / ctrl.numTilesY;
-    for (let y = 1; y <= ctrl.numTilesY; y++) {
-        for (let x = 1; x <= ctrl.numTilesX; x++) {
+    let tileWidth = width / ctrl.numTiles;
+    let tileHeight = height / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
             // move to the tile center so rotate() and scale() happen there

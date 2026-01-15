@@ -2,8 +2,7 @@
 
 function setupControls() {
     makeForm(
-        makeSlider('numTilesX', 'Number of horizontal tiles: {0}', 10, 70, 50),
-        makeSlider('numTilesY', 'Number of vertical tiles: {0}', 10, 70, 50),
+        makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
         makeSlider('scale', 'Scale: {0}', 1, 2, 1.5, 0.1),
         makeSlider('angleStep', 'Angle step: {0}', 2, 32, 16),
         makeSlider('maxOffsetPerAxis', 'Maximum offset per axis: {0}', 0, 10, 2),
@@ -25,10 +24,10 @@ function drawWork() {
     ctx.scale(0.97, 0.97);
     ctx.translate(-width / 2, -height / 2);
 
-    let tileWidth = width / ctrl.numTilesX;
-    let tileHeight = height / ctrl.numTilesY;
-    for (let y = 1; y <= ctrl.numTilesY; y++) {
-        for (let x = 1; x <= ctrl.numTilesX; x++) {
+    let tileWidth = width / ctrl.numTiles;
+    let tileHeight = height / ctrl.numTiles;
+    for (let y = 1; y <= ctrl.numTiles; y++) {
+        for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
 
             // move to the tile center so rotate() and scale() happen there
