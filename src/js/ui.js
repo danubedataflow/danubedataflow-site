@@ -46,17 +46,37 @@ function setCanvasDimension() {
 
 function saveCanvasAsPNG() {
     canvas.toBlob(blob => {
-        var element = document.createElement('a');
-        element.setAttribute('href', URL.createObjectURL(blob));
-        let filename = decodeURI(location.href.split('/').slice(-3, -1).join('--')) + '.png';
-        element.setAttribute('download', filename);
+        var zip = new JSZip();
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+        let info = {
+            work: {
+                title: work.title,
+                createdDate: work.createdDate,
+                description: work.description
+            },
+            parameters: ctrl,
+            canvas: {
+                width: width * window.devicePixelRatio,
+                height: height * window.devicePixelRatio
+            },
+            timestamp: Date.now(),
+            url: getCurrentURL({
+                timestamp: 1
+            }),
+        };
 
-        element.click();
+        let zipFileName = `${info.work.title} at ${info.timestamp}.zip`;
 
-        document.body.removeChild(element);
+        zip.file('canvas.png', blob, {
+            base64: true
+        });
+        zip.file('info.json', JSON.stringify(info));
+
+        zip.generateAsync({
+            type: 'blob'
+        }).then(function(content) {
+            saveAs(content, zipFileName)
+        });
     });
 }
 
@@ -569,7 +589,7 @@ function copyLink() {
             timestamp: 1
         }));
     } else {
-        alert("Eine sichere Verbindung ist nötig, um ins Clipboard schreiben zu können.");
+        alert("Need a secure connection to be able to write to the clipboard.");
     }
 }
 
@@ -604,6 +624,7 @@ function setup() {
     // set it twice. Also use the title to set the link to the GitHub source
     // code page.
     let title = document.getElementsByTagName("title")[0].innerText;
+    work.title = title;
     document.getElementById('workTitle').innerText = title;
     document.getElementById('createdDate').innerText = work.createdDate;
 

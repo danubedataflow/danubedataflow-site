@@ -13,6 +13,10 @@ deps:
 	cp node_modules/nouislider/dist/nouislider.min.css $(DEPS)/
 	cp node_modules/nouislider/dist/nouislider.min.js $(DEPS)/
 	cp node_modules/nouislider/LICENSE.md $(DEPS)/LICENSE-nouislider.md
+	cp node_modules/jszip/dist/jszip.min.js $(DEPS)/
+	cp node_modules/jszip/LICENSE.markdown $(DEPS)/LICENSE-JSZip.md
+	cp node_modules/file-saver/dist/FileSaver.min.js $(DEPS)/
+	cp node_modules/file-saver/LICENSE.md $(DEPS)/LICENSE-FileSaver.md
 
 nginx:
 	cp etc/nginx-danubedataflow.conf $(shell brew --prefix)/etc/nginx/servers/
