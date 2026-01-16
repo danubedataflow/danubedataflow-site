@@ -43,7 +43,10 @@
             <div id="controls">
                 <!-- BEGIN worknav -->
                 <p>
-                    <span id="workTitle"></span> |
+                    <span id="workTitle"></span>
+                    <a href="javascript:goToNewerWork();"><span class="nav-emoji" title="Go to newer work (left arrow)">&#x2B05;&#xFE0F;</span></a>
+                    <a href="javascript:goToOlderWork();"><span class="nav-emoji" title="Go to older work (right arrow)">&#x27A1;&#xFE0F;</span></a>
+                    |
                     <span id="createdDate"></span> |
                     <span id="canvasSize"></span> |
                     <a href="" id="sourceLink" target="_blank"><span class="nav-emoji" title="Source code"><tt>&lt;/&gt;</tt></span></a>
@@ -60,9 +63,9 @@
                 </form>
 
                 <p id="description">A series of random triangles, each
-                drawn with a random colors from a palette and the
-                selected composite operations. Each triangle shares two
-                points with the previous triangle.</p>
+                    drawn with a random colors from a palette and the
+                    selected composite operations. Each triangle shares two
+                    points with the previous triangle.</p>
 
             </div>
         </section>

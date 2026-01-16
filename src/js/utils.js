@@ -4,6 +4,15 @@ let controls = {},
     ctrl = {},
     canvas, width, height, ctx, pageType;
 
+// Define the order of works, for prev/next navigation:
+// [ 'work-0034', ..., 'work-0002', 'work-0001' ]
+//
+// unshift() so the newest works come first.
+let gallery = [];
+for (let i = 1; i <= 34; i++) {
+    gallery.unshift('work-' + String(i).padStart(4, '0'));
+}
+
 function setCanvasDimension() {
     let headerHeight = 100 * window.devicePixelRatio;
     width = height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
@@ -46,6 +55,34 @@ function saveCanvasAsPNG() {
 
         document.body.removeChild(element);
     });
+}
+
+/* Navigating between works:
+ *
+ * Each work has buttons to go to the next newer or older work. Works
+ * are named and presented in the reverse order they were created. So
+ * the oldest work is 'work-0001'.
+ *
+ * They wrap around, so the newest work's "previous" work is the oldest
+ * work; the oldest work's "next" work is the newest work.
+ *
+ * Get the current work name ('work-1234') from the current URL. Then
+ * look it up in the gallery and move left or right to get the desired
+ * index. Then go to a URL based on that.
+ */
+
+function goToNewerWork() {
+    let workName = window.location.pathname.match(/work-\d+/)[0];
+    let newerIndex = (gallery.findIndex(el => el == workName)
+        - 1 + gallery.length) % gallery.length;
+    window.location.href = `/${gallery[newerIndex]}/`;
+}
+
+function goToOlderWork() {
+    let workName = window.location.pathname.match(/work-\d+/)[0];
+    let olderIndex = (gallery.findIndex(el => el == workName)
+        + 1) % gallery.length;
+    window.location.href = `/${gallery[olderIndex]}/`;
 }
 
 function getPointsForPolygon(sides, diameter, rotation) {
@@ -675,15 +712,24 @@ addEventListener('load', (e) => {
     draw();
 });
 
+/* Only handle keypresses in the main work view. For example, in the
+ * print view, it doesn't make sense, and they even interfere with
+ * "Cmd-P" for printing.
+ */
 addEventListener('keypress', (e) => {
-    /* only handle keypresses in the main work view. For example, in the
-     * print view, it doesn't make sense, and they even interfere with "Cmd-P"
-     * for printing.
-     */
     if (pageType == 'screen') {
         if (e.code == 'KeyS') saveCanvasAsPNG();
         if (e.code == 'KeyR') redrawWithNewSeed();
         if (e.code == 'KeyP') setControlsRandomly();
+    }
+});
+
+// Arrow keys trigger the 'keydown' event, not the 'keypress' event.
+
+addEventListener('keydown', (e) => {
+    if (pageType == 'screen') {
+        if (e.key == 'ArrowLeft') goToNewerWork();
+        if (e.key == 'ArrowRight') goToOlderWork();
     }
 });
 
