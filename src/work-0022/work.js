@@ -1,6 +1,11 @@
 'use strict';
 
-let createdDate = '2023.09.21';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset
+} from '/js/ui.js';
 
 function setupControls() {
     makeForm(
@@ -12,7 +17,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -47,3 +59,9 @@ function drawWork() {
         }
     }
 }
+
+run({
+    createdDate: '2023.09.21',
+    setupControls,
+    drawWork
+});

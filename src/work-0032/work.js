@@ -1,6 +1,20 @@
 'use strict';
 
-let createdDate = '2025.01.20';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeCheckbox,
+    makeSelectColorMap
+} from '/js/ui.js';
+import {
+    randomIntUpTo,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 let palette;
 
@@ -127,7 +141,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
@@ -135,12 +156,14 @@ function drawWork() {
 
     if (ctrl.useLayers) {
         for (let layer = 1; layer <= ctrl.numLayers; layer++) {
-            drawLayer();
+            drawLayer(ctx, ctrl, width);
         }
-    } else { drawLayer(); }
+    } else {
+        drawLayer(ctx, ctrl, width);
+    }
 }
 
-function drawLayer() {
+function drawLayer(ctx, ctrl, width) {
 
     // see Work 0024
     let numColored = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
@@ -157,20 +180,18 @@ function drawLayer() {
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             ctx.scale(0.9, 0.9);
 
-            drawTile({
+            drawTile(
+                ctx,
+                ctrl,
                 tileDim,
                 shouldColorArray
-            })
+            )
             ctx.restore();
         }
     }
 }
 
-function drawTile(args) {
-    const {
-        tileDim,
-        shouldColorArray
-    } = args;
+function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
 
     // each tile consists of 5 x 5 "pixels"
     let pixelDim = tileDim / 5;
@@ -211,3 +232,9 @@ function drawTile(args) {
     }
 
 }
+
+run({
+    createdDate: '2025.01.20',
+    setupControls,
+    drawWork
+});

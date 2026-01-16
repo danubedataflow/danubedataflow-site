@@ -1,6 +1,7 @@
 'use strict';
 
-let createdDate = '2022.11.07';
+import { run, makeForm, makeSlider, makeCheckbox } from '/js/ui.js';
+import { randomIntUpTo } from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -9,11 +10,13 @@ function setupControls() {
         makeSlider('verticalLineChance', 'Probability of a vertical line: {0}%', 0, 100, 30),
         makeSlider('diagonalUpwardsLineChance', 'Probability of a diagonal upwards line: {0}%', 0, 100, 30),
         makeSlider('diagonalDownwardsLineChance', 'Probability of a diagonal downwards line: {0}%', 0, 100, 30),
-        makeCheckbox('hasTileBorder', 'Tile border: ',),
+        makeCheckbox('hasTileBorder', 'Tile border: '),
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const { ctx, width, height, ctrl } = args;
+
     ctx.save();
 
     ctx.fillStyle = 'white';
@@ -68,3 +71,10 @@ function drawWork() {
     }
     ctx.restore();
 }
+
+run({
+    createdDate: '2022.11.07',
+    setupControls, drawWork
+});
+
+

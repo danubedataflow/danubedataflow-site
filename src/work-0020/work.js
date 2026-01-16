@@ -1,6 +1,15 @@
 'use strict';
 
-let createdDate = '2023.04.27';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap
+} from '/js/ui.js';
+import {
+    randomIntUpTo
+} from '/js/math.js';
 
 let palette;
 
@@ -16,7 +25,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
@@ -71,3 +87,9 @@ function drawWork() {
         }
     }
 }
+
+run({
+    createdDate: '2023.04.27',
+    setupControls,
+    drawWork
+});

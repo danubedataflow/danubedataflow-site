@@ -1,6 +1,20 @@
 'use strict';
 
-let createdDate = '2022.12.13';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap,
+    makeSelectBlendMode
+} from '/js/ui.js';
+import {
+    random,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -16,7 +30,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
@@ -32,11 +53,11 @@ function drawWork() {
         let drawType = ['plain', 'diagonal'].randomElement();
         let maxDivisor = randomIntRange(...ctrl.segmentDivisorRange);
         let minDivisor = Math.round(maxDivisor * 1.5);
-        drawGrid(width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange) / 100);
+        drawGrid(ctx, width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange) / 100);
     }
 }
 
-function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
+function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
     let vsegments = [];
     let minS = Math.round(dim / minDivisor),
         maxS = Math.round(dim / maxDivisor);
@@ -95,3 +116,9 @@ function drawGrid(dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         });
     });
 }
+
+run({
+    createdDate: '2022.12.13',
+    setupControls,
+    drawWork
+});

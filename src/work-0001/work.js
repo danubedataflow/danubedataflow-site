@@ -1,9 +1,16 @@
 'use strict';
 
-let createdDate = '2022.07.27';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset
+} from '/js/ui.js';
+import {
+    getPointsForPolygon
+} from '/js/math.js';
 
 function setupControls() {
-
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 50, 25),
         makeFieldset('Polygon',
@@ -18,7 +25,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
 
@@ -47,3 +61,9 @@ function drawWork() {
         }
     }
 }
+
+run({
+    createdDate: '2022.07.27',
+    setupControls,
+    drawWork
+});

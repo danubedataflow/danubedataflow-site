@@ -1,6 +1,17 @@
 'use strict';
 
-let createdDate = '2023.09.13';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntUpTo,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -10,7 +21,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
@@ -28,3 +46,9 @@ function drawWork() {
         ctx.strokeRect(ulX, ulY, w, h);
     }
 }
+
+run({
+    createdDate: '2023.09.13',
+    setupControls,
+    drawWork
+});

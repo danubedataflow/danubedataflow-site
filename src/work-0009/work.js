@@ -1,25 +1,36 @@
 'use strict';
 
-let createdDate = '2022.10.06';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeSelectColorMap
+} from '/js/ui.js';
 
 /* based on the Mathologer video
  * "Times Tables, Mandelbrot and the Heart of Mathematics"
  * https://www.youtube.com/watch?v=qhbuKbxJsk8
+ *
+ * The modulus is the number of points on the circle.
  */
 
 function setupControls() {
     makeForm(
-        makeFieldset('Colors',
-            makeSelectColorMap(),
-            makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
-        ),
-        // the modulus is the number of points on the circle
+        makeSelectColorMap(),
+
         makeSlider('modulus', 'Modulus: {0}', 10, 300, 100),
         makeSlider('timesTable', 'Times table: {0}', 2, 100, 10, 0.2),
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.modulus);
 
     // actually clear the canvas
@@ -27,7 +38,7 @@ function drawWork() {
     ctx.fillStyle = '#cccccc';
     ctx.fillRect(0, 0, width, height);
 
-    ctx.globalCompositeOperation = ctrl.blendMode;
+    ctx.globalCompositeOperation = 'exclusion';
 
     ctx.fillStyle = 'white';
     ctx.lineWidth = 1;
@@ -47,13 +58,19 @@ function drawWork() {
 
         let j = i * ctrl.timesTable;
         ctx.beginPath();
-        ctx.moveTo(Math.sin(angle(i)) * radius, Math.cos(angle(i)) * radius);
-        ctx.lineTo(Math.sin(angle(j)) * radius, Math.cos(angle(j)) * radius);
+        ctx.moveTo(Math.sin(angle(i, ctrl.modulus)) * radius, Math.cos(angle(i, ctrl.modulus)) * radius);
+        ctx.lineTo(Math.sin(angle(j, ctrl.modulus)) * radius, Math.cos(angle(j, ctrl.modulus)) * radius);
         ctx.stroke();
     }
     ctx.restore();
 }
 
-function angle(n) {
-    return n * Math.PI * 2 / ctrl.modulus;
+function angle(n, modulus) {
+    return n * Math.PI * 2 / modulus;
 }
+
+run({
+    createdDate: '2022.10.06',
+    setupControls,
+    drawWork
+});

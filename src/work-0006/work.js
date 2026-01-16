@@ -1,6 +1,21 @@
 'use strict';
 
-let createdDate = '2022.09.14';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap,
+    makeSelectBlendMode
+} from '/js/ui.js';
+import {
+    random,
+    randomIntUpTo,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 let palette;
 
@@ -8,7 +23,7 @@ function setupControls() {
     makeForm(
         makeFieldset('Colors',
             makeSelectColorMap(),
-            makeSelectBlendMode(['source-over', 'difference','hard-light', 'overlay']),
+            makeSelectBlendMode(['source-over', 'difference', 'hard-light', 'overlay']),
             makeSlider('numColors', 'Number of colors: {0}', 1, 32, 16),
             makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [20, 80]),
         ),
@@ -17,7 +32,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
 
     // actually clear the canvas
@@ -45,3 +67,9 @@ function drawWork() {
         ctx.fillRect(randomIntUpTo(width), randomIntUpTo(height), s, s);
     }
 }
+
+run({
+    createdDate: '2022.09.14',
+    setupControls,
+    drawWork
+});

@@ -1,6 +1,18 @@
 'use strict';
 
-let createdDate = '2022.11.19';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset
+} from '/js/ui.js';
+import {
+    randomIntUpTo,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorHSLA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -16,7 +28,7 @@ function setupControls() {
     );
 }
 
-function setRandomFillColor() {
+function setRandomFillColor(ctx, ctrl) {
     ctx.fillStyle = colorHSLA(
         ctrl.colorAngle,
         randomIntRange(...ctrl.saturationRange),
@@ -25,7 +37,14 @@ function setRandomFillColor() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
@@ -34,13 +53,19 @@ function drawWork() {
     for (let i = 0; i <= ctrl.numHorizontalLines; i++) {
         let x1 = randomIntUpTo(width);
         let w = randomIntRange(...ctrl.lineWidthRangeRelative) * width / 100;
-        setRandomFillColor();
+        setRandomFillColor(ctx, ctrl);
         ctx.fillRect(x1, 0, w, height);
     }
     for (let i = 0; i <= ctrl.numVerticalLines; i++) {
         let y1 = randomIntUpTo(width);
         let h = randomIntRange(...ctrl.lineWidthRangeRelative) * height / 100;
-        setRandomFillColor();
+        setRandomFillColor(ctx, ctrl);
         ctx.fillRect(0, y1, width, h);
     }
 }
+
+run({
+    createdDate: '2022.11.19',
+    setupControls,
+    drawWork
+});

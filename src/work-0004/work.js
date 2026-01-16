@@ -1,6 +1,17 @@
 'use strict';
 
-let createdDate = '2022.08.25';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap,
+    makeSelectBlendMode
+} from '/js/ui.js';
+import {
+    random,
+    randomIntRange
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -13,7 +24,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
@@ -49,3 +67,9 @@ function drawWork() {
     }
 
 }
+
+run({
+    createdDate: '2022.08.25',
+    setupControls,
+    drawWork
+});

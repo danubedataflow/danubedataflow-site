@@ -1,6 +1,16 @@
 'use strict';
 
-let createdDate = '2022.11.02';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -11,7 +21,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
 
@@ -29,11 +46,17 @@ function drawWork() {
         let x = Math.sin(rad * ctrl.horizontalSineFactor) * (width / 3);
         let y = Math.sin(rad) * (height / 3);
 
-        // Draw random squares around each point, drawn at 10% alpha, produces
-        // a fuzzy shape.
+        // Draw random squares around each point at 10% alpha, produces a fuzzy
+        // shape.
 
         let dim = randomIntRange(...ctrl.squareSizeRange);
         ctx.strokeRect(x, y, dim, dim);
     }
     ctx.restore();
 }
+
+run({
+    createdDate: '2022.11.02',
+    setupControls,
+    drawWork
+});

@@ -1,6 +1,17 @@
 'use strict';
 
-let createdDate = '2022.09.08';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap,
+    makeSelectBlendMode
+} from '/js/ui.js';
+import {
+    random,
+    randomIntUpTo
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -13,7 +24,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'white';
@@ -64,3 +82,9 @@ function iterateSquareSpiral(max, callback) {
         callback(x, y, k);
     }
 }
+
+run({
+    createdDate: '2022.09.08',
+    setupControls,
+    drawWork
+});

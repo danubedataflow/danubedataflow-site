@@ -1,6 +1,14 @@
 'use strict';
 
-let createdDate = '2022.10.01';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntRange,
+    getPointsForPolygon
+} from '/js/math.js';
 
 // polygons at points of polygons at points of polygons etc.
 
@@ -16,7 +24,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
 
@@ -35,14 +50,14 @@ function drawWork() {
             let diameter = randomIntRange(...ctrl.diameterRange);
             let rotationStep = randomIntRange(...ctrl.rotationStepRange);
             let maxDepth = randomIntRange(...ctrl.maxDepthRange);
-            drawPolygons(0, 0, numSides, diameter * tileDim / 100,
+            drawPolygons(ctx, 0, 0, numSides, diameter * tileDim / 100,
                 0, rotationStep, maxDepth);
             ctx.restore();
         }
     }
 }
 
-function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
+function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
     let points = getPointsForPolygon(sides, diameter, rotation);
     points.forEach(p => {
         ctx.save();
@@ -54,10 +69,16 @@ function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 
         ctx.stroke();
 
         if (depth < maxDepth) {
-            drawPolygons(p.x, p.y, sides, diameter,
+            drawPolygons(ctx, p.x, p.y, sides, diameter,
                 rotation + rotationStep / sides, rotationStep, maxDepth, depth + 1);
         }
 
         ctx.restore();
     });
 }
+
+run({
+    createdDate: '2022.10.01',
+    setupControls,
+    drawWork
+});

@@ -1,6 +1,18 @@
 'use strict';
 
-let createdDate = '2023.10.05';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    random,
+    randomIntUpTo,
+    randomIntRange
+} from '/js/math.js';
+import {
+    colorHSL
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -10,7 +22,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     // random color, saturation and brightness
     ctx.fillStyle = colorHSL(randomIntRange(0, 350), randomIntRange(50, 100), randomIntRange(50, 100));
     ctx.fillRect(0, 0, width, height);
@@ -63,3 +82,9 @@ function drawWork() {
 function randomFloatRange(lowerBound, upperBound) {
     return lowerBound + random() * (upperBound + 1 - lowerBound);
 }
+
+run({
+    createdDate: '2023.10.05',
+    setupControls,
+    drawWork
+});

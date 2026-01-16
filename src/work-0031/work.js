@@ -1,6 +1,14 @@
 'use strict';
 
-let createdDate = '2025.01.18';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeCheckbox
+} from '/js/ui.js';
+import {
+    randomIntUpTo
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -11,7 +19,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -43,3 +58,9 @@ function drawWork() {
         }
     }
 }
+
+run({
+    createdDate: '2025.01.18',
+    setupControls,
+    drawWork
+});

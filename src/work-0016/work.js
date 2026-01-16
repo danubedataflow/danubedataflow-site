@@ -1,6 +1,13 @@
 'use strict';
 
-let createdDate = '2022.11.25';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntRange
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -9,7 +16,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = '#777777';
     ctx.fillRect(0, 0, width, height);
 
@@ -26,3 +40,9 @@ function drawWork() {
         ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }
+
+run({
+    createdDate: '2022.11.25',
+    setupControls,
+    drawWork
+});

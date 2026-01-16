@@ -1,6 +1,16 @@
 'use strict';
 
-let createdDate = '2025.10.08';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    random
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -11,8 +21,15 @@ function setupControls() {
     );
 }
 
-function drawWork() {
-    let lsystem = makeLsystem();
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
+    let lsystem = makeLsystem(ctrl);
 
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
@@ -68,7 +85,7 @@ function drawWork() {
  *    lsystem.setProduction('D', () => (random() < middleChangeChance) ? 'C' : 'E')
  *    lsystem.setProduction('E', () => (random() < borderChangeChance) ? 'D' : 'E')
  */
-function makeLsystem() {
+function makeLsystem(ctrl) {
     let numSymbols = ctrl.numSymbols;
     let borderChangeChance = ctrl.borderChangeChance / 100;;
     let middleChangeChance = ctrl.middleChangeChance / 100;
@@ -103,3 +120,9 @@ function makeAxiom(symbolsForAxiom, length) {
     }
     return result;
 }
+
+run({
+    createdDate: '2025.10.08',
+    setupControls,
+    drawWork
+});

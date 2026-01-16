@@ -1,6 +1,16 @@
 'use strict';
 
-let createdDate = '2022.12.07';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeSelect,
+    makeOption
+} from '/js/ui.js';
+import {
+    random,
+    randomIntUpTo
+} from '/js/math.js';
 
 let palette, c1, c2;
 
@@ -15,7 +25,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     palette = ['white', '#777777', 'black'];
 
     let tileDim = width / ctrl.numTiles;
@@ -24,7 +41,7 @@ function drawWork() {
             ctx.save();
             ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
 
-            chooseColors();
+            chooseColors(ctrl.colorStrategy);
             if (randomIntUpTo(100) < ctrl.diagonalOrientationChance) {
                 // upper left to lower right
                 ctx.fillStyle = c1;
@@ -69,8 +86,8 @@ function drawWork() {
     }
 }
 
-function chooseColors() {
-    if (ctrl.colorStrategy === 'random') {
+function chooseColors(colorStrategy) {
+    if (colorStrategy === 'random') {
         // choose two different random colors
 
         c1 = palette.randomElement();
@@ -78,13 +95,19 @@ function chooseColors() {
             c2 = palette.randomElement();
         } while (c1 == c2);
 
-    } else if (ctrl.colorStrategy === 'adjacent') {
+    } else if (colorStrategy === 'adjacent') {
         c1 = c2; // reuse previous color
         if (c1 === undefined) c1 = random(palette);
         do {
             c2 = palette.randomElement();
         } while (c1 == c2);
     } else {
-        console.log('invalid color strategy ' + ctrl.colorStrategy);
+        console.log('invalid color strategy ' + colorStrategy);
     }
 }
+
+run({
+    createdDate: '2022.12.07',
+    setupControls,
+    drawWork
+});

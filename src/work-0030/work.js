@@ -1,6 +1,15 @@
 'use strict';
 
-let createdDate = '2024.03.03';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset
+} from '/js/ui.js';
+import {
+    randomIntUpTo,
+    randomIntPlusMinus
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -14,17 +23,24 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
 
-    let path = randomPath(ctrl.numCurves);
+    let path = randomPath(ctrl.numCurves, ctrl.curveScale, width, height);
     const lineLength = ctrl.lineScale * width / ctrl.numTiles;
 
     let d = window.devicePixelRatio; // no idea why this is necessary
-    gridCenters(ctrl.numTiles)
+    gridCenters(ctrl.numTiles, width, height)
         .filter(p => !ctx.isPointInPath(path, p[0] * d, p[1] * d))
         .forEach(p => {
             // Draw a line at a random angle around the center of p.
@@ -41,7 +57,7 @@ function drawWork() {
         });
 }
 
-function gridCenters(num) {
+function gridCenters(num, width, height) {
     let p = [];
     for (let y = 0; y < num; y++) {
         for (let x = 0; x < num; x++) {
@@ -51,7 +67,7 @@ function gridCenters(num) {
     return p;
 }
 
-function randomPath(n) {
+function randomPath(n, curveScale, width, height) {
 
     // this offset applies to the whole path
     let pathOffsetX = randomIntPlusMinus(width / 2);
@@ -59,8 +75,8 @@ function randomPath(n) {
 
     let randomPoint = () => {
         return [
-            randomIntUpTo(width * ctrl.curveScale) + pathOffsetX,
-            randomIntUpTo(height * ctrl.curveScale) + pathOffsetY
+            randomIntUpTo(width * curveScale) + pathOffsetX,
+            randomIntUpTo(height * curveScale) + pathOffsetY
         ]
     };
 
@@ -78,3 +94,9 @@ function randomPath(n) {
     path.closePath();
     return path;
 }
+
+run({
+    createdDate: '2024.03.03',
+    setupControls,
+    drawWork
+});

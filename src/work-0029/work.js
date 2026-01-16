@@ -1,6 +1,17 @@
 'use strict';
 
-let createdDate = '2023.10.06';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntUpTo,
+    randomIntPlusMinus
+} from '/js/math.js';
+import {
+    colorRGBA
+} from '/js/colors.js';
 
 function setupControls() {
     makeForm(
@@ -10,7 +21,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -24,16 +42,16 @@ function drawWork() {
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
 
             ctx.scale(0.9, 0.9);
-            drawWalkers(tileDim);
+            drawWalkers(ctx, ctrl, tileDim);
             ctx.rotate(Math.PI / 2);
-            drawWalkers(tileDim);
+            drawWalkers(ctx, ctrl, tileDim);
 
             ctx.restore();
         }
     }
 }
 
-function drawWalkers(tileDim) {
+function drawWalkers(ctx, ctrl, tileDim) {
     ctx.save();
     ctx.translate(-tileDim / 2, -tileDim / 2);
     for (let startY = 0; startY <= tileDim; startY += ctrl.lineGap) {
@@ -67,3 +85,9 @@ function drawWalkers(tileDim) {
     ctx.strokeRect(0, 0, tileDim, tileDim);
     ctx.restore();
 }
+
+run({
+    createdDate: '2023.10.06',
+    setupControls,
+    drawWork
+});

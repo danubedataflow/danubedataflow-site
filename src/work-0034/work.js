@@ -1,6 +1,13 @@
 'use strict';
 
-let createdDate = '2026.01.14';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    random
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -10,7 +17,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -46,3 +60,9 @@ function gaussianRandom(mean = 0, standardDeviation = 1) {
     const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     return z * standardDeviation + mean;
 }
+
+run({
+    createdDate: '2026.01.14',
+    setupControls,
+    drawWork
+});

@@ -1,6 +1,10 @@
 'use strict';
 
-let createdDate = '2023.10.02';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
 
 /* Inspired by Vera Molnár, Journal Intimes 6 page 151-154.
  *
@@ -38,7 +42,14 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
@@ -96,3 +107,9 @@ function drawWork() {
         }
     }
 }
+
+run({
+    createdDate: '2023.10.02',
+    setupControls,
+    drawWork
+});

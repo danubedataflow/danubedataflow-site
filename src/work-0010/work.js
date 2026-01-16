@@ -1,11 +1,15 @@
 'use strict';
 
-let createdDate = '2022.10.22';
+import {
+    run,
+    makeForm,
+    makeSlider
+} from '/js/ui.js';
+import {
+    randomIntUpTo
+} from '/js/math.js';
 
-/* Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
- * See https://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
- * Also see https://openprocessing.org/work/1626688 ("0576_2" by kusakari)
- */
+// Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
 
 function setupControls() {
     makeForm(
@@ -13,12 +17,23 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     let curves = [];
 
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
     for (let i = 0; i < ctrl.numCurves; i++) {
-        curves.push([randomPoint(), randomPoint(), randomPoint()]);
+        curves.push([
+            [randomIntUpTo(width), randomIntUpTo(height)],
+            [randomIntUpTo(width), randomIntUpTo(height)],
+            [randomIntUpTo(width), randomIntUpTo(height)],
+        ]);
     }
 
     ctx.fillStyle = 'white';
@@ -36,6 +51,8 @@ function drawWork() {
     ctx.fill(path, "evenodd");
 }
 
-function randomPoint() {
-    return [ randomIntUpTo(width), randomIntUpTo(height) ];
-}
+run({
+    createdDate: '2022.10.22',
+    setupControls,
+    drawWork
+});

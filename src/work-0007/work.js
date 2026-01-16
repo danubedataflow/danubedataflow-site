@@ -1,6 +1,17 @@
 'use strict';
 
-let createdDate = '2022.09.25';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeFieldset,
+    makeSelectColorMap
+} from '/js/ui.js';
+import {
+    random,
+    randomIntRange,
+    getPointsForPolygon
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -13,10 +24,16 @@ function setupControls() {
     );
 }
 
-function drawWork() {
+function drawWork(args) {
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
+
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-
 
     let tileDim = Math.floor(width / ctrl.numTiles);
     for (let x = 0; x < ctrl.numTiles; x++) {
@@ -48,3 +65,9 @@ function drawWork() {
     }
 
 }
+
+run({
+    createdDate: '2022.09.25',
+    setupControls,
+    drawWork
+});
