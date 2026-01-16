@@ -15,6 +15,10 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+import {
+    pairwise,
+    randomElement
+} from '/js/array.js';
 
 function setupControls() {
     makeForm(
@@ -50,7 +54,7 @@ function drawWork(args) {
 
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     for (let i = 0; i < ctrl.numGrids; i++) {
-        let drawType = ['plain', 'diagonal'].randomElement();
+        let drawType = randomElement(['plain', 'diagonal']);
         let maxDivisor = randomIntRange(...ctrl.segmentDivisorRange);
         let minDivisor = Math.round(maxDivisor * 1.5);
         drawGrid(ctx, width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange) / 100);
@@ -68,22 +72,22 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         vsegments.push(y);
     }
     vsegments.push(dim);
-    vsegments.pairwise((vcurrent, vnext) => {
+    pairwise(vsegments, (vcurrent, vnext) => {
         let hsegments = [];
         for (let x = 0; x < dim - (minS + maxS) / 2; x += randomIntRange(minS, maxS)) {
             hsegments.push(x);
         }
         hsegments.push(dim);
-        hsegments.pairwise((hcurrent, hnext) => {
+        pairwise(hsegments, (hcurrent, hnext) => {
             if (drawType == 'plain') {
-                ctx.fillStyle = colorRGBA(...chroma(palette.randomElement()).rgb(), alpha);
+                ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
                 ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
             } else if ((drawType == 'diagonal')) {
                 let c1, c2;
-                c1 = palette.randomElement();
+                c1 = randomElement(palette);
                 do {
-                    c2 = palette.randomElement();
+                    c2 = randomElement(palette);
                 } while (c1 == c2);
                 ctx.fillStyle = colorRGBA(...chroma(c1).rgb(), alpha);
 

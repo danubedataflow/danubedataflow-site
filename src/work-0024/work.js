@@ -10,6 +10,10 @@ import {
 import {
     randomIntPlusMinus
 } from '/js/math.js';
+import {
+    shuffle,
+    randomElement
+} from '/js/array.js';
 
 function setupControls() {
     makeForm(
@@ -58,8 +62,8 @@ function drawWork(args) {
      */
 
     let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
-    let shouldFillArray = Array(ctrl.numTiles * ctrl.numTiles).fill(false)
-        .map((el, index) => index < numFilled).shuffle();
+    let shouldFillArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+        .map((el, index) => index < numFilled));
 
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
@@ -71,7 +75,7 @@ function drawWork(args) {
 
             let shouldFill = shouldFillArray.shift();
             if (shouldFill) {
-                ctx.fillStyle = palette.randomElement();
+                ctx.fillStyle = randomElement(palette);
                 ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
             }
             ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);

@@ -8,6 +8,9 @@ import {
 import {
     randomIntRange
 } from '/js/math.js';
+import {
+    randomElement
+} from '/js/array.js';
 
 function setupControls() {
     makeForm(
@@ -36,7 +39,7 @@ function drawWork(args) {
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
 
-        ctx.fillStyle = palette.randomElement();
+        ctx.fillStyle = randomElement(palette);
         ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }

@@ -5,6 +5,9 @@ import {
     makeForm,
     makeSlider
 } from '/js/ui.js';
+import {
+    shuffle
+} from '/js/array.js';
 
 /* Inspired by Vera Molnár, Journal Intimes 6 page 151-154.
  *
@@ -93,7 +96,7 @@ function drawWork(args) {
                     // connection to the neighbor below?
                     if (y < ctrl.numPointsY) connections.push([c, coords(x, y + 1)]);
                 }
-                connections = connections.shuffle();
+                connections = shuffle(connections);
                 connections.splice(ctrl.numPointsX * ctrl.numPointsY * ctrl.percentConnections / 100);
                 connections.forEach(el => {
                     ctx.beginPath();

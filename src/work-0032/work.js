@@ -15,6 +15,10 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+import {
+    shuffle,
+    randomElement
+} from '/js/array.js';
 
 let palette;
 
@@ -167,8 +171,8 @@ function drawLayer(ctx, ctrl, width) {
 
     // see Work 0024
     let numColored = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
-    let shouldColorArray = Array(ctrl.numTiles * ctrl.numTiles).fill(false)
-        .map((el, index) => index < numColored).shuffle();
+    let shouldColorArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+        .map((el, index) => index < numColored));
 
     let tileDim = width / ctrl.numTiles;
 
@@ -207,7 +211,7 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
     // alpha is only used if we use layers
     if (!ctrl.useLayers) alpha = 1;
 
-    ctx.fillStyle = colorRGBA(...chroma(palette.randomElement()).rgb(), alpha);
+    ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
     if (ctrl.useColors) {
         if (!shouldColorArray.shift()) ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
     } else {
@@ -215,7 +219,7 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
     }
 
     // draw a random shape's pixels
-    let shape = shapes.randomElement();
+    let shape = randomElement(shapes);
     for (let px = 0; px < 5; px++) {
         for (let py = 0; py < 5; py++) {
             // if the shape array has an 'X' at (px,py), draw a rectangle there

@@ -1,7 +1,14 @@
 'use strict';
 
-import { run, makeForm, makeSlider, makeCheckbox } from '/js/ui.js';
-import { randomIntUpTo } from '/js/math.js';
+import {
+    run,
+    makeForm,
+    makeSlider,
+    makeCheckbox
+} from '/js/ui.js';
+import {
+    randomIntUpTo
+} from '/js/math.js';
 
 function setupControls() {
     makeForm(
@@ -15,7 +22,12 @@ function setupControls() {
 }
 
 function drawWork(args) {
-    const { ctx, width, height, ctrl } = args;
+    const {
+        ctx,
+        width,
+        height,
+        ctrl
+    } = args;
 
     ctx.save();
 
@@ -74,7 +86,6 @@ function drawWork(args) {
 
 run({
     createdDate: '2022.11.07',
-    setupControls, drawWork
+    setupControls,
+    drawWork
 });
-
-

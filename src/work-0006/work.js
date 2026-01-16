@@ -16,6 +16,9 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+import {
+    randomElement
+} from '/js/array.js';
 
 let palette;
 
@@ -46,13 +49,13 @@ function drawWork(args) {
     ctx.globalCompositeOperation = 'source-over';
 
     // random color from the palette
-    ctx.fillStyle = palette.randomElement();
+    ctx.fillStyle = randomElement(palette);
     ctx.fillRect(0, 0, width, height);
 
     ctx.globalCompositeOperation = ctrl.blendMode;
 
     for (let i = 0; i < ctrl.numSquares; i++) {
-        let c = palette.randomElement();
+        let c = randomElement(palette);
 
         // turn RGB hex string into [R, G, B]
         c = chroma(c).rgb();

@@ -8,6 +8,9 @@ import {
 import {
     random
 } from '/js/math.js';
+import {
+    pairwise
+} from '/js/array.js';
 
 function setupControls() {
     makeForm(
@@ -43,7 +46,7 @@ function drawWork(args) {
 
         points.push([x, y]);
     }
-    points.pairwise((current, next) => {
+    pairwise(points, (current, next) => {
         ctx.beginPath();
         ctx.moveTo(...current);
         ctx.lineTo(...next);

@@ -11,6 +11,9 @@ import {
     random,
     randomIntUpTo
 } from '/js/math.js';
+import {
+    randomElement
+} from '/js/array.js';
 
 let palette, c1, c2;
 
@@ -90,16 +93,16 @@ function chooseColors(colorStrategy) {
     if (colorStrategy === 'random') {
         // choose two different random colors
 
-        c1 = palette.randomElement();
+        c1 = randomElement(palette);
         do {
-            c2 = palette.randomElement();
+            c2 = randomElement(palette);
         } while (c1 == c2);
 
     } else if (colorStrategy === 'adjacent') {
         c1 = c2; // reuse previous color
         if (c1 === undefined) c1 = random(palette);
         do {
-            c2 = palette.randomElement();
+            c2 = randomElement(palette);
         } while (c1 == c2);
     } else {
         console.log('invalid color strategy ' + colorStrategy);

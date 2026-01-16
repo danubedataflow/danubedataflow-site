@@ -8,6 +8,9 @@ import {
     randomSeed,
     randomIntRange
 } from '/js/math.js';
+import {
+    randomElement
+} from '/js/array.js';
 
 let controls = {},
     ctrl = {},
@@ -83,35 +86,6 @@ function goToOlderWork() {
     let olderIndex = (gallery.findIndex(el => el == workName) +
         1) % gallery.length;
     window.location.href = `/${gallery[olderIndex]}/`;
-}
-
-// call a function with elements [0, 1], then [1, 2] etc.
-Array.prototype.pairwise = function(func) {
-    for (let i = 0; i < this.length - 1; i++) {
-        func(this[i], this[i + 1]);
-    }
-}
-
-// https://gist.github.com/motoishmz/5239619
-// Fisher-Yates
-//
-// First copy the array so we don't modify the original array in-place.
-Array.prototype.shuffle = function() {
-    const copy = this.slice(); // or [...this]
-    let i = copy.length;
-
-    while (i) {
-        const j = Math.floor(random() * i);
-        const t = copy[--i];
-        copy[i] = copy[j];
-        copy[j] = t;
-    }
-
-    return copy;
-};
-
-Array.prototype.randomElement = function() {
-    return this[Math.floor(random() * this.length)];
 }
 
 class SliderControl {
@@ -567,10 +541,10 @@ function setControlsRandomly() {
             }
 
         } else if (c instanceof SelectControl) {
-            c.setValue(c.getOptionValues().randomElement());
+            c.setValue(randomElement(c.getOptionValues()));
 
         } else if (c instanceof CheckboxControl) {
-            c.setValue([true, false].randomElement());
+            c.setValue(randomElement([true, false]));
         }
 
         // No need to set the seed value (for SeedControl); that's done in

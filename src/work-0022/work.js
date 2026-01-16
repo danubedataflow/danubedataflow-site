@@ -6,6 +6,9 @@ import {
     makeSlider,
     makeFieldset
 } from '/js/ui.js';
+import {
+    shuffle
+} from '/js/array.js';
 
 function setupControls() {
     makeForm(
@@ -47,7 +50,7 @@ function drawWork(args) {
                     ]);
                 }
             }
-            points = points.shuffle();
+            points = shuffle(points);
             for (let i = 0; i < points.length - 1; i++) {
                 ctx.beginPath();
                 ctx.moveTo(...points[i]);
