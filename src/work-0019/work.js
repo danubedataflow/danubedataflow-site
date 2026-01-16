@@ -121,8 +121,11 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
     });
 }
 
+let description = `Note: The random values in this work depend on the canvas size, so even with the same seed, different canvas sizes will generate different images.`;
+
 run({
     createdDate: '2022.12.13',
+    description,
     setupControls,
     drawWork
 });

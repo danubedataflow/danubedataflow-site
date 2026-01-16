@@ -51,8 +51,11 @@ function drawWork(args) {
     ctx.fill(path, "evenodd");
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.10.22',
+    description,
     setupControls,
     drawWork
 });

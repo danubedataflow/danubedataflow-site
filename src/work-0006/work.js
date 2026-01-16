@@ -71,8 +71,11 @@ function drawWork(args) {
     }
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.09.14',
+    description,
     setupControls,
     drawWork
 });

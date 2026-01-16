@@ -62,8 +62,11 @@ function drawWork(args) {
     }
 }
 
+let description = `Draw a grid of polygons whose sizes depend on two-dimensional Perlin noise.`;
+
 run({
     createdDate: '2022.07.27',
+    description,
     setupControls,
     drawWork
 });

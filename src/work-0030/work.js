@@ -95,8 +95,11 @@ function randomPath(n, curveScale, width, height) {
     return path;
 }
 
+let description = `Inspired by Vera Molnár.`;
+
 run({
     createdDate: '2024.03.03',
+    description,
     setupControls,
     drawWork
 });

@@ -69,8 +69,11 @@ function angle(n, modulus) {
     return n * Math.PI * 2 / modulus;
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.10.06',
+    description,
     setupControls,
     drawWork
 });

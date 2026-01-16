@@ -83,8 +83,11 @@ function iterateSquareSpiral(max, callback) {
     }
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.09.08',
+    description,
     setupControls,
     drawWork
 });

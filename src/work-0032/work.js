@@ -237,8 +237,11 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
 
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2025.01.20',
+    description,
     setupControls,
     drawWork
 });

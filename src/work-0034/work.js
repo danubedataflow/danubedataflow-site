@@ -64,8 +64,11 @@ function gaussianRandom(mean = 0, standardDeviation = 1) {
     return z * standardDeviation + mean;
 }
 
+let description = `Lines join points whose horizontal positions are Gaussian, bounded by the canvas. The vertical positions increase quadratically. If a vertical position is outside the canvas, it is reflected to the bottom of the canvas (modulo). Homage to "Gaussian-Quadratic" by Michael Noll, 1963.`;
+
 run({
     createdDate: '2026.01.14',
+    description,
     setupControls,
     drawWork
 });

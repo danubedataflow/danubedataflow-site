@@ -68,8 +68,11 @@ function drawWork(args) {
     ctx.restore();
 }
 
+let description = `Inspired by Vera Molnár.`;
+
 run({
     createdDate: '2023.09.22',
+    description,
     setupControls,
     drawWork
 });

@@ -63,8 +63,11 @@ function drawWork(args) {
     }
 }
 
+let description = `Inspired by Vera Molnár.`;
+
 run({
     createdDate: '2023.09.21',
+    description,
     setupControls,
     drawWork
 });

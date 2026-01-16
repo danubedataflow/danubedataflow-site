@@ -55,8 +55,11 @@ function drawWork(args) {
     ctx.restore();
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.11.02',
+    description,
     setupControls,
     drawWork
 });

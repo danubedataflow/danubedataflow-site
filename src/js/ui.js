@@ -606,6 +606,7 @@ function setup() {
     let title = document.getElementsByTagName("title")[0].innerText;
     document.getElementById('workTitle').innerText = title;
     document.getElementById('createdDate').innerText = work.createdDate;
+    document.getElementById('description').innerText = work.description;
     document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
     document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
     document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);

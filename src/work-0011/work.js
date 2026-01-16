@@ -66,8 +66,11 @@ function rnd(mid, offset) {
     return randomIntRange(mid - offset, mid + offset + 1);
 }
 
+let description = `Draws lines; each line is the previous line plus random movements. Based on Jon Stanley's program <a href="https://www.electronixandmore.com/resources/teksystem/">"lines"</a> for the Tektronix 4052.`;
+
 run({
     createdDate: '2022.10.27',
+    description,
     setupControls,
     drawWork
 });

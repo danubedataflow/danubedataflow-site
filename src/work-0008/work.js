@@ -77,8 +77,11 @@ function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDep
     });
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2022.10.01',
+    description,
     setupControls,
     drawWork
 });

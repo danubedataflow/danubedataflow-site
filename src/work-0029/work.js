@@ -86,8 +86,11 @@ function drawWalkers(ctx, ctrl, tileDim) {
     ctx.restore();
 }
 
+let description = `No description yet.`;
+
 run({
     createdDate: '2023.10.06',
+    description,
     setupControls,
     drawWork
 });
