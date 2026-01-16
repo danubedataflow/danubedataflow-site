@@ -83,7 +83,7 @@ function iterateSquareSpiral(max, callback) {
     }
 }
 
-let description = `No description yet.`;
+let description = `Randomly colored tiles on a squared spiral.`;
 
 run({
     createdDate: '2022.09.08',

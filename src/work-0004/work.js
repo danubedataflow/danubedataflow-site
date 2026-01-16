@@ -68,7 +68,7 @@ function drawWork(args) {
 
 }
 
-let description = `No description yet.`;
+let description = `A random number of lines from one point on a circle to a random point on the same circle. This becomes the starting point of the next line.`;
 
 run({
     createdDate: '2022.08.25',
