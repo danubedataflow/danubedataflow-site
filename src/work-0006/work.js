@@ -71,7 +71,7 @@ function drawWork(args) {
     }
 }
 
-let description = `No description yet.`;
+let description = `Random rectangles in random colors, blended together.`;
 
 run({
     createdDate: '2022.09.14',

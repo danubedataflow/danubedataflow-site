@@ -10,8 +10,6 @@ import {
     getPointsForPolygon
 } from '/js/math.js';
 
-// polygons at points of polygons at points of polygons etc.
-
 const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
 
 function setupControls() {
@@ -77,7 +75,7 @@ function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDep
     });
 }
 
-let description = `No description yet.`;
+let description = `Polygons at points of polygons at points of polygons etc.`;
 
 run({
     createdDate: '2022.10.01',

@@ -7,13 +7,6 @@ import {
     makeSelectColorMap
 } from '/js/ui.js';
 
-/* based on the Mathologer video
- * "Times Tables, Mandelbrot and the Heart of Mathematics"
- * https://www.youtube.com/watch?v=qhbuKbxJsk8
- *
- * The modulus is the number of points on the circle.
- */
-
 function setupControls() {
     makeForm(
         makeSelectColorMap(),
@@ -69,7 +62,7 @@ function angle(n, modulus) {
     return n * Math.PI * 2 / modulus;
 }
 
-let description = `No description yet.`;
+let description = `Based on the Mathologer video <a href="https://www.youtube.com/watch?v=qhbuKbxJsk8">Times Tables, Mandelbrot and the Heart of Mathematics</a>. The modulus is the number of points on the circle.`;
 
 run({
     createdDate: '2022.10.06',
