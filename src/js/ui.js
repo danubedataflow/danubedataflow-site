@@ -640,8 +640,9 @@ function setup() {
     // <a id="sourceLink"> exists in index.html but not print.html
     let sourceLink = document.getElementById('sourceLink');
     if (sourceLink !== null) {
+        let workName = window.location.pathname.match(/work-\d+/)[0];
         sourceLink.setAttribute('href',
-            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${title}/work.js`);
+            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${workName}/work.js`);
     }
 
     work.setupControls(); // works need to implement this
