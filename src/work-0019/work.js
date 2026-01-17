@@ -24,12 +24,11 @@ function setupControls() {
         makeFieldset('Colors',
             makeSelectColorMap(),
             makeSlider('numColors', 'Number of colors: {0}', 2, 16, 8),
-            makeSelectBlendMode(['source-over', 'difference', 'hard-light']),
-            makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 10, 30, [20, 25]),
+            makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 20, 35, [25, 30]),
         ),
         makeSlider('numGrids', 'Number of grids: {0}', 2, 10, 4),
-        makeSlider('segmentDivisorRange', 'Segment divisor range: {0} to {1}', 2, 20, [3, 10]),
-        makeSlider('lineWidth', 'Stroke weight: {0}', 1, 8, 1),
+        makeSlider('segmentSizeRange', 'Segment divisor range: {0} to {1}', 50, 200, [100, 130]),
+        makeSlider('lineWidth', 'Stroke weight: {0}', 1, 4, 1),
     );
 }
 
@@ -44,34 +43,30 @@ function drawWork(args) {
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = ctrl.blendMode;
+
     ctx.strokeStyle = 'black';
     ctx.lineWidth = ctrl.lineWidth;
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     for (let i = 0; i < ctrl.numGrids; i++) {
-        let drawType = randomElement(['plain', 'diagonal']);
-        let maxDivisor = randomIntRange(...ctrl.segmentDivisorRange);
-        let minDivisor = Math.round(maxDivisor * 1.5);
-        drawGrid(ctx, width, minDivisor, maxDivisor, drawType, palette, randomIntRange(...ctrl.alphaRange) / 100);
+        drawGrid(ctx, ctrl, width, palette, randomIntRange(...ctrl.alphaRange) / 100);
     }
 }
 
-function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
+function drawGrid(ctx, ctrl, width, palette, alpha) {
+    let drawType = randomElement(['plain', 'diagonal']);
     let vsegments = [];
-    let minS = Math.round(dim / minDivisor),
-        maxS = Math.round(dim / maxDivisor);
-    // Note: the arguments to random() depend on the canvas width(), so when
-    // you resize it you will get a different image
-    for (let y = 0; y < dim - (minS + maxS) / 2; y += randomIntRange(minS, maxS)) {
+    let avgSize = randomIntRange(...ctrl.segmentSizeRange);
+    let [ minSize, maxSize ] = [ avgSize * 0.75, avgSize * 1.25 ];
+    for (let y = 0; y < width - (minSize + maxSize) / 2; y += randomIntRange(minSize, maxSize)) {
         vsegments.push(y);
     }
-    vsegments.push(dim);
+    vsegments.push(width);
     pairwise(vsegments, (vcurrent, vnext) => {
         let hsegments = [];
-        for (let x = 0; x < dim - (minS + maxS) / 2; x += randomIntRange(minS, maxS)) {
+        for (let x = 0; x < width - (minSize + maxSize) / 2; x += randomIntRange(minSize, maxSize)) {
             hsegments.push(x);
         }
-        hsegments.push(dim);
+        hsegments.push(width);
         pairwise(hsegments, (hcurrent, hnext) => {
             if (drawType == 'plain') {
                 ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
@@ -110,7 +105,7 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         });
     });
 }
-let description = `Note: The random values in this work depend on the canvas size, so even with the same seed, different canvas sizes will generate different images.`;
+let description = `Multiple irregular grids layered on top of each other. Each tile is colored and can randomly have a colored triangle layered on top`;
 run({
     createdDate: '2022-12-13',
     description,
