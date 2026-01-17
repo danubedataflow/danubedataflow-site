@@ -59,7 +59,7 @@ function drawWork(args) {
         ctx.fillRect(0, y1, width, h);
     }
 }
-let description = `No description yet.`;
+let description = `Horizontal and vertical lines with random positions and random colors.`;
 run({
     createdDate: '2022-11-19',
     description,

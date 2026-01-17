@@ -38,7 +38,7 @@ function drawWork(args) {
         ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }
-let description = `No description yet.`;
+let description = `Random white, grey and black rectangles, each spanning a random number of horizontal and vertical tiles.`;
 run({
     createdDate: '2022-11-25',
     description,

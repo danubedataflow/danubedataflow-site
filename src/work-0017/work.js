@@ -49,7 +49,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `No description yet.`;
+let description = `Random stroked rectangles. The strokes have random weights and transparencies. Each rectangle spans a random number of horizontal and vertical tiles.`;
 run({
     createdDate: '2022-11-30',
     description,
