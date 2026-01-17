@@ -96,7 +96,7 @@ function chooseColors(colorStrategy) {
         console.log('invalid color strategy ' + colorStrategy);
     }
 }
-let description = `The "adjacent" color choice strategy uses a color from the previous tile.`;
+let description = `Each tile is divided by a diagonal, either from the upper left to lower right or from the upper right to the lower left. Each half is filled randomly white, grey or black. The "adjacent" color choice strategy uses a color from the previous tile.`;
 run({
     createdDate: '2022-12-07',
     description,
