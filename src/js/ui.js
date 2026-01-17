@@ -59,7 +59,7 @@ function saveCanvasAsPNG() {
                 width: width * window.devicePixelRatio,
                 height: height * window.devicePixelRatio
             },
-            timestamp: Date.now(),
+            timestamp: new Date().toISOString(),
             url: getCurrentURL({
                 timestamp: 1
             }),
@@ -70,7 +70,7 @@ function saveCanvasAsPNG() {
         zip.file('canvas.png', blob, {
             base64: true
         });
-        zip.file('info.json', JSON.stringify(info));
+        zip.file('info.json', JSON.stringify(info, null, 2));
 
         zip.generateAsync({
             type: 'blob'
