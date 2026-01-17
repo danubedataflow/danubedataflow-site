@@ -12,7 +12,7 @@ import {
 } from '/js/array.js';
 let controls = {},
     ctrl = {},
-    canvas, width, height, ctx, pageType, work;
+    canvas, width, height, ctx, work;
 
 function setCanvasDimension() {
     let headerHeight = 100 * window.devicePixelRatio;
@@ -92,7 +92,6 @@ function goToOlderWork() {
         1) % gallery.length;
     window.location.href = `/${gallery[olderIndex]}/`;
 }
-
 // classes for UI control elements
 class SliderControl {
     constructor(_id, _element) {
@@ -522,57 +521,32 @@ function copyLink() {
         alert("Need a secure connection to be able to write to the clipboard.");
     }
 }
-
-function setupQRCode() {
-    let code = getCurrentURL({
-        timestamp: 1
-    });
-    // the QR code should lead to the interactive page, not the print view
-    code = code.replace('print.html', '');
-    // There is a bug in the QRCode library where it fails to
-    // generate the QR code with a "code length overflow" error if
-    // the input string is between 192 and 220 characters long.
-    code = code.padEnd(221);
-    new QRCode(document.getElementById('qrcode'), code);
-}
 /* Work skeleton
  *
  * Individual works just need to set up the form and to implement
  * drawWork().
  */
 function setup() {
-    pageType = window.location.pathname.endsWith('print.html') ? 'print' : 'screen';
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
-
     // Take the work title from the page title so a work desn't have to
     // set it twice. Also use the title to set the link to the GitHub source
     // code page.
     work.title = document.getElementsByTagName("title")[0].innerText;
-
     work.path = window.location.pathname.match(/work-\d+/)[0]; // 'work-0001' etc.
     document.getElementById('workTitle').innerText = work.title;
     document.getElementById('createdDate').innerText = work.createdDate;
-
-    // some elements only exist in the screen view, not the print view
-    if (pageType == 'screen') {
-        document.getElementById('description').innerHTML = work.description;
-        document.getElementById('sourceLink').setAttribute('href',
-            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${work.path}/work.js`);
-        document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
-        document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
-        document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);
-        document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
-        document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
-        document.getElementById('copyLink').addEventListener('click', copyLink);
-    }
-    if (pageType == 'print') setupQRCode();
-
+    document.getElementById('description').innerHTML = work.description;
+    document.getElementById('sourceLink').setAttribute('href',
+        `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${work.path}/work.js`);
+    document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
+    document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
+    document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);
+    document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
+    document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
+    document.getElementById('copyLink').addEventListener('click', copyLink);
     work.setupControls(); // works need to implement this
-
-    // add the page type as class to all DOM elements so CSS can differentiate
-    document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
 }
 
 function draw() {
@@ -607,23 +581,15 @@ function draw() {
 
 function run(workSpec) {
     work = workSpec;
-    /* Only handle keypresses in the main work view. For example, in the
-     * print view, it doesn't make sense, and they even interfere with
-     * "Cmd-P" for printing.
-     */
     addEventListener('keypress', (e) => {
-        if (pageType == 'screen') {
-            if (e.code == 'KeyS') saveCanvas();
-            if (e.code == 'KeyR') redrawWithNewSeed();
-            if (e.code == 'KeyP') setControlsRandomly();
-        }
+        if (e.code == 'KeyS') saveCanvas();
+        if (e.code == 'KeyR') redrawWithNewSeed();
+        if (e.code == 'KeyP') setControlsRandomly();
     });
     // Arrow keys trigger the 'keydown' event, not the 'keypress' event.
     addEventListener('keydown', (e) => {
-        if (pageType == 'screen') {
-            if (e.key == 'ArrowLeft') goToNewerWork();
-            if (e.key == 'ArrowRight') goToOlderWork();
-        }
+        if (e.key == 'ArrowLeft') goToNewerWork();
+        if (e.key == 'ArrowRight') goToOlderWork();
     });
     addEventListener('resize', (e) => {
         controls.seed.setSameSeedAgain();

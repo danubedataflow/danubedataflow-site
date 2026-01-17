@@ -43,7 +43,6 @@ function drawWork(args) {
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-
     ctx.strokeStyle = 'black';
     ctx.lineWidth = ctrl.lineWidth;
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
@@ -56,7 +55,7 @@ function drawGrid(ctx, ctrl, width, palette, alpha) {
     let drawType = randomElement(['plain', 'diagonal']);
     let vsegments = [];
     let avgSize = width * randomIntRange(...ctrl.segmentSizeRange) / 100;
-    let [ minSize, maxSize ] = [ avgSize * 0.75, avgSize * 1.25 ];
+    let [minSize, maxSize] = [avgSize * 0.75, avgSize * 1.25];
     for (let y = 0; y < width; y += randomIntRange(minSize, maxSize)) {
         vsegments.push(y);
     }

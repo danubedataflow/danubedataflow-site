@@ -19,10 +19,6 @@ body {
     background-color: #eee;
 }
 
-body.print {
-    background-color: white;
-}
-
 header {
     display: block;
     text-align: center;
@@ -80,7 +76,7 @@ a:hover {
     min-width: 100%;
 }
 
-#work-container.screen {
+#work-container {
     display: inline-flex;
     flex-flow: row wrap;
 }
@@ -89,15 +85,8 @@ a:hover {
     padding: 10px;
 }
 
-#work.screen {
+#work {
     flex: 1;
-}
-
-#tools-container.print {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
 }
 
 #controls {
@@ -107,7 +96,7 @@ a:hover {
     font-family: var(--sans-serif);
 }
 
-#controls.screen {
+#controls {
     flex: 1;
 }
 
@@ -121,12 +110,8 @@ input#seed {
     border: none;
 }
 
-div.slider-wrapper.screen {
+div.slider-wrapper {
     display: flex;
-}
-
-div.slider-wrapper.print {
-    display: none;
 }
 
 div.slider-wrapper div {
@@ -170,26 +155,6 @@ pre {
 
 form {
     margin-top: 1rem;
-}
-
-form.print {
-    pointer-events: none;
-}
-
-fieldset.print {
-    border: 0 none;
-    margin: 0;
-    padding: 0;
-}
-
-fieldset.print label {
-    margin-left: 20px;
-}
-
-legend.print {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
 }
 
 #workTitle {
