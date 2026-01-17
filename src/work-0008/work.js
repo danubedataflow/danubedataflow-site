@@ -78,7 +78,7 @@ function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDep
 let description = `Polygons at points of polygons at points of polygons etc.`;
 
 run({
-    createdDate: '2022.10.01',
+    createdDate: '2022-10-01',
     description,
     setupControls,
     drawWork

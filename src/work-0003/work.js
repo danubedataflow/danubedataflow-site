@@ -59,7 +59,7 @@ function drawWork(args) {
 let description = `A random number of lines from a central point to a point on a circle at a random angle.`;
 
 run({
-    createdDate: '2022.08.13',
+    createdDate: '2022-08-13',
     description,
     setupControls,
     drawWork

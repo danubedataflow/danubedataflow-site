@@ -112,7 +112,7 @@ function chooseColors(colorStrategy) {
 let description = `The "adjacent" color choice strategy uses a color from the previous tile.`;
 
 run({
-    createdDate: '2022.12.07',
+    createdDate: '2022-12-07',
     description,
     setupControls,
     drawWork

@@ -69,7 +69,7 @@ function drawWork(args) {
 let description = `Different polygons. Each points on a polygon is connected to all other points, using a random color.`
 
 run({
-    createdDate: '2022.09.25',
+    createdDate: '2022-09-25',
     description,
     setupControls,
     drawWork

@@ -74,7 +74,7 @@ function drawWork(args) {
 let description = `Random rectangles in random colors, blended together.`;
 
 run({
-    createdDate: '2022.09.14',
+    createdDate: '2022-09-14',
     description,
     setupControls,
     drawWork

@@ -65,7 +65,7 @@ function angle(n, modulus) {
 let description = `Based on the Mathologer video <a href="https://www.youtube.com/watch?v=qhbuKbxJsk8">Times Tables, Mandelbrot and the Heart of Mathematics</a>. The modulus is the number of points on the circle.`;
 
 run({
-    createdDate: '2022.10.06',
+    createdDate: '2022-10-06',
     description,
     setupControls,
     drawWork

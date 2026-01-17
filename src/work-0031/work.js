@@ -62,7 +62,7 @@ function drawWork(args) {
 let description = `No description yet.`;
 
 run({
-    createdDate: '2025.01.18',
+    createdDate: '2025-01-18',
     description,
     setupControls,
     drawWork

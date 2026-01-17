@@ -69,7 +69,7 @@ function rnd(mid, offset) {
 let description = `Each line is the previous line plus random movement. Based on Jon Stanley's program <a href="https://www.electronixandmore.com/resources/teksystem/">Lines</a> for the Tektronix 4052.`;
 
 run({
-    createdDate: '2022.10.27',
+    createdDate: '2022-10-27',
     description,
     setupControls,
     drawWork

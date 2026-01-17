@@ -87,7 +87,7 @@ function drawWork(args) {
 let description = `Inspired by Vera Molnár.`;
 
 run({
-    createdDate: '2023.09.28',
+    createdDate: '2023-09-28',
     description,
     setupControls,
     drawWork

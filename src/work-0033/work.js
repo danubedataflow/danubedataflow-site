@@ -124,7 +124,7 @@ function makeAxiom(symbolsForAxiom, length) {
 let description = `This is an L-system where the symbols, arranged in a row of tiles, correspond to gray levels. Each iteration of the L-system corresponds to a row. The productions specify how each symbol changes from iteration to the next.`;
 
 run({
-    createdDate: '2025.10.08',
+    createdDate: '2025-10-08',
     description,
     setupControls,
     drawWork

@@ -65,7 +65,7 @@ function drawWork(args) {
 let description = `A series of random triangles, each drawn with a random colors from a palette and the selected composite operations. Each triangle shares two points with the previous triangle.`;
 
 run({
-    createdDate: '2022.08.13',
+    createdDate: '2022-08-13',
     description,
     setupControls,
     drawWork

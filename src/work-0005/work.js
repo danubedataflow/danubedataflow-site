@@ -86,7 +86,7 @@ function iterateSquareSpiral(max, callback) {
 let description = `Randomly colored tiles on a squared spiral.`;
 
 run({
-    createdDate: '2022.09.08',
+    createdDate: '2022-09-08',
     description,
     setupControls,
     drawWork
