@@ -32,31 +32,6 @@ $replace{metadata} = <<~BLOCK;
     <link href="/css/style.css" rel="stylesheet">
     BLOCK
 
-# The 'printbody' block
-$replace{printbody} = <<~BLOCK;
-    <h1>Danube Dataflow</h1>
-    <section id="work-container">
-        <div id="work"><canvas></canvas></div>
-
-        <div id="tools-container">
-            <div id="controls">
-                <p>
-                    <span id="workTitle"></span> |
-                    <span id="createdDate"></span> |
-                    <span id="canvasSize"></span>
-                </p>
-
-                <form id="controls-form">
-                </form>
-            </div>
-
-            <div id="qrcode">
-            </div>
-        </div>
-    </section>
-    <script src="work.js" type="module"></script>
-    BLOCK
-
 # The 'work' block
 $replace{work} = <<~BLOCK;
     <main>
