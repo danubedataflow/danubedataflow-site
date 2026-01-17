@@ -45,7 +45,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `No description yet.`;
+let description = `Rectangles along a modified sine wave.`;
 run({
     createdDate: '2022-11-02',
     description,

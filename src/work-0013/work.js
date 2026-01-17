@@ -71,7 +71,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
 run({
     createdDate: '2022-11-07',
     description,

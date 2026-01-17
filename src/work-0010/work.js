@@ -7,7 +7,7 @@ import {
 import {
     randomIntUpTo
 } from '/js/math.js';
-// Shows 'evenodd' filling of CanvasRenderingContext2D.fill()
+
 function setupControls() {
     makeForm(
         makeSlider('numCurves', 'Number of curves: {0}', 2, 100, 30),
@@ -42,7 +42,7 @@ function drawWork(args) {
     path.closePath();
     ctx.fill(path, "evenodd");
 }
-let description = `No description yet.`;
+let description = `A series of bezier curves with 'evenodd' filling.`;
 run({
     createdDate: '2022-10-22',
     description,

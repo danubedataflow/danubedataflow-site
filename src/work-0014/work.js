@@ -69,7 +69,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Each tile has separate probabilities of being rotated, scaled, translated and stroked. Inspired by Vera Molnár.`;
 run({
     createdDate: '2022-11-14',
     description,
