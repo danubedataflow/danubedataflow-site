@@ -9,7 +9,7 @@ my %replace;
 $replace{header} = <<~BLOCK;
     <header>
         <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
-        <h2 class="site-byline">Minimal algorithmic art by Marcel Grünauer</h2>
+        <h2 class="site-byline">Minimal digital algorithmic art. Marcel Grünauer.</h2>
         <div class="nav">
             <a href="/">Works</a>
             | <a href="/notes/">Notes</a>
