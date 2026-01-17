@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -8,7 +7,6 @@ import {
 import {
     shuffle
 } from '/js/array.js';
-
 /* Inspired by Vera Molnár, Journal Intimes 6 page 151-154.
  *
  * Each tile is a shape that has numPointsX * numPointsY points. All points
@@ -33,7 +31,6 @@ import {
  * shuffle the array, then splice off the unwanted elements. Then we draw the
  * remaining lines.
  */
-
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
@@ -52,35 +49,28 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = ctrl.lineWidth;
-
     let tileDim = width / ctrl.numTiles;
-
     let coords = (x, y) => {
         return [
             (x - 1) / (ctrl.numPointsX - 1) * tileDim,
             (y - 1) / (ctrl.numPointsY - 1) * tileDim
         ];
     };
-
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-
             // scale around tile center, but then move back to the upper left
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             ctx.scale(ctrl.scale, ctrl.scale);
             ctx.translate(-tileDim / 2, -tileDim / 2);
-
             let connections = [];
             for (let y = 1; y <= ctrl.numPointsY; y++) {
                 for (let x = 1; x <= ctrl.numPointsX; x++) {
                     let c = coords(x, y);
-
                     // draw a dot
                     ctx.fillStyle = 'black';
                     ctx.fillRect(
@@ -89,10 +79,8 @@ function drawWork(args) {
                         ctrl.lineWidth,
                         ctrl.lineWidth
                     );
-
                     // connection to the neighbor to the right?
                     if (x < ctrl.numPointsX) connections.push([c, coords(x + 1, y)]);
-
                     // connection to the neighbor below?
                     if (y < ctrl.numPointsY) connections.push([c, coords(x, y + 1)]);
                 }
@@ -105,14 +93,11 @@ function drawWork(args) {
                     ctx.stroke();
                 });
             }
-
             ctx.restore();
         }
     }
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2023-10-02',
     description,

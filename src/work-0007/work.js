@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -31,21 +30,17 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-
     let tileDim = Math.floor(width / ctrl.numTiles);
     for (let x = 0; x < ctrl.numTiles; x++) {
         for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
             ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-
             let numColors = randomIntRange(...ctrl.numColorsRange);
             let palette = chroma.scale(ctrl.colorMap).colors(numColors);
             let numSides = randomIntRange(...ctrl.numSidesRange);
             let points = getPointsForPolygon(numSides, tileDim * 0.9, 0);
-
             // draw a line from each point to each point
             let colorIndex = 0;
             points.forEach((p, i) => {
@@ -59,15 +54,11 @@ function drawWork(args) {
                     ctx.stroke();
                 });
             });
-
             ctx.restore();
         }
     }
-
 }
-
 let description = `Different polygons. Each points on a polygon is connected to all other points, using a random color.`
-
 run({
     createdDate: '2022-09-25',
     description,

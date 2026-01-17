@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -44,12 +43,9 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     ctx.fillStyle = 'black';
-
     for (let i = 0; i <= ctrl.numHorizontalLines; i++) {
         let x1 = randomIntUpTo(width);
         let w = randomIntRange(...ctrl.lineWidthRangeRelative) * width / 100;
@@ -63,9 +59,7 @@ function drawWork(args) {
         ctx.fillRect(0, y1, width, h);
     }
 }
-
 let description = `No description yet.`;
-
 run({
     createdDate: '2022-11-19',
     description,

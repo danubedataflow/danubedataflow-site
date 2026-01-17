@@ -1,7 +1,5 @@
 'use strict';
-
 // https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
-
 /*
  * Take care to initialize your PRNGs properly. To keep things simple, the
  * generators below have no built-in seed generating procedure, but accept one
@@ -22,7 +20,6 @@
  * Calling cyrb128 will produce a 128-bit hash value from a string which can be
  * used to seed a PRNG.
  */
-
 function cyrb128(str) {
     let h1 = 1779033703,
         h2 = 3144134277,
@@ -42,7 +39,6 @@ function cyrb128(str) {
     h1 ^= (h2 ^ h3 ^ h4), h2 ^= h1, h3 ^= h1, h4 ^= h1;
     return [h1 >>> 0, h2 >>> 0, h3 >>> 0, h4 >>> 0];
 }
-
 /*
  * sfc32 is part of the PractRand random number testing suite (which it passes
  * of course). sfc32 has a 128-bit state and is very fast in JS.
@@ -54,7 +50,6 @@ function cyrb128(str) {
  * multiplication or addition will cause it to switch back to a float,
  * resulting in a performance hit.
  */
-
 function sfc32(a, b, c, d) {
     return function() {
         a |= 0;
@@ -70,20 +65,15 @@ function sfc32(a, b, c, d) {
         return (t >>> 0) / 4294967296;
     }
 }
-
 let random;
 
 function randomSeed(seedStr) {
-
     // create cyrb128 state
     let seed = cyrb128(seedStr);
-
     // four 32-bit component hashes provide the seed for sfc32()
     random = sfc32(seed[0], seed[1], seed[2], seed[3]);
-
     // Now you can call random() to generate a random number betweem 0 and 1.
 }
-
 // init
 let seedStr = Math.random().toString(36).slice(2, 10);
 randomSeed(seedStr);
@@ -95,7 +85,6 @@ function randomIntUpTo(n) {
 function randomIntRange(lowerBound, upperBound) {
     return lowerBound + randomIntUpTo(upperBound + 1 - lowerBound);
 }
-
 // generate a random integer in the range [-n, n].
 function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
@@ -113,7 +102,6 @@ function getPointsForPolygon(sides, diameter, rotation) {
     }
     return points;
 }
-
 export {
     random,
     randomSeed,

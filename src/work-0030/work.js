@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -30,15 +29,12 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
-
     let path = randomPath(ctrl.numCurves, ctrl.curveScale, width, height);
     const lineLength = ctrl.lineScale * width / ctrl.numTiles;
-
     let d = window.devicePixelRatio; // no idea why this is necessary
     gridCenters(ctrl.numTiles, width, height)
         .filter(p => !ctx.isPointInPath(path, p[0] * d, p[1] * d))
@@ -47,12 +43,10 @@ function drawWork(args) {
             ctx.save();
             ctx.translate(...p);
             ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
-
             ctx.beginPath();
             ctx.moveTo(-lineLength / 2, 0);
             ctx.lineTo(lineLength / 2, 0);
             ctx.stroke();
-
             ctx.restore();
         });
 }
@@ -68,25 +62,21 @@ function gridCenters(num, width, height) {
 }
 
 function randomPath(n, curveScale, width, height) {
-
     // this offset applies to the whole path
     let pathOffsetX = randomIntPlusMinus(width / 2);
     let pathOffsetY = randomIntPlusMinus(height / 2);
-
     let randomPoint = () => {
         return [
             randomIntUpTo(width * curveScale) + pathOffsetX,
             randomIntUpTo(height * curveScale) + pathOffsetY
         ]
     };
-
     /*
      * Create a path of possibly overlapping bezier curves. Each curve extends
      * the current path and has two control points and an end point. Because of
      * the overlaps and isPointInPath()'s algorithms, this creates the effect of
      * islands within the greater path.
      */
-
     let path = new Path2D();
     for (let i = 0; i < n; i++) {
         path.bezierCurveTo(...randomPoint(), ...randomPoint(), ...randomPoint());
@@ -94,9 +84,7 @@ function randomPath(n, curveScale, width, height) {
     path.closePath();
     return path;
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2024-03-03',
     description,

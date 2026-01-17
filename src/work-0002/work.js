@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -33,12 +32,10 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     ctx.globalCompositeOperation = ctrl.blendMode;
     let colorScale = chroma.scale(ctrl.colorMap);
     let p = [];
@@ -48,22 +45,18 @@ function drawWork(args) {
         if (p.length == 3) {
             let c = colorScale(random()).rgb();
             ctx.fillStyle = colorRGBA(...c, random());
-
             // draw a triangle
             ctx.beginPath();
             ctx.moveTo(...p[0]);
             ctx.lineTo(...p[1]);
             ctx.lineTo(...p[2]);
             ctx.closePath();
-
             ctx.fill();
             p.shift();
         }
     }
 }
-
 let description = `A series of random triangles, each drawn with a random colors from a palette and the selected composite operations. Each triangle shares two points with the previous triangle.`;
-
 run({
     createdDate: '2022-08-13',
     description,

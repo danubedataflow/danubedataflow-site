@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -19,9 +18,7 @@ import {
     shuffle,
     randomElement
 } from '/js/array.js';
-
 let palette;
-
 let shapes = [
     [
         '.....',
@@ -30,7 +27,6 @@ let shapes = [
         '.....',
         '.....'
     ],
-
     [
         'X....',
         'X....',
@@ -38,7 +34,6 @@ let shapes = [
         'X....',
         'X....'
     ],
-
     [
         'X...X',
         'X...X',
@@ -46,7 +41,6 @@ let shapes = [
         'X...X',
         'X...X'
     ],
-
     [
         'XXXXX',
         'X...X',
@@ -54,7 +48,6 @@ let shapes = [
         'X...X',
         'X...X'
     ],
-
     [
         'X...X',
         'X...X',
@@ -62,7 +55,6 @@ let shapes = [
         'X...X',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         'X...X',
@@ -70,7 +62,6 @@ let shapes = [
         'X...X',
         'XXXXX'
     ],
-
     [
         'X....',
         'XXXXX',
@@ -78,7 +69,6 @@ let shapes = [
         'XXXXX',
         'X....'
     ],
-
     [
         'XXXXX',
         '.....',
@@ -86,7 +76,6 @@ let shapes = [
         '.....',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         'X....',
@@ -94,7 +83,6 @@ let shapes = [
         'X....',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         '....X',
@@ -102,7 +90,6 @@ let shapes = [
         'X....',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         '.....',
@@ -110,7 +97,6 @@ let shapes = [
         '.....',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         '.X.X.',
@@ -118,7 +104,6 @@ let shapes = [
         '.X.X.',
         'XXXXX'
     ],
-
     [
         'XXXXX',
         '....X',
@@ -152,12 +137,9 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-
     if (ctrl.useLayers) {
         for (let layer = 1; layer <= ctrl.numLayers; layer++) {
             drawLayer(ctx, ctrl, width);
@@ -168,22 +150,17 @@ function drawWork(args) {
 }
 
 function drawLayer(ctx, ctrl, width) {
-
     // see Work 0024
     let numColored = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
     let shouldColorArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
         .map((el, index) => index < numColored));
-
     let tileDim = width / ctrl.numTiles;
-
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-
             // move to tile center to rotate
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             ctx.scale(0.9, 0.9);
-
             drawTile(
                 ctx,
                 ctrl,
@@ -196,28 +173,22 @@ function drawLayer(ctx, ctrl, width) {
 }
 
 function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
-
     // each tile consists of 5 x 5 "pixels"
     let pixelDim = tileDim / 5;
-
     // random rotation by a multiple of 90 degrees
     ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
-
     // Use calls to random() in any case so the shapes, chosen by another
     // randomElement() below, stay the same when you // change the color
     // chance.
     let alpha = randomIntRange(...ctrl.alphaRange) / 100;
-
     // alpha is only used if we use layers
     if (!ctrl.useLayers) alpha = 1;
-
     ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
     if (ctrl.useColors) {
         if (!shouldColorArray.shift()) ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
     } else {
         ctx.fillStyle = 'black';
     }
-
     // draw a random shape's pixels
     let shape = randomElement(shapes);
     for (let px = 0; px < 5; px++) {
@@ -227,18 +198,14 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
                 // Assuming that the context has been moved to the
                 // tile's center, calculate the upper left corner of
                 // pixel (px, py).
-
                 let ulX = (px - 2.5) * pixelDim;
                 let ulY = (py - 2.5) * pixelDim;
                 ctx.fillRect(ulX, ulY, pixelDim, pixelDim);
             }
         }
     }
-
 }
-
 let description = `No description yet.`;
-
 run({
     createdDate: '2025-01-20',
     description,

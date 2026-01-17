@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -24,23 +23,19 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.save();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-
     // pad the work
     ctx.translate(width / 2, height / 2);
     ctx.scale(0.9, 0.9);
     ctx.translate(-width / 2, -height / 2);
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             let tileULX = (x - 1) * tileDim;
             let tileULY = (y - 1) * tileDim;
-
             for (let i = 0; i < ctrl.numSquaresPerTile; i++) {
                 let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
                 let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
@@ -50,9 +45,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2023-09-29',
     description,

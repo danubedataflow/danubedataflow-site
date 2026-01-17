@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -26,26 +25,20 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = '#777777';
     ctx.fillRect(0, 0, width, height);
-
     let palette = ['white', '#aaaaaa', 'black'];
     let tileDim = width / ctrl.numTiles; // square canvas
-
     for (let i = 0; i <= ctrl.numRects; i++) {
         let ulX = randomIntRange(0, ctrl.numTiles - 1);
         let ulY = randomIntRange(0, ctrl.numTiles - 1);
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
-
         ctx.fillStyle = randomElement(palette);
         ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }
-
 let description = `No description yet.`;
-
 run({
     createdDate: '2022-11-25',
     description,

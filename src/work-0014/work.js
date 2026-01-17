@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -40,27 +39,21 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.save();
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     // pad the work
     ctx.translate(width / 2, height / 2);
     ctx.scale(0.97, 0.97);
     ctx.translate(-width / 2, -height / 2);
-
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
             // `+ 0.5` to move to the tile's center
             ctx.translate((x - 1) * (tileDim + 0.5), (y - 1) * (tileDim + 0.5));
-
             if (randomIntUpTo(100) < ctrl.rotationChance) ctx.rotate(randomIntRange(...ctrl.rotationRange) * Math.PI / 180);
             if (randomIntUpTo(100) < ctrl.scaleChance) {
                 let s = randomIntRange(...ctrl.scaleRange) / 100;
@@ -71,15 +64,12 @@ function drawWork(args) {
                 tileDim * randomIntRange(...ctrl.translationRange) / 100);
             if (randomIntUpTo(100) < ctrl.lineWidthChance) ctx.lineWidth = randomIntRange(...ctrl.lineWidthRange);
             ctx.strokeRect(0, 0, tileDim, tileDim);
-
             ctx.restore();
         }
     }
     ctx.restore();
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2022-11-14',
     description,

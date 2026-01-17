@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -27,19 +26,15 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-
             // move to the tile center so rotate() and scale() happen there
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-
             ctx.scale(ctrl.scale, ctrl.scale);
             let points = [];
             for (let py = 0; py < ctrl.numPointsPerSide; py++) {
@@ -57,14 +52,11 @@ function drawWork(args) {
                 ctx.lineTo(...points[i + 1]);
                 ctx.stroke();
             }
-
             ctx.restore();
         }
     }
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2023-09-21',
     description,

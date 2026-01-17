@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -9,7 +8,6 @@ import {
     randomIntRange,
     getPointsForPolygon
 } from '/js/math.js';
-
 const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
 
 function setupControls() {
@@ -29,21 +27,17 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     let tileDim = Math.floor(width / ctrl.numTiles);
     for (let x = 0; x < ctrl.numTiles; x++) {
         for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
             ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-
             let numSides = randomIntRange(...ctrl.numSidesRange);
             let diameter = randomIntRange(...ctrl.diameterRange);
             let rotationStep = randomIntRange(...ctrl.rotationStepRange);
@@ -60,23 +54,18 @@ function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDep
     points.forEach(p => {
         ctx.save();
         ctx.translate(...p);
-
         ctx.beginPath();
         points.forEach(p => ctx.lineTo(...p));
         ctx.closePath();
         ctx.stroke();
-
         if (depth < maxDepth) {
             drawPolygons(ctx, p.x, p.y, sides, diameter,
                 rotation + rotationStep / sides, rotationStep, maxDepth, depth + 1);
         }
-
         ctx.restore();
     });
 }
-
 let description = `Polygons at points of polygons at points of polygons etc.`;
-
 run({
     createdDate: '2022-10-01',
     description,

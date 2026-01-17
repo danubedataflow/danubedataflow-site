@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -41,17 +40,13 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-
     ctx.globalCompositeOperation = ctrl.blendMode;
-
     ctx.strokeStyle = 'black';
     ctx.lineWidth = ctrl.lineWidth;
-
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     for (let i = 0; i < ctrl.numGrids; i++) {
         let drawType = randomElement(['plain', 'diagonal']);
@@ -65,7 +60,6 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
     let vsegments = [];
     let minS = Math.round(dim / minDivisor),
         maxS = Math.round(dim / maxDivisor);
-
     // Note: the arguments to random() depend on the canvas width(), so when
     // you resize it you will get a different image
     for (let y = 0; y < dim - (minS + maxS) / 2; y += randomIntRange(minS, maxS)) {
@@ -90,13 +84,10 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
                     c2 = randomElement(palette);
                 } while (c1 == c2);
                 ctx.fillStyle = colorRGBA(...chroma(c1).rgb(), alpha);
-
                 ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 ctx.fillStyle = colorRGBA(...chroma(c2).rgb(), alpha);
-
                 if (random() < 0.5) {
-
                     // draw a triangle
                     ctx.beginPath();
                     ctx.moveTo(hcurrent, vcurrent);
@@ -106,7 +97,6 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
                     ctx.fill();
                     ctx.stroke();
                 } else {
-
                     // draw a triangle
                     ctx.beginPath();
                     ctx.moveTo(hnext, vcurrent);
@@ -120,9 +110,7 @@ function drawGrid(ctx, dim, minDivisor, maxDivisor, drawType, palette, alpha) {
         });
     });
 }
-
 let description = `Note: The random values in this work depend on the canvas size, so even with the same seed, different canvas sizes will generate different images.`;
-
 run({
     createdDate: '2022-12-13',
     description,

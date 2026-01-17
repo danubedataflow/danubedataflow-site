@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     gallery
 } from '/js/gallery.js';
@@ -11,7 +10,6 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-
 let controls = {},
     ctrl = {},
     canvas, width, height, ctx, pageType, work;
@@ -19,7 +17,6 @@ let controls = {},
 function setCanvasDimension() {
     let headerHeight = 100 * window.devicePixelRatio;
     width = height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
-
     /* Set up the canvas for high-resolution drawing.
      *
      * 1. Multiply the canvas's width and height by the devicePixelRatio
@@ -30,16 +27,12 @@ function setCanvasDimension() {
      * 3. Scale the context so you can draw on it without considering the
      * ratio.
      */
-
     const ratio = window.devicePixelRatio || 1;
     canvas.width = width * ratio;
     canvas.height = height * ratio;
-
     canvas.style.width = width + 'px';
     canvas.style.height = height + 'px';
-
     ctx.scale(ratio, ratio);
-
     // also show the canvas size on the web page
     document.getElementById('canvasSize').innerText = `${width} x ${height}`;
 }
@@ -47,7 +40,6 @@ function setCanvasDimension() {
 function saveCanvas() {
     canvas.toBlob(blob => {
         var zip = new JSZip();
-
         let info = {
             work: {
                 title: work.title,
@@ -64,14 +56,11 @@ function saveCanvas() {
                 timestamp: 1
             }),
         };
-
         let zipFileName = `${info.work.title} at ${info.timestamp}.zip`;
-
         zip.file('canvas.png', blob, {
             base64: true
         });
         zip.file('info.json', JSON.stringify(info, null, 2));
-
         zip.generateAsync({
             type: 'blob'
         }).then(function(content) {
@@ -79,7 +68,6 @@ function saveCanvas() {
         });
     });
 }
-
 /* Navigating between works:
  *
  * Each work has buttons to go to the next newer or older work. Works
@@ -93,7 +81,6 @@ function saveCanvas() {
  * look it up in the gallery and move left or right to get the desired
  * index. Then go to a URL based on that.
  */
-
 function goToNewerWork() {
     let workName = window.location.pathname.match(/work-\d+/)[0];
     let newerIndex = (gallery.findIndex(el => el == workName) -
@@ -107,19 +94,15 @@ function goToOlderWork() {
         1) % gallery.length;
     window.location.href = `/${gallery[olderIndex]}/`;
 }
-
 class SliderControl {
-
     constructor(_id, _element) {
         this.id = _id;
         this.element = _element;
     }
-
     // Only assign the new value if it has changed to avoid excessive
     // repainting.
     getValue() {
         let value = this.element.get();
-
         // support multiple handles
         if (Array.isArray(value)) {
             return value.map(numStr => parseFloat(numStr))
@@ -127,7 +110,6 @@ class SliderControl {
             return parseFloat(this.element.get());
         }
     }
-
     // returns -1 on error, 0 if ok
     checkValue(value) {
         let v = parseFloat(value);
@@ -143,7 +125,6 @@ class SliderControl {
         }
         return 0;
     }
-
     setValue(value) {
         if (Array.isArray(value)) {
             for (const v of value) {
@@ -155,23 +136,18 @@ class SliderControl {
         this.element.set(value);
     }
 }
-
 class CheckboxControl {
-
     constructor(_id, _element) {
         this.id = _id;
         this.element = _element;
     }
-
     getValue() {
         return this.element.checked;
     }
-
     setValue(value) {
         // convert string values from URL query parameters
         if (value === 'true') value = true;
         if (value === 'false') value = false;
-
         // validate
         if (typeof value === 'boolean') {
             this.element.checked = value;
@@ -180,7 +156,6 @@ class CheckboxControl {
         }
     }
 }
-
 /* Seed handling
  *
  * If a seed is given in URL's query string, that is used. If not, a random
@@ -201,20 +176,16 @@ class CheckboxControl {
  * To be able to regenerate the exact same image, copy the URL including the
  * seed. The "copy link" button does that as well.
  */
-
 class SeedControl {
-
     constructor(_id, _element) {
         this.id = _id;
         this.element = _element;
         this.element.disabled = true;
         this.element.setAttribute('size', 10);
     }
-
     getValue() {
         return this.element.value;
     }
-
     setValue(value) {
         /* Use Math.random() so that when you have two identical works and
          * click "redraw with new seed" or "randomize controls" you don't get
@@ -223,7 +194,6 @@ class SeedControl {
         value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
         randomSeed(value);
-
         // Support for perlin library, which may have been loaded.
         // perlin.js assigns noise as a property on the global object (window
         // in browsers).
@@ -235,25 +205,20 @@ class SeedControl {
             noise.seed(random());
         }
     }
-
     // After resizing the canvas or changing sliders, we want to draw
     // with the same seed as before.
     setSameSeedAgain() {
         this.setValue(this.getValue());
     }
 }
-
 class SelectControl {
-
     constructor(_id, _element) {
         this.id = _id;
         this.element = _element;
     }
-
     getValue() {
         return this.element.value;
     }
-
     setValue(value) {
         // The spread syntax (`...`) turns the HTMLOptionsCollection into a
         // standard array.
@@ -263,12 +228,10 @@ class SelectControl {
             console.log(`${this.id}: value "${value}" is not a valid option`);
         }
     }
-
     getOptionValues() {
         return [...this.element.options].map(o => o.value);
     }
 }
-
 // Control values can be overridden if they exists in the URL search params.
 function valueWithSearchParam(key, defaultValue) {
     let value = new URLSearchParams(window.location.search).get(key);
@@ -304,7 +267,6 @@ function makeDiv(config, ...contents) {
     contents.forEach(child => el.appendChild(child));
     return el;
 }
-
 // 'id' is the value of the 'for' attribute.
 function makeLabel(id) {
     let el = document.createElement('label');
@@ -314,15 +276,11 @@ function makeLabel(id) {
 
 function makeSlider(id, label, min, max, value, step = 1) {
     value = valueWithSearchParam(id, value);
-
     let containerDiv = document.createElement('div');
-
     let labelEl = makeLabel(id);
     labelEl.innerText = label.replace('{0}', parseFloat(value));
     containerDiv.appendChild(labelEl);
-
     // <div class="slider-wrapper"><div id="foo"></div></div>
-
     let sliderDiv = makeDiv({
         'id': id
     });
@@ -331,7 +289,6 @@ function makeSlider(id, label, min, max, value, step = 1) {
             'class': 'slider-wrapper'
         }, sliderDiv)
     );
-
     let slider = noUiSlider.create(sliderDiv, {
         range: {
             min: [min],
@@ -340,7 +297,6 @@ function makeSlider(id, label, min, max, value, step = 1) {
         step: step,
         start: value,
         connect: Array.isArray(value) ? [false, true, false] : [true, false],
-
         // Move handle on tap, bars are draggable
         behaviour: 'tap-drag'
     });
@@ -355,39 +311,31 @@ function makeSlider(id, label, min, max, value, step = 1) {
 
 function makeCheckbox(id, label, value = true) {
     let containerDiv = document.createElement('div');
-
     let labelEl = makeLabel(id);
     labelEl.innerText = label;
     containerDiv.appendChild(labelEl);
-
     let checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', id);
     checkboxEl.oninput = redrawWithSameSeed;
     containerDiv.appendChild(checkboxEl);
-
     controls[id] = new CheckboxControl(id, checkboxEl);
     value = valueWithSearchParam(id, value);
     if (value != null) controls[id].setValue(value);
-
     return containerDiv;
 }
 
 function makeSeed() {
     let id = 'seed',
         containerDiv = document.createElement('div');
-
     let labelEl = makeLabel(id);
     labelEl.innerText = 'Random seed:';
     containerDiv.appendChild(labelEl);
-
     let inputEl = document.createElement('input');
     inputEl.setAttribute('id', id);
     containerDiv.appendChild(inputEl);
-
     controls[id] = new SeedControl(id, inputEl);
     controls[id].setValue(valueWithSearchParam(id)); // no default value
-
     return containerDiv;
 }
 
@@ -410,23 +358,17 @@ function makeOptGroup(label, ...contents) {
 
 function makeSelect(id, label, contents, value) {
     let containerDiv = document.createElement('div');
-
     let labelEl = makeLabel(id);
     labelEl.innerText = label;
     containerDiv.appendChild(labelEl);
-
     let selectEl = document.createElement('select');
     selectEl.setAttribute('id', id);
     contents.forEach(el => selectEl.appendChild(el));
-
     selectEl.onchange = redrawWithSameSeed;
     containerDiv.appendChild(selectEl);
-
     controls[id] = new SelectControl(id, selectEl);
-
     value = valueWithSearchParam(id, value);
     if (value != null) controls[id].setValue(value);
-
     return containerDiv;
 }
 
@@ -501,16 +443,13 @@ function makeSelectBlendMode(options) {
         'soft-light': 'Soft light',
         'xor': 'Exclusive-Or',
     };
-
     if (options == null) {
         options = Object.keys(nameFor);
     }
-
     // Sort the options by their display name.
     options = options.sort((a, b) => {
         nameFor[a].localeCompare(nameFor[b])
     });
-
     return makeSelect(
         'blendMode', 'Blend mode: ',
         options.map(c => makeOption(c, nameFor[c])),
@@ -523,9 +462,7 @@ function getCurrentURL(config = {}) {
     for (const [key, value] of Object.entries(controls)) {
         urlParams.set(key, value.getValue());
     }
-
     if (config.timestamp) urlParams.set('timestamp', Date.now());
-
     /* Replace the URL in the browser's URL bar using the current control
      * values, without reloading the page.
      */
@@ -544,29 +481,22 @@ function setControlsRandomly() {
             let options = c.element.options;
             let min = options.range.min[0];
             let max = options.range.max[0];
-
             // For example, if min = 0, max = 10 and step = 2, there are 6
             // steps (0, 2, 4, 6, 8, 10), so maxStep = 5.
-
             let maxStep = (max - min) / options.step;
-
             let genValue = () => {
                 return min + randomIntRange(0, maxStep) * options.step
             };
-
             if (Array.isArray(options.start)) {
                 c.setValue(options.start.map(genValue).sort((a, b) => a - b));
             } else {
                 c.setValue(genValue());
             }
-
         } else if (c instanceof SelectControl) {
             c.setValue(randomElement(c.getOptionValues()));
-
         } else if (c instanceof CheckboxControl) {
             c.setValue(randomElement([true, false]));
         }
-
         // No need to set the seed value (for SeedControl); that's done in
         // redrawWithNewSeed() anyway.
     });
@@ -597,18 +527,14 @@ function setupQRCode() {
     let code = getCurrentURL({
         timestamp: 1
     });
-
     // the QR code should lead to the interactive page, not the print view
     code = code.replace('print.html', '');
-
     // There is a bug in the QRCode library where it fails to
     // generate the QR code with a "code length overflow" error if
     // the input string is between 192 and 220 characters long.
-
     code = code.padEnd(221);
     new QRCode(document.getElementById('qrcode'), code);
 }
-
 /* Work skeleton
  *
  * Individual works just need to set up the form and to implement
@@ -619,7 +545,6 @@ function setup() {
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
-
     // Take the work title from the page title so a work desn't have to
     // set it twice. Also use the title to set the link to the GitHub source
     // code page.
@@ -627,7 +552,6 @@ function setup() {
     work.title = title;
     document.getElementById('workTitle').innerText = title;
     document.getElementById('createdDate').innerText = work.createdDate;
-
     // use innerHTML for the description so links etc. render correctly
     document.getElementById('description').innerHTML = work.description;
     document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
@@ -636,7 +560,6 @@ function setup() {
     document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
     document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
     document.getElementById('copyLink').addEventListener('click', copyLink);
-
     // <a id="sourceLink"> exists in index.html but not print.html
     let sourceLink = document.getElementById('sourceLink');
     if (sourceLink !== null) {
@@ -644,9 +567,7 @@ function setup() {
         sourceLink.setAttribute('href',
             `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${workName}/work.js`);
     }
-
     work.setupControls(); // works need to implement this
-
     if (pageType) {
         // add page type as class to all DOM elements so CSS can differentiate
         document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
@@ -662,23 +583,19 @@ function draw() {
      * times, leading to new temporary variables. The latter is just a
      * variable.
      */
-
     ctrl = {};
     for (const [key, value] of Object.entries(controls)) {
         ctrl[key] = value.getValue();
     }
-
     /* Update the URL according to controls. But don't update it if it
      * hasn't changed. Because if you continuously resize the window,
      * Safari produces a "SecurityError: Attempt to use
      * history.replaceState() more than 100 times per 30 seconds".
      */
-
     let currentURL = getCurrentURL();
     if (currentURL != window.location.href) {
         window.history.replaceState(null, '', currentURL);
     }
-
     let args = {
         ctx,
         width,
@@ -690,12 +607,10 @@ function draw() {
 
 function run(workSpec) {
     work = workSpec;
-
     /* Only handle keypresses in the main work view. For example, in the
      * print view, it doesn't make sense, and they even interfere with
      * "Cmd-P" for printing.
      */
-
     addEventListener('keypress', (e) => {
         if (pageType == 'screen') {
             if (e.code == 'KeyS') saveCanvas();
@@ -703,26 +618,21 @@ function run(workSpec) {
             if (e.code == 'KeyP') setControlsRandomly();
         }
     });
-
     // Arrow keys trigger the 'keydown' event, not the 'keypress' event.
-
     addEventListener('keydown', (e) => {
         if (pageType == 'screen') {
             if (e.key == 'ArrowLeft') goToNewerWork();
             if (e.key == 'ArrowRight') goToOlderWork();
         }
     });
-
     addEventListener('resize', (e) => {
         controls.seed.setSameSeedAgain();
         setCanvasDimension();
         draw();
     });
-
     setup();
     draw();
 }
-
 export {
     run,
     makeForm,

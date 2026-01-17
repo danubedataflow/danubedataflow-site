@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -31,29 +30,21 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     ctx.globalCompositeOperation = ctrl.blendMode;
-
     ctx.save();
     ctx.translate(width / 2, height / 2);
-
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
     let colorIndex = randomIntUpTo(palette.length);
-
     let magnify = Math.round(width / ctrl.maxLength);
     let numPoints = Math.pow(ctrl.maxLength, 2);
-
     iterateSquareSpiral(numPoints, (x, y, n) => {
         let direction = randomIntUpTo(2) - 1; // [-1, +1]
-
         // wrap around
         colorIndex = (palette.length + colorIndex + direction) % palette.length;
-
         let c = palette[colorIndex];
         ctx.fillStyle = c;
         ctx.beginPath();
@@ -61,7 +52,6 @@ function drawWork(args) {
     });
     ctx.restore();
 }
-
 /* See https://math.stackexchange.com/a/4128516
  *
  * x(n) is the sum of sin(term) for 1 <= k <= n.
@@ -82,9 +72,7 @@ function iterateSquareSpiral(max, callback) {
         callback(x, y, k);
     }
 }
-
 let description = `Randomly colored tiles on a squared spiral.`;
-
 run({
     createdDate: '2022-09-08',
     description,

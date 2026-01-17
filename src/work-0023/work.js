@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -27,49 +26,37 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.save();
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     ctx.lineWidth = ctrl.lineWidth;
     ctx.strokeStyle = 'black';
-
     // pad the work
     ctx.translate(width / 2, height / 2);
     ctx.scale(0.97, 0.97);
     ctx.translate(-width / 2, -height / 2);
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-
             // move to the tile center so rotate() and scale() happen there
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-
             ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
             ctx.translate(
                 randomIntPlusMinus(ctrl.maxOffsetPerAxis),
                 randomIntPlusMinus(ctrl.maxOffsetPerAxis),
             );
-
             // `ctx.scale(ctrl.scale, ctrl.scale)` instead would also change the line weight.
             ctx.beginPath();
             ctx.moveTo(ctrl.scale * -tileDim / 2, 0);
             ctx.lineTo(ctrl.scale * tileDim / 2, 0);
             ctx.stroke();
-
             ctx.restore();
         }
     }
-
     ctx.restore();
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2023-09-22',
     description,

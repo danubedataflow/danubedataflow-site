@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -28,22 +27,17 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     let lsystem = makeLsystem(ctrl);
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         let spec = lsystem.getString();
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-
             // move to the tile's upper left corner
             ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-
             /* interpret the symbols in each iteration as greyscale values. For
              * ctrl.numSymbols == 5, this would be:
              *
@@ -58,21 +52,17 @@ function drawWork(args) {
              * alphaIndex 4 means 100% alpha.
              */
             let symbol = spec.charAt(x - 1);
-
             // 0 <= alphaIndex <= ctrl.numSymbols - 1
             let alphaIndex = symbol.charCodeAt(0) - 'A'.charCodeAt(0);
-
             // map alpha from the range (0..ctrl.numSymbols - 1) to (0..100)
             let alpha = (alphaIndex / (ctrl.numSymbols - 1)) * 100;
             ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
             ctx.fillRect(0, 0, tileDim, tileDim);
-
             ctx.restore();
         }
         lsystem.iterate();
     }
 }
-
 /* The L-system has n symbols, 2 <= n <= 25. Each symbol is an uppercase
  * letter. Productions for the first and last symbol use borderChangeChance;
  * other symbols use middleChangeChance.
@@ -89,7 +79,6 @@ function makeLsystem(ctrl) {
     let numSymbols = ctrl.numSymbols;
     let borderChangeChance = ctrl.borderChangeChance / 100;;
     let middleChangeChance = ctrl.middleChangeChance / 100;
-
     let lsystem = new LSystem({});
     let charCode = 'A'.charCodeAt(0);
     let symbolsForAxiom = '';
@@ -107,7 +96,6 @@ function makeLsystem(ctrl) {
         }
         charCode++;
     }
-
     lsystem.setAxiom(makeAxiom(symbolsForAxiom, ctrl.numTiles));
     console.log(lsystem);
     return lsystem;
@@ -120,9 +108,7 @@ function makeAxiom(symbolsForAxiom, length) {
     }
     return result;
 }
-
 let description = `This is an L-system where the symbols, arranged in a row of tiles, correspond to gray levels. Each iteration of the L-system corresponds to a row. The productions specify how each symbol changes from iteration to the next.`;
-
 run({
     createdDate: '2025-10-08',
     description,

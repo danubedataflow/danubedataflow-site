@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -29,25 +28,20 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = width; // width == height because of square canvas
     ctx.save();
     ctx.translate(dim / 2, dim / 2);
     ctx.scale(ctrl.scale, ctrl.scale);
     ctx.translate(-dim / 2, -dim / 2);
-
     let tileDim = width / ctrl.numTiles;
-
     for (let i = 0; i <= ctrl.numRects; i++) {
         let ulX = randomIntRange(0, ctrl.numTiles - 1);
         let ulY = randomIntRange(0, ctrl.numTiles - 1);
         let spanX = randomIntRange(1, ctrl.numTiles - ulX);
         let spanY = randomIntRange(1, ctrl.numTiles - ulY);
-
         ctx.lineWidth = (randomIntRange(...ctrl.lineWidthRange));
         let alpha = randomIntRange(...ctrl.alphaRange) / 100;
         ctx.strokeStyle = colorRGBA(0, 0, 0, alpha);
@@ -55,9 +49,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-
 let description = `No description yet.`;
-
 run({
     createdDate: '2022-11-30',
     description,

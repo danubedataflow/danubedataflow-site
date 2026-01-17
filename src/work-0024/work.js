@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -34,19 +33,15 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     ctx.save();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-
     // pad the work
     ctx.translate(width / 2, height / 2);
     ctx.scale(0.9, 0.9);
     ctx.translate(-width / 2, -height / 2);
-
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-
     /* Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
      * is 9, we want to fill one in nine tiles.
      *
@@ -60,11 +55,9 @@ function drawWork(args) {
      * To distribute the n filled tiles randomly, mark the first n array
      * elements, then shuffle the array.
      */
-
     let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
     let shouldFillArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
         .map((el, index) => index < numFilled));
-
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
@@ -72,7 +65,6 @@ function drawWork(args) {
             let tileULY = (y - 1) * tileDim;
             let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
             let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
-
             let shouldFill = shouldFillArray.shift();
             if (shouldFill) {
                 ctx.fillStyle = randomElement(palette);
@@ -83,9 +75,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-
 let description = `Inspired by Vera Molnár.`;
-
 run({
     createdDate: '2023-09-28',
     description,

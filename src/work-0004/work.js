@@ -1,5 +1,4 @@
 'use strict';
-
 import {
     run,
     makeForm,
@@ -31,17 +30,13 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
-
     // actually clear the canvas
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, width, height);
-
     ctx.globalCompositeOperation = ctrl.blendMode;
-
     let angle = random() * 2 * Math.PI;
     let colorScale = chroma.scale(ctrl.colorMap);
-
     let tileDim = Math.floor(width / ctrl.numTiles);
     let radius = tileDim * 0.4;
     let p = [Math.sin(angle) * radius, Math.cos(angle) * radius];
@@ -49,7 +44,6 @@ function drawWork(args) {
         for (let y = 0; y < ctrl.numTiles; y++) {
             ctx.save();
             ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-
             let numLines = randomIntRange(...ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
                 ctx.strokeStyle = colorScale(random()).toString();
@@ -61,15 +55,11 @@ function drawWork(args) {
                 ctx.stroke();
                 p = p2;
             }
-
             ctx.restore();
         }
     }
-
 }
-
 let description = `A random number of lines from one point on a circle to a random point on the same circle. This becomes the starting point of the next line.`;
-
 run({
     createdDate: '2022-08-25',
     description,
