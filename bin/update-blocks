@@ -74,7 +74,7 @@ $replace{work} = <<~BLOCK;
                     <a id="sourceLink" href="#" target="_blank"><span class="nav-emoji" title="Source code"><tt>&lt;/&gt;</tt></span></a>
                     <a id="redrawWithNewSeed" href="#"><span class="nav-emoji" title="New seed (P)">&#x1F504;</span></a>
                     <a id="setControlsRandomly" href="#"><span class="nav-emoji" title="Random parameters (R)">&#x1F500;</span></a>
-                    <a id="saveCanvasAsPNG" href="#"><span class="nav-emoji" title="Save (S)">&#x1F4BE;</span></a>
+                    <a id="saveCanvas" href="#"><span class="nav-emoji" title="Save (S)">&#x1F4BE;</span></a>
                     <a id="copyLink" href="#"><span class="nav-emoji" title="Copy link">&#x1F517;</span></a>
                     <a href="javascript:window.open('print.html' + window.location.search, '_blank');"><span class="nav-emoji" title="Print view">&#x1F5A8;</span></a>
                 </p>

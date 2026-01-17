@@ -44,7 +44,7 @@ function setCanvasDimension() {
     document.getElementById('canvasSize').innerText = `${width} x ${height}`;
 }
 
-function saveCanvasAsPNG() {
+function saveCanvas() {
     canvas.toBlob(blob => {
         var zip = new JSZip();
 
@@ -634,7 +634,7 @@ function setup() {
     document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
     document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);
     document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
-    document.getElementById('saveCanvasAsPNG').addEventListener('click', saveCanvasAsPNG);
+    document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
     document.getElementById('copyLink').addEventListener('click', copyLink);
 
     // <a id="sourceLink"> exists in index.html but not print.html
@@ -697,7 +697,7 @@ function run(workSpec) {
 
     addEventListener('keypress', (e) => {
         if (pageType == 'screen') {
-            if (e.code == 'KeyS') saveCanvasAsPNG();
+            if (e.code == 'KeyS') saveCanvas();
             if (e.code == 'KeyR') redrawWithNewSeed();
             if (e.code == 'KeyP') setControlsRandomly();
         }
