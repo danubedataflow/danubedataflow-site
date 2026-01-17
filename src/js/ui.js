@@ -82,18 +82,18 @@ function saveCanvas() {
  * index. Then go to a URL based on that.
  */
 function goToNewerWork() {
-    let workName = window.location.pathname.match(/work-\d+/)[0];
-    let newerIndex = (gallery.findIndex(el => el == workName) -
+    let newerIndex = (gallery.findIndex(el => el == work.path) -
         1 + gallery.length) % gallery.length;
     window.location.href = `/${gallery[newerIndex]}/`;
 }
 
 function goToOlderWork() {
-    let workName = window.location.pathname.match(/work-\d+/)[0];
-    let olderIndex = (gallery.findIndex(el => el == workName) +
+    let olderIndex = (gallery.findIndex(el => el == work.path) +
         1) % gallery.length;
     window.location.href = `/${gallery[olderIndex]}/`;
 }
+
+// classes for UI control elements
 class SliderControl {
     constructor(_id, _element) {
         this.id = _id;
@@ -545,34 +545,34 @@ function setup() {
     canvas = document.getElementsByTagName('canvas')[0];
     ctx = canvas.getContext('2d');
     setCanvasDimension();
+
     // Take the work title from the page title so a work desn't have to
     // set it twice. Also use the title to set the link to the GitHub source
     // code page.
-    let title = document.getElementsByTagName("title")[0].innerText;
-    work.title = title;
-    document.getElementById('workTitle').innerText = title;
+    work.title = document.getElementsByTagName("title")[0].innerText;
+
+    work.path = window.location.pathname.match(/work-\d+/)[0]; // 'work-0001' etc.
+    document.getElementById('workTitle').innerText = work.title;
     document.getElementById('createdDate').innerText = work.createdDate;
-    // use innerHTML for the description so links etc. render correctly
-    document.getElementById('description').innerHTML = work.description;
-    document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
-    document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
-    document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);
-    document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
-    document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
-    document.getElementById('copyLink').addEventListener('click', copyLink);
-    // <a id="sourceLink"> exists in index.html but not print.html
-    let sourceLink = document.getElementById('sourceLink');
-    if (sourceLink !== null) {
-        let workName = window.location.pathname.match(/work-\d+/)[0];
-        sourceLink.setAttribute('href',
-            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${workName}/work.js`);
-    }
-    work.setupControls(); // works need to implement this
-    if (pageType) {
-        // add page type as class to all DOM elements so CSS can differentiate
-        document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
+
+    // some elements only exist in the screen view, not the print view
+    if (pageType == 'screen') {
+        document.getElementById('description').innerHTML = work.description;
+        document.getElementById('sourceLink').setAttribute('href',
+            `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${work.path}/work.js`);
+        document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
+        document.getElementById('goToOlderWork').addEventListener('click', goToOlderWork);
+        document.getElementById('redrawWithNewSeed').addEventListener('click', redrawWithNewSeed);
+        document.getElementById('setControlsRandomly').addEventListener('click', setControlsRandomly);
+        document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
+        document.getElementById('copyLink').addEventListener('click', copyLink);
     }
     if (pageType == 'print') setupQRCode();
+
+    work.setupControls(); // works need to implement this
+
+    // add the page type as class to all DOM elements so CSS can differentiate
+    document.querySelectorAll('*').forEach(el => el.classList.add(pageType));
 }
 
 function draw() {
