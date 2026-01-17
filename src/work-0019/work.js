@@ -27,7 +27,7 @@ function setupControls() {
             makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 20, 35, [25, 30]),
         ),
         makeSlider('numGrids', 'Number of grids: {0}', 2, 10, 4),
-        makeSlider('segmentSizeRange', 'Segment divisor range: {0} to {1}', 50, 200, [100, 130]),
+        makeSlider('segmentSizeRange', 'Segment size range: {0}% to {1}% of the width', 10, 30, [20, 25]),
         makeSlider('lineWidth', 'Stroke weight: {0}', 1, 4, 1),
     );
 }
@@ -55,9 +55,9 @@ function drawWork(args) {
 function drawGrid(ctx, ctrl, width, palette, alpha) {
     let drawType = randomElement(['plain', 'diagonal']);
     let vsegments = [];
-    let avgSize = randomIntRange(...ctrl.segmentSizeRange);
+    let avgSize = width * randomIntRange(...ctrl.segmentSizeRange) / 100;
     let [ minSize, maxSize ] = [ avgSize * 0.75, avgSize * 1.25 ];
-    for (let y = 0; y < width - (minSize + maxSize) / 2; y += randomIntRange(minSize, maxSize)) {
+    for (let y = 0; y < width; y += randomIntRange(minSize, maxSize)) {
         vsegments.push(y);
     }
     vsegments.push(width);
