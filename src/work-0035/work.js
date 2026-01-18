@@ -12,8 +12,8 @@ import {
 
 function setupControls() {
     makeForm(
-        makeSlider('numPoints', 'Number of points: {0}', 50, 500, 200),
-        makeSlider('maxLineLength', 'Maximum line length: {0}', 50, 100, 75),
+        makeSlider('numPoints', 'Number of points: {0}', 50, 700, 350),
+        makeSlider('percentMaxLineLength', 'Maximum line length: {0}% of width', 10, 20, 15),
     );
 }
 
@@ -29,13 +29,19 @@ function drawWork(args) {
     ctx.strokeStyle = 'black';
 
     let points = [];
+
     for (let i = 1; i <= ctrl.numPoints; i++) {
         points.push({
             x: randomIntUpTo(width),
             y: randomIntUpTo(height)
         });
     }
-    let pairs = findClosePairs(points, ctrl.maxLineLength);
+
+    // Make maxLineLength dependent on width, but use the same number of points
+    // regardless of the width. That way the work looks the same at different
+    // canvas sizes.
+    let maxLineLength = width * ctrl.percentMaxLineLength / 100;
+    let pairs = findClosePairs(points, maxLineLength);
     for (const [p1, p2] of pairs) {
         ctx.strokeStyle = 'black';
         ctx.beginPath();
