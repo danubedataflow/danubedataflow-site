@@ -27,16 +27,13 @@ function drawWork(args) {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
-
     let points = [];
-
     for (let i = 1; i <= ctrl.numPoints; i++) {
         points.push({
             x: randomIntUpTo(width),
             y: randomIntUpTo(height)
         });
     }
-
     // Make maxLineLength dependent on width, but use the same number of points
     // regardless of the width. That way the work looks the same at different
     // canvas sizes.
@@ -51,7 +48,6 @@ function drawWork(args) {
         ctx.stroke();
     }
 }
-
 /* Given an array of points, each represented by an object with an x key and a
  * y key, find all pairs of points whose distance in pixels is less than a
  * given value.
@@ -60,25 +56,20 @@ function drawWork(args) {
  *
  * Compare every pair of points once and compute the Euclidean distance.
  */
-
 function findClosePairs(points, maxDist) {
     const result = [];
     const maxDistSq = maxDist * maxDist;
-
     for (let i = 0; i < points.length; i++) {
         for (let j = i + 1; j < points.length; j++) {
             const dx = points[i].x - points[j].x;
             const dy = points[i].y - points[j].y;
-
             if (dx * dx + dy * dy < maxDistSq) {
                 result.push([points[i], points[j]]);
             }
         }
     }
-
     return result;
 }
-
 let description = `Place random points. Draw a line between each pair of points whose Euclidean distance is less than a given value.`;
 run({
     createdDate: '2026-01-18',

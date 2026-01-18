@@ -31,11 +31,9 @@ function drawWork(args) {
     let standardDeviation = width * ctrl.percentStandardDeviation / 100;
     for (let i = 1; i <= ctrl.numPoints; i++) {
         let x = Math.floor(gaussianRandom(width / 2, standardDeviation));
-
         // Calculate y for an imaginary height of 500, then scale to the actual
         // height. This is so the result looks the same regardless of the
         // canvas size. Also subtract from height so it goes from bottom to top.
-
         let y = 500 - ((Math.pow(i, 2) + 5 * i) % 500);
         y *= height / 500;
         points.push([x, y]);
