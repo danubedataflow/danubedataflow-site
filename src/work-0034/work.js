@@ -12,8 +12,7 @@ import {
 
 function setupControls() {
     makeForm(
-        makeSlider('percentNumPoints', 'Number of points: {0}% of width', 5, 15, 10),
-        makeSlider('percentMean', 'Gaussian mean: {0}% of width', 30, 70, 50),
+        makeSlider('numPoints', 'Number of points: {0}', 25, 75, 50),
         makeSlider('percentStandardDeviation', 'Standard deviation: {0}% of width', 5, 25, 15),
     );
 }
@@ -29,14 +28,16 @@ function drawWork(args) {
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
     let points = [];
-    let numPoints = width * ctrl.percentNumPoints / 100;
-    let mean = width * ctrl.percentMean / 100;
     let standardDeviation = width * ctrl.percentStandardDeviation / 100;
-    for (let i = 1; i <= numPoints; i++) {
-        let x = Math.floor(gaussianRandom(mean, standardDeviation));
-        x = Math.min(Math.max(x, 0), width); // keep inside the canvas
-        // subtract from height so it goes from bottom to top
-        let y = height - ((Math.pow(i, 2) + 5 * i) % height);
+    for (let i = 1; i <= ctrl.numPoints; i++) {
+        let x = Math.floor(gaussianRandom(width / 2, standardDeviation));
+
+        // Calculate y for an imaginary height of 500, then scale to the actual
+        // height. This is so the result looks the same regardless of the
+        // canvas size. Also subtract from height so it goes from bottom to top.
+
+        let y = 500 - ((Math.pow(i, 2) + 5 * i) % 500);
+        y *= height / 500;
         points.push([x, y]);
     }
     pairwise(points, (current, next) => {
