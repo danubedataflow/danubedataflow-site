@@ -84,7 +84,7 @@ function randomPath(n, curveScale, width, height) {
     path.closePath();
     return path;
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Grid of lines with random rotation, except for those lines which would lie in a random path. Homage to "Interruptions"  by Vera Molnár, 1968-1969.`;
 run({
     createdDate: '2024-03-03',
     description,
