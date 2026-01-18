@@ -1,4 +1,3 @@
-'use strict';
 import {
     random
 } from '/js/math.js';

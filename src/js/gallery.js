@@ -1,4 +1,3 @@
-'use strict';
 // Define the order of works, for prev/next navigation:
 // [ 'work-0034', ..., 'work-0002', 'work-0001' ]
 //

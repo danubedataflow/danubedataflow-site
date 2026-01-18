@@ -1,4 +1,3 @@
-'use strict';
 // https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
 /*
  * Take care to initialize your PRNGs properly. To keep things simple, the

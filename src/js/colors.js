@@ -1,4 +1,3 @@
-'use strict';
 // generate color value for ctx.fillStyle and ctx.strokeStyle.
 function colorRGB(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;

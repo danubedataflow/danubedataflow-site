@@ -1,4 +1,3 @@
-'use strict';
 import {
     gallery
 } from '/js/gallery.js';
