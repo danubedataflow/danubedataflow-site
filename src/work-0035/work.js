@@ -1,10 +1,13 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    makeSelect,
+    makeOption
 } from '/js/ui.js';
 import {
-    randomIntUpTo
+    randomIntUpTo,
+    gaussianRandom
 } from '/js/math.js';
 import {
     pairwise
@@ -14,6 +17,10 @@ function setupControls() {
     makeForm(
         makeSlider('numPoints', 'Number of points: {0}', 50, 700, 350),
         makeSlider('percentMaxLineLength', 'Maximum line length: {0}% of width', 10, 20, 15),
+        makeSelect('randomType', 'Random type: ', [
+            makeOption('standard', 'Standard'),
+            makeOption('gaussian', 'Gaussian'),
+        ]),
     );
 }
 
@@ -30,8 +37,8 @@ function drawWork(args) {
     let points = [];
     for (let i = 1; i <= ctrl.numPoints; i++) {
         points.push({
-            x: randomIntUpTo(width),
-            y: randomIntUpTo(height)
+            x: randomCoordinate(ctrl.randomType, width),
+            y: randomCoordinate(ctrl.randomType, height)
         });
     }
     // Make maxLineLength dependent on width, but use the same number of points
@@ -48,6 +55,17 @@ function drawWork(args) {
         ctx.stroke();
     }
 }
+
+function randomCoordinate(type, limit) {
+    if (type == 'standard') {
+        return randomIntUpTo(limit);
+    } else if (type == 'gaussian') {
+        return gaussianRandom(limit / 2, limit / 2)  // [0, limit]
+    } else {
+        console.log(`unknown random type '${type}'`);
+    }
+}
+
 /* Given an array of points, each represented by an object with an x key and a
  * y key, find all pairs of points whose distance in pixels is less than a
  * given value.
