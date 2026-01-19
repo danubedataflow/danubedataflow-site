@@ -41,13 +41,10 @@ function drawWork(args) {
             ctx.save();
             // move to the tile center so any rotate() and scale() happen there
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-
             // fill whole tile
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? randomElement(palette) : 'white';
             ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
-
             // draw triangles
-
             // upper left quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
@@ -56,7 +53,6 @@ function drawWork(args) {
             ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
-
             // upper right quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
@@ -65,7 +61,6 @@ function drawWork(args) {
             ctx.lineTo(tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
-
             // lower left quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
@@ -74,7 +69,6 @@ function drawWork(args) {
             ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
-
             // lower right quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();

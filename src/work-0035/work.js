@@ -60,12 +60,11 @@ function randomCoordinate(type, limit) {
     if (type == 'standard') {
         return randomIntUpTo(limit);
     } else if (type == 'gaussian') {
-        return gaussianRandom(limit / 2, limit / 2)  // [0, limit]
+        return gaussianRandom(limit / 2, limit / 2) // [0, limit]
     } else {
         console.log(`unknown random type '${type}'`);
     }
 }
-
 /* Given an array of points, each represented by an object with an x key and a
  * y key, find all pairs of points whose distance in pixels is less than a
  * given value.
