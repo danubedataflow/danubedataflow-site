@@ -4,7 +4,7 @@ import {
     makeSlider
 } from '/js/ui.js';
 import {
-    random
+    gaussianRandom
 } from '/js/math.js';
 import {
     pairwise
@@ -44,14 +44,6 @@ function drawWork(args) {
         ctx.lineTo(...next);
         ctx.stroke();
     });
-}
-// Source - https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
-// Standard Normal variate using Box-Muller transform.
-function gaussianRandom(mean = 0, standardDeviation = 1) {
-    const u = 1 - random(); // convert [0,1) to (0,1]
-    const v = random();
-    const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-    return z * standardDeviation + mean;
 }
 let description = `Lines join points whose horizontal positions are Gaussian, bounded by the canvas. The vertical positions increase quadratically. If a vertical position is outside the canvas, it is reflected to the bottom of the canvas (modulo). Homage to "Gaussian-Quadratic" by Michael Noll, 1963.`;
 run({

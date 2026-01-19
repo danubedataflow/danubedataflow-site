@@ -89,6 +89,17 @@ function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
 }
 
+// Source - https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+// Standard Normal variate using Box-Muller transform.
+//
+// Without args, it returns a number between -1 and +1
+function gaussianRandom(mean = 0, standardDeviation = 1) {
+    const u = 1 - random(); // convert [0,1) to (0,1]
+    const v = random();
+    const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    return z * standardDeviation + mean;
+}
+
 function getPointsForPolygon(sides, diameter, rotation) {
     // the polygon center is (0, 0)
     let points = [];
@@ -107,5 +118,6 @@ export {
     randomIntUpTo,
     randomIntRange,
     randomIntPlusMinus,
+    gaussianRandom,
     getPointsForPolygon
 };
