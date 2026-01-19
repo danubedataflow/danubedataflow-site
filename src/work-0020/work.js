@@ -39,11 +39,16 @@ function drawWork(args) {
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
-            // move to the tile center so rotate() and scale() happen there
+            // move to the tile center so any rotate() and scale() happen there
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+
+            // fill whole tile
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? randomElement(palette) : 'white';
             ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+
             // draw triangles
+
+            // upper left quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
             ctx.moveTo(0, -tileDim / 2);
@@ -51,6 +56,8 @@ function drawWork(args) {
             ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
+
+            // upper right quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
             ctx.moveTo(0, -tileDim / 2);
@@ -58,6 +65,8 @@ function drawWork(args) {
             ctx.lineTo(tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
+
+            // lower left quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
             ctx.moveTo(0, tileDim / 2);
@@ -65,6 +74,8 @@ function drawWork(args) {
             ctx.lineTo(-tileDim / 2, 0);
             ctx.closePath();
             ctx.fill();
+
+            // lower right quadrant, diagonally sliced, inner triangle
             ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
             ctx.beginPath();
             ctx.moveTo(0, tileDim / 2);
@@ -76,7 +87,7 @@ function drawWork(args) {
         }
     }
 }
-let description = `No description yet.`;
+let description = `Each tile has a random color. The maximum inscribed diamond shape is sliced into four triangles that meet at the center. Each triangle gets a separate random color, overlaid on the tile background. Homage to Emma Biggs and Matthew Collings.`;
 run({
     createdDate: '2023-04-27',
     description,
