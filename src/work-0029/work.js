@@ -50,12 +50,6 @@ function drawWalkers(ctx, ctrl, tileDim) {
     for (let startY = 0; startY <= tileDim; startY += ctrl.lineGap) {
         let y = startY;
         ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
-        /* Make a shape that borders the left, top and right side; the bottom
-         * is determined by the walker. We use a random semitransparent fill
-         * for each shape so each intersecting shape of adjacent horizontal and
-         * vertical walkers is filled by a color that is related to its
-         * neighbors.
-         */
         ctx.beginPath();
         ctx.moveTo(0, 0);
         for (let x = 0; x <= tileDim; x += ctrl.maxMovement) {
@@ -74,7 +68,7 @@ function drawWalkers(ctx, ctrl, tileDim) {
     ctx.strokeRect(0, 0, tileDim, tileDim);
     ctx.restore();
 }
-let description = `No description yet.`;
+let description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;
 run({
     createdDate: '2023-10-06',
     description,
