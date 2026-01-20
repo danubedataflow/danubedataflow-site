@@ -10,11 +10,12 @@ import {
     random
 } from '/js/math.js';
 import {
-    pairwise,
     randomElement
 } from '/js/array.js';
-const BORDER_COLOR = "#000";
-let palette;
+import {
+    Point
+} from '/js/point.js';
+let c, palette;
 
 function setupControls() {
     makeForm(
@@ -29,54 +30,49 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+function drawWork(config) {
+    c = config;
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
+
     // draw outer border if enabled
-    if (ctrl.hasBorder) {
-        ctx.strokeStyle = BORDER_COLOR;
-        ctx.strokeRect(0, 0, width, height);
+    if (c.ctrl.hasBorder) {
+        c.ctx.strokeStyle = 'black';
+        c.ctx.strokeRect(0, 0, c.width, c.height);
     }
-    // start recursion
-    drawSquare(0, 0, width, 0, ctx, ctrl);
+
+    drawSquare(new Point(0, 0), c.width, 0);
 }
-/**
- * Recursively subdivides and draws squares
- * @param {number} x - top-left x
- * @param {number} y - top-left y
- * @param {number} size - width/height of the square
- * @param {number} depth - current recursion depth
- */
-function drawSquare(x, y, size, depth, ctx, ctrl) {
-    let [minDepth, maxDepth] = ctrl.subdivisionDepth;
+
+function drawSquare(upperLeft, squareSize, currentDepth) {
+    let [minDepth, maxDepth] = c.ctrl.subdivisionDepth;
+
+    // If we haven't reached the minimum currentDepth, we have to subdividide.
+    // After that, up to the maximum currentDepth, it depends on chance.
     const shouldSubdivide =
-        depth < minDepth || (depth < maxDepth && random() < ctrl.subdivisionChance / 100);
+        currentDepth < minDepth || (currentDepth < maxDepth && random() < c.ctrl.subdivisionChance / 100);
+
     if (shouldSubdivide) {
-        const half = size / 2;
-        drawSquare(x, y, half, depth + 1, ctx, ctrl);
-        drawSquare(x + half, y, half, depth + 1, ctx, ctrl);
-        drawSquare(x, y + half, half, depth + 1, ctx, ctrl);
-        drawSquare(x + half, y + half, half, depth + 1, ctx, ctrl);
+        const half = squareSize / 2;
+        drawSquare(upperLeft, half, currentDepth + 1);
+        drawSquare(upperLeft.moveX(half), half, currentDepth + 1);
+        drawSquare(upperLeft.moveY(half), half, currentDepth + 1);
+        drawSquare(upperLeft.move(half, half), half, currentDepth + 1);
     } else {
-        // terminal square
-        if (random() < ctrl.chanceFill / 100) {
-            ctx.fillStyle = randomElement(palette);
-            ctx.fillRect(x, y, size, size);
+        // it's a terminal square
+        if (random() < c.ctrl.chanceFill / 100) {
+            c.ctx.fillStyle = randomElement(palette);
+            c.ctx.fillRect(...upperLeft.asArray(), squareSize, squareSize);
         }
-        if (ctrl.hasBorder) {
-            ctx.strokeStyle = BORDER_COLOR;
-            ctx.strokeRect(x, y, size, size);
+        if (c.ctrl.hasBorder) {
+            c.ctx.strokeStyle = 'black';
+            c.ctx.strokeRect(...upperLeft.asArray(), squareSize, squareSize);
         }
     }
 }
-let description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random depth. Each square has an optional border. Each terminal square has an optional fill.`;
+let description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random currentDepth. Each square has an optional border. Each terminal square has an optional fill.`;
 run({
     createdDate: '2026-01-19',
     description,
