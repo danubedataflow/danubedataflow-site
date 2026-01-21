@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- BEGIN metadata -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
+    <meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
+    <meta name="author" content="Marcel Grünauer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- END metadata -->
+    <title>Markov Chains</title>
+</head>
+
+<body>
+    <!-- BEGIN header -->
+    <header>
+        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+        <h2 class="site-byline">Minimal digital algorithmic art. Marcel Grünauer.</h2>
+        <div class="nav">
+            <a href="/">Works</a> | <a href="/principles/">Principles</a> |
+            <a
+                href="/notes/">Notes</a>
+                | <a href="/quotes/">Quotes</a> | <a href="https://github.com/danubedataflow/danubedataflow-site"
+                    target="_blank">GitHub</a>
+        </div>
+    </header>
+    <!-- END header -->
+
+    <main>
+        <section class="wide">
+            <h1>Markov Chains</h1>
+        </section>
+
+        <section class="narrow">
+
+            <p>A Markov chain is fundamentally a temporal model, describing a sequence
+                of events or states that evolve over time, where the key feature
+                (Markov Property) is that the future depends only on the present
+                state, not the entire past history, making it a stochastic process
+                modeling time-dependent systems.</p>
+
+            <p>A Markov chain normally describes state transitions over time. Here,
+                the chain is collapsed into space.</p>
+
+            <p>A finite Markov chain is evaluated once across a square field. Each
+                tile’s state depends on the immediately preceding spatial state,
+                not on time, according to a random but fixed transition matrix.</p>
+
+            <o>Formal description:</p>
+
+                <ul>
+                    <li>The square canvas is divided into an N × N grid.</li>
+                    <li>There are K discrete states (e.g. 2–5).</li>
+                    <li>Each state corresponds to a minimal geometric primitive, like
+                        the orientation of a line or a filled / empty rectangle
+                        or a triangle orientation.</li>
+                    <li>A random K × K transition matrix defines the probability of
+                        state changes.</li>
+                    <li>The field is filled in an arbitrary but fixed scan order, here
+                        left-to-right, top-to-bottom.</li>
+                    <li>The first tile’s state is determined by the seed.</li>
+                    <li>Each subsequent tile’s state depends only on the previous tile’s
+                        state and the transition matrix.</li>
+                    <li>The image is the trace of the arbitrary scan order.</li>
+                </ul>
+
+                <p>Although it computes tiles sequentially, the work is not about
+                    progression; there is no simulation of time. The scan order
+                    is merely a coordinate system, not a story. Conceptually, the
+                    image exists all at once.</p>
+
+                <p>Works based on Markov chains:</p>
+
+                <ul>
+                    <li><a href="/work-0038/">Work 0038</a></li>
+                </ul>
+        </section>
+
+    </main>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-let MAX_WORK = 37;
+let MAX_WORK = 38;
 
 // Define the order of works, for prev/next navigation. unshift() so the newest
 // works come first.
