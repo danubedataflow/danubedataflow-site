@@ -20,7 +20,7 @@ let c;
 function setupControls() {
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 60, 35),
-        makeFieldset('Line width',
+        makeFieldset('Line widths',
             makeCheckbox('useMarkovLineWidth', 'Use a markov chain'),
             makeSlider('lineWidthRange', 'Line width: {0} to {1}', 1, 3, [1, 3]),
         )
