@@ -26,8 +26,18 @@ function shuffle(array) {
 function randomElement(array) {
     return array[Math.floor(random() * array.length)];
 }
+
+function arrayFromIntRange(from, to) {
+    let result = [];
+    for (let i = from; i <= to; i++) {
+        result.push(i);
+    }
+    return result;
+}
+
 export {
     pairwise,
     shuffle,
-    randomElement
+    randomElement,
+    arrayFromIntRange
 };
