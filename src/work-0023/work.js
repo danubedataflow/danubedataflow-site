@@ -14,7 +14,7 @@ function setupControls() {
         makeSlider('scale', 'Scale: {0}', 1, 2, 1.5, 0.1),
         makeSlider('angleStep', 'Angle step: {0}', 2, 32, 16),
         makeSlider('maxOffsetPerAxis', 'Maximum offset per axis: {0}', 0, 10, 2),
-        makeSlider('lineWidth', 'Stroke weight: {0}', 1, 6, 1),
+        makeSlider('lineWidth', 'Line width: {0}', 1, 6, 1),
     );
 }
 

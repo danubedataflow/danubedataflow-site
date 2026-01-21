@@ -14,7 +14,7 @@ import {
 function setupControls() {
     makeForm(
         makeSlider('numRects', 'Number of rectangles: {0}', 10, 100, 50),
-        makeSlider('lineWidthRange', 'Stroke weight range: {0} to {1}', 1, 20, [2, 4]),
+        makeSlider('lineWidthRange', 'Line width range: {0} to {1}', 1, 20, [2, 4]),
         makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [80, 100]),
     );
 }

@@ -27,7 +27,7 @@ function setupControls() {
         ),
         makeSlider('numGrids', 'Number of grids: {0}', 2, 10, 4),
         makeSlider('segmentSizeRange', 'Segment size range: {0}% to {1}% of the width', 10, 30, [20, 25]),
-        makeSlider('lineWidth', 'Stroke weight: {0}', 1, 4, 1),
+        makeSlider('lineWidth', 'Line width: {0}', 1, 4, 1),
     );
 }
 

@@ -22,7 +22,7 @@ function setupControls() {
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 60, 35),
         makeFieldset('Line width',
             makeCheckbox('useMarkovLineWidth', 'Use a markov chain'),
-            makeSlider('lineWidthRange', 'Stroke weight: {0} to {1}', 1, 3, [1, 3]),
+            makeSlider('lineWidthRange', 'Line width: {0} to {1}', 1, 3, [1, 3]),
         )
     );
 }

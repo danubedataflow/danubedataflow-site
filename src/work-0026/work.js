@@ -35,7 +35,7 @@ function setupControls() {
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
         makeSlider('numPointsX', 'Number of horizontal points: {0}', 3, 5, 4),
         makeSlider('numPointsY', 'Number of vertical points: {0}', 3, 5, 4),
-        makeSlider('lineWidth', 'Stroke weight: {0}', 8, 20, 12),
+        makeSlider('lineWidth', 'Line width: {0}', 8, 20, 12),
         makeSlider('percentConnections', 'Connections: {0}%', 30, 70, 50, 5),
         makeSlider('scale', 'Scale: {0}', 0.5, 0.8, 0.6, 0.05),
     );

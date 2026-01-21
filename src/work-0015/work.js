@@ -16,7 +16,7 @@ function setupControls() {
     makeForm(
         makeSlider('numHorizontalLines', 'Number of horizonal lines: {0}', 1, 10, 5),
         makeSlider('numVerticalLines', 'Number of vertical lines: {0}', 1, 10, 5),
-        makeSlider('lineWidthRangeRelative', 'Stroke weight range: {0}% to {1}% of the canvas', 1, 20, [9, 13]),
+        makeSlider('lineWidthRangeRelative', 'Line width range: {0}% to {1}% of the canvas', 1, 20, [9, 13]),
         makeFieldset('Colors',
             makeSlider('colorAngle', 'Angle on the color wheel: {0}', 0, 359, 0),
             makeSlider('saturationRange', 'Saturation range: {0} to {1}', 40, 100, [60, 80]),

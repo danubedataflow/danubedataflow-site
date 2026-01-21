@@ -15,7 +15,7 @@ function setupControls() {
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 2, 20, 10),
         makeSlider('numRects', 'Number of rectangles: {0}', 2, 20, 10),
         makeSlider('scale', 'Scale: {0}', 0.5, 1, 0.9, 0.1),
-        makeSlider('lineWidthRange', 'Stroke weight range: {0} to {1}', 1, 20, [10, 12]),
+        makeSlider('lineWidthRange', 'Line width range: {0} to {1}', 1, 20, [10, 12]),
         makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [80, 100]),
     );
 }

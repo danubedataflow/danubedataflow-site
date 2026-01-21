@@ -25,8 +25,8 @@ function setupControls() {
             makeSlider('translationRange', 'Translation range: {0} to {1}', -50, 50, [-20, 20]),
         ),
         makeFieldset('Stroke',
-            makeSlider('lineWidthChance', 'Stroke weight probability: {0}%', 0, 100, 5),
-            makeSlider('lineWidthRange', 'Stroke weight range: {0} to {1}', 1, 4, [2, 3]),
+            makeSlider('lineWidthChance', 'Line width probability: {0}%', 0, 100, 5),
+            makeSlider('lineWidthRange', 'Line width range: {0} to {1}', 1, 4, [2, 3]),
         ),
     );
 }

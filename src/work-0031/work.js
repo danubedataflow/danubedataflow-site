@@ -12,7 +12,7 @@ function setupControls() {
     makeForm(
         makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 10, 5),
         makeSlider('numLines', 'Number of lines: {0}', 1, 10, 5),
-        makeSlider('lineWidth', 'Stroke weight: {0}', 1, 3, 2),
+        makeSlider('lineWidth', 'Line width: {0}', 1, 3, 2),
         makeCheckbox('hasBend', 'Bend: '),
     );
 }
