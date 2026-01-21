@@ -133,7 +133,7 @@ function longestEdgeEqualSplit(p1, p2, p3) {
 
 let description = `The canvas is subdivided into two triangles. Each of these two triangles is recursively subdivided up to a random currentDepth. Each triangle has an optional border. Each terminal triangle has an optional fill.`;
 run({
-    createdDate: '2026-01-19',
+    createdDate: '2026-01-20',
     description,
     setupControls,
     drawWork
