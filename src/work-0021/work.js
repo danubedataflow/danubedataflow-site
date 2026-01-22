@@ -40,7 +40,7 @@ function drawWork(args) {
         ctx.strokeRect(ulX, ulY, w, h);
     }
 }
-let description = `No description yet.`;
+let description = `Random rectangles with random border line widths and random alpha are overlaid on top of each other.`;
 run({
     createdDate: '2023-09-13',
     description,

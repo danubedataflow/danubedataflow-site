@@ -55,7 +55,7 @@ function drawWork(args) {
         }
     }
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `In each square tile, a grid of points is randomly connected by lines. Homage to "Hommage à Dürer" by haVera Molnár, which itself was based on the magic square from Albrecht Dürer's engraving "Melencolia I".`;
 run({
     createdDate: '2023-09-21',
     description,
