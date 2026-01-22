@@ -6,7 +6,6 @@ import {
     makeCheckbox
 } from '/js/ui.js';
 import {
-    randomElement,
     arrayFromIntRange
 } from '/js/array.js';
 import {
