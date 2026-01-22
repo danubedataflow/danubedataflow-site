@@ -536,7 +536,7 @@ function setup() {
     work.path = window.location.pathname.match(/work-\d+/)[0]; // 'work-0001' etc.
     document.getElementById('workTitle').innerText = work.title;
     document.getElementById('createdDate').innerText = work.createdDate;
-    document.getElementById('description').innerHTML = work.description;
+    setupDescription();
     document.getElementById('sourceLink').setAttribute('href',
         `https://github.com/danubedataflow/danubedataflow-site/blob/master/src/${work.path}/work.js`);
     document.getElementById('goToNewerWork').addEventListener('click', goToNewerWork);
@@ -546,6 +546,26 @@ function setup() {
     document.getElementById('saveCanvas').addEventListener('click', saveCanvas);
     document.getElementById('copyLink').addEventListener('click', copyLink);
     work.setupControls(); // works need to implement this
+}
+
+function setupDescription() {
+    let summaryText = work.description.substring(0, 60) +
+        '&hellip; [more]';
+
+    // If the descriotion disclosure element is closed, show the summary
+    // text. If it is opened, show 'Description' so there is no
+    // duplicate text.
+
+    let descriptionDetailsEl = document.getElementById('description');
+    let descriptionSpan = document.createElement('descriptionSpan');
+    descriptionSpan.innerHTML = work.description;
+    descriptionDetailsEl.appendChild(descriptionSpan);
+    let summaryEl = descriptionDetailsEl.querySelector('summary');
+    summaryEl.innerHTML = summaryText; // default since it starts closed
+    descriptionDetailsEl.addEventListener('toggle', (event) => {
+        summaryEl.innerHTML = descriptionDetailsEl.open ?
+            'Description' : summaryText;
+    });
 }
 
 function draw() {

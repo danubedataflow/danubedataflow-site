@@ -3,15 +3,15 @@
 
 <head>
     <!-- BEGIN metadata -->
-    <meta charset="utf-8">
-    <meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
-    <meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
-    <meta name="author" content="Marcel Grünauer">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link href="/css/style.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
+<meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
+<meta name="author" content="Marcel Grünauer">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="/css/style.css" rel="stylesheet">
     <!-- END metadata -->
     <title>Work 0038</title>
     <link href="/deps/nouislider.min.css" rel="stylesheet">
@@ -23,47 +23,49 @@
 
 <body>
     <!-- BEGIN header -->
-    <header>
-        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
-        <h2 class="site-byline">Minimal digital algorithmic art. Marcel Grünauer.</h2>
-        <div class="nav">
-            <a href="/">Works</a>
-            | <a href="/principles/">Principles</a>
-            | <a href="/notes/">Notes</a>
-            | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank">GitHub</a>
-        </div>
-    </header>
+<header>
+    <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+    <h2 class="site-byline">Minimal digital algorithmic art. Marcel Grünauer.</h2>
+    <div class="nav">
+        <a href="/">Works</a>
+        | <a href="/principles/">Principles</a>
+        | <a href="/notes/">Notes</a>
+        | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank">GitHub</a>
+    </div>
+</header>
     <!-- END header -->
 
     <!-- BEGIN work -->
-    <main>
-        <section id="work-container">
-            <div id="work"><canvas></canvas></div>
+<main>
+    <section id="work-container">
+        <div id="work"><canvas></canvas></div>
 
-            <div id="controls">
-                <p>
-                    <span id="workTitle"></span>
-                    <a id="goToNewerWork" href="#"><span class="nav-emoji" title="Go to newer work (left arrow)">&#x2B05;&#xFE0F;</span></a>
-                    <a id="goToOlderWork" href="#"><span class="nav-emoji" title="Go to older work (right arrow)">&#x27A1;&#xFE0F;</span></a>
-                    |
-                    <span id="createdDate"></span> |
-                    <span id="canvasSize"></span> |
-                    <a id="sourceLink" href="#" target="_blank"><span class="nav-emoji" title="Source code"><tt>&lt;/&gt;</tt></span></a>
-                    <a id="redrawWithNewSeed" href="#"><span class="nav-emoji" title="New seed (P)">&#x1F504;</span></a>
-                    <a id="setControlsRandomly" href="#"><span class="nav-emoji" title="Random parameters (R)">&#x1F500;</span></a>
-                    <a id="saveCanvas" href="#"><span class="nav-emoji" title="Save (S)">&#x1F4BE;</span></a>
-                    <a id="copyLink" href="#"><span class="nav-emoji" title="Copy link">&#x1F517;</span></a>
-                </p>
+        <div id="controls">
+            <p>
+                <span id="workTitle"></span>
+                <a id="goToNewerWork" href="#"><span class="nav-emoji" title="Go to newer work (left arrow)">&#x2B05;&#xFE0F;</span></a>
+                <a id="goToOlderWork" href="#"><span class="nav-emoji" title="Go to older work (right arrow)">&#x27A1;&#xFE0F;</span></a>
+                |
+                <span id="createdDate"></span> |
+                <span id="canvasSize"></span> |
+                <a id="sourceLink" href="#" target="_blank"><span class="nav-emoji" title="Source code"><tt>&lt;/&gt;</tt></span></a>
+                <a id="redrawWithNewSeed" href="#"><span class="nav-emoji" title="New seed (P)">&#x1F504;</span></a>
+                <a id="setControlsRandomly" href="#"><span class="nav-emoji" title="Random parameters (R)">&#x1F500;</span></a>
+                <a id="saveCanvas" href="#"><span class="nav-emoji" title="Save (S)">&#x1F4BE;</span></a>
+                <a id="copyLink" href="#"><span class="nav-emoji" title="Copy link">&#x1F517;</span></a>
+            </p>
 
-                <p id="description"></p>
+            <details id="description">
+                <summary></summary>
+            </details>
 
-                <form id="controls-form">
-                </form>
+            <form id="controls-form">
+            </form>
 
-            </div>
-        </section>
-        <script src="work.js" type="module"></script>
-    </main>
+        </div>
+    </section>
+    <script src="work.js" type="module"></script>
+</main>
     <!-- END work -->
 </body>
 

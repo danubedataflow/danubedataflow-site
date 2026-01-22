@@ -53,7 +53,9 @@ $replace{work} = <<~BLOCK;
                     <a id="copyLink" href="#"><span class="nav-emoji" title="Copy link">&#x1F517;</span></a>
                 </p>
 
-                <p id="description"></p>
+                <details id="description">
+                    <summary></summary>
+                </details>
 
                 <form id="controls-form">
                 </form>
