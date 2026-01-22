@@ -28,21 +28,15 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.save();
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.strokeStyle = 'black';
-
     // pad the work
     c.ctx.translate(c.width / 2, c.height / 2);
     c.ctx.scale(0.9, 0.9);
     c.ctx.translate(-c.width / 2, -c.height / 2);
-
     let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
-
     /*
      * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
      * is 9, we want to fill one in nine tiles.
@@ -50,18 +44,14 @@ function drawWork(config) {
      * Divide the total number of tiles by ratioColoredTiles and round to the
      * nearest integer. Fill at least one tile.
      */
-
     let numFilled = Math.max(1, Math.round(c.ctrl.numTiles * c.ctrl.numTiles / c.ctrl.ratioColoredTiles));
-
     /*
      * To know which tiles to fill, keep an array that has as many elements as
      * there are tiles. Set the first n tiles to be colored, then shuffle the
      * array. As we draw each tile, we shift the first array element.
      */
-
     let shouldFillArray = shuffle(Array(c.ctrl.numTiles * c.ctrl.numTiles).fill(false)
         .map((el, index) => index < numFilled));
-
     let tileDim = c.width / c.ctrl.numTiles;
     for (let y = 1; y <= c.ctrl.numTiles; y++) {
         for (let x = 1; x <= c.ctrl.numTiles; x++) {

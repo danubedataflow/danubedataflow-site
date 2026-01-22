@@ -131,10 +131,8 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
     if (c.ctrl.useLayers) {
         for (let layer = 1; layer <= c.ctrl.numLayers; layer++) {
@@ -174,7 +172,6 @@ function drawTile(tileDim, shouldColorArray) {
     let alpha = randomIntRange(...c.ctrl.alphaRange) / 100;
     // alpha is only used if we use layers
     if (!c.ctrl.useLayers) alpha = 1;
-
     if (c.ctrl.useColors) {
         if (shouldColorArray.shift()) {
             c.ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
@@ -184,7 +181,6 @@ function drawTile(tileDim, shouldColorArray) {
     } else {
         c.ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
     }
-
     // draw a random shape's pixels
     let shape = randomElement(shapes);
     for (let px = 0; px < 5; px++) {

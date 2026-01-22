@@ -16,12 +16,10 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     // actually clear the canvas
     c.ctx.globalCompositeOperation = 'source-over';
     c.ctx.fillStyle = '#cccccc';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.globalCompositeOperation = 'exclusion';
     c.ctx.fillStyle = 'white';
     c.ctx.lineWidth = 1;
@@ -33,7 +31,6 @@ function drawWork(config) {
     c.ctx.stroke();
     const radius = c.width / 2;
     let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.modulus);
-
     for (let i = 0; i < c.ctrl.modulus; i++) {
         // cycle through all colors in the palette; wrap around
         const colorIndex = (i + palette.length) % palette.length;

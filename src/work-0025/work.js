@@ -18,18 +18,14 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.save();
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
     c.ctx.strokeStyle = 'black';
-
     // pad the work
     c.ctx.translate(c.width / 2, c.height / 2);
     c.ctx.scale(0.9, 0.9);
     c.ctx.translate(-c.width / 2, -c.height / 2);
-
     let tileDim = c.width / c.ctrl.numTiles;
     for (let y = 1; y <= c.ctrl.numTiles; y++) {
         for (let x = 1; x <= c.ctrl.numTiles; x++) {

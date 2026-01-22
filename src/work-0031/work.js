@@ -20,21 +20,17 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.strokeStyle = 'black';
     let tileDim = c.width / c.ctrl.numTiles;
     for (let y = 1; y <= c.ctrl.numTiles; y++) {
         for (let x = 1; x <= c.ctrl.numTiles; x++) {
             c.ctx.save();
-
             // move to tile center to scale, then back to UL corner
             c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             c.ctx.scale(0.9, 0.9);
             c.ctx.translate(-tileDim / 2, -tileDim / 2);
-
             c.ctx.lineWidth = c.ctrl.lineWidth;
             for (let i = 0; i < c.ctrl.numLines; i++) {
                 c.ctx.beginPath();
@@ -43,7 +39,6 @@ function drawWork(config) {
                 c.ctx.lineTo(randomIntUpTo(tileDim), tileDim);
                 c.ctx.stroke();
             }
-
             // draw a border around the tile
             c.ctx.lineWidth = 1;
             c.ctx.strokeRect(0, 0, tileDim, tileDim);

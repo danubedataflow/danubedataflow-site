@@ -21,12 +21,9 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.save();
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.lineWidth = c.ctrl.lineWidth;
     c.ctx.strokeStyle = 'black';
     // pad the work

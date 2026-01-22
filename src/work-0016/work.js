@@ -20,7 +20,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = '#777777';
     c.ctx.fillRect(0, 0, c.width, c.height);
     let palette = ['white', '#aaaaaa', 'black'];

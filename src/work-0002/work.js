@@ -27,12 +27,10 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     // actually clear the canvas
     c.ctx.globalCompositeOperation = 'source-over';
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.globalCompositeOperation = c.ctrl.blendMode;
     let colorScale = chroma.scale(c.ctrl.colorMap);
     let p = [];

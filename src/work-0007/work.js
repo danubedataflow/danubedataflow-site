@@ -25,10 +25,8 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'black';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     for (let x = 0; x < c.ctrl.numTiles; x++) {
         for (let y = 0; y < c.ctrl.numTiles; y++) {

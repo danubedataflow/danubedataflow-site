@@ -34,15 +34,12 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     // actually clear the canvas
     c.ctx.globalCompositeOperation = 'source-over';
-
     // random color from the palette
     let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
     c.ctx.fillStyle = randomElement(palette);
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.globalCompositeOperation = c.ctrl.blendMode;
     for (let i = 0; i < c.ctrl.numSquares; i++) {
         let color = randomElement(palette);

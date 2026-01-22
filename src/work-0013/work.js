@@ -22,7 +22,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.save();
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);

@@ -18,7 +18,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     let offset = c.ctrl.randomPointOffset;
     let x1 = randomIntUpTo(c.width / 2);
     let y1 = randomIntUpTo(c.height / 2);

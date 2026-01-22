@@ -34,7 +34,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     // actually clear the canvas
     c.ctx.globalCompositeOperation = 'source-over';
     c.ctx.fillStyle = 'black';

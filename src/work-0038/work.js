@@ -29,27 +29,19 @@ function setupControls() {
 function drawWork(config) {
     c = config;
     const step = c.width / c.ctrl.numTiles;
-
     const markovShapes = makeRandomMarkovChain(['A', 'B', 'C', 'D']);
-
     const [lineWidthFrom, lineWidthTo] = c.ctrl.useMarkovLineWidth ? c.ctrl.lineWidthRange : [1, 1];
     const markovLineWidth = makeRandomMarkovChain(arrayFromIntRange(lineWidthFrom, lineWidthTo));
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     c.ctx.strokeStyle = 'black';
-
     // scan order: left-to-right, top-to-bottom
     for (let y = 0; y < c.ctrl.numTiles; y++) {
         for (let x = 0; x < c.ctrl.numTiles; x++) {
-
             // tile's upper left corner
             const p = new Point(x * step, y * step);
-
             c.ctx.lineWidth = markovLineWidth.getNextState();
             c.ctx.beginPath();
-
             const state = markovShapes.getNextState();
             if (state == 'A') {
                 // diagonal from the cell's upper left to lower right
@@ -73,7 +65,6 @@ function drawWork(config) {
         }
     }
 }
-
 let description = `A finite Markov chain is evaluated once over a two-dimensional grid, assigning a line orientation to each cell according to its immediately preceding state. So the probabilistic rule that is normally applied over time is applied instead across space. See my notes on <a href="/notes/markov-chains.html">Markov chains.</a> It resembles, but is not based on, "Quatre éléments distribués au hasard" by Vera Molnár, 1959.`;
 run({
     createdDate: '2026-01-21',

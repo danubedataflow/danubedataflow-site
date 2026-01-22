@@ -22,7 +22,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
     let tileDim = c.width / c.ctrl.numTiles;

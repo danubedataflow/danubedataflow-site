@@ -34,26 +34,21 @@ function drawWork(config) {
     c = config;
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
-
     palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
-
     // draw outer border if enabled
     if (c.ctrl.hasBorder) {
         c.ctx.strokeStyle = 'black';
         c.ctx.strokeRect(0, 0, c.width, c.height);
     }
-
     drawSquare(new Point(0, 0), c.width, 0);
 }
 
 function drawSquare(upperLeft, squareSize, currentDepth) {
     let [minDepth, maxDepth] = c.ctrl.subdivisionDepth;
-
     // If we haven't reached the minimum currentDepth, we have to subdividide.
     // After that, up to the maximum currentDepth, it depends on chance.
     const shouldSubdivide =
         currentDepth < minDepth || (currentDepth < maxDepth && random() < c.ctrl.subdivisionChance / 100);
-
     if (shouldSubdivide) {
         const half = squareSize / 2;
         drawSquare(upperLeft, half, currentDepth + 1);

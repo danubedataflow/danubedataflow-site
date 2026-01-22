@@ -23,7 +23,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     // random color, saturation and brightness
     c.ctx.fillStyle = colorHSL(randomIntRange(0, 350), randomIntRange(50, 100), randomIntRange(50, 100));
     c.ctx.fillRect(0, 0, c.width, c.height);

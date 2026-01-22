@@ -21,7 +21,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
     c.ctx.strokeStyle = 'black';
@@ -40,7 +39,6 @@ function drawWork(config) {
             c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             c.ctx.scale(c.ctrl.scale, c.ctrl.scale);
             c.ctx.translate(-tileDim / 2, -tileDim / 2);
-
             /*
              * To build the connections, traverse the points from left to right
              * and top to bottom. Then you only have to check the potential
@@ -60,7 +58,6 @@ function drawWork(config) {
              * of all possible connections, we shuffle the array, then splice
              * off the unwanted elements. Then we draw the remaining lines.
              */
-
             let connections = [];
             for (let y = 1; y <= c.ctrl.numPointsY; y++) {
                 for (let x = 1; x <= c.ctrl.numPointsX; x++) {

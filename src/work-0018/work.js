@@ -27,7 +27,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     palette = ['white', '#777777', 'black'];
     let tileDim = c.width / c.ctrl.numTiles;
     for (let y = 1; y <= c.ctrl.numTiles; y++) {

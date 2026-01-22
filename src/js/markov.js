@@ -44,47 +44,38 @@ import {
  *
  * The getTransitionMatrix() method returns the current transition matrix.
  */
-
 import {
     random
 } from '/js/math.js';
-
 class MarkovChain {
     constructor() {
         this.states = [];
         this.transitionMatrix = [];
         this.currentState = null;
     }
-
     setStates(states) {
         this.states = states.slice();
         this.currentState = null;
     }
-
     setTransitionMatrix(matrix) {
         this.transitionMatrix = matrix.map(row => row.slice());
     }
-
     getTransitionMatrix() {
         return this.transitionMatrix.map(row => row.slice());
     }
-
     setCurrentState(state) {
         if (!this.states.includes(state)) {
             throw new Error("Invalid state: " + state);
         }
         this.currentState = state;
     }
-
     isValid(epsilon = 1e-9) {
         const n = this.states.length;
         if (n === 0) return false;
         if (this.transitionMatrix.length !== n) return false;
-
         for (let i = 0; i < n; i++) {
             const row = this.transitionMatrix[i];
             if (!Array.isArray(row) || row.length !== n) return false;
-
             let sum = 0;
             for (let j = 0; j < n; j++) {
                 const v = row[j];
@@ -95,34 +86,27 @@ class MarkovChain {
         }
         return true;
     }
-
     generateRandomTransitionMatrix() {
         const n = this.states.length;
         if (n === 0) {
             throw new Error("States must be set first.");
         }
-
         this.transitionMatrix = [];
-
         for (let i = 0; i < n; i++) {
             let row = [];
             let sum = 0;
-
             for (let j = 0; j < n; j++) {
                 const r = random();
                 row.push(r);
                 sum += r;
             }
-
             // normalize row
             for (let j = 0; j < n; j++) {
                 row[j] /= sum;
             }
-
             this.transitionMatrix.push(row);
         }
     }
-
     getNextState() {
         if (this.currentState === null) {
             throw new Error("Current state not set.");
@@ -130,13 +114,10 @@ class MarkovChain {
         if (!this.isValid()) {
             throw new Error("Invalid transition matrix.");
         }
-
         const i = this.states.indexOf(this.currentState);
         const row = this.transitionMatrix[i];
-
         const r = random();
         let acc = 0;
-
         for (let j = 0; j < row.length; j++) {
             acc += row[j];
             if (r <= acc) {
@@ -144,7 +125,6 @@ class MarkovChain {
                 return this.currentState;
             }
         }
-
         // numerical fallback
         this.currentState = this.states[this.states.length - 1];
         return this.currentState;
@@ -158,7 +138,6 @@ function makeRandomMarkovChain(states) {
     m.setCurrentState(randomElement(states));
     return m;
 }
-
 export {
     MarkovChain,
     makeRandomMarkovChain

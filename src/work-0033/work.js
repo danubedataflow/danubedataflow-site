@@ -22,7 +22,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     let lsystem = makeLsystem();
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);

@@ -38,7 +38,6 @@ function setRandomFillColor() {
 
 function drawWork(config) {
     c = config;
-
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
     c.ctx.fillStyle = 'black';

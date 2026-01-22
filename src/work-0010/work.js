@@ -16,7 +16,6 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-
     let curves = [];
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
     for (let i = 0; i < c.ctrl.numCurves; i++) {
