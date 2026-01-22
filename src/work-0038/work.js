@@ -13,7 +13,7 @@ import {
     Point
 } from '/js/point.js';
 import {
-    MarkovChain
+    makeRandomMarkovChain
 } from '/js/markov.js';
 let c;
 
@@ -31,10 +31,10 @@ function drawWork(config) {
     c = config;
     const step = c.width / c.ctrl.numTiles;
 
-    const markovShapes = makeMarkovChain(['A', 'B', 'C', 'D']);
+    const markovShapes = makeRandomMarkovChain(['A', 'B', 'C', 'D']);
 
     const [lineWidthFrom, lineWidthTo] = c.ctrl.useMarkovLineWidth ? c.ctrl.lineWidthRange : [1, 1];
-    const markovLineWidth = makeMarkovChain(arrayFromIntRange(lineWidthFrom, lineWidthTo));
+    const markovLineWidth = makeRandomMarkovChain(arrayFromIntRange(lineWidthFrom, lineWidthTo));
 
     c.ctx.fillStyle = 'white';
     c.ctx.fillRect(0, 0, c.width, c.height);
@@ -73,14 +73,6 @@ function drawWork(config) {
             c.ctx.stroke();
         }
     }
-}
-
-function makeMarkovChain(states) {
-    const m = new MarkovChain();
-    m.setStates(states);
-    m.generateRandomTransitionMatrix();
-    m.setCurrentState(randomElement(states));
-    return m;
 }
 
 let description = `A finite Markov chain is evaluated once over a two-dimensional grid, assigning a line orientation to each cell according to its immediately preceding state. So the probabilistic rule that is normally applied over time is applied instead across space. See my notes on <a href="/notes/markov-chains.html">Markov chains.</a> It resembles, but is not based on, "Quatre éléments distribués au hasard" by Vera Molnár, 1959.`;

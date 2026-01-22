@@ -148,6 +148,14 @@ class MarkovChain {
     }
 }
 
+function makeRandomMarkovChain(states) {
+    const m = new MarkovChain();
+    m.setStates(states);
+    m.generateRandomTransitionMatrix();
+    m.setCurrentState(randomElement(states));
+    return m;
+}
+
 export {
-    MarkovChain
+    MarkovChain, makeRandomMarkovChain
 };
