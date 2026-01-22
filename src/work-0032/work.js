@@ -182,12 +182,17 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
     let alpha = randomIntRange(...ctrl.alphaRange) / 100;
     // alpha is only used if we use layers
     if (!ctrl.useLayers) alpha = 1;
-    ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
+
     if (ctrl.useColors) {
-        if (!shouldColorArray.shift()) ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+        if (shouldColorArray.shift()) {
+            ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
+        } else {
+            ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+        }
     } else {
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
     }
+
     // draw a random shape's pixels
     let shape = randomElement(shapes);
     for (let px = 0; px < 5; px++) {
