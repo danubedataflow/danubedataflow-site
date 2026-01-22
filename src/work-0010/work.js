@@ -6,6 +6,7 @@ import {
 import {
     randomIntUpTo
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -13,33 +14,29 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     let curves = [];
     // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
-    for (let i = 0; i < ctrl.numCurves; i++) {
+    for (let i = 0; i < c.ctrl.numCurves; i++) {
         curves.push([
-            [randomIntUpTo(width), randomIntUpTo(height)],
-            [randomIntUpTo(width), randomIntUpTo(height)],
-            [randomIntUpTo(width), randomIntUpTo(height)],
+            [randomIntUpTo(c.width), randomIntUpTo(c.height)],
+            [randomIntUpTo(c.width), randomIntUpTo(c.height)],
+            [randomIntUpTo(c.width), randomIntUpTo(c.height)],
         ]);
     }
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.fillStyle = '#000000';
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#707070';
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.fillStyle = '#000000';
+    c.ctx.lineWidth = 1;
+    c.ctx.strokeStyle = '#707070';
     let path = new Path2D();
     curves.forEach((c) => {
         path.bezierCurveTo(...c[0], ...c[1], ...c[2]);
     });
     path.closePath();
-    ctx.fill(path, "evenodd");
+    c.ctx.fill(path, "evenodd");
 }
 let description = `A series of bezier curves with 'evenodd' filling.`;
 run({

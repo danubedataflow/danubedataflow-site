@@ -12,11 +12,12 @@ import {
 import {
     pairwise
 } from '/js/array.js';
+let c;
 
 function setupControls() {
     makeForm(
         makeSlider('numPoints', 'Number of points: {0}', 50, 700, 350),
-        makeSlider('percentMaxLineLength', 'Maximum line length: {0}% of width', 10, 20, 15),
+        makeSlider('percentMaxLineLength', 'Maximum line length: {0}% of c.width', 10, 20, 15),
         makeSelect('randomType', 'Random type: ', [
             makeOption('standard', 'Standard'),
             makeOption('gaussian', 'Gaussian'),
@@ -24,35 +25,31 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'black';
     let points = [];
-    for (let i = 1; i <= ctrl.numPoints; i++) {
+    for (let i = 1; i <= c.ctrl.numPoints; i++) {
         points.push({
-            x: randomCoordinate(ctrl.randomType, width),
-            y: randomCoordinate(ctrl.randomType, height)
+            x: randomCoordinate(c.ctrl.randomType, c.width),
+            y: randomCoordinate(c.ctrl.randomType, c.height)
         });
     }
-    // Make maxLineLength dependent on width, but use the same number of points
-    // regardless of the width. That way the work looks the same at different
+    // Make maxLineLength dependent on c.width, but use the same number of points
+    // regardless of the c.width. That way the work looks the same at different
     // canvas sizes.
-    let maxLineLength = width * ctrl.percentMaxLineLength / 100;
+    let maxLineLength = c.width * c.ctrl.percentMaxLineLength / 100;
     let pairs = findClosePairs(points, maxLineLength);
     for (const [p1, p2] of pairs) {
-        ctx.strokeStyle = 'black';
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.closePath();
-        ctx.stroke();
+        c.ctx.strokeStyle = 'black';
+        c.ctx.beginPath();
+        c.ctx.moveTo(p1.x, p1.y);
+        c.ctx.lineTo(p2.x, p2.y);
+        c.ctx.closePath();
+        c.ctx.stroke();
     }
 }
 

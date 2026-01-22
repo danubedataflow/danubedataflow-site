@@ -9,6 +9,7 @@ import {
 import {
     colorHSL
 } from '/js/colors.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -18,29 +19,24 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
 
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
 
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to the tile center so rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
-            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
-            ctx.scale(ctrl.scaleInner, ctrl.scaleInner);
-            ctx.fillStyle = colorHSL(ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
-            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
-            ctx.restore();
+            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            c.ctx.fillStyle = colorHSL(c.ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+            c.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+            c.ctx.scale(c.ctrl.scaleInner, c.ctrl.scaleInner);
+            c.ctx.fillStyle = colorHSL(c.ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+            c.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+            c.ctx.restore();
         }
     }
 }

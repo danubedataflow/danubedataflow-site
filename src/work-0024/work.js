@@ -12,6 +12,7 @@ import {
     shuffle,
     randomElement
 } from '/js/array.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -25,24 +26,22 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
+function drawWork(config) {
+    c = config;
+
+    c.ctx.save();
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    c.ctx.strokeStyle = 'black';
 
     // pad the work
-    ctx.translate(width / 2, height / 2);
-    ctx.scale(0.9, 0.9);
-    ctx.translate(-width / 2, -height / 2);
+    c.ctx.translate(c.width / 2, c.height / 2);
+    c.ctx.scale(0.9, 0.9);
+    c.ctx.translate(-c.width / 2, -c.height / 2);
 
-    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
 
     /*
      * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
@@ -52,7 +51,7 @@ function drawWork(args) {
      * nearest integer. Fill at least one tile.
      */
 
-    let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
+    let numFilled = Math.max(1, Math.round(c.ctrl.numTiles * c.ctrl.numTiles / c.ctrl.ratioColoredTiles));
 
     /*
      * To know which tiles to fill, keep an array that has as many elements as
@@ -60,25 +59,25 @@ function drawWork(args) {
      * array. As we draw each tile, we shift the first array element.
      */
 
-    let shouldFillArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+    let shouldFillArray = shuffle(Array(c.ctrl.numTiles * c.ctrl.numTiles).fill(false)
         .map((el, index) => index < numFilled));
 
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
             let tileULX = (x - 1) * tileDim;
             let tileULY = (y - 1) * tileDim;
-            let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
-            let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
+            let xOffset = randomIntPlusMinus(c.ctrl.maxOffsetPerAxis);
+            let yOffset = randomIntPlusMinus(c.ctrl.maxOffsetPerAxis);
             let shouldFill = shouldFillArray.shift();
             if (shouldFill) {
-                ctx.fillStyle = randomElement(palette);
-                ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+                c.ctx.fillStyle = randomElement(palette);
+                c.ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
             }
-            ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+            c.ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
         }
     }
-    ctx.restore();
+    c.ctx.restore();
 }
 let description = `Each tile contains a randomly offset stroked square. A given ratio of squares, but at least one, is filled with a random color. Inspired by Vera Molnár.`;
 run({

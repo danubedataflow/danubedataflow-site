@@ -12,7 +12,7 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-let palette, c1, c2;
+let c, palette, color1, color2;
 
 function setupControls() {
     makeForm(
@@ -25,55 +25,51 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     palette = ['white', '#777777', 'black'];
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
-            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-            chooseColors(ctrl.colorStrategy);
-            if (randomIntUpTo(100) < ctrl.diagonalOrientationChance) {
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
+            c.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
+            chooseColors(c.ctrl.colorStrategy);
+            if (randomIntUpTo(100) < c.ctrl.diagonalOrientationChance) {
                 // upper left to lower right
-                ctx.fillStyle = c1;
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(tileDim, tileDim);
-                ctx.lineTo(0, tileDim);
-                ctx.closePath();
-                ctx.fill();
-                ctx.fillStyle = c2;
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(tileDim, tileDim);
-                ctx.lineTo(tileDim, 0);
-                ctx.closePath();
-                ctx.fill();
+                c.ctx.fillStyle = color1;
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, 0);
+                c.ctx.lineTo(tileDim, tileDim);
+                c.ctx.lineTo(0, tileDim);
+                c.ctx.closePath();
+                c.ctx.fill();
+                c.ctx.fillStyle = color2;
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, 0);
+                c.ctx.lineTo(tileDim, tileDim);
+                c.ctx.lineTo(tileDim, 0);
+                c.ctx.closePath();
+                c.ctx.fill();
             } else {
                 // upper right to lower left
-                ctx.fillStyle = c1;
-                ctx.beginPath();
-                ctx.moveTo(tileDim, 0);
-                ctx.lineTo(0, tileDim);
-                ctx.lineTo(0, 0);
-                ctx.closePath();
-                ctx.fill();
-                ctx.fillStyle = c2;
-                ctx.beginPath();
-                ctx.moveTo(tileDim, 0);
-                ctx.lineTo(0, tileDim);
-                ctx.lineTo(tileDim, tileDim);
-                ctx.closePath();
-                ctx.fill();
+                c.ctx.fillStyle = color1;
+                c.ctx.beginPath();
+                c.ctx.moveTo(tileDim, 0);
+                c.ctx.lineTo(0, tileDim);
+                c.ctx.lineTo(0, 0);
+                c.ctx.closePath();
+                c.ctx.fill();
+                c.ctx.fillStyle = color2;
+                c.ctx.beginPath();
+                c.ctx.moveTo(tileDim, 0);
+                c.ctx.lineTo(0, tileDim);
+                c.ctx.lineTo(tileDim, tileDim);
+                c.ctx.closePath();
+                c.ctx.fill();
             }
-            c1 = c2;
-            ctx.restore();
+            color1 = color2;
+            c.ctx.restore();
         }
     }
 }
@@ -81,16 +77,16 @@ function drawWork(args) {
 function chooseColors(colorStrategy) {
     if (colorStrategy === 'random') {
         // choose two different random colors
-        c1 = randomElement(palette);
+        color1 = randomElement(palette);
         do {
-            c2 = randomElement(palette);
-        } while (c1 == c2);
+            color2 = randomElement(palette);
+        } while (color1 == color2);
     } else if (colorStrategy === 'adjacent') {
-        c1 = c2; // reuse previous color
-        if (c1 === undefined) c1 = random(palette);
+        color1 = color2; // reuse previous color
+        if (color1 === undefined) color1 = random(palette);
         do {
-            c2 = randomElement(palette);
-        } while (c1 == c2);
+            color2 = randomElement(palette);
+        } while (color1 == color2);
     } else {
         console.log('invalid color strategy ' + colorStrategy);
     }

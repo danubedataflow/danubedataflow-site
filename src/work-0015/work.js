@@ -11,12 +11,13 @@ import {
 import {
     colorHSLA
 } from '/js/colors.js';
+let c;
 
 function setupControls() {
     makeForm(
         makeSlider('numHorizontalLines', 'Number of horizonal lines: {0}', 1, 10, 5),
         makeSlider('numVerticalLines', 'Number of vertical lines: {0}', 1, 10, 5),
-        makeSlider('lineWidthRangeRelative', 'Line width range: {0}% to {1}% of the canvas', 1, 20, [9, 13]),
+        makeSlider('lineWidthRangeRelative', 'Line c.width range: {0}% to {1}% of the canvas', 1, 20, [9, 13]),
         makeFieldset('Colors',
             makeSlider('colorAngle', 'Angle on the color wheel: {0}', 0, 359, 0),
             makeSlider('saturationRange', 'Saturation range: {0} to {1}', 40, 100, [60, 80]),
@@ -26,36 +27,32 @@ function setupControls() {
     );
 }
 
-function setRandomFillColor(ctx, ctrl) {
-    ctx.fillStyle = colorHSLA(
-        ctrl.colorAngle,
-        randomIntRange(...ctrl.saturationRange),
-        randomIntRange(...ctrl.lightnessRange),
-        randomIntRange(...ctrl.alphaRange) / 100
+function setRandomFillColor() {
+    c.ctx.fillStyle = colorHSLA(
+        c.ctrl.colorAngle,
+        randomIntRange(...c.ctrl.saturationRange),
+        randomIntRange(...c.ctrl.lightnessRange),
+        randomIntRange(...c.ctrl.alphaRange) / 100
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.fillStyle = 'black';
-    for (let i = 0; i <= ctrl.numHorizontalLines; i++) {
-        let x1 = randomIntUpTo(width);
-        let w = randomIntRange(...ctrl.lineWidthRangeRelative) * width / 100;
-        setRandomFillColor(ctx, ctrl);
-        ctx.fillRect(x1, 0, w, height);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.fillStyle = 'black';
+    for (let i = 0; i <= c.ctrl.numHorizontalLines; i++) {
+        let x1 = randomIntUpTo(c.width);
+        let w = randomIntRange(...c.ctrl.lineWidthRangeRelative) * c.width / 100;
+        setRandomFillColor();
+        c.ctx.fillRect(x1, 0, w, c.height);
     }
-    for (let i = 0; i <= ctrl.numVerticalLines; i++) {
-        let y1 = randomIntUpTo(width);
-        let h = randomIntRange(...ctrl.lineWidthRangeRelative) * height / 100;
-        setRandomFillColor(ctx, ctrl);
-        ctx.fillRect(0, y1, width, h);
+    for (let i = 0; i <= c.ctrl.numVerticalLines; i++) {
+        let y1 = randomIntUpTo(c.width);
+        let h = randomIntRange(...c.ctrl.lineWidthRangeRelative) * c.height / 100;
+        setRandomFillColor();
+        c.ctx.fillRect(0, y1, c.width, h);
     }
 }
 let description = `Horizontal and vertical lines with random positions and random colors.`;

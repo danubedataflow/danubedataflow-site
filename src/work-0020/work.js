@@ -11,7 +11,7 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-let palette;
+let c, palette;
 
 function setupControls() {
     makeForm(
@@ -25,59 +25,55 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to the tile center so any rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             // fill whole tile
-            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredTileChance ? randomElement(palette) : 'white';
-            ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredTileChance ? randomElement(palette) : 'white';
+            c.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
             // draw triangles
             // upper left quadrant, diagonally sliced, inner triangle
-            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            ctx.beginPath();
-            ctx.moveTo(0, -tileDim / 2);
-            ctx.lineTo(0, 0);
-            ctx.lineTo(-tileDim / 2, 0);
-            ctx.closePath();
-            ctx.fill();
+            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+            c.ctx.beginPath();
+            c.ctx.moveTo(0, -tileDim / 2);
+            c.ctx.lineTo(0, 0);
+            c.ctx.lineTo(-tileDim / 2, 0);
+            c.ctx.closePath();
+            c.ctx.fill();
             // upper right quadrant, diagonally sliced, inner triangle
-            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            ctx.beginPath();
-            ctx.moveTo(0, -tileDim / 2);
-            ctx.lineTo(0, 0);
-            ctx.lineTo(tileDim / 2, 0);
-            ctx.closePath();
-            ctx.fill();
+            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+            c.ctx.beginPath();
+            c.ctx.moveTo(0, -tileDim / 2);
+            c.ctx.lineTo(0, 0);
+            c.ctx.lineTo(tileDim / 2, 0);
+            c.ctx.closePath();
+            c.ctx.fill();
             // lower left quadrant, diagonally sliced, inner triangle
-            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            ctx.beginPath();
-            ctx.moveTo(0, tileDim / 2);
-            ctx.lineTo(0, 0);
-            ctx.lineTo(-tileDim / 2, 0);
-            ctx.closePath();
-            ctx.fill();
+            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+            c.ctx.beginPath();
+            c.ctx.moveTo(0, tileDim / 2);
+            c.ctx.lineTo(0, 0);
+            c.ctx.lineTo(-tileDim / 2, 0);
+            c.ctx.closePath();
+            c.ctx.fill();
             // lower right quadrant, diagonally sliced, inner triangle
-            ctx.fillStyle = randomIntUpTo(100) < ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            ctx.beginPath();
-            ctx.moveTo(0, tileDim / 2);
-            ctx.lineTo(0, 0);
-            ctx.lineTo(tileDim / 2, 0);
-            ctx.closePath();
-            ctx.fill();
-            ctx.restore();
+            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+            c.ctx.beginPath();
+            c.ctx.moveTo(0, tileDim / 2);
+            c.ctx.lineTo(0, 0);
+            c.ctx.lineTo(tileDim / 2, 0);
+            c.ctx.closePath();
+            c.ctx.fill();
+            c.ctx.restore();
         }
     }
 }

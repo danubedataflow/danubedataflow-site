@@ -9,6 +9,7 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -19,26 +20,22 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    let lsystem = makeLsystem(ctrl);
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
+function drawWork(config) {
+    c = config;
+
+    let lsystem = makeLsystem();
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'black';
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
         let spec = lsystem.getString();
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to the tile's upper left corner
-            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
+            c.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
             /* interpret the symbols in each iteration as greyscale values. For
-             * ctrl.numSymbols == 5, this would be:
+             * c.ctrl.numSymbols == 5, this would be:
              *
              * A = fill 0% (blank)
              * B = fill 25%
@@ -51,13 +48,13 @@ function drawWork(args) {
              * alphaIndex 4 means 100% alpha.
              */
             let symbol = spec.charAt(x - 1);
-            // 0 <= alphaIndex <= ctrl.numSymbols - 1
+            // 0 <= alphaIndex <= c.ctrl.numSymbols - 1
             let alphaIndex = symbol.charCodeAt(0) - 'A'.charCodeAt(0);
-            // map alpha from the range (0..ctrl.numSymbols - 1) to (0..100)
-            let alpha = (alphaIndex / (ctrl.numSymbols - 1)) * 100;
-            ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
-            ctx.fillRect(0, 0, tileDim, tileDim);
-            ctx.restore();
+            // map alpha from the range (0..c.ctrl.numSymbols - 1) to (0..100)
+            let alpha = (alphaIndex / (c.ctrl.numSymbols - 1)) * 100;
+            c.ctx.fillStyle = colorRGBA(0, 0, 0, alpha / 100);
+            c.ctx.fillRect(0, 0, tileDim, tileDim);
+            c.ctx.restore();
         }
         lsystem.iterate();
     }
@@ -74,10 +71,10 @@ function drawWork(args) {
  *    lsystem.setProduction('D', () => (random() < middleChangeChance) ? 'C' : 'E')
  *    lsystem.setProduction('E', () => (random() < borderChangeChance) ? 'D' : 'E')
  */
-function makeLsystem(ctrl) {
-    let numSymbols = ctrl.numSymbols;
-    let borderChangeChance = ctrl.borderChangeChance / 100;;
-    let middleChangeChance = ctrl.middleChangeChance / 100;
+function makeLsystem() {
+    let numSymbols = c.ctrl.numSymbols;
+    let borderChangeChance = c.ctrl.borderChangeChance / 100;;
+    let middleChangeChance = c.ctrl.middleChangeChance / 100;
     let lsystem = new LSystem({});
     let charCode = 'A'.charCodeAt(0);
     let symbolsForAxiom = '';
@@ -95,7 +92,7 @@ function makeLsystem(ctrl) {
         }
         charCode++;
     }
-    lsystem.setAxiom(makeAxiom(symbolsForAxiom, ctrl.numTiles));
+    lsystem.setAxiom(makeAxiom(symbolsForAxiom, c.ctrl.numTiles));
     console.log(lsystem);
     return lsystem;
 }

@@ -8,6 +8,7 @@ import {
     randomIntUpTo,
     randomIntRange
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -25,48 +26,44 @@ function setupControls() {
             makeSlider('translationRange', 'Translation range: {0} to {1}', -50, 50, [-20, 20]),
         ),
         makeFieldset('Stroke',
-            makeSlider('lineWidthChance', 'Line width probability: {0}%', 0, 100, 5),
-            makeSlider('lineWidthRange', 'Line width range: {0} to {1}', 1, 4, [2, 3]),
+            makeSlider('lineWidthChance', 'Line c.width probability: {0}%', 0, 100, 5),
+            makeSlider('lineWidthRange', 'Line c.width range: {0} to {1}', 1, 4, [2, 3]),
         ),
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.save();
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
     // pad the work
-    ctx.translate(width / 2, height / 2);
-    ctx.scale(0.97, 0.97);
-    ctx.translate(-width / 2, -height / 2);
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+    c.ctx.translate(c.width / 2, c.height / 2);
+    c.ctx.scale(0.97, 0.97);
+    c.ctx.translate(-c.width / 2, -c.height / 2);
+    c.ctx.lineWidth = 1;
+    c.ctx.strokeStyle = 'black';
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // `+ 0.5` to move to the tile's center
-            ctx.translate((x - 1) * (tileDim + 0.5), (y - 1) * (tileDim + 0.5));
-            if (randomIntUpTo(100) < ctrl.rotationChance) ctx.rotate(randomIntRange(...ctrl.rotationRange) * Math.PI / 180);
-            if (randomIntUpTo(100) < ctrl.scaleChance) {
-                let s = randomIntRange(...ctrl.scaleRange) / 100;
-                ctx.scale(s, s);
+            c.ctx.translate((x - 1) * (tileDim + 0.5), (y - 1) * (tileDim + 0.5));
+            if (randomIntUpTo(100) < c.ctrl.rotationChance) c.ctx.rotate(randomIntRange(...c.ctrl.rotationRange) * Math.PI / 180);
+            if (randomIntUpTo(100) < c.ctrl.scaleChance) {
+                let s = randomIntRange(...c.ctrl.scaleRange) / 100;
+                c.ctx.scale(s, s);
             }
-            if (randomIntUpTo(100) < ctrl.translationChance) ctx.translate(
-                tileDim * randomIntRange(...ctrl.translationRange) / 100,
-                tileDim * randomIntRange(...ctrl.translationRange) / 100);
-            if (randomIntUpTo(100) < ctrl.lineWidthChance) ctx.lineWidth = randomIntRange(...ctrl.lineWidthRange);
-            ctx.strokeRect(0, 0, tileDim, tileDim);
-            ctx.restore();
+            if (randomIntUpTo(100) < c.ctrl.translationChance) c.ctx.translate(
+                tileDim * randomIntRange(...c.ctrl.translationRange) / 100,
+                tileDim * randomIntRange(...c.ctrl.translationRange) / 100);
+            if (randomIntUpTo(100) < c.ctrl.lineWidthChance) c.ctx.lineWidth = randomIntRange(...c.ctrl.lineWidthRange);
+            c.ctx.strokeRect(0, 0, tileDim, tileDim);
+            c.ctx.restore();
         }
     }
-    ctx.restore();
+    c.ctx.restore();
 }
 let description = `Each tile has separate probabilities of being rotated, scaled, translated and stroked. Inspired by Vera Molnár.`;
 run({

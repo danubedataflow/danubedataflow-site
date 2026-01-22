@@ -8,6 +8,7 @@ import {
     random,
     randomIntRange
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -17,34 +18,30 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, width, height);
-    let colorScale = chroma.scale(ctrl.colorMap);
-    let tileDim = Math.floor(width / ctrl.numTiles);
+    c.ctx.globalCompositeOperation = 'source-over';
+    c.ctx.fillStyle = 'black';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    let colorScale = chroma.scale(c.ctrl.colorMap);
+    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     let radius = tileDim * 0.4;
-    for (let x = 0; x < ctrl.numTiles; x++) {
-        for (let y = 0; y < ctrl.numTiles; y++) {
-            ctx.save();
-            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-            let numLines = randomIntRange(...ctrl.numLinesRange);
+    for (let x = 0; x < c.ctrl.numTiles; x++) {
+        for (let y = 0; y < c.ctrl.numTiles; y++) {
+            c.ctx.save();
+            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+            let numLines = randomIntRange(...c.ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
-                ctx.strokeStyle = colorScale(random()).toString();
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
+                c.ctx.strokeStyle = colorScale(random()).toString();
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, 0);
                 let angle = random() * 2 * Math.PI;
-                ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
-                ctx.stroke();
+                c.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
+                c.ctx.stroke();
             }
-            ctx.restore();
+            c.ctx.restore();
         }
     }
 }

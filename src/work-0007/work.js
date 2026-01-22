@@ -10,6 +10,7 @@ import {
     randomIntRange,
     getPointsForPolygon
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -22,38 +23,35 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, width, height);
-    let tileDim = Math.floor(width / ctrl.numTiles);
-    for (let x = 0; x < ctrl.numTiles; x++) {
-        for (let y = 0; y < ctrl.numTiles; y++) {
-            ctx.save();
-            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-            let numColors = randomIntRange(...ctrl.numColorsRange);
-            let palette = chroma.scale(ctrl.colorMap).colors(numColors);
-            let numSides = randomIntRange(...ctrl.numSidesRange);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'black';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
+    for (let x = 0; x < c.ctrl.numTiles; x++) {
+        for (let y = 0; y < c.ctrl.numTiles; y++) {
+            c.ctx.save();
+            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+            let numColors = randomIntRange(...c.ctrl.numColorsRange);
+            let palette = chroma.scale(c.ctrl.colorMap).colors(numColors);
+            let numSides = randomIntRange(...c.ctrl.numSidesRange);
             let points = getPointsForPolygon(numSides, tileDim * 0.9, 0);
             // draw a line from each point to each point
             let colorIndex = 0;
             points.forEach((p, i) => {
                 points.forEach((p2, j) => {
                     if (i == j) return;
-                    ctx.strokeStyle = palette[colorIndex];
+                    c.ctx.strokeStyle = palette[colorIndex];
                     colorIndex = (colorIndex + 1 + palette.length) % palette.length;
-                    ctx.beginPath();
-                    ctx.moveTo(...p);
-                    ctx.lineTo(...p2);
-                    ctx.stroke();
+                    c.ctx.beginPath();
+                    c.ctx.moveTo(...p);
+                    c.ctx.lineTo(...p2);
+                    c.ctx.stroke();
                 });
             });
-            ctx.restore();
+            c.ctx.restore();
         }
     }
 }

@@ -10,6 +10,7 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -19,54 +20,51 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    c.ctx.strokeStyle = 'black';
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to the tile center so rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            ctx.scale(0.9, 0.9);
-            drawWalkers(ctx, ctrl, tileDim);
-            ctx.rotate(Math.PI / 2);
-            drawWalkers(ctx, ctrl, tileDim);
-            ctx.restore();
+            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            c.ctx.scale(0.9, 0.9);
+            drawWalkers(tileDim);
+            c.ctx.rotate(Math.PI / 2);
+            drawWalkers(tileDim);
+            c.ctx.restore();
         }
     }
 }
 
-function drawWalkers(ctx, ctrl, tileDim) {
-    ctx.save();
-    ctx.translate(-tileDim / 2, -tileDim / 2);
-    for (let startY = 0; startY <= tileDim; startY += ctrl.lineGap) {
+function drawWalkers(tileDim) {
+    c.ctx.save();
+    c.ctx.translate(-tileDim / 2, -tileDim / 2);
+    for (let startY = 0; startY <= tileDim; startY += c.ctrl.lineGap) {
         let y = startY;
-        ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        for (let x = 0; x <= tileDim; x += ctrl.maxMovement) {
-            ctx.lineTo(x, y);
+        c.ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
+        c.ctx.beginPath();
+        c.ctx.moveTo(0, 0);
+        for (let x = 0; x <= tileDim; x += c.ctrl.maxMovement) {
+            c.ctx.lineTo(x, y);
             // random movement but constrain to the tile size
-            y += randomIntPlusMinus(ctrl.maxMovement);
+            y += randomIntPlusMinus(c.ctrl.maxMovement);
             if (y < 0) y = 0;
             if (y > tileDim) y = tileDim;
         }
-        ctx.lineTo(tileDim, 0);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
+        c.ctx.lineTo(tileDim, 0);
+        c.ctx.closePath();
+        c.ctx.fill();
+        c.ctx.stroke();
     }
     // draw a border
-    ctx.strokeRect(0, 0, tileDim, tileDim);
-    ctx.restore();
+    c.ctx.strokeRect(0, 0, tileDim, tileDim);
+    c.ctx.restore();
 }
 let description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;
 run({

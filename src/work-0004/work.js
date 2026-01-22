@@ -10,6 +10,7 @@ import {
     random,
     randomIntRange
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -22,39 +23,35 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = ctrl.blendMode;
+    c.ctx.globalCompositeOperation = 'source-over';
+    c.ctx.fillStyle = 'black';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.globalCompositeOperation = c.ctrl.blendMode;
     let angle = random() * 2 * Math.PI;
-    let colorScale = chroma.scale(ctrl.colorMap);
-    let tileDim = Math.floor(width / ctrl.numTiles);
+    let colorScale = chroma.scale(c.ctrl.colorMap);
+    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     let radius = tileDim * 0.4;
     let p = [Math.sin(angle) * radius, Math.cos(angle) * radius];
-    for (let x = 0; x < ctrl.numTiles; x++) {
-        for (let y = 0; y < ctrl.numTiles; y++) {
-            ctx.save();
-            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-            let numLines = randomIntRange(...ctrl.numLinesRange);
+    for (let x = 0; x < c.ctrl.numTiles; x++) {
+        for (let y = 0; y < c.ctrl.numTiles; y++) {
+            c.ctx.save();
+            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+            let numLines = randomIntRange(...c.ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
-                ctx.strokeStyle = colorScale(random()).toString();
+                c.ctx.strokeStyle = colorScale(random()).toString();
                 let angle2 = random() * 2 * Math.PI;
                 let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
-                ctx.beginPath();
-                ctx.moveTo(...p);
-                ctx.lineTo(...p2);
-                ctx.stroke();
+                c.ctx.beginPath();
+                c.ctx.moveTo(...p);
+                c.ctx.lineTo(...p2);
+                c.ctx.stroke();
                 p = p2;
             }
-            ctx.restore();
+            c.ctx.restore();
         }
     }
 }

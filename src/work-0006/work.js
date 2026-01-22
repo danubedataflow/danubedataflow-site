@@ -17,7 +17,7 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-let palette;
+let c, palette;
 
 function setupControls() {
     makeForm(
@@ -32,30 +32,28 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+function drawWork(config) {
+    c = config;
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
+    c.ctx.globalCompositeOperation = 'source-over';
+
     // random color from the palette
-    ctx.fillStyle = randomElement(palette);
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = ctrl.blendMode;
-    for (let i = 0; i < ctrl.numSquares; i++) {
-        let c = randomElement(palette);
+    let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
+    c.ctx.fillStyle = randomElement(palette);
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    c.ctx.globalCompositeOperation = c.ctrl.blendMode;
+    for (let i = 0; i < c.ctrl.numSquares; i++) {
+        let color = randomElement(palette);
         // turn RGB hex string into [R, G, B]
-        c = chroma(c).rgb();
+        color = chroma(color).rgb();
         // map [0,100]% to [0, 1]
-        let alpha = randomIntRange(...ctrl.alphaRange) / 100;
-        ctx.fillStyle = colorRGBA(...c, alpha);
-        let [minLength, maxLength] = ctrl.squareLengthRange;
-        let s = randomIntRange(width * minLength / 100, height * maxLength / 100);
-        ctx.fillRect(randomIntUpTo(width), randomIntUpTo(height), s, s);
+        let alpha = randomIntRange(...c.ctrl.alphaRange) / 100;
+        c.ctx.fillStyle = colorRGBA(...color, alpha);
+        let [minLength, maxLength] = c.ctrl.squareLengthRange;
+        let s = randomIntRange(c.width * minLength / 100, c.height * maxLength / 100);
+        c.ctx.fillRect(randomIntUpTo(c.width), randomIntUpTo(c.height), s, s);
     }
 }
 let description = `Random rectangles in random colors, blended together.`;

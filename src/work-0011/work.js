@@ -7,6 +7,7 @@ import {
     randomIntUpTo,
     randomIntRange
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -15,38 +16,34 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    let offset = ctrl.randomPointOffset;
-    let x1 = randomIntUpTo(width / 2);
-    let y1 = randomIntUpTo(height / 2);
-    let x2 = randomIntUpTo(width / 2) + width / 2;
-    let y2 = randomIntUpTo(height / 2) + height / 2;
+function drawWork(config) {
+    c = config;
+
+    let offset = c.ctrl.randomPointOffset;
+    let x1 = randomIntUpTo(c.width / 2);
+    let y1 = randomIntUpTo(c.height / 2);
+    let x2 = randomIntUpTo(c.width / 2) + c.width / 2;
+    let y2 = randomIntUpTo(c.height / 2) + c.height / 2;
     let x1d = rnd(6, offset);
     let y1d = rnd(5, offset);
     let x2d = rnd(2, offset);
     let y2d = rnd(7, offset);
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'white';
-    for (let i = 1; i <= ctrl.numLines; i++) {
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-        if (x1 > width) x1d = -rnd(2, offset);
-        if (y1 > height) y1d = -rnd(8, offset);
+    c.ctx.fillStyle = 'black';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'white';
+    for (let i = 1; i <= c.ctrl.numLines; i++) {
+        c.ctx.beginPath();
+        c.ctx.moveTo(x1, y1);
+        c.ctx.lineTo(x2, y2);
+        c.ctx.stroke();
+        if (x1 > c.width) x1d = -rnd(2, offset);
+        if (y1 > c.height) y1d = -rnd(8, offset);
         if (x2 < 0) x2d = rnd(6, offset);
         if (y2 < 0) y2d = rnd(5, offset);
         if (x1 < 0) x1d = rnd(2, offset);
         if (y1 < 0) y1d = rnd(3, offset);
-        if (x2 > width) x2d = rnd(8, offset);
-        if (y2 > height) y2d = rnd(2, offset);
+        if (x2 > c.width) x2d = rnd(8, offset);
+        if (y2 > c.height) y2d = rnd(2, offset);
         x1 += x1d;
         y1 += y1d;
         x2 -= x2d;

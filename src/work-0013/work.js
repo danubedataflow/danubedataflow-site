@@ -7,6 +7,7 @@ import {
 import {
     randomIntUpTo
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -19,56 +20,52 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.save();
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
     // pad the work
-    ctx.translate(width / 2, height / 2);
-    ctx.scale(0.97, 0.97);
-    ctx.translate(-width / 2, -height / 2);
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
-            ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-            if (ctrl.hasTileBorder) ctx.strokeRect(0, 0, tileDim, tileDim);
-            if (randomIntUpTo(100) < ctrl.horizontalLineChance) {
-                ctx.beginPath();
-                ctx.moveTo(0, tileDim / 2);
-                ctx.lineTo(tileDim, tileDim / 2);
-                ctx.stroke();
+    c.ctx.translate(c.width / 2, c.height / 2);
+    c.ctx.scale(0.97, 0.97);
+    c.ctx.translate(-c.width / 2, -c.height / 2);
+    c.ctx.lineWidth = 1;
+    c.ctx.strokeStyle = 'black';
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
+            c.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
+            if (c.ctrl.hasTileBorder) c.ctx.strokeRect(0, 0, tileDim, tileDim);
+            if (randomIntUpTo(100) < c.ctrl.horizontalLineChance) {
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, tileDim / 2);
+                c.ctx.lineTo(tileDim, tileDim / 2);
+                c.ctx.stroke();
             }
-            if (randomIntUpTo(100) < ctrl.verticalLineChance) {
-                ctx.beginPath();
-                ctx.moveTo(tileDim / 2, 0);
-                ctx.lineTo(tileDim / 2, tileDim);
-                ctx.stroke();
+            if (randomIntUpTo(100) < c.ctrl.verticalLineChance) {
+                c.ctx.beginPath();
+                c.ctx.moveTo(tileDim / 2, 0);
+                c.ctx.lineTo(tileDim / 2, tileDim);
+                c.ctx.stroke();
             }
-            if (randomIntUpTo(100) < ctrl.diagonalUpwardsLineChance) {
-                ctx.beginPath();
-                ctx.moveTo(0, tileDim);
-                ctx.lineTo(tileDim, 0);
-                ctx.stroke();
+            if (randomIntUpTo(100) < c.ctrl.diagonalUpwardsLineChance) {
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, tileDim);
+                c.ctx.lineTo(tileDim, 0);
+                c.ctx.stroke();
             }
-            if (randomIntUpTo(100) < ctrl.diagonalDownwardsLineChance) {
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(tileDim, tileDim);
-                ctx.stroke();
+            if (randomIntUpTo(100) < c.ctrl.diagonalDownwardsLineChance) {
+                c.ctx.beginPath();
+                c.ctx.moveTo(0, 0);
+                c.ctx.lineTo(tileDim, tileDim);
+                c.ctx.stroke();
             }
-            ctx.restore();
+            c.ctx.restore();
         }
     }
-    ctx.restore();
+    c.ctx.restore();
 }
 let description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
 run({

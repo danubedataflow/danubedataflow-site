@@ -6,6 +6,7 @@ import {
 import {
     randomIntPlusMinus
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -15,37 +16,33 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.save();
+function drawWork(config) {
+    c = config;
 
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
+    c.ctx.save();
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'black';
 
     // pad the work
-    ctx.translate(width / 2, height / 2);
-    ctx.scale(0.9, 0.9);
-    ctx.translate(-width / 2, -height / 2);
+    c.ctx.translate(c.width / 2, c.height / 2);
+    c.ctx.scale(0.9, 0.9);
+    c.ctx.translate(-c.width / 2, -c.height / 2);
 
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
             let tileULX = (x - 1) * tileDim;
             let tileULY = (y - 1) * tileDim;
-            for (let i = 0; i < ctrl.numSquaresPerTile; i++) {
-                let xOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
-                let yOffset = randomIntPlusMinus(ctrl.maxOffsetPerAxis);
-                ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+            for (let i = 0; i < c.ctrl.numSquaresPerTile; i++) {
+                let xOffset = randomIntPlusMinus(c.ctrl.maxOffsetPerAxis);
+                let yOffset = randomIntPlusMinus(c.ctrl.maxOffsetPerAxis);
+                c.ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
             }
         }
     }
-    ctx.restore();
+    c.ctx.restore();
 }
 let description = `Each tile contains a number of stroked squares, each randomly offset. Inspired by Vera Molnár.`;
 run({

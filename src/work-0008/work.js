@@ -7,6 +7,7 @@ import {
     randomIntRange,
     getPointsForPolygon
 } from '/js/math.js';
+let c;
 const colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
 
 function setupControls() {
@@ -19,52 +20,50 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
+function drawWork(config) {
+    c = config;
+
+    c.ctx.lineWidth = 1;
+    c.ctx.strokeStyle = 'black';
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    let tileDim = Math.floor(width / ctrl.numTiles);
-    for (let x = 0; x < ctrl.numTiles; x++) {
-        for (let y = 0; y < ctrl.numTiles; y++) {
-            ctx.save();
-            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-            let numSides = randomIntRange(...ctrl.numSidesRange);
-            let diameter = randomIntRange(...ctrl.diameterRange);
-            let rotationStep = randomIntRange(...ctrl.rotationStepRange);
-            let maxDepth = randomIntRange(...ctrl.maxDepthRange);
-            drawPolygons(ctx, 0, 0, numSides, diameter * tileDim / 100,
+    c.ctx.globalCompositeOperation = 'source-over';
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
+    for (let x = 0; x < c.ctrl.numTiles; x++) {
+        for (let y = 0; y < c.ctrl.numTiles; y++) {
+            c.ctx.save();
+            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+            let numSides = randomIntRange(...c.ctrl.numSidesRange);
+            let diameter = randomIntRange(...c.ctrl.diameterRange);
+            let rotationStep = randomIntRange(...c.ctrl.rotationStepRange);
+            let maxDepth = randomIntRange(...c.ctrl.maxDepthRange);
+            drawPolygons(0, 0, numSides, diameter * tileDim / 100,
                 0, rotationStep, maxDepth);
-            ctx.restore();
+            c.ctx.restore();
         }
     }
 }
 
-function drawPolygons(ctx, x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
+function drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
     let points = getPointsForPolygon(sides, diameter, rotation);
     points.forEach(p => {
-        ctx.save();
-        ctx.translate(...p);
-        ctx.beginPath();
-        points.forEach(p => ctx.lineTo(...p));
-        ctx.closePath();
-        ctx.stroke();
+        c.ctx.save();
+        c.ctx.translate(...p);
+        c.ctx.beginPath();
+        points.forEach(p => c.ctx.lineTo(...p));
+        c.ctx.closePath();
+        c.ctx.stroke();
         if (depth < maxDepth) {
-            drawPolygons(ctx, p.x, p.y, sides, diameter,
+            drawPolygons(p.x, p.y, sides, diameter,
                 rotation + rotationStep / sides, rotationStep, maxDepth, depth + 1);
         }
-        ctx.restore();
+        c.ctx.restore();
     });
 }
-let description = `Polygons at points of polygons at points of polygons etc.`;
+let description = `Polygons at points of polygons at points of polygons, recursively up to the given depth.`;
 run({
     createdDate: '2022-10-01',
     description,

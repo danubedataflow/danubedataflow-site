@@ -13,6 +13,7 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -24,33 +25,30 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = ctrl.blendMode;
-    let colorScale = chroma.scale(ctrl.colorMap);
+    c.ctx.globalCompositeOperation = 'source-over';
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    c.ctx.globalCompositeOperation = c.ctrl.blendMode;
+    let colorScale = chroma.scale(c.ctrl.colorMap);
     let p = [];
     // + 2 because the first triangle is only drawn on the third iteration
-    for (let i = 1; i <= ctrl.numTriangles + 2; i++) {
-        p.push([randomIntUpTo(width), randomIntUpTo(height)]);
+    for (let i = 1; i <= c.ctrl.numTriangles + 2; i++) {
+        p.push([randomIntUpTo(c.width), randomIntUpTo(c.height)]);
         if (p.length == 3) {
-            let c = colorScale(random()).rgb();
-            ctx.fillStyle = colorRGBA(...c, random());
+            let color = colorScale(random()).rgb();
+            c.ctx.fillStyle = colorRGBA(...color, random());
             // draw a triangle
-            ctx.beginPath();
-            ctx.moveTo(...p[0]);
-            ctx.lineTo(...p[1]);
-            ctx.lineTo(...p[2]);
-            ctx.closePath();
-            ctx.fill();
+            c.ctx.beginPath();
+            c.ctx.moveTo(...p[0]);
+            c.ctx.lineTo(...p[1]);
+            c.ctx.lineTo(...p[2]);
+            c.ctx.closePath();
+            c.ctx.fill();
             p.shift();
         }
     }

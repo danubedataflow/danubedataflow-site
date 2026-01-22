@@ -10,6 +10,7 @@ import {
     random,
     randomIntUpTo
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -22,34 +23,29 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
+function drawWork(config) {
+    c = config;
+
     // actually clear the canvas
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalCompositeOperation = ctrl.blendMode;
-    ctx.save();
-    ctx.translate(width / 2, height / 2);
-    let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
+    c.ctx.globalCompositeOperation = 'source-over';
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.globalCompositeOperation = c.ctrl.blendMode;
+    c.ctx.save();
+    c.ctx.translate(c.width / 2, c.height / 2);
+    let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
     let colorIndex = randomIntUpTo(palette.length);
-    let magnify = Math.round(width / ctrl.maxLength);
-    let numPoints = Math.pow(ctrl.maxLength, 2);
+    let magnify = Math.round(c.width / c.ctrl.maxLength);
+    let numPoints = Math.pow(c.ctrl.maxLength, 2);
     iterateSquareSpiral(numPoints, (x, y, n) => {
         let direction = randomIntUpTo(2) - 1; // [-1, +1]
         // wrap around
         colorIndex = (palette.length + colorIndex + direction) % palette.length;
-        let c = palette[colorIndex];
-        ctx.fillStyle = c;
-        ctx.beginPath();
-        ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
+        c.ctx.fillStyle = palette[colorIndex];
+        c.ctx.beginPath();
+        c.ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
     });
-    ctx.restore();
+    c.ctx.restore();
 }
 /* See https://math.stackexchange.com/a/4128516
  *

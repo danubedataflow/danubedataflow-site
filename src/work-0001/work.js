@@ -7,6 +7,7 @@ import {
 import {
     getPointsForPolygon
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -23,32 +24,27 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'white';
-    let tileDim = Math.floor(width / ctrl.numTiles);
-    for (let x = 0; x < ctrl.numTiles; x++) {
-        for (let y = 0; y < ctrl.numTiles; y++) {
-            ctx.save();
-            ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+function drawWork(config) {
+    c = config;
+    c.ctx.fillStyle = 'black';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'white';
+    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
+    for (let x = 0; x < c.ctrl.numTiles; x++) {
+        for (let y = 0; y < c.ctrl.numTiles; y++) {
+            c.ctx.save();
+            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
             let n = noise.simplex2(
-                ctrl.noiseOffsetX + x / ctrl.noiseDivisor,
-                ctrl.noiseOffsetY + y / ctrl.noiseDivisor
+                c.ctrl.noiseOffsetX + x / c.ctrl.noiseDivisor,
+                c.ctrl.noiseOffsetY + y / c.ctrl.noiseDivisor
             );
-            let diameter = Math.floor(n * ctrl.polygonScaleFactor * tileDim);
-            ctx.beginPath();
-            let points = getPointsForPolygon(ctrl.numSides, diameter, 0);
-            points.forEach(p => ctx.lineTo(...p));
-            ctx.closePath();
-            ctx.stroke();
-            ctx.restore();
+            let diameter = Math.floor(n * c.ctrl.polygonScaleFactor * tileDim);
+            c.ctx.beginPath();
+            let points = getPointsForPolygon(c.ctrl.numSides, diameter, 0);
+            points.forEach(p => c.ctx.lineTo(...p));
+            c.ctx.closePath();
+            c.ctx.stroke();
+            c.ctx.restore();
         }
     }
 }

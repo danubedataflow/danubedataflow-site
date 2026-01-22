@@ -17,7 +17,7 @@ import {
     shuffle,
     randomElement
 } from '/js/array.js';
-let palette;
+let c, palette;
 let shapes = [
     [
         '.....',
@@ -129,68 +129,60 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-    if (ctrl.useLayers) {
-        for (let layer = 1; layer <= ctrl.numLayers; layer++) {
-            drawLayer(ctx, ctrl, width);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
+    if (c.ctrl.useLayers) {
+        for (let layer = 1; layer <= c.ctrl.numLayers; layer++) {
+            drawLayer();
         }
     } else {
-        drawLayer(ctx, ctrl, width);
+        drawLayer();
     }
 }
 
-function drawLayer(ctx, ctrl, width) {
+function drawLayer() {
     // see Work 0024
-    let numColored = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
-    let shouldColorArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
+    let numColored = Math.max(1, Math.round(c.ctrl.numTiles * c.ctrl.numTiles / c.ctrl.ratioColoredTiles));
+    let shouldColorArray = shuffle(Array(c.ctrl.numTiles * c.ctrl.numTiles).fill(false)
         .map((el, index) => index < numColored));
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to tile center to rotate
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            ctx.scale(0.9, 0.9);
-            drawTile(
-                ctx,
-                ctrl,
-                tileDim,
-                shouldColorArray
-            )
-            ctx.restore();
+            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            c.ctx.scale(0.9, 0.9);
+            drawTile(tileDim, shouldColorArray);
+            c.ctx.restore();
         }
     }
 }
 
-function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
+function drawTile(tileDim, shouldColorArray) {
     // each tile consists of 5 x 5 "pixels"
     let pixelDim = tileDim / 5;
     // random rotation by a multiple of 90 degrees
-    ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
+    c.ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
     // Use calls to random() in any case so the shapes, chosen by another
     // randomElement() below, stay the same when you // change the color
     // chance.
-    let alpha = randomIntRange(...ctrl.alphaRange) / 100;
+    let alpha = randomIntRange(...c.ctrl.alphaRange) / 100;
     // alpha is only used if we use layers
-    if (!ctrl.useLayers) alpha = 1;
+    if (!c.ctrl.useLayers) alpha = 1;
 
-    if (ctrl.useColors) {
+    if (c.ctrl.useColors) {
         if (shouldColorArray.shift()) {
-            ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
+            c.ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
         } else {
-            ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+            c.ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
         }
     } else {
-        ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+        c.ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
     }
 
     // draw a random shape's pixels
@@ -204,7 +196,7 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
                 // pixel (px, py).
                 let ulX = (px - 2.5) * pixelDim;
                 let ulY = (py - 2.5) * pixelDim;
-                ctx.fillRect(ulX, ulY, pixelDim, pixelDim);
+                c.ctx.fillRect(ulX, ulY, pixelDim, pixelDim);
             }
         }
     }

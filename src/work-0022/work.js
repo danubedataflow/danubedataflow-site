@@ -7,6 +7,7 @@ import {
 import {
     shuffle
 } from '/js/array.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -18,40 +19,37 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
-    let tileDim = width / ctrl.numTiles;
-    for (let y = 1; y <= ctrl.numTiles; y++) {
-        for (let x = 1; x <= ctrl.numTiles; x++) {
-            ctx.save();
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    c.ctx.strokeStyle = 'black';
+    let tileDim = c.width / c.ctrl.numTiles;
+    for (let y = 1; y <= c.ctrl.numTiles; y++) {
+        for (let x = 1; x <= c.ctrl.numTiles; x++) {
+            c.ctx.save();
             // move to the tile center so rotate() and scale() happen there
-            ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            ctx.scale(ctrl.scale, ctrl.scale);
+            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+            c.ctx.scale(c.ctrl.scale, c.ctrl.scale);
             let points = [];
-            for (let py = 0; py < ctrl.numPointsPerSide; py++) {
-                for (let px = 0; px < ctrl.numPointsPerSide; px++) {
+            for (let py = 0; py < c.ctrl.numPointsPerSide; py++) {
+                for (let px = 0; px < c.ctrl.numPointsPerSide; px++) {
                     points.push([
-                        Math.round(px * tileDim / (ctrl.numPointsPerSide - 1) - tileDim / 2),
-                        Math.round(py * tileDim / (ctrl.numPointsPerSide - 1) - tileDim / 2)
+                        Math.round(px * tileDim / (c.ctrl.numPointsPerSide - 1) - tileDim / 2),
+                        Math.round(py * tileDim / (c.ctrl.numPointsPerSide - 1) - tileDim / 2)
                     ]);
                 }
             }
             points = shuffle(points);
             for (let i = 0; i < points.length - 1; i++) {
-                ctx.beginPath();
-                ctx.moveTo(...points[i]);
-                ctx.lineTo(...points[i + 1]);
-                ctx.stroke();
+                c.ctx.beginPath();
+                c.ctx.moveTo(...points[i]);
+                c.ctx.lineTo(...points[i + 1]);
+                c.ctx.stroke();
             }
-            ctx.restore();
+            c.ctx.restore();
         }
     }
 }

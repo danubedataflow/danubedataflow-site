@@ -9,6 +9,7 @@ import {
 import {
     randomElement
 } from '/js/array.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -17,24 +18,20 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = '#777777';
-    ctx.fillRect(0, 0, width, height);
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = '#777777';
+    c.ctx.fillRect(0, 0, c.width, c.height);
     let palette = ['white', '#aaaaaa', 'black'];
-    let tileDim = width / ctrl.numTiles; // square canvas
-    for (let i = 0; i <= ctrl.numRects; i++) {
-        let ulX = randomIntRange(0, ctrl.numTiles - 1);
-        let ulY = randomIntRange(0, ctrl.numTiles - 1);
-        let spanX = randomIntRange(1, ctrl.numTiles - ulX);
-        let spanY = randomIntRange(1, ctrl.numTiles - ulY);
-        ctx.fillStyle = randomElement(palette);
-        ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
+    let tileDim = c.width / c.ctrl.numTiles; // square canvas
+    for (let i = 0; i <= c.ctrl.numRects; i++) {
+        let ulX = randomIntRange(0, c.ctrl.numTiles - 1);
+        let ulY = randomIntRange(0, c.ctrl.numTiles - 1);
+        let spanX = randomIntRange(1, c.ctrl.numTiles - ulX);
+        let spanY = randomIntRange(1, c.ctrl.numTiles - ulY);
+        c.ctx.fillStyle = randomElement(palette);
+        c.ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
     }
 }
 let description = `Random white, grey and black rectangles, each spanning a random number of horizontal and vertical tiles.`;

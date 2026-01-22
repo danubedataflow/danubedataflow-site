@@ -8,6 +8,7 @@ import {
     randomIntUpTo,
     randomIntPlusMinus
 } from '/js/math.js';
+let c;
 
 function setupControls() {
     makeForm(
@@ -21,53 +22,49 @@ function setupControls() {
     );
 }
 
-function drawWork(args) {
-    const {
-        ctx,
-        width,
-        height,
-        ctrl
-    } = args;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    let path = randomPath(ctrl.numCurves, ctrl.curveScale, width, height);
-    const lineLength = ctrl.lineScale * width / ctrl.numTiles;
+function drawWork(config) {
+    c = config;
+
+    c.ctx.fillStyle = 'white';
+    c.ctx.fillRect(0, 0, c.width, c.height);
+    c.ctx.strokeStyle = 'black';
+    c.ctx.lineWidth = 1;
+    let path = randomPath(c.ctrl.numCurves, c.ctrl.curveScale);
+    const lineLength = c.ctrl.lineScale * c.width / c.ctrl.numTiles;
     let d = window.devicePixelRatio; // no idea why this is necessary
-    gridCenters(ctrl.numTiles, width, height)
-        .filter(p => !ctx.isPointInPath(path, p[0] * d, p[1] * d))
+    gridCenters(c.ctrl.numTiles)
+        .filter(p => !c.ctx.isPointInPath(path, p[0] * d, p[1] * d))
         .forEach(p => {
             // Draw a line at a random angle around the center of p.
-            ctx.save();
-            ctx.translate(...p);
-            ctx.rotate(2 * Math.PI * randomIntUpTo(ctrl.angleStep) / ctrl.angleStep);
-            ctx.beginPath();
-            ctx.moveTo(-lineLength / 2, 0);
-            ctx.lineTo(lineLength / 2, 0);
-            ctx.stroke();
-            ctx.restore();
+            c.ctx.save();
+            c.ctx.translate(...p);
+            c.ctx.rotate(2 * Math.PI * randomIntUpTo(c.ctrl.angleStep) / c.ctrl.angleStep);
+            c.ctx.beginPath();
+            c.ctx.moveTo(-lineLength / 2, 0);
+            c.ctx.lineTo(lineLength / 2, 0);
+            c.ctx.stroke();
+            c.ctx.restore();
         });
 }
 
-function gridCenters(num, width, height) {
+function gridCenters(num) {
     let p = [];
     for (let y = 0; y < num; y++) {
         for (let x = 0; x < num; x++) {
-            p.push([(x + 0.5) * width / num, (y + 0.5) * height / num]);
+            p.push([(x + 0.5) * c.width / num, (y + 0.5) * c.height / num]);
         }
     }
     return p;
 }
 
-function randomPath(n, curveScale, width, height) {
+function randomPath(n, curveScale) {
     // this offset applies to the whole path
-    let pathOffsetX = randomIntPlusMinus(width / 2);
-    let pathOffsetY = randomIntPlusMinus(height / 2);
+    let pathOffsetX = randomIntPlusMinus(c.width / 2);
+    let pathOffsetY = randomIntPlusMinus(c.height / 2);
     let randomPoint = () => {
         return [
-            randomIntUpTo(width * curveScale) + pathOffsetX,
-            randomIntUpTo(height * curveScale) + pathOffsetY
+            randomIntUpTo(c.width * curveScale) + pathOffsetX,
+            randomIntUpTo(c.height * curveScale) + pathOffsetY
         ]
     };
     /*
