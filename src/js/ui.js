@@ -596,6 +596,14 @@ function draw() {
     work.drawWork(args);
 }
 
+function clearCanvas(color = 'white') {
+    ctx.save();
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+}
+
 function run(workSpec) {
     work = workSpec;
     addEventListener('keypress', (e) => {
@@ -625,5 +633,6 @@ export {
     makeSelect,
     makeFieldset,
     makeSelectColorMap,
-    makeSelectBlendMode
+    makeSelectBlendMode,
+    clearCanvas
 };

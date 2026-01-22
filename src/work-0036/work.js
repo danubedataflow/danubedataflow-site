@@ -4,7 +4,8 @@ import {
     makeSlider,
     makeCheckbox,
     makeFieldset,
-    makeSelectColorMap
+    makeSelectColorMap,
+    clearCanvas
 } from '/js/ui.js';
 import {
     random
@@ -32,9 +33,9 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
+
     // draw outer border if enabled
     if (c.ctrl.hasBorder) {
         c.ctx.strokeStyle = 'black';

@@ -1,7 +1,8 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntRange
@@ -22,8 +23,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     c.ctx.strokeStyle = colorRGBA(0, 0, 0, c.ctrl.alpha / 100);
     c.ctx.lineWidth = 1;
     c.ctx.save();

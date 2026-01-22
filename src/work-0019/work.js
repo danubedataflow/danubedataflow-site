@@ -4,7 +4,8 @@ import {
     makeSlider,
     makeFieldset,
     makeSelectColorMap,
-    makeSelectBlendMode
+    makeSelectBlendMode,
+    clearCanvas
 } from '/js/ui.js';
 import {
     random,
@@ -34,10 +35,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    // actually clear the canvas
-    c.ctx.globalCompositeOperation = 'source-over';
-    c.ctx.fillStyle = 'black';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas('black');
     c.ctx.strokeStyle = 'black';
     c.ctx.lineWidth = c.ctrl.lineWidth;
     let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);

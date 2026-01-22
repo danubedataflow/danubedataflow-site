@@ -1,7 +1,8 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntRange,
@@ -22,12 +23,9 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
+    clearCanvas();
     c.ctx.lineWidth = 1;
     c.ctx.strokeStyle = 'black';
-    // actually clear the canvas
-    c.ctx.globalCompositeOperation = 'source-over';
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
     let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     for (let x = 0; x < c.ctrl.numTiles; x++) {
         for (let y = 0; y < c.ctrl.numTiles; y++) {

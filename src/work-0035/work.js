@@ -3,7 +3,8 @@ import {
     makeForm,
     makeSlider,
     makeSelect,
-    makeOption
+    makeOption,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntUpTo,
@@ -27,8 +28,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     c.ctx.strokeStyle = 'black';
     let points = [];
     for (let i = 1; i <= c.ctrl.numPoints; i++) {

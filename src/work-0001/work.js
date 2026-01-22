@@ -2,7 +2,8 @@ import {
     run,
     makeForm,
     makeSlider,
-    makeFieldset
+    makeFieldset,
+    clearCanvas
 } from '/js/ui.js';
 import {
     getPointsForPolygon
@@ -26,8 +27,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'black';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas('black');
     c.ctx.strokeStyle = 'white';
     let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     for (let x = 0; x < c.ctrl.numTiles; x++) {

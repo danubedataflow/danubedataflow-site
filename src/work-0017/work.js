@@ -1,7 +1,8 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntRange
@@ -23,8 +24,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     // Scale down to create a margin so the outermost strokes won't be clipped.
     let dim = c.width; // c.width == c.height because of square canvas
     c.ctx.save();

@@ -2,7 +2,8 @@ import {
     run,
     makeForm,
     makeSlider,
-    makeSelectColorMap
+    makeSelectColorMap,
+    clearCanvas
 } from '/js/ui.js';
 let c;
 
@@ -16,10 +17,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    // actually clear the canvas
-    c.ctx.globalCompositeOperation = 'source-over';
-    c.ctx.fillStyle = '#cccccc';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas('#cccccc');
     c.ctx.globalCompositeOperation = 'exclusion';
     c.ctx.fillStyle = 'white';
     c.ctx.lineWidth = 1;

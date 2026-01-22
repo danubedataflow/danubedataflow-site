@@ -2,7 +2,8 @@ import {
     run,
     makeForm,
     makeSlider,
-    makeFieldset
+    makeFieldset,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntUpTo,
@@ -38,8 +39,7 @@ function setRandomFillColor() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     c.ctx.fillStyle = 'black';
     for (let i = 0; i <= c.ctrl.numHorizontalLines; i++) {
         let x1 = randomIntUpTo(c.width);

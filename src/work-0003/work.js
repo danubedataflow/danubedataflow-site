@@ -2,7 +2,8 @@ import {
     run,
     makeForm,
     makeSlider,
-    makeSelectColorMap
+    makeSelectColorMap,
+    clearCanvas
 } from '/js/ui.js';
 import {
     random,
@@ -20,10 +21,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    // actually clear the canvas
-    c.ctx.globalCompositeOperation = 'source-over';
-    c.ctx.fillStyle = 'black';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas('black');
     let colorScale = chroma.scale(c.ctrl.colorMap);
     let tileDim = Math.floor(c.width / c.ctrl.numTiles);
     let radius = tileDim * 0.4;

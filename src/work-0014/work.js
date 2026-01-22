@@ -2,7 +2,8 @@ import {
     run,
     makeForm,
     makeSlider,
-    makeFieldset
+    makeFieldset,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntUpTo,
@@ -35,12 +36,13 @@ function setupControls() {
 function drawWork(config) {
     c = config;
     c.ctx.save();
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
+
     // pad the work
     c.ctx.translate(c.width / 2, c.height / 2);
     c.ctx.scale(0.97, 0.97);
     c.ctx.translate(-c.width / 2, -c.height / 2);
+
     c.ctx.lineWidth = 1;
     c.ctx.strokeStyle = 'black';
     let tileDim = c.width / c.ctrl.numTiles;

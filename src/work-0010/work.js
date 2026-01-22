@@ -1,7 +1,8 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntUpTo
@@ -25,8 +26,7 @@ function drawWork(config) {
             [randomIntUpTo(c.width), randomIntUpTo(c.height)],
         ]);
     }
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas();
     c.ctx.fillStyle = '#000000';
     c.ctx.lineWidth = 1;
     c.ctx.strokeStyle = '#707070';

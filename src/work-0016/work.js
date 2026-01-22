@@ -1,7 +1,8 @@
 import {
     run,
     makeForm,
-    makeSlider
+    makeSlider,
+    clearCanvas
 } from '/js/ui.js';
 import {
     randomIntRange
@@ -20,8 +21,7 @@ function setupControls() {
 
 function drawWork(config) {
     c = config;
-    c.ctx.fillStyle = '#777777';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+    clearCanvas('#777777');
     let palette = ['white', '#aaaaaa', 'black'];
     let tileDim = c.width / c.ctrl.numTiles; // square canvas
     for (let i = 0; i <= c.ctrl.numRects; i++) {

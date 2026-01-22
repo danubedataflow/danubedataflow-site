@@ -3,7 +3,8 @@ import {
     makeForm,
     makeSlider,
     makeFieldset,
-    makeCheckbox
+    makeCheckbox,
+    clearCanvas
 } from '/js/ui.js';
 import {
     arrayFromIntRange
@@ -32,8 +33,9 @@ function drawWork(config) {
     const markovShapes = makeRandomMarkovChain(['A', 'B', 'C', 'D']);
     const [lineWidthFrom, lineWidthTo] = c.ctrl.useMarkovLineWidth ? c.ctrl.lineWidthRange : [1, 1];
     const markovLineWidth = makeRandomMarkovChain(arrayFromIntRange(lineWidthFrom, lineWidthTo));
-    c.ctx.fillStyle = 'white';
-    c.ctx.fillRect(0, 0, c.width, c.height);
+
+    clearCanvas();
+
     c.ctx.strokeStyle = 'black';
     // scan order: left-to-right, top-to-bottom
     for (let y = 0; y < c.ctrl.numTiles; y++) {
