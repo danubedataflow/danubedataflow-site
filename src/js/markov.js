@@ -1,3 +1,6 @@
+import {
+    randomElement
+} from '/js/array.js';
 /*
  * This class implements a Markov chain.
  *
@@ -157,5 +160,6 @@ function makeRandomMarkovChain(states) {
 }
 
 export {
-    MarkovChain, makeRandomMarkovChain
+    MarkovChain,
+    makeRandomMarkovChain
 };
