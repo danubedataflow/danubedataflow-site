@@ -551,11 +551,9 @@ function setup() {
 function setupDescription() {
     let summaryText = work.description.substring(0, 60) +
         '&hellip; [more]';
-
     // If the descriotion disclosure element is closed, show the summary
     // text. If it is opened, show 'Description' so there is no
     // duplicate text.
-
     let descriptionDetailsEl = document.getElementById('description');
     let descriptionSpan = document.createElement('descriptionSpan');
     descriptionSpan.innerHTML = work.description;

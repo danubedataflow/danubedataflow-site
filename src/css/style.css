@@ -57,11 +57,6 @@ main {
     text-decoration: none;
 }
 
-.nav-emoji {
-    font-size: 140%;
-    margin-right: 3px;
-}
-
 a,
 a:visited {
     color: var(--maincolor);
@@ -70,6 +65,20 @@ a:visited {
 
 a:hover {
     text-decoration: none;
+}
+
+.button {
+    background-color: #FFA500;
+    border: none;
+    font-weight: bold;
+    font-size: 110%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
 }
 
 #work-container {
