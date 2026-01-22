@@ -20,7 +20,7 @@ function setupControls() {
         makeFieldset('Colors',
             makeSelectColorMap(),
             makeSlider('numColors', 'Number of colors: {0}', 1, 8, 2),
-            makeSlider('ratioColoredTiles', 'Ratio of colored tiles: {0}', 8, 32, 16),
+            makeSlider('ratioColoredTiles', 'One in {0} tiles is colored', 8, 32, 16),
         ),
     );
 }
@@ -36,27 +36,33 @@ function drawWork(args) {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = 'black';
+
     // pad the work
     ctx.translate(width / 2, height / 2);
     ctx.scale(0.9, 0.9);
     ctx.translate(-width / 2, -height / 2);
+
     let palette = chroma.scale(ctrl.colorMap).colors(ctrl.numColors);
-    /* Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
+
+    /*
+     * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
      * is 9, we want to fill one in nine tiles.
      *
      * Divide the total number of tiles by ratioColoredTiles and round to the
      * nearest integer. Fill at least one tile.
-     *
-     * To know which tiles to fill, keep an array of size numTiles ** 2; one
-     * element per tile. As we draw each tile, we shift the first array
-     * element.
-     *
-     * To distribute the n filled tiles randomly, mark the first n array
-     * elements, then shuffle the array.
      */
+
     let numFilled = Math.max(1, Math.round(ctrl.numTiles * ctrl.numTiles / ctrl.ratioColoredTiles));
+
+    /*
+     * To know which tiles to fill, keep an array that has as many elements as
+     * there are tiles. Set the first n tiles to be colored, then shuffle the
+     * array. As we draw each tile, we shift the first array element.
+     */
+
     let shouldFillArray = shuffle(Array(ctrl.numTiles * ctrl.numTiles).fill(false)
         .map((el, index) => index < numFilled));
+
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
@@ -74,7 +80,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Each tile contains a randomly offset stroked square. A given ratio of squares, but at least one, is filled with a random color. Inspired by Vera Molnár.`;
 run({
     createdDate: '2023-09-28',
     description,

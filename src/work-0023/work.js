@@ -55,7 +55,7 @@ function drawWork(args) {
     }
     ctx.restore();
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Each tile contains a randomly rotated and randomly offset line. Technically, the tile itself is rotated and offset, then a straign line is drawn. Inspired by Vera Molnár.`;
 run({
     createdDate: '2023-09-22',
     description,

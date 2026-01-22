@@ -204,7 +204,7 @@ function drawTile(ctx, ctrl, tileDim, shouldColorArray) {
         }
     }
 }
-let description = `No description yet.`;
+let description = `Each square tile has one or more layers of shapes. They shapes can optionally be colored. If there is more than one layer`;
 run({
     createdDate: '2025-01-20',
     description,

@@ -24,17 +24,21 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
+
     ctx.strokeStyle = 'black';
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
             ctx.save();
+
             // move to tile center to scale, then back to UL corner
             ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
             ctx.scale(0.9, 0.9);
             ctx.translate(-tileDim / 2, -tileDim / 2);
+
             ctx.lineWidth = ctrl.lineWidth;
             for (let i = 0; i < ctrl.numLines; i++) {
                 ctx.beginPath();
@@ -43,14 +47,15 @@ function drawWork(args) {
                 ctx.lineTo(randomIntUpTo(tileDim), tileDim);
                 ctx.stroke();
             }
-            // draw a border
+
+            // draw a border around the tile
             ctx.lineWidth = 1;
             ctx.strokeRect(0, 0, tileDim, tileDim);
             ctx.restore();
         }
     }
 }
-let description = `No description yet.`;
+let description = `In each tile, a number of random lines are drawn at the given line width. Optionally all lines can be split into two, bending around a random point in the middle. Each tile has a border.`;
 run({
     createdDate: '2025-01-18',
     description,

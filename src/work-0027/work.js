@@ -25,8 +25,10 @@ function drawWork(args) {
         height,
         ctrl
     } = args;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
+
     let tileDim = width / ctrl.numTiles;
     for (let y = 1; y <= ctrl.numTiles; y++) {
         for (let x = 1; x <= ctrl.numTiles; x++) {
@@ -42,7 +44,7 @@ function drawWork(args) {
         }
     }
 }
-let description = `Inspired by Vera Molnár.`;
+let description = `Each square tile is filled with a color from the given angle on the color wheel. Then a smaller inner square is drawn as well. Both squares are drawn with random transparency. Inspired by Vera Molnár.`;
 run({
     createdDate: '2023-10-03',
     description,
