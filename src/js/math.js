@@ -64,9 +64,9 @@ function sfc32(a, b, c, d) {
         return (t >>> 0) / 4294967296;
     }
 }
-let random;
+export let random;
 
-function randomSeed(seedStr) {
+export function randomSeed(seedStr) {
     // create cyrb128 state
     let seed = cyrb128(seedStr);
     // four 32-bit component hashes provide the seed for sfc32()
@@ -77,29 +77,29 @@ function randomSeed(seedStr) {
 let seedStr = Math.random().toString(36).slice(2, 10);
 randomSeed(seedStr);
 
-function randomIntUpTo(n) {
+export function randomIntUpTo(n) {
     return Math.floor(random() * n);
 }
 
-function randomIntRange(lowerBound, upperBound) {
+export function randomIntRange(lowerBound, upperBound) {
     return lowerBound + randomIntUpTo(upperBound + 1 - lowerBound);
 }
 // generate a random integer in the range [-n, n].
-function randomIntPlusMinus(n) {
+export function randomIntPlusMinus(n) {
     return Math.floor(random() * 2 * n - n);
 }
 // Source - https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
 // Standard Normal variate using Box-Muller transform.
 //
 // Without args, it returns a number between -1 and +1
-function gaussianRandom(mean = 0, standardDeviation = 1) {
+export function gaussianRandom(mean = 0, standardDeviation = 1) {
     const u = 1 - random(); // convert [0,1) to (0,1]
     const v = random();
     const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     return z * standardDeviation + mean;
 }
 
-function getPointsForPolygon(sides, diameter, rotation) {
+export function getPointsForPolygon(sides, diameter, rotation) {
     // the polygon center is (0, 0)
     let points = [];
     for (let i = 0; i < sides + 1; i++) {
@@ -111,12 +111,3 @@ function getPointsForPolygon(sides, diameter, rotation) {
     }
     return points;
 }
-export {
-    random,
-    randomSeed,
-    randomIntUpTo,
-    randomIntRange,
-    randomIntPlusMinus,
-    gaussianRandom,
-    getPointsForPolygon
-};

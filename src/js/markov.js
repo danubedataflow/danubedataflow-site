@@ -1,6 +1,3 @@
-import {
-    randomElement
-} from '/js/array.js';
 /*
  * This class implements a Markov chain.
  *
@@ -47,7 +44,10 @@ import {
 import {
     random
 } from '/js/math.js';
-class MarkovChain {
+import {
+    randomElement
+} from '/js/array.js';
+export class MarkovChain {
     constructor() {
         this.states = [];
         this.transitionMatrix = [];
@@ -131,14 +131,10 @@ class MarkovChain {
     }
 }
 
-function makeRandomMarkovChain(states) {
+export function makeRandomMarkovChain(states) {
     const m = new MarkovChain();
     m.setStates(states);
     m.generateRandomTransitionMatrix();
     m.setCurrentState(randomElement(states));
     return m;
 }
-export {
-    MarkovChain,
-    makeRandomMarkovChain
-};

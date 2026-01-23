@@ -1,4 +1,4 @@
-class Point {
+export class Point {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -24,6 +24,3 @@ class Point {
         return new Point(this.x + dx, this.y + dy);
     }
 }
-export {
-    Point
-};
