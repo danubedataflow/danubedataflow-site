@@ -56,9 +56,9 @@ export class Work0037 extends Work {
         } else {
             // it's a terminal triangle
             this.ctx.beginPath();
-            this.ctx.moveTo(...p1.asArray());
-            this.ctx.lineTo(...p2.asArray());
-            this.ctx.lineTo(...p3.asArray());
+            this.moveToPoint(p1);
+            this.lineToPoint(p2);
+            this.lineToPoint(p3);
             this.ctx.closePath();
             if (MathUtils.random() < this.ctrl.chanceFill / 100) {
                 this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);

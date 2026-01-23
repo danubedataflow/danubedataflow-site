@@ -36,20 +36,20 @@ export class Work0038 extends Work {
                 const state = markovShapes.getNextState();
                 if (state == 'A') {
                     // diagonal from the cell's upper left to lower right
-                    this.ctx.moveTo(...p.asArray());
-                    this.ctx.lineTo(...p.move(tileDim, tileDim).asArray());
+                    this.moveToPoint(p);
+                    this.lineToPoint(p.move(tileDim, tileDim));
                 } else if (state == 'B') {
                     // diagonal from the cell's upper right to lower left
-                    this.ctx.moveTo(...p.moveX(tileDim).asArray());
-                    this.ctx.lineTo(...p.moveY(tileDim).asArray());
+                    this.moveToPoint(p.moveX(tileDim));
+                    this.lineToPoint(p.moveY(tileDim));
                 } else if (state == 'C') {
                     // vertical line in the middle of the cell
-                    this.ctx.moveTo(...p.moveX(tileDim / 2).asArray());
-                    this.ctx.lineTo(...p.move(tileDim / 2, tileDim).asArray());
+                    this.moveToPoint(p.moveX(tileDim / 2));
+                    this.lineToPoint(p.move(tileDim / 2, tileDim));
                 } else if (state == 'D') {
                     // horizontal line in the middle of the cell
-                    this.ctx.moveTo(...p.moveY(tileDim / 2).asArray());
-                    this.ctx.lineTo(...p.move(tileDim, tileDim / 2).asArray());
+                    this.moveToPoint(p.moveY(tileDim / 2));
+                    this.lineToPoint(p.move(tileDim, tileDim / 2));
                 }
                 this.ctx.closePath();
                 this.ctx.stroke();

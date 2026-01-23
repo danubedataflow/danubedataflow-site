@@ -4,6 +4,7 @@ import {
 import {
     ArrayUtils
 } from '/js/utils.js';
+import { Point } from '/js/point.js';
 export class Work0022 extends Work {
     getControls() {
         return [
@@ -27,19 +28,19 @@ export class Work0022 extends Work {
                 let points = [];
                 for (let py = 0; py < this.ctrl.numPointsPerSide; py++) {
                     for (let px = 0; px < this.ctrl.numPointsPerSide; px++) {
-                        points.push([
+                        points.push(new Point(
                             Math.round(px * tileDim / (this.ctrl.numPointsPerSide - 1) - tileDim / 2),
                             Math.round(py * tileDim / (this.ctrl.numPointsPerSide - 1) - tileDim / 2)
-                        ]);
+                        ));
                     }
                 }
                 points = ArrayUtils.shuffle(points);
-                for (let i = 0; i < points.length - 1; i++) {
+                ArrayUtils.pairwise(points, (p1, p2) => {
                     this.ctx.beginPath();
-                    this.ctx.moveTo(...points[i]);
-                    this.ctx.lineTo(...points[i + 1]);
+                    this.moveToPoint(p1);
+                    this.lineToPoint(p2);
                     this.ctx.stroke();
-                }
+                });
                 this.ctx.restore();
             }
         }

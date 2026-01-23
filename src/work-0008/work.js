@@ -38,9 +38,9 @@ export class Work0008 extends Work {
         let points = MathUtils.getPointsForPolygon(sides, diameter, rotation);
         points.forEach(p => {
             this.ctx.save();
-            this.ctx.translate(...p.asArray());
+            this.translateToPoint(p);
             this.ctx.beginPath();
-            points.forEach(p => this.ctx.lineTo(...p.asArray()));
+            points.forEach(p => this.lineToPoint(p));
             this.ctx.closePath();
             this.ctx.stroke();
             if (depth < maxDepth) {

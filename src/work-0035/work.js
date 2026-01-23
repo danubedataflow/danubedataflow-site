@@ -36,8 +36,8 @@ export class Work0035 extends Work {
         for (const [p1, p2] of pairs) {
             this.ctx.strokeStyle = 'black';
             this.ctx.beginPath();
-            this.ctx.moveTo(...p1.asArray());
-            this.ctx.lineTo(...p2.asArray());
+            this.moveToPoint(p1);
+            this.lineToPoint(p2);
             this.ctx.closePath();
             this.ctx.stroke();
         }

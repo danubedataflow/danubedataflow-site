@@ -34,8 +34,8 @@ export class Work0007 extends Work {
                         this.ctx.strokeStyle = palette[colorIndex];
                         colorIndex = (colorIndex + 1 + palette.length) % palette.length;
                         this.ctx.beginPath();
-                        this.ctx.moveTo(...p.asArray());
-                        this.ctx.lineTo(...p2.asArray());
+                        this.moveToPoint(p);
+                        this.lineToPoint(p2);
                         this.ctx.stroke();
                     });
                 });

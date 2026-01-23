@@ -5,6 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
+import { Point } from '/js/point.js';
 export class Work0002 extends Work {
     getControls() {
         return [
@@ -22,15 +23,15 @@ export class Work0002 extends Work {
         let p = [];
         // + 2 because the first triangle is only drawn on the third iteration
         for (let i = 1; i <= this.ctrl.numTriangles + 2; i++) {
-            p.push([MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)]);
+            p.push(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)));
             if (p.length == 3) {
                 let color = colorScale(MathUtils.random()).rgb();
                 this.ctx.fillStyle = ColorUtils.colorRGBA(...color, MathUtils.random());
                 // draw a triangle
                 this.ctx.beginPath();
-                this.ctx.moveTo(...p[0]);
-                this.ctx.lineTo(...p[1]);
-                this.ctx.lineTo(...p[2]);
+                this.moveToPoint(p[0]);
+                this.lineToPoint(p[1]);
+                this.lineToPoint(p[2]);
                 this.ctx.closePath();
                 this.ctx.fill();
                 p.shift();

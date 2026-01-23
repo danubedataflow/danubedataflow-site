@@ -444,6 +444,24 @@ export class Work {
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.restore();
     }
+
+    // Context-related convenience methods for Points
+    lineToPoint(p) {
+        this.ctx.lineTo(...p.asArray());
+    }
+    moveToPoint(p) {
+        this.ctx.moveTo(...p.asArray());
+    }
+    fillRectForPoint(p, w, h) {
+        this.ctx.fillRect(...p.asArray(), w, h);
+    }
+    strokeRectForPoint(p, w, h) {
+        this.ctx.strokeRect(...p.asArray(), w, h);
+    }
+    translateToPoint(p) {
+        this.ctx.translate(...p.asArray());
+    }
+
     run() {
         addEventListener('keypress', (e) => {
             if (e.code == 'KeyS') this.saveCanvas();

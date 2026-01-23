@@ -5,6 +5,9 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0012 extends Work {
     getControls() {
         return [
@@ -23,12 +26,12 @@ export class Work0012 extends Work {
         for (let i = 0; i < 360; i += this.ctrl.angleStep) {
             let rad = i / 180 * Math.PI;
             // x-factor 2 produces the "infinity sign"
-            let x = Math.sin(rad * this.ctrl.horizontalSineFactor) * (this.width / 3);
-            let y = Math.sin(rad) * (this.height / 3);
+            let p = new Point(Math.sin(rad * this.ctrl.horizontalSineFactor) * (this.width / 3),
+                Math.sin(rad) * (this.height / 3));
             // Draw random squares around each point at 10% alpha, produces a fuzzy
             // shape.
             let dim = MathUtils.randomIntRange(...this.ctrl.squareSizeRange);
-            this.ctx.strokeRect(x, y, dim, dim);
+            this.strokeRectForPoint(p, dim, dim);
         }
         this.ctx.restore();
     }

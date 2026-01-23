@@ -5,6 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
+import { Point } from '/js/point.js';
 export class Work0034 extends Work {
     getControls() {
         return [
@@ -24,12 +25,12 @@ export class Work0034 extends Work {
             // canvas size. Also subtract from this.height so it goes from bottom to top.
             let y = 500 - ((Math.pow(i, 2) + 5 * i) % 500);
             y *= this.height / 500;
-            points.push([x, y]);
+            points.push(new Point(x, y));
         }
         ArrayUtils.pairwise(points, (current, next) => {
             this.ctx.beginPath();
-            this.ctx.moveTo(...current);
-            this.ctx.lineTo(...next);
+            this.moveToPoint(current);
+            this.lineToPoint(next);
             this.ctx.stroke();
         });
     }

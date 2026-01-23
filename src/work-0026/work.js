@@ -4,6 +4,9 @@ import {
 import {
     ArrayUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0026 extends Work {
     getControls() {
         return [
@@ -20,11 +23,11 @@ export class Work0026 extends Work {
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = this.ctrl.lineWidth;
         let tileDim = this.width / this.ctrl.numTiles;
-        let coordsOf = (x, y) => {
-            return [
+        let pointFor = (x, y) => {
+            return new Point(
                 (x - 1) / (this.ctrl.numPointsX - 1) * tileDim,
                 (y - 1) / (this.ctrl.numPointsY - 1) * tileDim
-            ];
+            );
         };
         for (let y = 1; y <= this.ctrl.numTiles; y++) {
             for (let x = 1; x <= this.ctrl.numTiles; x++) {
@@ -55,26 +58,25 @@ export class Work0026 extends Work {
                 let connections = [];
                 for (let y = 1; y <= this.ctrl.numPointsY; y++) {
                     for (let x = 1; x <= this.ctrl.numPointsX; x++) {
-                        let coords = coordsOf(x, y);
+                        let point = pointFor(x, y);
                         // draw a dot
                         this.ctx.fillStyle = 'black';
-                        this.ctx.fillRect(
-                            coords[0] - this.ctrl.lineWidth / 2,
-                            coords[1] - this.ctrl.lineWidth / 2,
+                        this.fillRectForPoint(
+                            point.move(-this.ctrl.lineWidth / 2, -this.ctrl.lineWidth / 2),
                             this.ctrl.lineWidth,
                             this.ctrl.lineWidth
                         );
                         // connection to the neighbor to the right?
-                        if (x < this.ctrl.numPointsX) connections.push([coords, coordsOf(x + 1, y)]);
+                        if (x < this.ctrl.numPointsX) connections.push([point, pointFor(x + 1, y)]);
                         // connection to the neighbor below?
-                        if (y < this.ctrl.numPointsY) connections.push([coords, coordsOf(x, y + 1)]);
+                        if (y < this.ctrl.numPointsY) connections.push([point, pointFor(x, y + 1)]);
                     }
                     connections = ArrayUtils.shuffle(connections);
                     connections.splice(this.ctrl.numPointsX * this.ctrl.numPointsY * this.ctrl.percentConnections / 100);
                     connections.forEach(el => {
                         this.ctx.beginPath();
-                        this.ctx.moveTo(...el[0]);
-                        this.ctx.lineTo(...el[1]);
+                        this.moveToPoint(el[0]);
+                        this.lineToPoint(el[1]);
                         this.ctx.stroke();
                     });
                 }

@@ -20,9 +20,12 @@ export class Work0017 extends Work {
         // Scale down to create a margin so the outermost strokes won't be clipped.
         let dim = this.width; // this.width == this.height because of square canvas
         this.ctx.save();
+
+        // pad the work
         this.ctx.translate(dim / 2, dim / 2);
         this.ctx.scale(this.ctrl.scale, this.ctrl.scale);
         this.ctx.translate(-dim / 2, -dim / 2);
+
         let tileDim = this.width / this.ctrl.numTiles;
         for (let i = 0; i <= this.ctrl.numRects; i++) {
             let ulX = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);
