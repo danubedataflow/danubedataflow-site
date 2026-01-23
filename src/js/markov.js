@@ -127,11 +127,11 @@ export class MarkovChain {
         this.currentState = this.states[this.states.length - 1];
         return this.currentState;
     }
-}
-export function makeRandomMarkovChain(states) {
-    const m = new MarkovChain();
-    m.setStates(states);
-    m.generateRandomTransitionMatrix();
-    m.setCurrentState(ArrayUtils.randomElement(states));
-    return m;
+    static makeRandomMarkovChain(states) {
+        const m = new MarkovChain();
+        m.setStates(states);
+        m.generateRandomTransitionMatrix();
+        m.setCurrentState(ArrayUtils.randomElement(states));
+        return m;
+    }
 }

@@ -8,7 +8,7 @@ import {
     Point
 } from '/js/point.js';
 import {
-    makeRandomMarkovChain
+    MarkovChain
 } from '/js/markov.js';
 export class Work0038 extends Work {
     setupControls() {
@@ -22,9 +22,9 @@ export class Work0038 extends Work {
     }
     drawWork() {
         const tileDim = this.width / this.ctrl.numTiles;
-        const markovShapes = makeRandomMarkovChain(['A', 'B', 'C', 'D']);
+        const markovShapes = MarkovChain.makeRandomMarkovChain(['A', 'B', 'C', 'D']);
         const [lineWidthFrom, lineWidthTo] = this.ctrl.useMarkovLineWidth ? this.ctrl.lineWidthRange : [1, 1];
-        const markovLineWidth = makeRandomMarkovChain(ArrayUtils.arrayFromIntRange(lineWidthFrom, lineWidthTo));
+        const markovLineWidth = MarkovChain.makeRandomMarkovChain(ArrayUtils.arrayFromIntRange(lineWidthFrom, lineWidthTo));
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
         for (let y = 0; y < this.ctrl.numTiles; y++) {
