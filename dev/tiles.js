@@ -1,4 +1,4 @@
-tileIterator(scanOrder, callback) {
+tileIterator(callback, scanOrder = 'xy') {
     let tileDim = Math.floor(this.width / ctrl.numTiles);
     let handleTile = (x, y, tileDim, callback) => {
         this.ctx.save();
@@ -7,24 +7,36 @@ tileIterator(scanOrder, callback) {
         callback(new Tile(x, y, tileDim));
         this.ctx.restore();
     };
-    if (scanOrder == 'yx') {
-        // top-to-bottom; within that left-to-right
-        for (let x = 0; x < this.ctrl.numTiles; x++) {
-            for (let y = 0; y < this.ctrl.numTiles; y++) {
-                handleTile(x, y, tileDim, callback);
-            }
-        }
-    } else if (scanOrder == 'xy') {
-        // left-to-right; within that top-to-bottom
+    if (scanOrder == 'xy') {
+        // each row (top-to-bottom): left-to-right
         for (let y = 0; y < this.ctrl.numTiles; y++) {
             for (let x = 0; x < this.ctrl.numTiles; x++) {
                 handleTile(x, y, tileDim, callback);
             }
         }
+    } else if (scanOrder == 'yx') {
+        // each column (left-to-right): top-to-bottom
+        for (let x = 0; x < this.ctrl.numTiles; x++) {
+            for (let y = 0; y < this.ctrl.numTiles; y++) {
+                handleTile(x, y, tileDim, callback);
+            }
+        }
     } else if (scanOrder == 'serpentine') {
-        // rows alternating between left-to-right and right-to-left
-    } else if (scanOrder == 'spiral-in') {
-        // square spiral
+        // rows (top-to-bottom) alternating between left-to-right and
+        // right-to-left
+        for (let y = 0; y < this.ctrl.numTiles; y++) {
+            if (y % 2 == 0) {
+                // even rows: left-to-right
+                for (let x = 0; x < this.ctrl.numTiles; x++) {
+                    handleTile(x, y, tileDim, callback);
+                }
+            } else {
+                // odd rows: right-to-left
+                for (let x = this.ctrl.numTiles - 1; x >= 0; x--) {
+                    handleTile(x, y, tileDim, callback);
+                }
+            }
+        }
     } else {
         throw new Error(`tileIterator(): invalid scan order '${scanOrder}'`);
     }
@@ -41,12 +53,32 @@ class Tile {
         return new Point(-this.tileDim / 2, -this.tileDim / 2);
     }
 
+    upperMiddle() {
+        return new Point(0, -this.tileDim / 2);
+    }
+
     upperRight {
         return new Point(this.tileDim / 2, -this.tileDim / 2);
     }
 
+    middleLeft() {
+        return new Point(-this.tileDim / 2, 0);
+    }
+
+    center() {
+        return new Point(0, 0);
+    }
+
+    middleRight {
+        return new Point(this.tileDim / 2, 0);
+    }
+
     lowerLeft() {
         return new Point(-this.tileDim / 2, this.tileDim / 2);
+    }
+
+    lowerMiddle() {
+        return new Point(0, this.tileDim / 2);
     }
 
     lowerRight() {
