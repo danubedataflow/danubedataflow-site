@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    shuffle
-} from '/js/array.js';
+    ArrayUtils
+} from '/js/utils.js';
 class Work0026 extends Work {
     setupControls() {
         this.makeForm(
@@ -69,7 +69,7 @@ class Work0026 extends Work {
                         // connection to the neighbor below?
                         if (y < this.ctrl.numPointsY) connections.push([coords, coordsOf(x, y + 1)]);
                     }
-                    connections = shuffle(connections);
+                    connections = ArrayUtils.shuffle(connections);
                     connections.splice(this.ctrl.numPointsX * this.ctrl.numPointsY * this.ctrl.percentConnections / 100);
                     connections.forEach(el => {
                         this.ctx.beginPath();

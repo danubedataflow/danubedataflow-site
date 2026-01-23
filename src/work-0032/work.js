@@ -2,16 +2,10 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
-import {
-    shuffle,
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0032 extends Work {
     shapes = [
         [
@@ -136,7 +130,7 @@ class Work0032 extends Work {
     drawLayer() {
         // see Work 0024
         let numColored = Math.max(1, Math.round(this.ctrl.numTiles * this.ctrl.numTiles / this.ctrl.ratioColoredTiles));
-        let shouldColorArray = shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
+        let shouldColorArray = ArrayUtils.shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
             .map((el, index) => index < numColored));
         let tileDim = this.width / this.ctrl.numTiles;
         for (let y = 1; y <= this.ctrl.numTiles; y++) {
@@ -154,24 +148,24 @@ class Work0032 extends Work {
         // each tile consists of 5 x 5 "pixels"
         let pixelDim = tileDim / 5;
         // random rotation by a multiple of 90 degrees
-        this.ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
+        this.ctx.rotate(MathUtils.randomIntUpTo(4) * Math.PI / 2);
         // Use calls to random() in any case so the shapes, chosen by another
         // randomElement() below, stay the same when you // change the color
         // chance.
-        let alpha = randomIntRange(...this.ctrl.alphaRange) / 100;
+        let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
         // alpha is only used if we use layers
         if (!this.ctrl.useLayers) alpha = 1;
         if (this.ctrl.useColors) {
             if (shouldColorArray.shift()) {
-                this.ctx.fillStyle = colorRGBA(...chroma(randomElement(this.palette)).rgb(), alpha);
+                this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(ArrayUtils.randomElement(this.palette)).rgb(), alpha);
             } else {
-                this.ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+                this.ctx.fillStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
             }
         } else {
-            this.ctx.fillStyle = colorRGBA(0, 0, 0, alpha);
+            this.ctx.fillStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
         }
         // draw a random shape's pixels
-        let shape = randomElement(this.shapes);
+        let shape = ArrayUtils.randomElement(this.shapes);
         for (let px = 0; px < 5; px++) {
             for (let py = 0; py < 5; py++) {
                 // if the shape array has an 'X' at (px,py), draw a rectangle there

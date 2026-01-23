@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 import {
     Point
 } from '/js/point.js';
@@ -45,7 +43,7 @@ class Work0037 extends Work {
         // If we haven't reached the minimum currentDepth, we have to subdividide.
         // After that, up to the maximum currentDepth, it depends on chance.
         const shouldSubdivide =
-            currentDepth < minDepth || (currentDepth < maxDepth && random() < this.ctrl.subdivisionChance / 100);
+            currentDepth < minDepth || (currentDepth < maxDepth && MathUtils.random() < this.ctrl.subdivisionChance / 100);
         if (shouldSubdivide) {
             // find the longest side, then subdivide at the half point of that side
             let {
@@ -62,8 +60,8 @@ class Work0037 extends Work {
             this.ctx.lineTo(...p2.asArray());
             this.ctx.lineTo(...p3.asArray());
             this.ctx.closePath();
-            if (random() < this.ctrl.chanceFill / 100) {
-                this.ctx.fillStyle = randomElement(this.palette);
+            if (MathUtils.random() < this.ctrl.chanceFill / 100) {
+                this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);
                 this.ctx.fill();
             }
             if (this.ctrl.hasBorder) {

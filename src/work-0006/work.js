@@ -2,16 +2,10 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0006 extends Work {
     setupControls() {
         this.makeForm(
@@ -27,18 +21,18 @@ class Work0006 extends Work {
     }
     drawWork() {
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
-        this.clearCanvas(randomElement(palette));
+        this.clearCanvas(ArrayUtils.randomElement(palette));
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         for (let i = 0; i < this.ctrl.numSquares; i++) {
-            let color = randomElement(palette);
+            let color = ArrayUtils.randomElement(palette);
             // turn RGB hex string into [R, G, B]
             color = chroma(color).rgb();
             // map [0,100]% to [0, 1]
-            let alpha = randomIntRange(...this.ctrl.alphaRange) / 100;
-            this.ctx.fillStyle = colorRGBA(...color, alpha);
+            let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
+            this.ctx.fillStyle = ColorUtils.colorRGBA(...color, alpha);
             let [minLength, maxLength] = this.ctrl.squareLengthRange;
-            let s = randomIntRange(this.width * minLength / 100, this.height * maxLength / 100);
-            this.ctx.fillRect(randomIntUpTo(this.width), randomIntUpTo(this.height), s, s);
+            let s = MathUtils.randomIntRange(this.width * minLength / 100, this.height * maxLength / 100);
+            this.ctx.fillRect(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height), s, s);
         }
     }
     description = `Random rectangles in random colors, blended together.`;

@@ -2,13 +2,9 @@ import {
     gallery
 } from '/js/gallery.js';
 import {
-    random,
-    randomSeed,
-    randomIntRange
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 export class Work {
     controls = {};
     ctrl = {};
@@ -332,7 +328,7 @@ export class Work {
                 // steps (0, 2, 4, 6, 8, 10), so maxStep = 5.
                 let maxStep = (max - min) / options.step;
                 let genValue = () => {
-                    return min + randomIntRange(0, maxStep) * options.step
+                    return min + MathUtils.randomIntRange(0, maxStep) * options.step
                 };
                 if (Array.isArray(options.start)) {
                     c.setValue(options.start.map(genValue).sort((a, b) => a - b));
@@ -340,9 +336,9 @@ export class Work {
                     c.setValue(genValue());
                 }
             } else if (c instanceof SelectControl) {
-                c.setValue(randomElement(c.getOptionValues()));
+                c.setValue(ArrayUtils.randomElement(c.getOptionValues()));
             } else if (c instanceof CheckboxControl) {
-                c.setValue(randomElement([true, false]));
+                c.setValue(ArrayUtils.randomElement([true, false]));
             }
             // No need to set the seed value (for SeedControl); that's done in
             // redrawWithNewSeed() anyway.
@@ -559,7 +555,7 @@ class SeedControl {
          */
         value = value || Math.random().toString(36).slice(2, 10);
         this.element.value = value;
-        randomSeed(value);
+        MathUtils.randomSeed(value);
         // Support for perlin library, which may have been loaded.
         // perlin.js assigns noise as a property on the global object (window
         // in browsers).

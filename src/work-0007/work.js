@@ -2,10 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntRange,
-    getPointsForPolygon
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0007 extends Work {
     setupControls() {
         this.makeForm(
@@ -24,10 +22,10 @@ class Work0007 extends Work {
             for (let y = 0; y < this.ctrl.numTiles; y++) {
                 this.ctx.save();
                 this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let numColors = randomIntRange(...this.ctrl.numColorsRange);
+                let numColors = MathUtils.randomIntRange(...this.ctrl.numColorsRange);
                 let palette = chroma.scale(this.ctrl.colorMap).colors(numColors);
-                let numSides = randomIntRange(...this.ctrl.numSidesRange);
-                let points = getPointsForPolygon(numSides, tileDim * 0.9, 0);
+                let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
+                let points = MathUtils.getPointsForPolygon(numSides, tileDim * 0.9, 0);
                 // draw a line from each point to each point
                 let colorIndex = 0;
                 points.forEach((p, i) => {

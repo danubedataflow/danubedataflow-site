@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntPlusMinus
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0029 extends Work {
     setupControls() {
         this.makeForm(
@@ -38,13 +35,13 @@ class Work0029 extends Work {
         this.ctx.translate(-tileDim / 2, -tileDim / 2);
         for (let startY = 0; startY <= tileDim; startY += this.ctrl.lineGap) {
             let y = startY;
-            this.ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
+            this.ctx.fillStyle = ColorUtils.colorRGBA(MathUtils.randomIntUpTo(255), MathUtils.randomIntUpTo(255), MathUtils.randomIntUpTo(255), 0.2);
             this.ctx.beginPath();
             this.ctx.moveTo(0, 0);
             for (let x = 0; x <= tileDim; x += this.ctrl.maxMovement) {
                 this.ctx.lineTo(x, y);
                 // random movement but constrain to the tile size
-                y += randomIntPlusMinus(this.ctrl.maxMovement);
+                y += MathUtils.randomIntPlusMinus(this.ctrl.maxMovement);
                 if (y < 0) y = 0;
                 if (y > tileDim) y = tileDim;
             }

@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntUpTo
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0005 extends Work {
     setupControls() {
         this.makeForm(
@@ -22,11 +21,11 @@ class Work0005 extends Work {
         this.ctx.save();
         this.ctx.translate(this.width / 2, this.height / 2);
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
-        let colorIndex = randomIntUpTo(palette.length);
+        let colorIndex = MathUtils.randomIntUpTo(palette.length);
         let magnify = Math.round(this.width / this.ctrl.maxLength);
         let numPoints = Math.pow(this.ctrl.maxLength, 2);
         this.iterateSquareSpiral(numPoints, (x, y, n) => {
-            let direction = randomIntUpTo(2) - 1; // [-1, +1]
+            let direction = MathUtils.randomIntUpTo(2) - 1; // [-1, +1]
             // wrap around
             colorIndex = (palette.length + colorIndex + direction) % palette.length;
             this.ctx.fillStyle = palette[colorIndex];

@@ -42,11 +42,9 @@
  * The getTransitionMatrix() method returns the current transition matrix.
  */
 import {
-    random
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 export class MarkovChain {
     constructor() {
         this.states = [];
@@ -96,7 +94,7 @@ export class MarkovChain {
             let row = [];
             let sum = 0;
             for (let j = 0; j < n; j++) {
-                const r = random();
+                const r = MathUtils.random();
                 row.push(r);
                 sum += r;
             }
@@ -116,7 +114,7 @@ export class MarkovChain {
         }
         const i = this.states.indexOf(this.currentState);
         const row = this.transitionMatrix[i];
-        const r = random();
+        const r = MathUtils.random();
         let acc = 0;
         for (let j = 0; j < row.length; j++) {
             acc += row[j];
@@ -134,6 +132,6 @@ export function makeRandomMarkovChain(states) {
     const m = new MarkovChain();
     m.setStates(states);
     m.generateRandomTransitionMatrix();
-    m.setCurrentState(randomElement(states));
+    m.setCurrentState(ArrayUtils.randomElement(states));
     return m;
 }

@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    gaussianRandom
-} from '/js/math.js';
-import {
-    pairwise
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 class Work0034 extends Work {
     setupControls() {
         this.makeForm(
@@ -20,7 +18,7 @@ class Work0034 extends Work {
         let points = [];
         let standardDeviation = this.width * this.ctrl.percentStandardDeviation / 100;
         for (let i = 1; i <= this.ctrl.numPoints; i++) {
-            let x = Math.floor(gaussianRandom(this.width / 2, standardDeviation));
+            let x = Math.floor(MathUtils.gaussianRandom(this.width / 2, standardDeviation));
             // Calculate y for an imaginary this.height of 500, then scale to the actual
             // this.height. This is so the result looks the same regardless of the
             // canvas size. Also subtract from this.height so it goes from bottom to top.
@@ -28,7 +26,7 @@ class Work0034 extends Work {
             y *= this.height / 500;
             points.push([x, y]);
         }
-        pairwise(points, (current, next) => {
+        ArrayUtils.pairwise(points, (current, next) => {
             this.ctx.beginPath();
             this.ctx.moveTo(...current);
             this.ctx.lineTo(...next);

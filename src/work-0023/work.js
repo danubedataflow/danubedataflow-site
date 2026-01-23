@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntPlusMinus
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0023 extends Work {
     setupControls() {
         this.makeForm(
@@ -30,10 +29,10 @@ class Work0023 extends Work {
                 this.ctx.save();
                 // move to the tile center so rotate() and scale() happen there
                 this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-                this.ctx.rotate(2 * Math.PI * randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
+                this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
                 this.ctx.translate(
-                    randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
-                    randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
+                    MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
+                    MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
                 );
                 // `this.ctx.scale(this.ctrl.scale, this.ctrl.scale)` instead would also change the line weight.
                 this.ctx.beginPath();

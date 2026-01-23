@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0010 extends Work {
     setupControls() {
         this.makeForm(
@@ -15,9 +15,9 @@ class Work0010 extends Work {
         // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
         for (let i = 0; i < this.ctrl.numCurves; i++) {
             curves.push([
-                [randomIntUpTo(this.width), randomIntUpTo(this.height)],
-                [randomIntUpTo(this.width), randomIntUpTo(this.height)],
-                [randomIntUpTo(this.width), randomIntUpTo(this.height)],
+                [MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)],
+                [MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)],
+                [MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)],
             ]);
         }
         this.clearCanvas();

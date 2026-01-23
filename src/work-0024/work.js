@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntPlusMinus
-} from '/js/math.js';
-import {
-    shuffle,
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 class Work0024 extends Work {
     setupControls() {
         this.makeForm(
@@ -42,18 +39,18 @@ class Work0024 extends Work {
          * there are tiles. Set the first n tiles to be colored, then shuffle the
          * array. As we draw each tile, we shift the first array element.
          */
-        let shouldFillArray = shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
+        let shouldFillArray = ArrayUtils.shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
             .map((el, index) => index < numFilled));
         let tileDim = this.width / this.ctrl.numTiles;
         for (let y = 1; y <= this.ctrl.numTiles; y++) {
             for (let x = 1; x <= this.ctrl.numTiles; x++) {
                 let tileULX = (x - 1) * tileDim;
                 let tileULY = (y - 1) * tileDim;
-                let xOffset = randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-                let yOffset = randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+                let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+                let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
                 let shouldFill = shouldFillArray.shift();
                 if (shouldFill) {
-                    this.ctx.fillStyle = randomElement(palette);
+                    this.ctx.fillStyle = ArrayUtils.randomElement(palette);
                     this.ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
                 }
                 this.ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);

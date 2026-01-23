@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorHSLA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0015 extends Work {
     setupControls() {
         this.makeForm(
@@ -23,25 +20,25 @@ class Work0015 extends Work {
         );
     }
     setRandomFillColor() {
-        this.ctx.fillStyle = colorHSLA(
+        this.ctx.fillStyle = ColorUtils.colorHSLA(
             this.ctrl.colorAngle,
-            randomIntRange(...this.ctrl.saturationRange),
-            randomIntRange(...this.ctrl.lightnessRange),
-            randomIntRange(...this.ctrl.alphaRange) / 100
+            MathUtils.randomIntRange(...this.ctrl.saturationRange),
+            MathUtils.randomIntRange(...this.ctrl.lightnessRange),
+            MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100
         );
     }
     drawWork() {
         this.clearCanvas();
         this.ctx.fillStyle = 'black';
         for (let i = 0; i <= this.ctrl.numHorizontalLines; i++) {
-            let x1 = randomIntUpTo(this.width);
-            let w = randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.width / 100;
+            let x1 = MathUtils.randomIntUpTo(this.width);
+            let w = MathUtils.randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.width / 100;
             this.setRandomFillColor();
             this.ctx.fillRect(x1, 0, w, this.height);
         }
         for (let i = 0; i <= this.ctrl.numVerticalLines; i++) {
-            let y1 = randomIntUpTo(this.width);
-            let h = randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.height / 100;
+            let y1 = MathUtils.randomIntUpTo(this.width);
+            let h = MathUtils.randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.height / 100;
             this.setRandomFillColor();
             this.ctx.fillRect(0, y1, this.width, h);
         }

@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntUpTo
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 class Work0018 extends Work {
     palette;
     color1;
@@ -30,7 +27,7 @@ class Work0018 extends Work {
                 this.ctx.save();
                 this.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
                 this.chooseColors(this.ctrl.colorStrategy);
-                if (randomIntUpTo(100) < this.ctrl.diagonalOrientationChance) {
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalOrientationChance) {
                     // upper left to lower right
                     this.ctx.fillStyle = this.color1;
                     this.ctx.beginPath();
@@ -71,15 +68,15 @@ class Work0018 extends Work {
     chooseColors(colorStrategy) {
         if (colorStrategy === 'random') {
             // choose two different random colors
-            this.color1 = randomElement(this.palette);
+            this.color1 = ArrayUtils.randomElement(this.palette);
             do {
-                this.color2 = randomElement(this.palette);
+                this.color2 = ArrayUtils.randomElement(this.palette);
             } while (this.color1 == this.color2);
         } else if (colorStrategy === 'adjacent') {
             this.color1 = this.color2; // reuse previous color
-            if (this.color1 === undefined) this.color1 = random(this.palette);
+            if (this.color1 === undefined) this.color1 = MathUtils.random(this.palette);
             do {
-                this.color2 = randomElement(this.palette);
+                this.color2 = ArrayUtils.randomElement(this.palette);
             } while (this.color1 == this.color2);
         } else {
             console.log('invalid color strategy ' + colorStrategy);

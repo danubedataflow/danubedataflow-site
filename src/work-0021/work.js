@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0021 extends Work {
     setupControls() {
         this.makeForm(
@@ -20,13 +17,13 @@ class Work0021 extends Work {
         this.clearCanvas();
         let tileDim = this.width / this.ctrl.numTiles;
         for (let i = 0; i <= this.ctrl.numRects; i++) {
-            let ulX = randomIntUpTo(this.width);
-            let ulY = randomIntUpTo(this.height);
-            let w = randomIntUpTo(this.width - ulX);
-            let h = randomIntUpTo(this.height - ulY);
-            this.ctx.lineWidth = randomIntRange(...this.ctrl.lineWidthRange);
-            let alpha = randomIntRange(...this.ctrl.alphaRange) / 100;
-            this.ctx.strokeStyle = colorRGBA(0, 0, 0, alpha);
+            let ulX = MathUtils.randomIntUpTo(this.width);
+            let ulY = MathUtils.randomIntUpTo(this.height);
+            let w = MathUtils.randomIntUpTo(this.width - ulX);
+            let h = MathUtils.randomIntUpTo(this.height - ulY);
+            this.ctx.lineWidth = MathUtils.randomIntRange(...this.ctrl.lineWidthRange);
+            let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
+            this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
             this.ctx.strokeRect(ulX, ulY, w, h);
         }
     }

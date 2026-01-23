@@ -2,12 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    gaussianRandom
-} from '/js/math.js';
-import {
-    pairwise
-} from '/js/array.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0035 extends Work {
     setupControls() {
         this.makeForm(
@@ -45,9 +41,9 @@ class Work0035 extends Work {
     }
     randomCoordinate(type, limit) {
         if (type == 'standard') {
-            return randomIntUpTo(limit);
+            return MathUtils.randomIntUpTo(limit);
         } else if (type == 'gaussian') {
-            return gaussianRandom(limit / 2, limit / 2) // [0, limit]
+            return MathUtils.gaussianRandom(limit / 2, limit / 2) // [0, limit]
         } else {
             console.log(`unknown random type '${type}'`);
         }

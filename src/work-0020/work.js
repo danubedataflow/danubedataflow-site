@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 class Work0020 extends Work {
     setupControls() {
         this.makeForm(
@@ -29,11 +27,11 @@ class Work0020 extends Work {
                 // move to the tile center so any rotate() and scale() happen there
                 this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
                 // fill whole tile
-                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredTileChance ? randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredTileChance ? ArrayUtils.randomElement(palette) : 'white';
                 this.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
                 // draw triangles
                 // upper left quadrant, diagonally sliced, inner triangle
-                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';
                 this.ctx.beginPath();
                 this.ctx.moveTo(0, -tileDim / 2);
                 this.ctx.lineTo(0, 0);
@@ -41,7 +39,7 @@ class Work0020 extends Work {
                 this.ctx.closePath();
                 this.ctx.fill();
                 // upper right quadrant, diagonally sliced, inner triangle
-                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';
                 this.ctx.beginPath();
                 this.ctx.moveTo(0, -tileDim / 2);
                 this.ctx.lineTo(0, 0);
@@ -49,7 +47,7 @@ class Work0020 extends Work {
                 this.ctx.closePath();
                 this.ctx.fill();
                 // lower left quadrant, diagonally sliced, inner triangle
-                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';
                 this.ctx.beginPath();
                 this.ctx.moveTo(0, tileDim / 2);
                 this.ctx.lineTo(0, 0);
@@ -57,7 +55,7 @@ class Work0020 extends Work {
                 this.ctx.closePath();
                 this.ctx.fill();
                 // lower right quadrant, diagonally sliced, inner triangle
-                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';
                 this.ctx.beginPath();
                 this.ctx.moveTo(0, tileDim / 2);
                 this.ctx.lineTo(0, 0);

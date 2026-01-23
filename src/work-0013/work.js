@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0013 extends Work {
     setupControls() {
         this.makeForm(
@@ -30,25 +30,25 @@ class Work0013 extends Work {
                 this.ctx.save();
                 this.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
                 if (this.ctrl.hasTileBorder) this.ctx.strokeRect(0, 0, tileDim, tileDim);
-                if (randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, tileDim / 2);
                     this.ctx.lineTo(tileDim, tileDim / 2);
                     this.ctx.stroke();
                 }
-                if (randomIntUpTo(100) < this.ctrl.verticalLineChance) {
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.verticalLineChance) {
                     this.ctx.beginPath();
                     this.ctx.moveTo(tileDim / 2, 0);
                     this.ctx.lineTo(tileDim / 2, tileDim);
                     this.ctx.stroke();
                 }
-                if (randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, tileDim);
                     this.ctx.lineTo(tileDim, 0);
                     this.ctx.stroke();
                 }
-                if (randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, 0);
                     this.ctx.lineTo(tileDim, tileDim);

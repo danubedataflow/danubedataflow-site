@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0017 extends Work {
     setupControls() {
         this.makeForm(
@@ -27,13 +25,13 @@ class Work0017 extends Work {
         this.ctx.translate(-dim / 2, -dim / 2);
         let tileDim = this.width / this.ctrl.numTiles;
         for (let i = 0; i <= this.ctrl.numRects; i++) {
-            let ulX = randomIntRange(0, this.ctrl.numTiles - 1);
-            let ulY = randomIntRange(0, this.ctrl.numTiles - 1);
-            let spanX = randomIntRange(1, this.ctrl.numTiles - ulX);
-            let spanY = randomIntRange(1, this.ctrl.numTiles - ulY);
-            this.ctx.lineWidth = (randomIntRange(...this.ctrl.lineWidthRange));
-            let alpha = randomIntRange(...this.ctrl.alphaRange) / 100;
-            this.ctx.strokeStyle = colorRGBA(0, 0, 0, alpha);
+            let ulX = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);
+            let ulY = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);
+            let spanX = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulX);
+            let spanY = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulY);
+            this.ctx.lineWidth = (MathUtils.randomIntRange(...this.ctrl.lineWidthRange));
+            let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
+            this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
             this.ctx.strokeRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
         }
         this.ctx.restore();

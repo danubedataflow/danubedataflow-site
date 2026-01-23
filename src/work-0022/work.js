@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    shuffle
-} from '/js/array.js';
+    ArrayUtils
+} from '/js/utils.js';
 class Work0022 extends Work {
     setupControls() {
         this.makeForm(
@@ -33,7 +33,7 @@ class Work0022 extends Work {
                         ]);
                     }
                 }
-                points = shuffle(points);
+                points = ArrayUtils.shuffle(points);
                 for (let i = 0; i < points.length - 1; i++) {
                     this.ctx.beginPath();
                     this.ctx.moveTo(...points[i]);

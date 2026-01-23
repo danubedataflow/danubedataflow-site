@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0014 extends Work {
     setupControls() {
         this.makeForm(
@@ -42,15 +41,15 @@ class Work0014 extends Work {
                 this.ctx.save();
                 // `+ 0.5` to move to the tile's center
                 this.ctx.translate((x - 1) * (tileDim + 0.5), (y - 1) * (tileDim + 0.5));
-                if (randomIntUpTo(100) < this.ctrl.rotationChance) this.ctx.rotate(randomIntRange(...this.ctrl.rotationRange) * Math.PI / 180);
-                if (randomIntUpTo(100) < this.ctrl.scaleChance) {
-                    let s = randomIntRange(...this.ctrl.scaleRange) / 100;
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.rotationChance) this.ctx.rotate(MathUtils.randomIntRange(...this.ctrl.rotationRange) * Math.PI / 180);
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.scaleChance) {
+                    let s = MathUtils.randomIntRange(...this.ctrl.scaleRange) / 100;
                     this.ctx.scale(s, s);
                 }
-                if (randomIntUpTo(100) < this.ctrl.translationChance) this.ctx.translate(
-                    tileDim * randomIntRange(...this.ctrl.translationRange) / 100,
-                    tileDim * randomIntRange(...this.ctrl.translationRange) / 100);
-                if (randomIntUpTo(100) < this.ctrl.lineWidthChance) this.ctx.lineWidth = randomIntRange(...this.ctrl.lineWidthRange);
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.translationChance) this.ctx.translate(
+                    tileDim * MathUtils.randomIntRange(...this.ctrl.translationRange) / 100,
+                    tileDim * MathUtils.randomIntRange(...this.ctrl.translationRange) / 100);
+                if (MathUtils.randomIntUpTo(100) < this.ctrl.lineWidthChance) this.ctx.lineWidth = MathUtils.randomIntRange(...this.ctrl.lineWidthRange);
                 this.ctx.strokeRect(0, 0, tileDim, tileDim);
                 this.ctx.restore();
             }

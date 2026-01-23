@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo
-} from '/js/math.js';
-import {
-    colorHSL
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0027 extends Work {
     setupControls() {
         this.makeForm(
@@ -23,10 +21,10 @@ class Work0027 extends Work {
                 this.ctx.save();
                 // move to the tile center so rotate() and scale() happen there
                 this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-                this.ctx.fillStyle = colorHSL(this.ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+                this.ctx.fillStyle = ColorUtils.colorHSL(this.ctrl.colorAngle, 100, 40 + MathUtils.randomIntUpTo(60));
                 this.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
                 this.ctx.scale(this.ctrl.scaleInner, this.ctrl.scaleInner);
-                this.ctx.fillStyle = colorHSL(this.ctrl.colorAngle, 100, 40 + randomIntUpTo(60));
+                this.ctx.fillStyle = ColorUtils.colorHSL(this.ctrl.colorAngle, 100, 40 + MathUtils.randomIntUpTo(60));
                 this.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
                 this.ctx.restore();
             }

@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0011 extends Work {
     setupControls() {
         this.makeForm(
@@ -14,10 +13,10 @@ class Work0011 extends Work {
     }
     drawWork() {
         let offset = this.ctrl.randomPointOffset;
-        let x1 = randomIntUpTo(this.width / 2);
-        let y1 = randomIntUpTo(this.height / 2);
-        let x2 = randomIntUpTo(this.width / 2) + this.width / 2;
-        let y2 = randomIntUpTo(this.height / 2) + this.height / 2;
+        let x1 = MathUtils.randomIntUpTo(this.width / 2);
+        let y1 = MathUtils.randomIntUpTo(this.height / 2);
+        let x2 = MathUtils.randomIntUpTo(this.width / 2) + this.width / 2;
+        let y2 = MathUtils.randomIntUpTo(this.height / 2) + this.height / 2;
         let x1d = this.rnd(6, offset);
         let y1d = this.rnd(5, offset);
         let x2d = this.rnd(2, offset);
@@ -44,7 +43,7 @@ class Work0011 extends Work {
         }
     }
     rnd(mid, offset) {
-        return randomIntRange(mid - offset, mid + offset + 1);
+        return MathUtils.randomIntRange(mid - offset, mid + offset + 1);
     }
     description = `Each line is the previous line plus random movement. Based on Jon Stanley's program <a href="https://www.electronixandmore.com/resources/teksystem/">Lines</a> for the Tektronix 4052.`;
     createdDate = '2022-10-27';

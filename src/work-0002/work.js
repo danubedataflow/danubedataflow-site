@@ -2,12 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntUpTo
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0002 extends Work {
     setupControls() {
         this.makeForm(
@@ -25,10 +22,10 @@ class Work0002 extends Work {
         let p = [];
         // + 2 because the first triangle is only drawn on the third iteration
         for (let i = 1; i <= this.ctrl.numTriangles + 2; i++) {
-            p.push([randomIntUpTo(this.width), randomIntUpTo(this.height)]);
+            p.push([MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)]);
             if (p.length == 3) {
-                let color = colorScale(random()).rgb();
-                this.ctx.fillStyle = colorRGBA(...color, random());
+                let color = colorScale(MathUtils.random()).rgb();
+                this.ctx.fillStyle = ColorUtils.colorRGBA(...color, MathUtils.random());
                 // draw a triangle
                 this.ctx.beginPath();
                 this.ctx.moveTo(...p[0]);

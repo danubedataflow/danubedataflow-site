@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntRange,
-    getPointsForPolygon
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0008 extends Work {
     colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
     setupControls() {
@@ -25,10 +24,10 @@ class Work0008 extends Work {
             for (let y = 0; y < this.ctrl.numTiles; y++) {
                 this.ctx.save();
                 this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let numSides = randomIntRange(...this.ctrl.numSidesRange);
-                let diameter = randomIntRange(...this.ctrl.diameterRange);
-                let rotationStep = randomIntRange(...this.ctrl.rotationStepRange);
-                let maxDepth = randomIntRange(...this.ctrl.maxDepthRange);
+                let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
+                let diameter = MathUtils.randomIntRange(...this.ctrl.diameterRange);
+                let rotationStep = MathUtils.randomIntRange(...this.ctrl.rotationStepRange);
+                let maxDepth = MathUtils.randomIntRange(...this.ctrl.maxDepthRange);
                 this.drawPolygons(0, 0, numSides, diameter * tileDim / 100,
                     0, rotationStep, maxDepth);
                 this.ctx.restore();
@@ -36,7 +35,7 @@ class Work0008 extends Work {
         }
     }
     drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
-        let points = getPointsForPolygon(sides, diameter, rotation);
+        let points = MathUtils.getPointsForPolygon(sides, diameter, rotation);
         points.forEach(p => {
             this.ctx.save();
             this.ctx.translate(...p);

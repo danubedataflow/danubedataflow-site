@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0031 extends Work {
     setupControls() {
         this.makeForm(
@@ -27,9 +27,9 @@ class Work0031 extends Work {
                 this.ctx.lineWidth = this.ctrl.lineWidth;
                 for (let i = 0; i < this.ctrl.numLines; i++) {
                     this.ctx.beginPath();
-                    this.ctx.moveTo(randomIntUpTo(tileDim), 0);
-                    if (this.ctrl.hasBend) this.ctx.lineTo(randomIntUpTo(tileDim), randomIntUpTo(tileDim));
-                    this.ctx.lineTo(randomIntUpTo(tileDim), tileDim);
+                    this.ctx.moveTo(MathUtils.randomIntUpTo(tileDim), 0);
+                    if (this.ctrl.hasBend) this.ctx.lineTo(MathUtils.randomIntUpTo(tileDim), MathUtils.randomIntUpTo(tileDim));
+                    this.ctx.lineTo(MathUtils.randomIntUpTo(tileDim), tileDim);
                     this.ctx.stroke();
                 }
                 // draw a border around the tile

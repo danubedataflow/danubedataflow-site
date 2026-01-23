@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntRange
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 class Work0016 extends Work {
     setupControls() {
         this.makeForm(
@@ -19,11 +17,11 @@ class Work0016 extends Work {
         let palette = ['white', '#aaaaaa', 'black'];
         let tileDim = this.width / this.ctrl.numTiles; // square canvas
         for (let i = 0; i <= this.ctrl.numRects; i++) {
-            let ulX = randomIntRange(0, this.ctrl.numTiles - 1);
-            let ulY = randomIntRange(0, this.ctrl.numTiles - 1);
-            let spanX = randomIntRange(1, this.ctrl.numTiles - ulX);
-            let spanY = randomIntRange(1, this.ctrl.numTiles - ulY);
-            this.ctx.fillStyle = randomElement(palette);
+            let ulX = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);
+            let ulY = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);
+            let spanX = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulX);
+            let spanY = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulY);
+            this.ctx.fillStyle = ArrayUtils.randomElement(palette);
             this.ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
         }
     }

@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    getPointsForPolygon
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0001 extends Work {
     setupControls() {
         this.makeForm(
@@ -33,7 +33,7 @@ class Work0001 extends Work {
                 );
                 let diameter = Math.floor(n * this.ctrl.polygonScaleFactor * tileDim);
                 this.ctx.beginPath();
-                let points = getPointsForPolygon(this.ctrl.numSides, diameter, 0);
+                let points = MathUtils.getPointsForPolygon(this.ctrl.numSides, diameter, 0);
                 points.forEach(p => this.ctx.lineTo(...p));
                 this.ctx.closePath();
                 this.ctx.stroke();

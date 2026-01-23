@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    arrayFromIntRange
-} from '/js/array.js';
+    ArrayUtils
+} from '/js/utils.js';
 import {
     Point
 } from '/js/point.js';
@@ -24,7 +24,7 @@ class Work0038 extends Work {
         const tileDim = this.width / this.ctrl.numTiles;
         const markovShapes = makeRandomMarkovChain(['A', 'B', 'C', 'D']);
         const [lineWidthFrom, lineWidthTo] = this.ctrl.useMarkovLineWidth ? this.ctrl.lineWidthRange : [1, 1];
-        const markovLineWidth = makeRandomMarkovChain(arrayFromIntRange(lineWidthFrom, lineWidthTo));
+        const markovLineWidth = makeRandomMarkovChain(ArrayUtils.arrayFromIntRange(lineWidthFrom, lineWidthTo));
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
         for (let y = 0; y < this.ctrl.numTiles; y++) {

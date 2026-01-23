@@ -1,0 +1,160 @@
+// https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
+/*
+ * Take care to initialize your PRNGs properly. To keep things simple, the
+ * generators below have no built-in seed generating procedure, but accept one
+ * or more 32-bit numbers as the initial seed state of the PRNG. Similar or
+ * sparse seeds (e.g. a simple seed of 1 and 2) have low entropy, and can cause
+ * correlations or other randomness quality issues, sometimes resulting in the
+ * output having similar properties (such as randomly generated levels being
+ * similar). To avoid this, it is best practice to initialize PRNGs with a
+ * well-distributed, high entropy seed and/or advancing past the first 15 or so
+ * numbers.
+ *
+ * There are many ways to do this, but here are two methods. Firstly, hash
+ * functions are very good at generating seeds from short strings. A good hash
+ * function will generate very different results even when two strings are
+ * similar, so you don't have to put much thought into the string. Here's an
+ * example hash function.
+ *
+ * Calling cyrb128 will produce a 128-bit hash value from a string which can be
+ * used to seed a PRNG.
+ */
+export class MathUtils {
+    // init
+    static {
+        MathUtils.randomSeed(Math.random().toString(36).slice(2, 10));
+    }
+    static cyrb128(str) {
+        let h1 = 1779033703,
+            h2 = 3144134277,
+            h3 = 1013904242,
+            h4 = 2773480762;
+        for (let i = 0, k; i < str.length; i++) {
+            k = str.charCodeAt(i);
+            h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
+            h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
+            h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
+            h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
+        }
+        h1 = Math.imul(h3 ^ (h1 >>> 18), 597399067);
+        h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
+        h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
+        h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
+        h1 ^= (h2 ^ h3 ^ h4), h2 ^= h1, h3 ^= h1, h4 ^= h1;
+        return [h1 >>> 0, h2 >>> 0, h3 >>> 0, h4 >>> 0];
+    }
+    /*
+     * sfc32 is part of the PractRand random number testing suite (which it passes
+     * of course). sfc32 has a 128-bit state and is very fast in JS.
+     *
+     * You may wonder what the | 0 and >>>= 0 are for. These are essentially 32-bit
+     * integer casts, used for performance optimizations. Number in JS are
+     * basically floats, but during bitwise operations, they switch into a 32-bit
+     * integer mode. This mode is processed faster by JS interpreters, but any
+     * multiplication or addition will cause it to switch back to a float,
+     * resulting in a performance hit.
+     */
+    static sfc32(a, b, c, d) {
+        return function() {
+            a |= 0;
+            b |= 0;
+            c |= 0;
+            d |= 0;
+            var t = (a + b | 0) + d | 0;
+            d = d + 1 | 0;
+            a = b ^ b >>> 9;
+            b = c + (c << 3) | 0;
+            c = (c << 21 | c >>> 11);
+            c = c + t | 0;
+            return (t >>> 0) / 4294967296;
+        }
+    }
+    random;
+    static randomSeed(seedStr) {
+        // create cyrb128 state
+        let seed = this.cyrb128(seedStr);
+        // four 32-bit component hashes provide the seed for sfc32()
+        this.random = this.sfc32(seed[0], seed[1], seed[2], seed[3]);
+        // Now you can call MathUtils.random() to generate a random number betweem 0 and 1.
+    }
+    static randomIntUpTo(n) {
+        return Math.floor(this.random() * n);
+    }
+    static randomIntRange(lowerBound, upperBound) {
+        return lowerBound + this.randomIntUpTo(upperBound + 1 - lowerBound);
+    }
+    // generate a random integer in the range [-n, n].
+    static randomIntPlusMinus(n) {
+        return Math.floor(this.random() * 2 * n - n);
+    }
+    // Source - https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+    // Standard Normal variate using Box-Muller transform.
+    //
+    // Without args, it returns a number between -1 and +1
+    static gaussianRandom(mean = 0, standardDeviation = 1) {
+        const u = 1 - this.random(); // convert [0,1) to (0,1]
+        const v = this.random();
+        const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        return z * standardDeviation + mean;
+    }
+    static getPointsForPolygon(sides, diameter, rotation) {
+        // the polygon center is (0, 0)
+        let points = [];
+        for (let i = 0; i < sides + 1; i++) {
+            let angle = 2 * Math.PI / sides * i + 2 * Math.PI * rotation / 360;
+            points.push([
+                Math.sin(angle) * diameter / 2,
+                Math.cos(angle) * diameter / 2
+            ]);
+        }
+        return points;
+    }
+}
+export class ArrayUtils {
+    // call a function with elements [0, 1], then [1, 2] etc.
+    static pairwise(array, func) {
+        for (let i = 0; i < array.length - 1; i++) {
+            func(array[i], array[i + 1]);
+        }
+    }
+    // https://gist.github.com/motoishmz/5239619
+    // Fisher-Yates
+    //
+    // First copy the array so we don't modify the original array in-place.
+    static shuffle(array) {
+        const copy = array.slice(); // or [...array]
+        let i = copy.length;
+        while (i) {
+            const j = Math.floor(MathUtils.random() * i);
+            const t = copy[--i];
+            copy[i] = copy[j];
+            copy[j] = t;
+        }
+        return copy;
+    };
+    static randomElement(array) {
+        return array[Math.floor(MathUtils.random() * array.length)];
+    }
+    static arrayFromIntRange(from, to) {
+        let result = [];
+        for (let i = from; i <= to; i++) {
+            result.push(i);
+        }
+        return result;
+    }
+}
+export class ColorUtils {
+    // generate color value for ctx.fillStyle and ctx.strokeStyle.
+    static colorRGB(r, g, b) {
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+    static colorRGBA(r, g, b, alpha) {
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+    static colorHSL(h, s, l) {
+        return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+    static colorHSLA(h, s, l, alpha) {
+        return `hsla(${h}, ${s}%, ${l}%, ${alpha})`;
+    }
+}

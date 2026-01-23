@@ -2,13 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntUpTo,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorHSL
-} from '/js/colors.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0028 extends Work {
     setupControls() {
         this.makeForm(
@@ -31,7 +26,7 @@ class Work0028 extends Work {
                 this.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
                 // Draw the tile. Scale down to leave a border on each tile.
                 this.ctx.scale(0.8, 0.8);
-                this.ctx.rotate(randomIntUpTo(4) * Math.PI / 2);
+                this.ctx.rotate(MathUtils.randomIntUpTo(4) * Math.PI / 2);
                 // The following code assumes that (0, 0) is in the tile's upper left
                 this.ctx.translate(-tileDim / 2, -tileDim / 2);
                 // Get a random exponent for each tile
@@ -45,7 +40,7 @@ class Work0028 extends Work {
                         // likely a rectangle will be drawn.
                         let yPercent = (y - 1) / this.ctrl.numPoints;
                         this.ctx.scale(0.9, 0.9); // to have space between the squares
-                        if (random() > Math.pow(yPercent, exponent)) {
+                        if (MathUtils.random() > Math.pow(yPercent, exponent)) {
                             this.ctx.fillStyle = 'black';
                             this.ctx.fillRect(0, 0, dim, dim);
                         }
@@ -57,7 +52,7 @@ class Work0028 extends Work {
         }
     }
     randomFloatRange(lowerBound, upperBound) {
-        return lowerBound + random() * (upperBound + 1 - lowerBound);
+        return lowerBound + MathUtils.random() * (upperBound + 1 - lowerBound);
     }
     description = `Take a probability value that goes from 0 at the top to 1 at the bottom. In order for a square to be drawn in a row, a random number must be larger than the probability value raised to the power of a given value. So the higher the exponent, the lower the threshold becomes, and the more likely it is that a square will be drawn.`;
     createdDate = '2023-10-05';

@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntUpTo,
-    randomIntPlusMinus
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0030 extends Work {
     setupControls() {
         this.makeForm(
@@ -31,7 +30,7 @@ class Work0030 extends Work {
                 // Draw a line at a random angle around the center of p.
                 this.ctx.save();
                 this.ctx.translate(...p);
-                this.ctx.rotate(2 * Math.PI * randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
+                this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
                 this.ctx.beginPath();
                 this.ctx.moveTo(-lineLength / 2, 0);
                 this.ctx.lineTo(lineLength / 2, 0);
@@ -50,12 +49,12 @@ class Work0030 extends Work {
     }
     randomPath(n, curveScale) {
         // this offset applies to the whole path
-        let pathOffsetX = randomIntPlusMinus(this.width / 2);
-        let pathOffsetY = randomIntPlusMinus(this.height / 2);
+        let pathOffsetX = MathUtils.randomIntPlusMinus(this.width / 2);
+        let pathOffsetY = MathUtils.randomIntPlusMinus(this.height / 2);
         let randomPoint = () => {
             return [
-                randomIntUpTo(this.width * curveScale) + pathOffsetX,
-                randomIntUpTo(this.height * curveScale) + pathOffsetY
+                MathUtils.randomIntUpTo(this.width * curveScale) + pathOffsetX,
+                MathUtils.randomIntUpTo(this.height * curveScale) + pathOffsetY
             ]
         };
         /*

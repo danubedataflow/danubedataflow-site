@@ -2,16 +2,10 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
-import {
-    pairwise,
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0019 extends Work {
     setupControls() {
         this.makeForm(
@@ -31,40 +25,40 @@ class Work0019 extends Work {
         this.ctx.lineWidth = this.ctrl.lineWidth;
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
         for (let i = 0; i < this.ctrl.numGrids; i++) {
-            this.drawGrid(this.width, palette, randomIntRange(...this.ctrl.alphaRange) / 100);
+            this.drawGrid(this.width, palette, MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100);
         }
     }
     drawGrid(width, palette, alpha) {
-        let drawType = randomElement(['plain', 'diagonal']);
+        let drawType = ArrayUtils.randomElement(['plain', 'diagonal']);
         let vsegments = [];
-        let avgSize = width * randomIntRange(...this.ctrl.segmentSizeRange) / 100;
+        let avgSize = width * MathUtils.randomIntRange(...this.ctrl.segmentSizeRange) / 100;
         let [minSize, maxSize] = [avgSize * 0.75, avgSize * 1.25];
-        for (let y = 0; y < width; y += randomIntRange(minSize, maxSize)) {
+        for (let y = 0; y < width; y += MathUtils.randomIntRange(minSize, maxSize)) {
             vsegments.push(y);
         }
         vsegments.push(width);
-        pairwise(vsegments, (vcurrent, vnext) => {
+        ArrayUtils.pairwise(vsegments, (vcurrent, vnext) => {
             let hsegments = [];
-            for (let x = 0; x < width - (minSize + maxSize) / 2; x += randomIntRange(minSize, maxSize)) {
+            for (let x = 0; x < width - (minSize + maxSize) / 2; x += MathUtils.randomIntRange(minSize, maxSize)) {
                 hsegments.push(x);
             }
             hsegments.push(width);
-            pairwise(hsegments, (hcurrent, hnext) => {
+            ArrayUtils.pairwise(hsegments, (hcurrent, hnext) => {
                 if (drawType == 'plain') {
-                    this.ctx.fillStyle = colorRGBA(...chroma(randomElement(palette)).rgb(), alpha);
+                    this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(ArrayUtils.randomElement(palette)).rgb(), alpha);
                     this.ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                     this.ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                 } else if ((drawType == 'diagonal')) {
                     let c1, c2;
-                    c1 = randomElement(palette);
+                    c1 = ArrayUtils.randomElement(palette);
                     do {
-                        c2 = randomElement(palette);
+                        c2 = ArrayUtils.randomElement(palette);
                     } while (c1 == c2);
-                    this.ctx.fillStyle = colorRGBA(...chroma(c1).rgb(), alpha);
+                    this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c1).rgb(), alpha);
                     this.ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                     this.ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
-                    this.ctx.fillStyle = colorRGBA(...chroma(c2).rgb(), alpha);
-                    if (random() < 0.5) {
+                    this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c2).rgb(), alpha);
+                    if (MathUtils.random() < 0.5) {
                         // draw a triangle
                         this.ctx.beginPath();
                         this.ctx.moveTo(hcurrent, vcurrent);

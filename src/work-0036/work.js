@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random
-} from '/js/math.js';
-import {
-    randomElement
-} from '/js/array.js';
+    MathUtils,
+    ArrayUtils
+} from '/js/utils.js';
 import {
     Point
 } from '/js/point.js';
@@ -39,7 +37,7 @@ class Work0036 extends Work {
         // If we haven't reached the minimum currentDepth, we have to subdividide.
         // After that, up to the maximum currentDepth, it depends on chance.
         const shouldSubdivide =
-            currentDepth < minDepth || (currentDepth < maxDepth && random() < this.ctrl.subdivisionChance / 100);
+            currentDepth < minDepth || (currentDepth < maxDepth && MathUtils.random() < this.ctrl.subdivisionChance / 100);
         if (shouldSubdivide) {
             const half = squareSize / 2;
             this.drawSquare(upperLeft, half, currentDepth + 1);
@@ -48,8 +46,8 @@ class Work0036 extends Work {
             this.drawSquare(upperLeft.move(half, half), half, currentDepth + 1);
         } else {
             // it's a terminal square
-            if (random() < this.ctrl.chanceFill / 100) {
-                this.ctx.fillStyle = randomElement(this.palette);
+            if (MathUtils.random() < this.ctrl.chanceFill / 100) {
+                this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);
                 this.ctx.fillRect(...upperLeft.asArray(), squareSize, squareSize);
             }
             if (this.ctrl.hasBorder) {

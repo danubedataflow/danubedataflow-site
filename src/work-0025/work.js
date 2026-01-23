@@ -2,8 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntPlusMinus
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0025 extends Work {
     setupControls() {
         this.makeForm(
@@ -26,8 +26,8 @@ class Work0025 extends Work {
                 let tileULX = (x - 1) * tileDim;
                 let tileULY = (y - 1) * tileDim;
                 for (let i = 0; i < this.ctrl.numSquaresPerTile; i++) {
-                    let xOffset = randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-                    let yOffset = randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+                    let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+                    let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
                     this.ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
                 }
             }

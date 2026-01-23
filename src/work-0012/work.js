@@ -2,11 +2,9 @@ import {
     Work
 } from '/js/work.js';
 import {
-    randomIntRange
-} from '/js/math.js';
-import {
-    colorRGBA
-} from '/js/colors.js';
+    MathUtils,
+    ColorUtils
+} from '/js/utils.js';
 class Work0012 extends Work {
     setupControls() {
         this.makeForm(
@@ -18,7 +16,7 @@ class Work0012 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        this.ctx.strokeStyle = colorRGBA(0, 0, 0, this.ctrl.alpha / 100);
+        this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, this.ctrl.alpha / 100);
         this.ctx.lineWidth = 1;
         this.ctx.save();
         this.ctx.translate(this.width / 2, this.height / 2);
@@ -29,7 +27,7 @@ class Work0012 extends Work {
             let y = Math.sin(rad) * (this.height / 3);
             // Draw random squares around each point at 10% alpha, produces a fuzzy
             // shape.
-            let dim = randomIntRange(...this.ctrl.squareSizeRange);
+            let dim = MathUtils.randomIntRange(...this.ctrl.squareSizeRange);
             this.ctx.strokeRect(x, y, dim, dim);
         }
         this.ctx.restore();

@@ -2,9 +2,8 @@ import {
     Work
 } from '/js/work.js';
 import {
-    random,
-    randomIntRange
-} from '/js/math.js';
+    MathUtils
+} from '/js/utils.js';
 class Work0003 extends Work {
     setupControls() {
         this.makeForm(
@@ -22,12 +21,12 @@ class Work0003 extends Work {
             for (let y = 0; y < this.ctrl.numTiles; y++) {
                 this.ctx.save();
                 this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let numLines = randomIntRange(...this.ctrl.numLinesRange);
+                let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
                 for (let i = 1; i <= numLines; i++) {
-                    this.ctx.strokeStyle = colorScale(random()).toString();
+                    this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, 0);
-                    let angle = random() * 2 * Math.PI;
+                    let angle = MathUtils.random() * 2 * Math.PI;
                     this.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
                     this.ctx.stroke();
                 }
