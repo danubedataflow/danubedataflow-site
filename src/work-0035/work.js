@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0035 extends Work {
     setupControls() {
         this.makeForm(
@@ -20,10 +23,10 @@ export class Work0035 extends Work {
         this.ctx.strokeStyle = 'black';
         let points = [];
         for (let i = 1; i <= this.ctrl.numPoints; i++) {
-            points.push({
-                x: this.randomCoordinate(this.ctrl.randomType, this.width),
-                y: this.randomCoordinate(this.ctrl.randomType, this.height)
-            });
+            points.push(new Point(
+                this.randomCoordinate(this.ctrl.randomType, this.width),
+                this.randomCoordinate(this.ctrl.randomType, this.height)
+            ));
         }
         // Make maxLineLength dependent on this.width, but use the same number of points
         // regardless of the this.width. That way the work looks the same at different
@@ -33,8 +36,8 @@ export class Work0035 extends Work {
         for (const [p1, p2] of pairs) {
             this.ctx.strokeStyle = 'black';
             this.ctx.beginPath();
-            this.ctx.moveTo(p1.x, p1.y);
-            this.ctx.lineTo(p2.x, p2.y);
+            this.ctx.moveTo(...p1.asArray());
+            this.ctx.lineTo(...p2.asArray());
             this.ctx.closePath();
             this.ctx.stroke();
         }

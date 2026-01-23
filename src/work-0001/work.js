@@ -34,7 +34,7 @@ export class Work0001 extends Work {
                 let diameter = Math.floor(n * this.ctrl.polygonScaleFactor * tileDim);
                 this.ctx.beginPath();
                 let points = MathUtils.getPointsForPolygon(this.ctrl.numSides, diameter, 0);
-                points.forEach(p => this.ctx.lineTo(...p));
+                points.forEach(p => this.ctx.lineTo(...p.asArray()));
                 this.ctx.closePath();
                 this.ctx.stroke();
                 this.ctx.restore();

@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0004 extends Work {
     setupControls() {
         this.makeForm(
@@ -22,7 +25,7 @@ export class Work0004 extends Work {
         let colorScale = chroma.scale(this.ctrl.colorMap);
         let tileDim = Math.floor(this.width / this.ctrl.numTiles);
         let radius = tileDim * 0.4;
-        let p = [Math.sin(angle) * radius, Math.cos(angle) * radius];
+        let p = new Point(Math.sin(angle) * radius, Math.cos(angle) * radius);
         for (let x = 0; x < this.ctrl.numTiles; x++) {
             for (let y = 0; y < this.ctrl.numTiles; y++) {
                 this.ctx.save();
@@ -31,10 +34,10 @@ export class Work0004 extends Work {
                 for (let i = 1; i <= numLines; i++) {
                     this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
                     let angle2 = MathUtils.random() * 2 * Math.PI;
-                    let p2 = [Math.sin(angle2) * radius, Math.cos(angle2) * radius];
+                    let p2 = new Point(Math.sin(angle2) * radius, Math.cos(angle2) * radius);
                     this.ctx.beginPath();
-                    this.ctx.moveTo(...p);
-                    this.ctx.lineTo(...p2);
+                    this.ctx.moveTo(...p.asArray());
+                    this.ctx.lineTo(...p2.asArray());
                     this.ctx.stroke();
                     p = p2;
                 }

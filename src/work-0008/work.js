@@ -10,7 +10,7 @@ export class Work0008 extends Work {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
             this.makeSlider('numSidesRange', 'Number of sides: {0} to {1}', 3, 7, [4, 6]),
-            this.makeSlider('diameterRange', 'Diameter: {0} to {1}', 1, 100, [30, 50]),
+            this.makeSlider('diameterRange', 'Diameter: {0}% to {1}% of the tile', 1, 100, [30, 50]),
             this.makeSlider('rotationStepRange', 'Rotation step: {0} to {1}', 0, 360, [150, 210]),
             this.makeSlider('maxDepthRange', 'Maximum depth: {0} to {1}', 1, 2, [1, 2]),
         );
@@ -28,23 +28,23 @@ export class Work0008 extends Work {
                 let diameter = MathUtils.randomIntRange(...this.ctrl.diameterRange);
                 let rotationStep = MathUtils.randomIntRange(...this.ctrl.rotationStepRange);
                 let maxDepth = MathUtils.randomIntRange(...this.ctrl.maxDepthRange);
-                this.drawPolygons(0, 0, numSides, diameter * tileDim / 100,
+                this.drawPolygons(numSides, diameter * tileDim / 100,
                     0, rotationStep, maxDepth);
                 this.ctx.restore();
             }
         }
     }
-    drawPolygons(x, y, sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
+    drawPolygons(sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
         let points = MathUtils.getPointsForPolygon(sides, diameter, rotation);
         points.forEach(p => {
             this.ctx.save();
-            this.ctx.translate(...p);
+            this.ctx.translate(...p.asArray());
             this.ctx.beginPath();
-            points.forEach(p => this.ctx.lineTo(...p));
+            points.forEach(p => this.ctx.lineTo(...p.asArray()));
             this.ctx.closePath();
             this.ctx.stroke();
             if (depth < maxDepth) {
-                this.drawPolygons(p.x, p.y, sides, diameter,
+                this.drawPolygons(sides, diameter,
                     rotation + rotationStep / sides, rotationStep, maxDepth, depth + 1);
             }
             this.ctx.restore();

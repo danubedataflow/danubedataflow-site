@@ -19,6 +19,7 @@
  * Calling cyrb128 will produce a 128-bit hash value from a string which can be
  * used to seed a PRNG.
  */
+import { Point } from '/js/point.js';
 export class MathUtils {
     // init
     static {
@@ -102,10 +103,10 @@ export class MathUtils {
         let points = [];
         for (let i = 0; i < sides + 1; i++) {
             let angle = 2 * Math.PI / sides * i + 2 * Math.PI * rotation / 360;
-            points.push([
+            points.push(new Point(
                 Math.sin(angle) * diameter / 2,
                 Math.cos(angle) * diameter / 2
-            ]);
+            ));
         }
         return points;
     }
