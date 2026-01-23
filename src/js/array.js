@@ -22,11 +22,9 @@ export function shuffle(array) {
     }
     return copy;
 };
-
 export function randomElement(array) {
     return array[Math.floor(random() * array.length)];
 }
-
 export function arrayFromIntRange(from, to) {
     let result = [];
     for (let i = from; i <= to; i++) {

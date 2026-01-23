@@ -1,8 +1,5 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     randomIntUpTo,
@@ -11,63 +8,56 @@ import {
 import {
     colorRGBA
 } from '/js/colors.js';
-let c;
-
-function setupControls() {
-    makeForm(
-        makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 3),
-        makeSlider('lineGap', 'Distance of initial points: {0}', 5, 100, 50),
-        makeSlider('maxMovement', 'Maximum movement: {0}', 5, 20, 10),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas();
-    c.ctx.strokeStyle = 'black';
-    let tileDim = c.width / c.ctrl.numTiles;
-    for (let y = 1; y <= c.ctrl.numTiles; y++) {
-        for (let x = 1; x <= c.ctrl.numTiles; x++) {
-            c.ctx.save();
-            // move to the tile center so rotate() and scale() happen there
-            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            c.ctx.scale(0.9, 0.9);
-            drawWalkers(tileDim);
-            c.ctx.rotate(Math.PI / 2);
-            drawWalkers(tileDim);
-            c.ctx.restore();
+class Work0029 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 3),
+            this.makeSlider('lineGap', 'Distance of initial points: {0}', 5, 100, 50),
+            this.makeSlider('maxMovement', 'Maximum movement: {0}', 5, 20, 10),
+        );
+    }
+    drawWork() {
+        this.clearCanvas();
+        this.ctx.strokeStyle = 'black';
+        let tileDim = this.width / this.ctrl.numTiles;
+        for (let y = 1; y <= this.ctrl.numTiles; y++) {
+            for (let x = 1; x <= this.ctrl.numTiles; x++) {
+                this.ctx.save();
+                // move to the tile center so rotate() and scale() happen there
+                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+                this.ctx.scale(0.9, 0.9);
+                this.drawWalkers(tileDim);
+                this.ctx.rotate(Math.PI / 2);
+                this.drawWalkers(tileDim);
+                this.ctx.restore();
+            }
         }
     }
-}
-
-function drawWalkers(tileDim) {
-    c.ctx.save();
-    c.ctx.translate(-tileDim / 2, -tileDim / 2);
-    for (let startY = 0; startY <= tileDim; startY += c.ctrl.lineGap) {
-        let y = startY;
-        c.ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
-        c.ctx.beginPath();
-        c.ctx.moveTo(0, 0);
-        for (let x = 0; x <= tileDim; x += c.ctrl.maxMovement) {
-            c.ctx.lineTo(x, y);
-            // random movement but constrain to the tile size
-            y += randomIntPlusMinus(c.ctrl.maxMovement);
-            if (y < 0) y = 0;
-            if (y > tileDim) y = tileDim;
+    drawWalkers(tileDim) {
+        this.ctx.save();
+        this.ctx.translate(-tileDim / 2, -tileDim / 2);
+        for (let startY = 0; startY <= tileDim; startY += this.ctrl.lineGap) {
+            let y = startY;
+            this.ctx.fillStyle = colorRGBA(randomIntUpTo(255), randomIntUpTo(255), randomIntUpTo(255), 0.2);
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, 0);
+            for (let x = 0; x <= tileDim; x += this.ctrl.maxMovement) {
+                this.ctx.lineTo(x, y);
+                // random movement but constrain to the tile size
+                y += randomIntPlusMinus(this.ctrl.maxMovement);
+                if (y < 0) y = 0;
+                if (y > tileDim) y = tileDim;
+            }
+            this.ctx.lineTo(tileDim, 0);
+            this.ctx.closePath();
+            this.ctx.fill();
+            this.ctx.stroke();
         }
-        c.ctx.lineTo(tileDim, 0);
-        c.ctx.closePath();
-        c.ctx.fill();
-        c.ctx.stroke();
+        // draw a border
+        this.ctx.strokeRect(0, 0, tileDim, tileDim);
+        this.ctx.restore();
     }
-    // draw a border
-    c.ctx.strokeRect(0, 0, tileDim, tileDim);
-    c.ctx.restore();
+    description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;
+    createdDate = '2023-10-06';
 }
-let description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;
-run({
-    createdDate: '2023-10-06',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0029().run();

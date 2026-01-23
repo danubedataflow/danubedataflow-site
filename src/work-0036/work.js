@@ -1,11 +1,5 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeCheckbox,
-    makeFieldset,
-    makeSelectColorMap,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     random
@@ -16,62 +10,55 @@ import {
 import {
     Point
 } from '/js/point.js';
-let c, palette;
-
-function setupControls() {
-    makeForm(
-        makeSlider('subdivisionDepth', 'Subdivision recursion depth: {0} to {1} levels', 2, 6, [2, 5]),
-        makeSlider('subdivisionChance', '{0}% probability that subdividing continues at each level', 20, 80, 60),
-        makeSlider('chanceFill', '{0}% probability that a terminal square is filled', 20, 80, 50),
-        makeCheckbox('hasBorder', 'Square border: '),
-        makeFieldset('Colors',
-            makeSelectColorMap(),
-            makeSlider('numColors', 'Number of colors: {0}', 2, 10, 6),
-        ),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas();
-    palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
-
-    // draw outer border if enabled
-    if (c.ctrl.hasBorder) {
-        c.ctx.strokeStyle = 'black';
-        c.ctx.strokeRect(0, 0, c.width, c.height);
+class Work0036 extends Work {
+    palette;
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('subdivisionDepth', 'Subdivision recursion depth: {0} to {1} levels', 2, 6, [2, 5]),
+            this.makeSlider('subdivisionChance', '{0}% probability that subdividing continues at each level', 20, 80, 60),
+            this.makeSlider('chanceFill', '{0}% probability that a terminal square is filled', 20, 80, 50),
+            this.makeCheckbox('hasBorder', 'Square border: '),
+            this.makeFieldset('Colors',
+                this.makeSelectColorMap(),
+                this.makeSlider('numColors', 'Number of colors: {0}', 2, 10, 6),
+            ),
+        );
     }
-    drawSquare(new Point(0, 0), c.width, 0);
-}
-
-function drawSquare(upperLeft, squareSize, currentDepth) {
-    let [minDepth, maxDepth] = c.ctrl.subdivisionDepth;
-    // If we haven't reached the minimum currentDepth, we have to subdividide.
-    // After that, up to the maximum currentDepth, it depends on chance.
-    const shouldSubdivide =
-        currentDepth < minDepth || (currentDepth < maxDepth && random() < c.ctrl.subdivisionChance / 100);
-    if (shouldSubdivide) {
-        const half = squareSize / 2;
-        drawSquare(upperLeft, half, currentDepth + 1);
-        drawSquare(upperLeft.moveX(half), half, currentDepth + 1);
-        drawSquare(upperLeft.moveY(half), half, currentDepth + 1);
-        drawSquare(upperLeft.move(half, half), half, currentDepth + 1);
-    } else {
-        // it's a terminal square
-        if (random() < c.ctrl.chanceFill / 100) {
-            c.ctx.fillStyle = randomElement(palette);
-            c.ctx.fillRect(...upperLeft.asArray(), squareSize, squareSize);
+    drawWork() {
+        this.clearCanvas();
+        this.palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        // draw outer border if enabled
+        if (this.ctrl.hasBorder) {
+            this.ctx.strokeStyle = 'black';
+            this.ctx.strokeRect(0, 0, this.width, this.height);
         }
-        if (c.ctrl.hasBorder) {
-            c.ctx.strokeStyle = 'black';
-            c.ctx.strokeRect(...upperLeft.asArray(), squareSize, squareSize);
+        this.drawSquare(new Point(0, 0), this.width, 0);
+    }
+    drawSquare(upperLeft, squareSize, currentDepth) {
+        let [minDepth, maxDepth] = this.ctrl.subdivisionDepth;
+        // If we haven't reached the minimum currentDepth, we have to subdividide.
+        // After that, up to the maximum currentDepth, it depends on chance.
+        const shouldSubdivide =
+            currentDepth < minDepth || (currentDepth < maxDepth && random() < this.ctrl.subdivisionChance / 100);
+        if (shouldSubdivide) {
+            const half = squareSize / 2;
+            this.drawSquare(upperLeft, half, currentDepth + 1);
+            this.drawSquare(upperLeft.moveX(half), half, currentDepth + 1);
+            this.drawSquare(upperLeft.moveY(half), half, currentDepth + 1);
+            this.drawSquare(upperLeft.move(half, half), half, currentDepth + 1);
+        } else {
+            // it's a terminal square
+            if (random() < this.ctrl.chanceFill / 100) {
+                this.ctx.fillStyle = randomElement(this.palette);
+                this.ctx.fillRect(...upperLeft.asArray(), squareSize, squareSize);
+            }
+            if (this.ctrl.hasBorder) {
+                this.ctx.strokeStyle = 'black';
+                this.ctx.strokeRect(...upperLeft.asArray(), squareSize, squareSize);
+            }
         }
     }
+    description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random currentDepth. Each square has an optional border. Each terminal square has an optional fill.`;
+    createdDate = '2026-01-19';
 }
-let description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random currentDepth. Each square has an optional border. Each terminal square has an optional fill.`;
-run({
-    createdDate: '2026-01-19',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0036().run();

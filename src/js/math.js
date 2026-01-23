@@ -65,7 +65,6 @@ function sfc32(a, b, c, d) {
     }
 }
 export let random;
-
 export function randomSeed(seedStr) {
     // create cyrb128 state
     let seed = cyrb128(seedStr);
@@ -76,11 +75,9 @@ export function randomSeed(seedStr) {
 // init
 let seedStr = Math.random().toString(36).slice(2, 10);
 randomSeed(seedStr);
-
 export function randomIntUpTo(n) {
     return Math.floor(random() * n);
 }
-
 export function randomIntRange(lowerBound, upperBound) {
     return lowerBound + randomIntUpTo(upperBound + 1 - lowerBound);
 }
@@ -98,7 +95,6 @@ export function gaussianRandom(mean = 0, standardDeviation = 1) {
     const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     return z * standardDeviation + mean;
 }
-
 export function getPointsForPolygon(sides, diameter, rotation) {
     // the polygon center is (0, 0)
     let points = [];

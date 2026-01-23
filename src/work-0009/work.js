@@ -1,54 +1,43 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeSelectColorMap,
-    clearCanvas
+    Work
 } from '/js/ui.js';
-let c;
-
-function setupControls() {
-    makeForm(
-        makeSelectColorMap(),
-        makeSlider('modulus', 'Modulus: {0}', 10, 300, 100),
-        makeSlider('timesTable', 'Mulitply each point value by: {0}', 2, 100, 10, 0.2),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas('#cccccc');
-    c.ctx.globalCompositeOperation = 'exclusion';
-    c.ctx.fillStyle = 'white';
-    c.ctx.lineWidth = 1;
-    c.ctx.save();
-    c.ctx.translate(c.width / 2, c.height / 2);
-    c.ctx.beginPath();
-    c.ctx.arc(0, 0, c.width, 0, Math.PI * 2);
-    c.ctx.fill();
-    c.ctx.stroke();
-    const radius = c.width / 2;
-    let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.modulus);
-    for (let i = 0; i < c.ctrl.modulus; i++) {
-        // cycle through all colors in the palette; wrap around
-        const colorIndex = (i + palette.length) % palette.length;
-        c.ctx.strokeStyle = palette[colorIndex];
-        let j = i * c.ctrl.timesTable;
-        c.ctx.beginPath();
-        c.ctx.moveTo(Math.sin(angle(i, c.ctrl.modulus)) * radius, Math.cos(angle(i, c.ctrl.modulus)) * radius);
-        c.ctx.lineTo(Math.sin(angle(j, c.ctrl.modulus)) * radius, Math.cos(angle(j, c.ctrl.modulus)) * radius);
-        c.ctx.stroke();
+class Work0009 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSelectColorMap(),
+            this.makeSlider('modulus', 'Modulus: {0}', 10, 300, 100),
+            this.makeSlider('timesTable', 'Mulitply each point value by: {0}', 2, 100, 10, 0.2),
+        );
     }
-    c.ctx.restore();
+    drawWork() {
+        this.clearCanvas('#cccccc');
+        this.ctx.globalCompositeOperation = 'exclusion';
+        this.ctx.fillStyle = 'white';
+        this.ctx.lineWidth = 1;
+        this.ctx.save();
+        this.ctx.translate(this.width / 2, this.height / 2);
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, this.width, 0, Math.PI * 2);
+        this.ctx.fill();
+        this.ctx.stroke();
+        const radius = this.width / 2;
+        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.modulus);
+        for (let i = 0; i < this.ctrl.modulus; i++) {
+            // cycle through all colors in the palette; wrap around
+            const colorIndex = (i + palette.length) % palette.length;
+            this.ctx.strokeStyle = palette[colorIndex];
+            let j = i * this.ctrl.timesTable;
+            this.ctx.beginPath();
+            this.ctx.moveTo(Math.sin(this.angle(i, this.ctrl.modulus)) * radius, Math.cos(this.angle(i, this.ctrl.modulus)) * radius);
+            this.ctx.lineTo(Math.sin(this.angle(j, this.ctrl.modulus)) * radius, Math.cos(this.angle(j, this.ctrl.modulus)) * radius);
+            this.ctx.stroke();
+        }
+        this.ctx.restore();
+    }
+    angle(n, modulus) {
+        return n * Math.PI * 2 / modulus;
+    }
+    description = `Points along a circle correspond to the modulus. For each point, its value is multiplied by the given number, then a line is drawn from the point to the point corresponding to the the modulus remainder. Based on the Mathologer video <a href="https://www.youtube.com/watch?v=qhbuKbxJsk8">Times Tables, Mandelbrot and the Heart of Mathematics</a>. The modulus is the number of points on the circle.`;
+    createdDate = '2022-10-06';
 }
-
-function angle(n, modulus) {
-    return n * Math.PI * 2 / modulus;
-}
-let description = `Points along a circle correspond to the modulus. For each point, its value is multiplied by the given number, then a line is drawn from the point to the point corresponding to the the modulus remainder. Based on the Mathologer video <a href="https://www.youtube.com/watch?v=qhbuKbxJsk8">Times Tables, Mandelbrot and the Heart of Mathematics</a>. The modulus is the number of points on the circle.`;
-run({
-    createdDate: '2022-10-06',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0009().run();

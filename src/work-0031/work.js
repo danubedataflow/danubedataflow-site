@@ -1,55 +1,45 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeCheckbox,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     randomIntUpTo
 } from '/js/math.js';
-let c;
-
-function setupControls() {
-    makeForm(
-        makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 10, 5),
-        makeSlider('numLines', 'Number of lines: {0}', 1, 10, 5),
-        makeSlider('lineWidth', 'Line c.width: {0}', 1, 3, 2),
-        makeCheckbox('hasBend', 'Bend: '),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas();
-    c.ctx.strokeStyle = 'black';
-    let tileDim = c.width / c.ctrl.numTiles;
-    for (let y = 1; y <= c.ctrl.numTiles; y++) {
-        for (let x = 1; x <= c.ctrl.numTiles; x++) {
-            c.ctx.save();
-            // move to tile center to scale, then back to UL corner
-            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            c.ctx.scale(0.9, 0.9);
-            c.ctx.translate(-tileDim / 2, -tileDim / 2);
-            c.ctx.lineWidth = c.ctrl.lineWidth;
-            for (let i = 0; i < c.ctrl.numLines; i++) {
-                c.ctx.beginPath();
-                c.ctx.moveTo(randomIntUpTo(tileDim), 0);
-                if (c.ctrl.hasBend) c.ctx.lineTo(randomIntUpTo(tileDim), randomIntUpTo(tileDim));
-                c.ctx.lineTo(randomIntUpTo(tileDim), tileDim);
-                c.ctx.stroke();
+class Work0031 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 10, 5),
+            this.makeSlider('numLines', 'Number of lines: {0}', 1, 10, 5),
+            this.makeSlider('lineWidth', 'Line this.width: {0}', 1, 3, 2),
+            this.makeCheckbox('hasBend', 'Bend: '),
+        );
+    }
+    drawWork() {
+        this.clearCanvas();
+        this.ctx.strokeStyle = 'black';
+        let tileDim = this.width / this.ctrl.numTiles;
+        for (let y = 1; y <= this.ctrl.numTiles; y++) {
+            for (let x = 1; x <= this.ctrl.numTiles; x++) {
+                this.ctx.save();
+                // move to tile center to scale, then back to UL corner
+                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+                this.ctx.scale(0.9, 0.9);
+                this.ctx.translate(-tileDim / 2, -tileDim / 2);
+                this.ctx.lineWidth = this.ctrl.lineWidth;
+                for (let i = 0; i < this.ctrl.numLines; i++) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(randomIntUpTo(tileDim), 0);
+                    if (this.ctrl.hasBend) this.ctx.lineTo(randomIntUpTo(tileDim), randomIntUpTo(tileDim));
+                    this.ctx.lineTo(randomIntUpTo(tileDim), tileDim);
+                    this.ctx.stroke();
+                }
+                // draw a border around the tile
+                this.ctx.lineWidth = 1;
+                this.ctx.strokeRect(0, 0, tileDim, tileDim);
+                this.ctx.restore();
             }
-            // draw a border around the tile
-            c.ctx.lineWidth = 1;
-            c.ctx.strokeRect(0, 0, tileDim, tileDim);
-            c.ctx.restore();
         }
     }
+    description = `In each tile, a number of random lines are drawn at the given line this.width. Optionally all lines can be split into two, bending around a random point in the middle. Each tile has a border.`;
+    createdDate = '2025-01-18';
 }
-let description = `In each tile, a number of random lines are drawn at the given line c.width. Optionally all lines can be split into two, bending around a random point in the middle. Each tile has a border.`;
-run({
-    createdDate: '2025-01-18',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0031().run();

@@ -130,7 +130,6 @@ export class MarkovChain {
         return this.currentState;
     }
 }
-
 export function makeRandomMarkovChain(states) {
     const m = new MarkovChain();
     m.setStates(states);

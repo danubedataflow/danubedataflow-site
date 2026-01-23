@@ -1,51 +1,41 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeSelectColorMap,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     random,
     randomIntRange
 } from '/js/math.js';
-let c;
-
-function setupControls() {
-    makeForm(
-        makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
-        makeSelectColorMap(),
-        makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas('black');
-    let colorScale = chroma.scale(c.ctrl.colorMap);
-    let tileDim = Math.floor(c.width / c.ctrl.numTiles);
-    let radius = tileDim * 0.4;
-    for (let x = 0; x < c.ctrl.numTiles; x++) {
-        for (let y = 0; y < c.ctrl.numTiles; y++) {
-            c.ctx.save();
-            c.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-            let numLines = randomIntRange(...c.ctrl.numLinesRange);
-            for (let i = 1; i <= numLines; i++) {
-                c.ctx.strokeStyle = colorScale(random()).toString();
-                c.ctx.beginPath();
-                c.ctx.moveTo(0, 0);
-                let angle = random() * 2 * Math.PI;
-                c.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
-                c.ctx.stroke();
+class Work0003 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
+            this.makeSelectColorMap(),
+            this.makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
+        );
+    }
+    drawWork() {
+        this.clearCanvas('black');
+        let colorScale = chroma.scale(this.ctrl.colorMap);
+        let tileDim = Math.floor(this.width / this.ctrl.numTiles);
+        let radius = tileDim * 0.4;
+        for (let x = 0; x < this.ctrl.numTiles; x++) {
+            for (let y = 0; y < this.ctrl.numTiles; y++) {
+                this.ctx.save();
+                this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+                let numLines = randomIntRange(...this.ctrl.numLinesRange);
+                for (let i = 1; i <= numLines; i++) {
+                    this.ctx.strokeStyle = colorScale(random()).toString();
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, 0);
+                    let angle = random() * 2 * Math.PI;
+                    this.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
+                    this.ctx.stroke();
+                }
+                this.ctx.restore();
             }
-            c.ctx.restore();
         }
     }
+    description = `A random number of lines from a central point to a point on a circle at a random angle.`;
+    createdDate = '2022-08-13';
 }
-let description = `A random number of lines from a central point to a point on a circle at a random angle.`;
-run({
-    createdDate: '2022-08-13',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0003().run();

@@ -1,11 +1,5 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeFieldset,
-    makeSelectColorMap,
-    makeSelectBlendMode,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     random,
@@ -18,42 +12,36 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-let c, palette;
-
-function setupControls() {
-    makeForm(
-        makeFieldset('Colors',
-            makeSelectColorMap(),
-            makeSelectBlendMode(['source-over', 'difference', 'hard-light', 'overlay']),
-            makeSlider('numColors', 'Number of colors: {0}', 1, 32, 16),
-            makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [20, 80]),
-        ),
-        makeSlider('numSquares', 'Number of squares: {0}', 20, 1000, 100, 20),
-        makeSlider('squareLengthRange', 'Side lengths are {0}% to {1}% of the canvas', 1, 100, [5, 30]),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    let palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
-    clearCanvas(randomElement(palette));
-    c.ctx.globalCompositeOperation = c.ctrl.blendMode;
-    for (let i = 0; i < c.ctrl.numSquares; i++) {
-        let color = randomElement(palette);
-        // turn RGB hex string into [R, G, B]
-        color = chroma(color).rgb();
-        // map [0,100]% to [0, 1]
-        let alpha = randomIntRange(...c.ctrl.alphaRange) / 100;
-        c.ctx.fillStyle = colorRGBA(...color, alpha);
-        let [minLength, maxLength] = c.ctrl.squareLengthRange;
-        let s = randomIntRange(c.width * minLength / 100, c.height * maxLength / 100);
-        c.ctx.fillRect(randomIntUpTo(c.width), randomIntUpTo(c.height), s, s);
+class Work0006 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeFieldset('Colors',
+                this.makeSelectColorMap(),
+                this.makeSelectBlendMode(['source-over', 'difference', 'hard-light', 'overlay']),
+                this.makeSlider('numColors', 'Number of colors: {0}', 1, 32, 16),
+                this.makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [20, 80]),
+            ),
+            this.makeSlider('numSquares', 'Number of squares: {0}', 20, 1000, 100, 20),
+            this.makeSlider('squareLengthRange', 'Side lengths are {0}% to {1}% of the canvas', 1, 100, [5, 30]),
+        );
     }
+    drawWork() {
+        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        this.clearCanvas(randomElement(palette));
+        this.ctx.globalCompositeOperation = this.ctrl.blendMode;
+        for (let i = 0; i < this.ctrl.numSquares; i++) {
+            let color = randomElement(palette);
+            // turn RGB hex string into [R, G, B]
+            color = chroma(color).rgb();
+            // map [0,100]% to [0, 1]
+            let alpha = randomIntRange(...this.ctrl.alphaRange) / 100;
+            this.ctx.fillStyle = colorRGBA(...color, alpha);
+            let [minLength, maxLength] = this.ctrl.squareLengthRange;
+            let s = randomIntRange(this.width * minLength / 100, this.height * maxLength / 100);
+            this.ctx.fillRect(randomIntUpTo(this.width), randomIntUpTo(this.height), s, s);
+        }
+    }
+    description = `Random rectangles in random colors, blended together.`;
+    createdDate = '2022-09-14';
 }
-let description = `Random rectangles in random colors, blended together.`;
-run({
-    createdDate: '2022-09-14',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0006().run();

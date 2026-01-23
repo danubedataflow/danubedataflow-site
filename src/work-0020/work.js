@@ -1,10 +1,5 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeFieldset,
-    makeSelectColorMap,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     randomIntUpTo
@@ -12,74 +7,68 @@ import {
 import {
     randomElement
 } from '/js/array.js';
-let c, palette;
-
-function setupControls() {
-    makeForm(
-        makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 10),
-        makeFieldset('Colors',
-            makeSelectColorMap(),
-            makeSlider('numColors', 'Number of colors: {0}', 2, 32, 16),
-        ),
-        makeSlider('coloredTileChance', 'Probability of a colored tile: {0}%', 0, 100, 50),
-        makeSlider('coloredDiamondChance', 'Probability of a colored rhombus: {0}%', 0, 100, 50),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    clearCanvas();
-    palette = chroma.scale(c.ctrl.colorMap).colors(c.ctrl.numColors);
-    let tileDim = c.width / c.ctrl.numTiles;
-    for (let y = 1; y <= c.ctrl.numTiles; y++) {
-        for (let x = 1; x <= c.ctrl.numTiles; x++) {
-            c.ctx.save();
-            // move to the tile center so any rotate() and scale() happen there
-            c.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-            // fill whole tile
-            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredTileChance ? randomElement(palette) : 'white';
-            c.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
-            // draw triangles
-            // upper left quadrant, diagonally sliced, inner triangle
-            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            c.ctx.beginPath();
-            c.ctx.moveTo(0, -tileDim / 2);
-            c.ctx.lineTo(0, 0);
-            c.ctx.lineTo(-tileDim / 2, 0);
-            c.ctx.closePath();
-            c.ctx.fill();
-            // upper right quadrant, diagonally sliced, inner triangle
-            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            c.ctx.beginPath();
-            c.ctx.moveTo(0, -tileDim / 2);
-            c.ctx.lineTo(0, 0);
-            c.ctx.lineTo(tileDim / 2, 0);
-            c.ctx.closePath();
-            c.ctx.fill();
-            // lower left quadrant, diagonally sliced, inner triangle
-            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            c.ctx.beginPath();
-            c.ctx.moveTo(0, tileDim / 2);
-            c.ctx.lineTo(0, 0);
-            c.ctx.lineTo(-tileDim / 2, 0);
-            c.ctx.closePath();
-            c.ctx.fill();
-            // lower right quadrant, diagonally sliced, inner triangle
-            c.ctx.fillStyle = randomIntUpTo(100) < c.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
-            c.ctx.beginPath();
-            c.ctx.moveTo(0, tileDim / 2);
-            c.ctx.lineTo(0, 0);
-            c.ctx.lineTo(tileDim / 2, 0);
-            c.ctx.closePath();
-            c.ctx.fill();
-            c.ctx.restore();
+class Work0020 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 10),
+            this.makeFieldset('Colors',
+                this.makeSelectColorMap(),
+                this.makeSlider('numColors', 'Number of colors: {0}', 2, 32, 16),
+            ),
+            this.makeSlider('coloredTileChance', 'Probability of a colored tile: {0}%', 0, 100, 50),
+            this.makeSlider('coloredDiamondChance', 'Probability of a colored rhombus: {0}%', 0, 100, 50),
+        );
+    }
+    drawWork() {
+        this.clearCanvas();
+        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        let tileDim = this.width / this.ctrl.numTiles;
+        for (let y = 1; y <= this.ctrl.numTiles; y++) {
+            for (let x = 1; x <= this.ctrl.numTiles; x++) {
+                this.ctx.save();
+                // move to the tile center so any rotate() and scale() happen there
+                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
+                // fill whole tile
+                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredTileChance ? randomElement(palette) : 'white';
+                this.ctx.fillRect(-tileDim / 2, -tileDim / 2, tileDim, tileDim);
+                // draw triangles
+                // upper left quadrant, diagonally sliced, inner triangle
+                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, -tileDim / 2);
+                this.ctx.lineTo(0, 0);
+                this.ctx.lineTo(-tileDim / 2, 0);
+                this.ctx.closePath();
+                this.ctx.fill();
+                // upper right quadrant, diagonally sliced, inner triangle
+                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, -tileDim / 2);
+                this.ctx.lineTo(0, 0);
+                this.ctx.lineTo(tileDim / 2, 0);
+                this.ctx.closePath();
+                this.ctx.fill();
+                // lower left quadrant, diagonally sliced, inner triangle
+                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, tileDim / 2);
+                this.ctx.lineTo(0, 0);
+                this.ctx.lineTo(-tileDim / 2, 0);
+                this.ctx.closePath();
+                this.ctx.fill();
+                // lower right quadrant, diagonally sliced, inner triangle
+                this.ctx.fillStyle = randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? randomElement(palette) : 'white';
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, tileDim / 2);
+                this.ctx.lineTo(0, 0);
+                this.ctx.lineTo(tileDim / 2, 0);
+                this.ctx.closePath();
+                this.ctx.fill();
+                this.ctx.restore();
+            }
         }
     }
+    description = `Each tile has a random color. The maximum inscribed diamond shape is sliced into four triangles that meet at the center. Each triangle gets a separate random color, overlaid on the tile background. Homage to Emma Biggs and Matthew Collings.`;
+    createdDate = '2023-04-27';
 }
-let description = `Each tile has a random color. The maximum inscribed diamond shape is sliced into four triangles that meet at the center. Each triangle gets a separate random color, overlaid on the tile background. Homage to Emma Biggs and Matthew Collings.`;
-run({
-    createdDate: '2023-04-27',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0020().run();

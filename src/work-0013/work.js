@@ -1,77 +1,65 @@
 import {
-    run,
-    makeForm,
-    makeSlider,
-    makeCheckbox,
-    clearCanvas
+    Work
 } from '/js/ui.js';
 import {
     randomIntUpTo
 } from '/js/math.js';
-let c;
-
-function setupControls() {
-    makeForm(
-        makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
-        makeSlider('horizontalLineChance', 'Probability of a horizontal line: {0}%', 0, 100, 30),
-        makeSlider('verticalLineChance', 'Probability of a vertical line: {0}%', 0, 100, 30),
-        makeSlider('diagonalUpwardsLineChance', 'Probability of a diagonal upwards line: {0}%', 0, 100, 30),
-        makeSlider('diagonalDownwardsLineChance', 'Probability of a diagonal downwards line: {0}%', 0, 100, 30),
-        makeCheckbox('hasTileBorder', 'Tile border: '),
-    );
-}
-
-function drawWork(config) {
-    c = config;
-    c.ctx.save();
-    clearCanvas();
-
-    // pad the work
-    c.ctx.translate(c.width / 2, c.height / 2);
-    c.ctx.scale(0.97, 0.97);
-    c.ctx.translate(-c.width / 2, -c.height / 2);
-
-    c.ctx.lineWidth = 1;
-    c.ctx.strokeStyle = 'black';
-    let tileDim = c.width / c.ctrl.numTiles;
-    for (let y = 1; y <= c.ctrl.numTiles; y++) {
-        for (let x = 1; x <= c.ctrl.numTiles; x++) {
-            c.ctx.save();
-            c.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-            if (c.ctrl.hasTileBorder) c.ctx.strokeRect(0, 0, tileDim, tileDim);
-            if (randomIntUpTo(100) < c.ctrl.horizontalLineChance) {
-                c.ctx.beginPath();
-                c.ctx.moveTo(0, tileDim / 2);
-                c.ctx.lineTo(tileDim, tileDim / 2);
-                c.ctx.stroke();
-            }
-            if (randomIntUpTo(100) < c.ctrl.verticalLineChance) {
-                c.ctx.beginPath();
-                c.ctx.moveTo(tileDim / 2, 0);
-                c.ctx.lineTo(tileDim / 2, tileDim);
-                c.ctx.stroke();
-            }
-            if (randomIntUpTo(100) < c.ctrl.diagonalUpwardsLineChance) {
-                c.ctx.beginPath();
-                c.ctx.moveTo(0, tileDim);
-                c.ctx.lineTo(tileDim, 0);
-                c.ctx.stroke();
-            }
-            if (randomIntUpTo(100) < c.ctrl.diagonalDownwardsLineChance) {
-                c.ctx.beginPath();
-                c.ctx.moveTo(0, 0);
-                c.ctx.lineTo(tileDim, tileDim);
-                c.ctx.stroke();
-            }
-            c.ctx.restore();
-        }
+class Work0013 extends Work {
+    setupControls() {
+        this.makeForm(
+            this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
+            this.makeSlider('horizontalLineChance', 'Probability of a horizontal line: {0}%', 0, 100, 30),
+            this.makeSlider('verticalLineChance', 'Probability of a vertical line: {0}%', 0, 100, 30),
+            this.makeSlider('diagonalUpwardsLineChance', 'Probability of a diagonal upwards line: {0}%', 0, 100, 30),
+            this.makeSlider('diagonalDownwardsLineChance', 'Probability of a diagonal downwards line: {0}%', 0, 100, 30),
+            this.makeCheckbox('hasTileBorder', 'Tile border: '),
+        );
     }
-    c.ctx.restore();
+    drawWork() {
+        this.ctx.save();
+        this.clearCanvas();
+        // pad the work
+        this.ctx.translate(this.width / 2, this.height / 2);
+        this.ctx.scale(0.97, 0.97);
+        this.ctx.translate(-this.width / 2, -this.height / 2);
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = 'black';
+        let tileDim = this.width / this.ctrl.numTiles;
+        for (let y = 1; y <= this.ctrl.numTiles; y++) {
+            for (let x = 1; x <= this.ctrl.numTiles; x++) {
+                this.ctx.save();
+                this.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
+                if (this.ctrl.hasTileBorder) this.ctx.strokeRect(0, 0, tileDim, tileDim);
+                if (randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, tileDim / 2);
+                    this.ctx.lineTo(tileDim, tileDim / 2);
+                    this.ctx.stroke();
+                }
+                if (randomIntUpTo(100) < this.ctrl.verticalLineChance) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(tileDim / 2, 0);
+                    this.ctx.lineTo(tileDim / 2, tileDim);
+                    this.ctx.stroke();
+                }
+                if (randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, tileDim);
+                    this.ctx.lineTo(tileDim, 0);
+                    this.ctx.stroke();
+                }
+                if (randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, 0);
+                    this.ctx.lineTo(tileDim, tileDim);
+                    this.ctx.stroke();
+                }
+                this.ctx.restore();
+            }
+        }
+        this.ctx.restore();
+    }
+    description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
+    createdDate = '2022-11-07';
 }
-let description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
-run({
-    createdDate: '2022-11-07',
-    description,
-    setupControls,
-    drawWork
-});
+new Work0013().run();
