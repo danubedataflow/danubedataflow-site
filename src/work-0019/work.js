@@ -6,7 +6,7 @@ import {
     ArrayUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0019 extends Work {
+export class Work0019 extends Work {
     setupControls() {
         this.makeForm(
             this.makeFieldset('Colors',
@@ -84,4 +84,3 @@ class Work0019 extends Work {
     description = `Multiple irregular grids layered on top of each other. Each tile is colored and can randomly have a colored triangle layered on top`;
     createdDate = '2022-12-13';
 }
-new Work0019().run();

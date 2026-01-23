@@ -8,7 +8,7 @@ import {
 import {
     Point
 } from '/js/point.js';
-class Work0037 extends Work {
+export class Work0037 extends Work {
     palette;
     setupControls() {
         this.makeForm(
@@ -127,4 +127,3 @@ class Work0037 extends Work {
     description = `The canvas is subdivided into two triangles. Each of these two triangles is recursively subdivided up to a random currentDepth. Each triangle has an optional border. Each terminal triangle has an optional fill.`;
     createdDate = '2026-01-20';
 }
-new Work0037().run();

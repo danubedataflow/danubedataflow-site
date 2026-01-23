@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0002 extends Work {
+export class Work0002 extends Work {
     setupControls() {
         this.makeForm(
             this.makeFieldset('Colors',
@@ -40,4 +40,3 @@ class Work0002 extends Work {
     description = `A series of random triangles, each drawn with a random colors from a palette and the selected composite operations. Each triangle shares two points with the previous triangle.`;
     createdDate = '2022-08-13';
 }
-new Work0002().run();

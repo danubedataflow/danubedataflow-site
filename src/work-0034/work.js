@@ -5,7 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-class Work0034 extends Work {
+export class Work0034 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numPoints', 'Number of points: {0}', 25, 75, 50),
@@ -36,4 +36,3 @@ class Work0034 extends Work {
     description = `Lines join points whose horizontal positions are Gaussian, bounded by the canvas. The vertical positions increase quadratically. If a vertical position is outside the canvas, it is reflected to the bottom of the canvas (modulo). Homage to "Gaussian-Quadratic" by Michael Noll, 1963.`;
     createdDate = '2026-01-14';
 }
-new Work0034().run();

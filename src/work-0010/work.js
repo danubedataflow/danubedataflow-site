@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0010 extends Work {
+export class Work0010 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numCurves', 'Number of curves: {0}', 2, 100, 30),
@@ -34,4 +34,3 @@ class Work0010 extends Work {
     description = `A series of bezier curves with 'evenodd' filling.`;
     createdDate = '2022-10-22';
 }
-new Work0010().run();

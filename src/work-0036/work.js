@@ -8,7 +8,7 @@ import {
 import {
     Point
 } from '/js/point.js';
-class Work0036 extends Work {
+export class Work0036 extends Work {
     palette;
     setupControls() {
         this.makeForm(
@@ -59,4 +59,3 @@ class Work0036 extends Work {
     description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random currentDepth. Each square has an optional border. Each terminal square has an optional fill.`;
     createdDate = '2026-01-19';
 }
-new Work0036().run();

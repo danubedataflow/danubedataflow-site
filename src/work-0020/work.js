@@ -5,7 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-class Work0020 extends Work {
+export class Work0020 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 10),
@@ -69,4 +69,3 @@ class Work0020 extends Work {
     description = `Each tile has a random color. The maximum inscribed diamond shape is sliced into four triangles that meet at the center. Each triangle gets a separate random color, overlaid on the tile background. Homage to Emma Biggs and Matthew Collings.`;
     createdDate = '2023-04-27';
 }
-new Work0020().run();

@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0004 extends Work {
+export class Work0004 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
@@ -45,4 +45,3 @@ class Work0004 extends Work {
     description = `A random number of lines from one point on a circle to a random point on the same circle. This becomes the starting point of the next line.`;
     createdDate = '2022-08-25';
 }
-new Work0004().run();

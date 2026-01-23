@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0005 extends Work {
+export class Work0005 extends Work {
     setupControls() {
         this.makeForm(
             this.makeFieldset('Colors',
@@ -57,4 +57,3 @@ class Work0005 extends Work {
     description = `Randomly colored tiles on a squared spiral.`;
     createdDate = '2022-09-08';
 }
-new Work0005().run();

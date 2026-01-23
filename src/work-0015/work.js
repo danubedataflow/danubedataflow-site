@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0015 extends Work {
+export class Work0015 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numHorizontalLines', 'Number of horizonal lines: {0}', 1, 10, 5),
@@ -46,4 +46,3 @@ class Work0015 extends Work {
     description = `Horizontal and vertical lines with random positions and random colors.`;
     createdDate = '2022-11-19';
 }
-new Work0015().run();

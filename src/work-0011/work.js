@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0011 extends Work {
+export class Work0011 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numLines', 'Number of lines: {0}', 1, 1500, 500),
@@ -48,4 +48,3 @@ class Work0011 extends Work {
     description = `Each line is the previous line plus random movement. Based on Jon Stanley's program <a href="https://www.electronixandmore.com/resources/teksystem/">Lines</a> for the Tektronix 4052.`;
     createdDate = '2022-10-27';
 }
-new Work0011().run();

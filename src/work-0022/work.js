@@ -4,7 +4,7 @@ import {
 import {
     ArrayUtils
 } from '/js/utils.js';
-class Work0022 extends Work {
+export class Work0022 extends Work {
     setupControls() {
         this.makeForm(
             this.makeFieldset('Repetitions',
@@ -47,4 +47,3 @@ class Work0022 extends Work {
     description = `In each square tile, a grid of points is randomly connected by lines. Homage to "Hommage à Dürer" by haVera Molnár, which itself was based on the magic square from Albrecht Dürer's engraving "Melencolia I".`;
     createdDate = '2023-09-21';
 }
-new Work0022().run();

@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0025 extends Work {
+export class Work0025 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 10, 4),
@@ -37,4 +37,3 @@ class Work0025 extends Work {
     description = `Each tile contains a number of stroked squares, each randomly offset. Inspired by Vera Molnár.`;
     createdDate = '2023-09-29';
 }
-new Work0025().run();

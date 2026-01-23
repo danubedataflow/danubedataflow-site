@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0030 extends Work {
+export class Work0030 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
@@ -73,4 +73,3 @@ class Work0030 extends Work {
     description = `Grid of lines with random rotation, except for those lines which would lie in a random path. Homage to "Interruptions"  by Vera Molnár, 1968-1969.`;
     createdDate = '2024-03-03';
 }
-new Work0030().run();

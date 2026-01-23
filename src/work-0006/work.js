@@ -6,7 +6,7 @@ import {
     ArrayUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0006 extends Work {
+export class Work0006 extends Work {
     setupControls() {
         this.makeForm(
             this.makeFieldset('Colors',
@@ -38,4 +38,3 @@ class Work0006 extends Work {
     description = `Random rectangles in random colors, blended together.`;
     createdDate = '2022-09-14';
 }
-new Work0006().run();

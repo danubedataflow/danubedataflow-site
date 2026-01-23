@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0012 extends Work {
+export class Work0012 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('horizontalSineFactor', 'Horizontal sine factor: {0}', 1, 5, 2.5, 0.1),
@@ -35,4 +35,3 @@ class Work0012 extends Work {
     description = `Rectangles are drawn along a modified sine wave.`;
     createdDate = '2022-11-02';
 }
-new Work0012().run();

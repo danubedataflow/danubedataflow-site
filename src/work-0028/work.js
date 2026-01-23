@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0028 extends Work {
+export class Work0028 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
@@ -57,4 +57,3 @@ class Work0028 extends Work {
     description = `Take a probability value that goes from 0 at the top to 1 at the bottom. In order for a square to be drawn in a row, a random number must be larger than the probability value raised to the power of a given value. So the higher the exponent, the lower the threshold becomes, and the more likely it is that a square will be drawn.`;
     createdDate = '2023-10-05';
 }
-new Work0028().run();

@@ -1,7 +1,7 @@
 import {
     Work
 } from '/js/work.js';
-class Work0009 extends Work {
+export class Work0009 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSelectColorMap(),
@@ -40,4 +40,3 @@ class Work0009 extends Work {
     description = `Points along a circle correspond to the modulus. For each point, its value is multiplied by the given number, then a line is drawn from the point to the point corresponding to the the modulus remainder. Based on the Mathologer video <a href="https://www.youtube.com/watch?v=qhbuKbxJsk8">Times Tables, Mandelbrot and the Heart of Mathematics</a>. The modulus is the number of points on the circle.`;
     createdDate = '2022-10-06';
 }
-new Work0009().run();

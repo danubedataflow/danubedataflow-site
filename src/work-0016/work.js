@@ -5,7 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-class Work0016 extends Work {
+export class Work0016 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 2, 20, 10),
@@ -28,4 +28,3 @@ class Work0016 extends Work {
     description = `Random white, grey and black rectangles, each spanning a random number of horizontal and vertical tiles.`;
     createdDate = '2022-11-25';
 }
-new Work0016().run();

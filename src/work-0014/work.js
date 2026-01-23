@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0014 extends Work {
+export class Work0014 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
@@ -59,4 +59,3 @@ class Work0014 extends Work {
     description = `Each tile has separate probabilities of being rotated, scaled, translated and stroked. Inspired by Vera Molnár.`;
     createdDate = '2022-11-14';
 }
-new Work0014().run();

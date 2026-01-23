@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0035 extends Work {
+export class Work0035 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numPoints', 'Number of points: {0}', 50, 700, 350),
@@ -73,4 +73,3 @@ class Work0035 extends Work {
     description = `Place random points. Draw a line between each pair of points whose Euclidean distance is less than a given value.`;
     createdDate = '2026-01-18';
 }
-new Work0035().run();

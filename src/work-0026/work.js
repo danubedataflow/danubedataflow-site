@@ -4,7 +4,7 @@ import {
 import {
     ArrayUtils
 } from '/js/utils.js';
-class Work0026 extends Work {
+export class Work0026 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
@@ -85,4 +85,3 @@ class Work0026 extends Work {
     description = `Each tile is a shape that has a grid of points. All points are drawn. Neighboring points have horizontal and vertical (but not diagonal) connections. Only a given percentage of all possible connections are drawn. Inspired by Vera Molnár, "Journal Intimes" 6, pages 151-154.`;
     createdDate = '2023-10-02';
 }
-new Work0026().run();

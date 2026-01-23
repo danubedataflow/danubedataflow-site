@@ -5,7 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-class Work0024 extends Work {
+export class Work0024 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 10, 4),
@@ -61,4 +61,3 @@ class Work0024 extends Work {
     description = `Each tile contains a randomly offset stroked square. A given ratio of squares, but at least one, is filled with a random color. Inspired by Vera Molnár.`;
     createdDate = '2023-09-28';
 }
-new Work0024().run();

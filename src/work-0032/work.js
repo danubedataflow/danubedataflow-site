@@ -6,7 +6,7 @@ import {
     ArrayUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0032 extends Work {
+export class Work0032 extends Work {
     shapes = [
         [
             '.....',
@@ -183,4 +183,3 @@ class Work0032 extends Work {
     description = `Each square tile has one or more layers of shapes. The shapes can optionally be colored. If there is more than one layer`;
     createdDate = '2025-01-20';
 }
-new Work0032().run();

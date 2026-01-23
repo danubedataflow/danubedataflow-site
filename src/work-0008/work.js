@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0008 extends Work {
+export class Work0008 extends Work {
     colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
     setupControls() {
         this.makeForm(
@@ -53,4 +53,3 @@ class Work0008 extends Work {
     description = `Polygons at points of polygons at points of polygons, recursively up to the given depth.`;
     createdDate = '2022-10-01';
 }
-new Work0008().run();

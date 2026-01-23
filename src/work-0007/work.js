@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0007 extends Work {
+export class Work0007 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
@@ -46,4 +46,3 @@ class Work0007 extends Work {
     description = `Different polygons. Each points on a polygon is connected to all other points, using a random color.`
     createdDate = '2022-09-25';
 }
-new Work0007().run();

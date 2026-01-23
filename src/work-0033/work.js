@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0033 extends Work {
+export class Work0033 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 100, 40),
@@ -96,4 +96,3 @@ class Work0033 extends Work {
     description = `This is an L-system where the symbols, arranged in a row of tiles, correspond to gray levels. Each iteration of the L-system corresponds to a row. The productions specify how each symbol changes from iteration to the next.`;
     createdDate = '2025-10-08';
 }
-new Work0033().run();

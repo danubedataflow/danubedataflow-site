@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0023 extends Work {
+export class Work0023 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
@@ -47,4 +47,3 @@ class Work0023 extends Work {
     description = `Each tile contains a randomly rotated and randomly offset line. Technically, the tile itself is rotated and offset, then a straign line is drawn. Inspired by Vera Molnár.`;
     createdDate = '2023-09-22';
 }
-new Work0023().run();

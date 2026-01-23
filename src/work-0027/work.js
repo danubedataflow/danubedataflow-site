@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0027 extends Work {
+export class Work0027 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 10, 5),
@@ -33,4 +33,3 @@ class Work0027 extends Work {
     description = `Each square tile is filled with a color from the given angle on the color wheel. Then a smaller inner square is drawn as well. Both squares are drawn with random transparency. Inspired by Vera Molnár.`;
     createdDate = '2023-10-03';
 }
-new Work0027().run();

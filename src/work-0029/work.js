@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0029 extends Work {
+export class Work0029 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 3),
@@ -57,4 +57,3 @@ class Work0029 extends Work {
     description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;
     createdDate = '2023-10-06';
 }
-new Work0029().run();

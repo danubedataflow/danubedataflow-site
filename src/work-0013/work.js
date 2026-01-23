@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0013 extends Work {
+export class Work0013 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
@@ -62,4 +62,3 @@ class Work0013 extends Work {
     description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
     createdDate = '2022-11-07';
 }
-new Work0013().run();

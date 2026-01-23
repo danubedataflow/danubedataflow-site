@@ -5,7 +5,7 @@ import {
     MathUtils,
     ColorUtils
 } from '/js/utils.js';
-class Work0021 extends Work {
+export class Work0021 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numRects', 'Number of rectangles: {0}', 10, 100, 50),
@@ -30,4 +30,3 @@ class Work0021 extends Work {
     description = `Random rectangles with random border line this.widths and random alpha are overlaid on top of each other.`;
     createdDate = '2023-09-13';
 }
-new Work0021().run();

@@ -5,7 +5,7 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-class Work0018 extends Work {
+export class Work0018 extends Work {
     palette;
     color1;
     color2;
@@ -85,4 +85,3 @@ class Work0018 extends Work {
     description = `Each tile is divided by a diagonal, either from the upper left to lower right or from the upper right to the lower left. Each half is filled randomly white, grey or black. The "adjacent" color choice strategy uses a color from the previous tile.`;
     createdDate = '2022-12-07';
 }
-new Work0018().run();

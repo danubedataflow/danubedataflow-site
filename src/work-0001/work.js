@@ -4,7 +4,7 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-class Work0001 extends Work {
+export class Work0001 extends Work {
     setupControls() {
         this.makeForm(
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 50, 25),
@@ -44,4 +44,3 @@ class Work0001 extends Work {
     description = `Draw a grid of polygons whose sizes depend on two-dimensional Perlin noise.`;
     createdDate = '2022-07-27';
 }
-new Work0001().run();

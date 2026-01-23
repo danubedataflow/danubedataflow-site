@@ -63,7 +63,6 @@ $replace{work} = <<~BLOCK;
 
             </div>
         </section>
-        <script src="work.js" type="module"></script>
     </main>
     BLOCK
 my $iter = path('src')->iterator({ recurse => 1 });
