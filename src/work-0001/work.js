@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/ui.js';
+} from '/js/work.js';
 import {
     getPointsForPolygon
 } from '/js/math.js';

@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/ui.js';
+} from '/js/work.js';
 class Work0009 extends Work {
     setupControls() {
         this.makeForm(

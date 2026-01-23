@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/ui.js';
+} from '/js/work.js';
 import {
     arrayFromIntRange
 } from '/js/array.js';
