@@ -6,13 +6,13 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0012 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('horizontalSineFactor', 'Horizontal sine factor: {0}', 1, 5, 2.5, 0.1),
             this.makeSlider('alpha', 'Transparency (alpha): {0}', 1, 100, 30),
             this.makeSlider('angleStep', 'Angle step: {0}', 0.1, 10, 0.5, 0.1),
             this.makeSlider('squareSizeRange', 'Square size range: {0} to {1}', 1, 100, [30, 50]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

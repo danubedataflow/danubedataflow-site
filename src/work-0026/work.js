@@ -5,15 +5,15 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 export class Work0026 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
             this.makeSlider('numPointsX', 'Number of horizontal points per tile: {0}', 3, 5, 4),
             this.makeSlider('numPointsY', 'Number of vertical points per tile: {0}', 3, 5, 4),
             this.makeSlider('lineWidth', 'Line this.width: {0}', 8, 20, 12),
             this.makeSlider('percentConnections', 'Connections: {0}%', 30, 70, 50, 5),
             this.makeSlider('scale', 'Scale: {0}', 0.5, 0.8, 0.6, 0.05),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

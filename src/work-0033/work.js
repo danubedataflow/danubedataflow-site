@@ -6,13 +6,13 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0033 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 100, 40),
             this.makeSlider('numSymbols', 'Number of gray levels: {0}', 2, 20, 9),
             this.makeSlider('borderChangeChance', 'Probability of a color change at the border of the color scale: {0}%', 0, 100, 70),
             this.makeSlider('middleChangeChance', 'Probability of a next lighter color in the middle of the color scale: {0}%', 0, 100, 50),
-        );
+        ];
     }
     drawWork() {
         let lsystem = this.makeLsystem();

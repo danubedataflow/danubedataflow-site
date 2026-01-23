@@ -5,11 +5,11 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0011 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numLines', 'Number of lines: {0}', 1, 1500, 500),
             this.makeSlider('randomPointOffset', 'Random point offset: {0}', 1, 20, 5),
-        );
+        ];
     }
     drawWork() {
         let offset = this.ctrl.randomPointOffset;

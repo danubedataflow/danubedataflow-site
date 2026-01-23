@@ -10,8 +10,8 @@ import {
 } from '/js/point.js';
 export class Work0037 extends Work {
     palette;
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('subdivisionDepth', 'Subdivision recursion depth: {0} to {1} levels', 2, 8, [2, 5]),
             this.makeSlider('subdivisionChance', '{0}% probability that subdividing continues at each level', 20, 80, 60),
             this.makeSlider('chanceFill', '{0}% probability that a terminal triangle is filled', 20, 80, 50),
@@ -20,7 +20,7 @@ export class Work0037 extends Work {
                 this.makeSelectColorMap(),
                 this.makeSlider('numColors', 'Number of colors: {0}', 2, 10, 6),
             ),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

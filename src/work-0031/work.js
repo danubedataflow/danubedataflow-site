@@ -5,13 +5,13 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0031 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 10, 5),
             this.makeSlider('numLines', 'Number of lines: {0}', 1, 10, 5),
             this.makeSlider('lineWidth', 'Line this.width: {0}', 1, 3, 2),
             this.makeCheckbox('hasBend', 'Bend: '),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

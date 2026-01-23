@@ -6,8 +6,8 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0015 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numHorizontalLines', 'Number of horizonal lines: {0}', 1, 10, 5),
             this.makeSlider('numVerticalLines', 'Number of vertical lines: {0}', 1, 10, 5),
             this.makeSlider('lineWidthRangeRelative', 'Line this.width range: {0}% to {1}% of the canvas', 1, 20, [9, 13]),
@@ -17,7 +17,7 @@ export class Work0015 extends Work {
                 this.makeSlider('lightnessRange', 'Ligntness range: {0} to {1}', 40, 100, [60, 80]),
                 this.makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 1, 100, [20, 80]),
             ),
-        );
+        ];
     }
     setRandomFillColor() {
         this.ctx.fillStyle = ColorUtils.colorHSLA(

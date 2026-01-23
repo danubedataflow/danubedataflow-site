@@ -9,15 +9,15 @@ export class Work0018 extends Work {
     palette;
     color1;
     color2;
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
             this.makeSlider('diagonalOrientationChance', "Probability of the diagonal's orientation: {0}%", 0, 100, 50),
             this.makeSelect('colorStrategy', 'Color strategy: ', [
                 this.makeOption('random', 'Random'),
                 this.makeOption('adjacent', 'Adjacent'),
             ]),
-        );
+        ];
     }
     drawWork() {
         this.palette = ['white', '#777777', 'black'];

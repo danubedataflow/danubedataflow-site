@@ -6,12 +6,12 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0029 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 3),
             this.makeSlider('lineGap', 'Distance of initial points: {0}', 5, 100, 50),
             this.makeSlider('maxMovement', 'Maximum movement: {0}', 5, 20, 10),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

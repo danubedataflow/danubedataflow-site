@@ -5,8 +5,8 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0014 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
             this.makeFieldset('Rotation',
                 this.makeSlider('rotationChance', 'Rotation probability: {0}%', 0, 100, 5),
@@ -24,7 +24,7 @@ export class Work0014 extends Work {
                 this.makeSlider('lineWidthChance', 'Line this.width probability: {0}%', 0, 100, 5),
                 this.makeSlider('lineWidthRange', 'Line this.width range: {0} to {1}', 1, 4, [2, 3]),
             ),
-        );
+        ];
     }
     drawWork() {
         this.ctx.save();

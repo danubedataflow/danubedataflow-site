@@ -2,12 +2,12 @@ import {
     Work
 } from '/js/work.js';
 export class Work0009 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSelectColorMap(),
             this.makeSlider('modulus', 'Modulus: {0}', 10, 300, 100),
             this.makeSlider('timesTable', 'Mulitply each point value by: {0}', 2, 100, 10, 0.2),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('#cccccc');

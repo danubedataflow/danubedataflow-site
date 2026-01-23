@@ -6,12 +6,12 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0021 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numRects', 'Number of rectangles: {0}', 10, 100, 50),
             this.makeSlider('lineWidthRange', 'Line this.width range: {0} to {1}', 1, 20, [2, 4]),
             this.makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 0, 100, [80, 100]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

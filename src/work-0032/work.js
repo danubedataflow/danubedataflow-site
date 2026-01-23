@@ -100,8 +100,8 @@ export class Work0032 extends Work {
             '....X'
         ]
     ];
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 10, 5),
             this.makeFieldset('Colors',
                 this.makeCheckbox('useColors', 'Colors: '),
@@ -114,7 +114,7 @@ export class Work0032 extends Work {
                 this.makeSlider('numLayers', 'Number of layers: {0}', 2, 8, 4),
                 this.makeSlider('alphaRange', 'Transparency range (alpha): {0} to {1}', 10, 100, [50, 60]),
             ),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

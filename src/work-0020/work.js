@@ -6,8 +6,8 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 export class Work0020 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 10),
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
@@ -15,7 +15,7 @@ export class Work0020 extends Work {
             ),
             this.makeSlider('coloredTileChance', 'Probability of a colored tile: {0}%', 0, 100, 50),
             this.makeSlider('coloredDiamondChance', 'Probability of a colored rhombus: {0}%', 0, 100, 50),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

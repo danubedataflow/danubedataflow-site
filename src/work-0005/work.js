@@ -5,15 +5,15 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0005 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
                 this.makeSlider('numColors', 'Number of colors: {0}', 1, 32, 25),
             ),
             this.makeSlider('maxLength', 'Maximum length: {0}', 3, 19, 11, 2),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

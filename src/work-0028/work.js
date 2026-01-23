@@ -5,12 +5,12 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0028 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 5, 4),
             this.makeSlider('numPoints', 'Number of points per tile: {0}', 4, 10, 7),
             this.makeSlider('exponentsRange', 'Exponent range: {0} to {1}', 0.2, 5, [2, 3], 0.1),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

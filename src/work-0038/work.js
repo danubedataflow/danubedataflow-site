@@ -11,14 +11,14 @@ import {
     MarkovChain
 } from '/js/markov.js';
 export class Work0038 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 60, 35),
             this.makeFieldset('Line widths',
                 this.makeCheckbox('useMarkovLineWidth', 'Use a markov chain'),
                 this.makeSlider('lineWidthRange', 'Line width: {0} to {1}', 1, 3, [1, 3]),
             )
-        );
+        ];
     }
     drawWork() {
         const tileDim = this.width / this.ctrl.numTiles;

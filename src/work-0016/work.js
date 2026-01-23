@@ -6,11 +6,11 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 export class Work0016 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 2, 20, 10),
             this.makeSlider('numRects', 'Number of rectangles: {0}', 2, 20, 10),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('#777777');

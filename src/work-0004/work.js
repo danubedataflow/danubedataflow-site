@@ -8,15 +8,15 @@ import {
     Point
 } from '/js/point.js';
 export class Work0004 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['lighter', 'source-over', 'difference', 'exclusion', 'hard-light', 'lighten', 'screen']),
             ),
             this.makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('black');

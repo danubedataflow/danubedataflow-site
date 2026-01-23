@@ -5,15 +5,15 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0007 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSlider('numColorsRange', 'Number of colors: {0} to {1}', 2, 32, [12, 20]),
             ),
             this.makeSlider('numSidesRange', 'Number of sides: {0} to {1}', 3, 50, [8, 15]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('black');

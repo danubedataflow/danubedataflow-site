@@ -5,8 +5,8 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0001 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 50, 25),
             this.makeFieldset('Polygon',
                 this.makeSlider('numSides', 'Number of sides: {0}', 3, 8, 6),
@@ -17,7 +17,7 @@ export class Work0001 extends Work {
                 this.makeSlider('noiseOffsetY', 'Vertical noise offset: {0}', 1, 100, 15),
                 this.makeSlider('noiseDivisor', 'Noise divisor: {0}', 1, 30, 9),
             ),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('black');

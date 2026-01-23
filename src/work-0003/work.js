@@ -5,12 +5,12 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0003 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
             this.makeSelectColorMap(),
             this.makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('black');

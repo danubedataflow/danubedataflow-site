@@ -6,12 +6,12 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0027 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 10, 5),
             this.makeSlider('colorAngle', 'Angle on the color wheel: {0}', 0, 359, 0),
             this.makeSlider('scaleInner', 'Scale of the inner squares: {0}', 0.3, 0.7, 0.5, 0.05),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

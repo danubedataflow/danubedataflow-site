@@ -7,8 +7,8 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0006 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'difference', 'hard-light', 'overlay']),
@@ -17,7 +17,7 @@ export class Work0006 extends Work {
             ),
             this.makeSlider('numSquares', 'Number of squares: {0}', 20, 1000, 100, 20),
             this.makeSlider('squareLengthRange', 'Side lengths are {0}% to {1}% of the canvas', 1, 100, [5, 30]),
-        );
+        ];
     }
     drawWork() {
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);

@@ -5,8 +5,8 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0030 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
             this.makeSlider('angleStep', 'Angle step: {0}', 2, 32, 16),
             this.makeSlider('lineScale', 'Line scale: {0}', 0.5, 1.5, 1, 0.1),
@@ -14,7 +14,7 @@ export class Work0030 extends Work {
                 this.makeSlider('numCurves', 'Number of curves: {0}', 2, 100, 30),
                 this.makeSlider('curveScale', 'Curve scale: {0}', 0.5, 1, 0.6, 0.05),
             ),
-        );
+        ];
     }
     drawWork() {
         this.ctx.fillStyle = 'white';

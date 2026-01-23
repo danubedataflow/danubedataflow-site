@@ -6,14 +6,14 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0002 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'darken', 'difference', 'hard-light', 'multiply']),
             ),
             this.makeSlider('numTriangles', 'Number of triangles: {0}', 1, 500, 100),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

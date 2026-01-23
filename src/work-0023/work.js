@@ -5,14 +5,14 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0023 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 70, 50),
             this.makeSlider('scale', 'Scale: {0}', 1, 2, 1.5, 0.1),
             this.makeSlider('angleStep', 'Angle step: {0}', 2, 32, 16),
             this.makeSlider('maxOffsetPerAxis', 'Maximum offset per axis: {0}', 0, 10, 2),
             this.makeSlider('lineWidth', 'Line this.width: {0}', 1, 6, 1),
-        );
+        ];
     }
     drawWork() {
         this.ctx.save();

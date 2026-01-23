@@ -7,8 +7,8 @@ import {
     ColorUtils
 } from '/js/utils.js';
 export class Work0019 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSlider('numColors', 'Number of colors: {0}', 2, 16, 8),
@@ -17,7 +17,7 @@ export class Work0019 extends Work {
             this.makeSlider('numGrids', 'Number of grids: {0}', 2, 10, 4),
             this.makeSlider('segmentSizeRange', 'Segment size range: {0}% to {1}% of the width', 10, 30, [20, 25]),
             this.makeSlider('lineWidth', 'Line this.width: {0}', 1, 4, 1),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas('black');

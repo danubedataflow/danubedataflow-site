@@ -5,10 +5,10 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0010 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numCurves', 'Number of curves: {0}', 2, 100, 30),
-        );
+        ];
     }
     drawWork() {
         let curves = [];

@@ -5,14 +5,14 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 export class Work0022 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeFieldset('Repetitions',
                 this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 12, 9),
                 this.makeSlider('scale', 'Scale: {0}', 0.6, 1, 0.8, 0.05),
             ),
             this.makeSlider('numPointsPerSide', 'Number of points per side in a square: {0}', 4, 8, 4),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

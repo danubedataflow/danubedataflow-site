@@ -6,8 +6,8 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 export class Work0024 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 3, 10, 4),
             this.makeSlider('maxOffsetPerAxis', 'Maximum offset per axis: {0}', 0, 20, 10),
             this.makeFieldset('Colors',
@@ -15,7 +15,7 @@ export class Work0024 extends Work {
                 this.makeSlider('numColors', 'Number of colors: {0}', 1, 8, 2),
                 this.makeSlider('ratioColoredTiles', 'One in {0} tiles is colored', 8, 32, 16),
             ),
-        );
+        ];
     }
     drawWork() {
         this.ctx.save();

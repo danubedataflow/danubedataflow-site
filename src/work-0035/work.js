@@ -8,15 +8,15 @@ import {
     Point
 } from '/js/point.js';
 export class Work0035 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numPoints', 'Number of points: {0}', 50, 700, 350),
             this.makeSlider('percentMaxLineLength', 'Maximum line length: {0}% of this.width', 10, 20, 15),
             this.makeSelect('randomType', 'Random type: ', [
                 this.makeOption('standard', 'Standard'),
                 this.makeOption('gaussian', 'Gaussian'),
             ]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

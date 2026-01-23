@@ -6,14 +6,14 @@ import {
 } from '/js/utils.js';
 export class Work0008 extends Work {
     colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 1, 5, 2),
             this.makeSlider('numSidesRange', 'Number of sides: {0} to {1}', 3, 7, [4, 6]),
             this.makeSlider('diameterRange', 'Diameter: {0}% to {1}% of the tile', 1, 100, [30, 50]),
             this.makeSlider('rotationStepRange', 'Rotation step: {0} to {1}', 0, 360, [150, 210]),
             this.makeSlider('maxDepthRange', 'Maximum depth: {0} to {1}', 1, 2, [1, 2]),
-        );
+        ];
     }
     drawWork() {
         this.clearCanvas();

@@ -5,15 +5,15 @@ import {
     MathUtils
 } from '/js/utils.js';
 export class Work0013 extends Work {
-    setupControls() {
-        this.makeForm(
+    getControls() {
+        return [
             this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 4, 40, 20),
             this.makeSlider('horizontalLineChance', 'Probability of a horizontal line: {0}%', 0, 100, 30),
             this.makeSlider('verticalLineChance', 'Probability of a vertical line: {0}%', 0, 100, 30),
             this.makeSlider('diagonalUpwardsLineChance', 'Probability of a diagonal upwards line: {0}%', 0, 100, 30),
             this.makeSlider('diagonalDownwardsLineChance', 'Probability of a diagonal downwards line: {0}%', 0, 100, 30),
             this.makeCheckbox('hasTileBorder', 'Tile border: '),
-        );
+        ];
     }
     drawWork() {
         this.ctx.save();

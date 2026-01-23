@@ -15,6 +15,7 @@ export class Work {
     setCanvasDimension() {
         let headerHeight = 100 * window.devicePixelRatio;
         this.width = this.height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
+
         /* Set up the canvas for high-resolution drawing.
          *
          * 1. Multiply the canvas's width and height by the devicePixelRatio
@@ -31,6 +32,7 @@ export class Work {
         this.canvas.style.width = this.width + 'px';
         this.canvas.style.height = this.height + 'px';
         this.ctx.scale(ratio, ratio);
+
         // also show the canvas size on the web page
         document.getElementById('canvasSize').innerText = `${this.width} x ${this.height}`;
     }
@@ -65,6 +67,7 @@ export class Work {
             });
         });
     }
+
     /* Navigating between works:
      *
      * Each work has buttons to go to the next newer or older work. Works
@@ -99,7 +102,7 @@ export class Work {
             return value;
         }
     }
-    makeForm(...contents) {
+    makeForm(contents) {
         let form = document.getElementById('controls-form');
         contents.push(this.makeSeed()),
             contents.forEach(child => form.appendChild(child));
@@ -120,9 +123,9 @@ export class Work {
         contents.forEach(child => el.appendChild(child));
         return el;
     }
-    // 'id' is the value of the 'for' attribute.
     makeLabel(id) {
         let el = document.createElement('label');
+        // 'id' is the value of the 'for' attribute.
         el.setAttribute('for', id);
         return el;
     }
@@ -359,7 +362,7 @@ export class Work {
                 timestamp: 1
             }));
         } else {
-            alert("Need a secure connection to be able to write to the clipboard.");
+            throw new Error("Need a secure connection to be able to write to the clipboard.");
         }
     }
     /* Work skeleton
@@ -387,7 +390,10 @@ export class Work {
         document.getElementById('setControlsRandomly').addEventListener('click', (e) => this.setControlsRandomly());
         document.getElementById('saveCanvas').addEventListener('click', (e) => this.saveCanvas());
         document.getElementById('copyLink').addEventListener('click', (e) => this.copyLink());
-        this.setupControls(); // works need to implement this
+        this.makeForm(this.getControls());
+    }
+    getControls() {
+        throw new Error('Unimplemented method getControls()!');
     }
     setupDescription() {
         let summaryText = this.description.substring(0, 60) +
@@ -427,6 +433,9 @@ export class Work {
             window.history.replaceState(null, '', currentURL);
         }
         this.drawWork();
+    }
+    drawWork() {
+        throw new Error('Unimplemented method drawWork()!');
     }
     clearCanvas(color = 'white') {
         this.ctx.save();
