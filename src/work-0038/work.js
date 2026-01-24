@@ -5,9 +5,6 @@ import {
     ArrayUtils
 } from '/js/utils.js';
 import {
-    Point
-} from '/js/point.js';
-import {
     MarkovChain
 } from '/js/markov.js';
 export class Work0038 extends Work {
