@@ -69,9 +69,7 @@ export class Work0026 extends Work {
                 connections = ArrayUtils.shuffle(connections);
                 connections.splice(this.ctrl.numPointsX * this.ctrl.numPointsY * this.ctrl.percentConnections / 100);
                 connections.forEach(el => {
-                    this.ctx.beginPath();
-                    this.moveToPoint(el[0]);
-                    this.lineToPoint(el[1]);
+                    this.linePath(...el);
                     this.ctx.stroke();
                 });
             }

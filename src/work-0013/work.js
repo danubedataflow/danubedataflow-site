@@ -17,33 +17,25 @@ export class Work0013 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        this.scaleCanvas(0.97);  // padding
+        this.scaleCanvas(0.97); // padding
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
         this.tileIterator((tile) => {
             if (this.ctrl.hasTileBorder) this.strokeRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
             if (MathUtils.randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
-                this.ctx.beginPath();
-                this.moveToPoint(tile.middleLeft());
-                this.lineToPoint(tile.middleRight());
+                this.linePath(tile.middleLeft(), tile.middleRight());
                 this.ctx.stroke();
             }
             if (MathUtils.randomIntUpTo(100) < this.ctrl.verticalLineChance) {
-                this.ctx.beginPath();
-                this.moveToPoint(tile.upperMiddle());
-                this.lineToPoint(tile.lowerMiddle());
+                this.linePath(tile.upperMiddle(), tile.lowerMiddle());
                 this.ctx.stroke();
             }
             if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
-                this.ctx.beginPath();
-                this.moveToPoint(tile.lowerLeft());
-                this.lineToPoint(tile.upperRight());
+                this.linePath(tile.lowerLeft(), tile.upperRight());
                 this.ctx.stroke();
             }
             if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
-                this.ctx.beginPath();
-                this.moveToPoint(tile.upperLeft());
-                this.lineToPoint(tile.lowerRight());
+                this.linePath(tile.upperLeft(), tile.lowerRight());
                 this.ctx.stroke();
             }
         });

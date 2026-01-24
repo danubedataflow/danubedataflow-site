@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0003 extends Work {
     getControls() {
         return [
@@ -21,10 +24,8 @@ export class Work0003 extends Work {
             let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
                 this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
-                this.ctx.beginPath();
-                this.moveToPoint(tile.center());
                 let angle = MathUtils.random() * 2 * Math.PI;
-                this.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
+                this.linePath(tile.center(), new Point(Math.sin(angle) * radius, Math.cos(angle) * radius));
                 this.ctx.stroke();
             }
         });

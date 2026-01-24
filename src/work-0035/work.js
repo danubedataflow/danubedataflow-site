@@ -35,10 +35,7 @@ export class Work0035 extends Work {
         let pairs = this.findClosePairs(points, maxLineLength);
         for (const [p1, p2] of pairs) {
             this.ctx.strokeStyle = 'black';
-            this.ctx.beginPath();
-            this.moveToPoint(p1);
-            this.lineToPoint(p2);
-            this.ctx.closePath();
+            this.linePath(p1, p2);
             this.ctx.stroke();
         }
     }

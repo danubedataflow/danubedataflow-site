@@ -33,9 +33,7 @@ export class Work0022 extends Work {
             }
             points = ArrayUtils.shuffle(points);
             ArrayUtils.pairwise(points, (p1, p2) => {
-                this.ctx.beginPath();
-                this.moveToPoint(p1);
-                this.lineToPoint(p2);
+                this.linePath(p1, p2);
                 this.ctx.stroke();
             });
         });

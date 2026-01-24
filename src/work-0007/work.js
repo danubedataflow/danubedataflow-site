@@ -30,9 +30,7 @@ export class Work0007 extends Work {
                     if (i == j) return;
                     this.ctx.strokeStyle = palette[colorIndex];
                     colorIndex = (colorIndex + 1 + palette.length) % palette.length;
-                    this.ctx.beginPath();
-                    this.moveToPoint(p);
-                    this.lineToPoint(p2);
+                    this.linePath(p, p2);
                     this.ctx.stroke();
                 });
             });

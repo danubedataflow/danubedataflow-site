@@ -28,9 +28,7 @@ export class Work0034 extends Work {
             points.push(new Point(x, y));
         }
         ArrayUtils.pairwise(points, (current, next) => {
-            this.ctx.beginPath();
-            this.moveToPoint(current);
-            this.lineToPoint(next);
+            this.linePath(current, next);
             this.ctx.stroke();
         });
     }

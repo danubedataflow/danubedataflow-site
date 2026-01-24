@@ -31,9 +31,7 @@ export class Work0004 extends Work {
                 this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
                 let angle2 = MathUtils.random() * 2 * Math.PI;
                 let p2 = new Point(Math.sin(angle2) * radius, Math.cos(angle2) * radius);
-                this.ctx.beginPath();
-                this.moveToPoint(p);
-                this.lineToPoint(p2);
+                this.linePath(p, p2);
                 this.ctx.stroke();
                 p = p2;
             }

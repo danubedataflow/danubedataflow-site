@@ -523,6 +523,13 @@ export class Work {
     translateToPoint(p) {
         this.ctx.translate(...p.asArray());
     }
+    linePath(p1, p2) {
+        this.ctx.beginPath();
+        this.moveToPoint(p1);
+        this.lineToPoint(p2);
+        this.ctx.closePath();
+    }
+
     trianglePath(p1, p2, p3) {
         this.ctx.beginPath();
         this.moveToPoint(p1);

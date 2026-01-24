@@ -21,30 +21,21 @@ export class Work0038 extends Work {
         ];
     }
     drawWork() {
-        const tileDim = this.width / this.ctrl.numTiles;
-        const markovShapes = MarkovChain.makeRandomMarkovChain(['A', 'B', 'C', 'D']);
+        let handleShapeState = {
+            'A': (tile) => this.linePath(tile.upperLeft(), tile.lowerRight()),
+            'B': (tile) => this.linePath(tile.upperRight(), tile.lowerLeft()),
+            'C': (tile) => this.linePath(tile.upperMiddle(), tile.lowerMiddle()),
+            'D': (tile) => this.linePath(tile.middleLeft(), tile.middleRight()),
+        };
+        const markovShapes = MarkovChain.makeRandomMarkovChain(Object.keys(handleShapeState));
         const [lineWidthFrom, lineWidthTo] = this.ctrl.useMarkovLineWidth ? this.ctrl.lineWidthRange : [1, 1];
         const markovLineWidth = MarkovChain.makeRandomMarkovChain(ArrayUtils.arrayFromIntRange(lineWidthFrom, lineWidthTo));
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
         this.tileIterator((tile) => {
             this.ctx.lineWidth = markovLineWidth.getNextState();
-            this.ctx.beginPath();
-            const state = markovShapes.getNextState();
-            if (state == 'A') {
-                this.moveToPoint(tile.upperLeft());
-                this.lineToPoint(tile.lowerRight());
-            } else if (state == 'B') {
-                this.moveToPoint(tile.upperRight());
-                this.lineToPoint(tile.lowerLeft());
-            } else if (state == 'C') {
-                this.moveToPoint(tile.upperMiddle());
-                this.lineToPoint(tile.lowerMiddle());
-            } else if (state == 'D') {
-                this.moveToPoint(tile.middleLeft());
-                this.lineToPoint(tile.middleRight());
-            }
-            this.ctx.closePath();
+            let state = markovShapes.getNextState();
+            handleShapeState[state](tile);
             this.ctx.stroke();
         });
     }
