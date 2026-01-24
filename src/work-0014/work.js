@@ -41,7 +41,7 @@ export class Work0014 extends Work {
                 tile.tileDim * MathUtils.randomIntRange(...this.ctrl.translationRange) / 100,
                 tile.tileDim * MathUtils.randomIntRange(...this.ctrl.translationRange) / 100);
             if (MathUtils.randomIntUpTo(100) < this.ctrl.lineWidthChance) this.ctx.lineWidth = MathUtils.randomIntRange(...this.ctrl.lineWidthRange);
-            this.strokeRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            this.strokeSquareForPoint(tile.upperLeft(), tile.tileDim);
         });
     }
     description = `Each tile has separate probabilities of being rotated, scaled, translated and stroked. Inspired by Vera Molnár.`;

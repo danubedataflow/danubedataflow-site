@@ -56,9 +56,8 @@ export class Work0026 extends Work {
                     let point = pointFor(x, y);
                     // draw a dot
                     this.ctx.fillStyle = 'black';
-                    this.fillRectForPoint(
+                    this.fillSquareForPoint(
                         point.move(-this.ctrl.lineWidth / 2, -this.ctrl.lineWidth / 2),
-                        this.ctrl.lineWidth,
                         this.ctrl.lineWidth
                     );
                     // connection to the neighbor to the right?

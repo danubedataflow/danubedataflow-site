@@ -18,7 +18,7 @@ export class Work0028 extends Work {
             // Tile background: scale down to leave space between tiles
             this.ctx.scale(0.8, 0.8);
             this.ctx.fillStyle = 'white';
-            this.fillRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            this.fillSquareForPoint(tile.upperLeft(), tile.tileDim);
             // Draw the tile. Scale down to leave a border on each tile.
             this.ctx.scale(0.8, 0.8);
             this.ctx.rotate(MathUtils.randomIntUpTo(4) * Math.PI / 2);

@@ -23,16 +23,14 @@ export class Work0020 extends Work {
         this.tileIterator((tile) => {
             // fill whole tile
             this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredTileChance ? ArrayUtils.randomElement(palette) : 'white';
-            this.fillRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            this.fillSquareForPoint(tile.upperLeft(), tile.tileDim);
+
+            // quadrants, diagonally sliced, inner triangle
             let triangles = [
-                // upper left quadrant, diagonally sliced, inner triangle
-                [tile.upperMiddle(), tile.center(), tile.middleLeft()],
-                // upper right quadrant, diagonally sliced, inner triangle
-                [tile.upperMiddle(), tile.center(), tile.middleRight()],
-                // lower left quadrant, diagonally sliced, inner triangle
-                [tile.lowerMiddle(), tile.center(), tile.middleLeft()],
-                // lower right quadrant, diagonally sliced, inner triangle
-                [tile.lowerMiddle(), tile.center(), tile.middleRight()],
+                [tile.upperMiddle(), tile.center(), tile.middleLeft()], // UL quadrant
+                [tile.upperMiddle(), tile.center(), tile.middleRight()], // UR quadrant
+                [tile.lowerMiddle(), tile.center(), tile.middleLeft()], // LL quadrant
+                [tile.lowerMiddle(), tile.center(), tile.middleRight()], // LR quadrant
             ];
             triangles.forEach(t => {
                 this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';

@@ -20,7 +20,7 @@ export class Work0025 extends Work {
             for (let i = 0; i < this.ctrl.numSquaresPerTile; i++) {
                 let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
                 let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-                this.strokeRectForPoint(tile.upperLeft().move(xOffset, yOffset), tile.tileDim, tile.tileDim);
+                this.strokeSquareForPoint(tile.upperLeft().move(xOffset, yOffset), tile.tileDim);
             }
         });
     }

@@ -48,11 +48,11 @@ export class Work0036 extends Work {
             // it's a terminal square
             if (MathUtils.random() < this.ctrl.chanceFill / 100) {
                 this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);
-                this.fillRectForPoint(upperLeft, squareSize, squareSize);
+                this.fillSquareForPoint(upperLeft, squareSize);
             }
             if (this.ctrl.hasBorder) {
                 this.ctx.strokeStyle = 'black';
-                this.strokeRectForPoint(upperLeft, squareSize, squareSize);
+                this.strokeSquareForPoint(upperLeft, squareSize);
             }
         }
     }

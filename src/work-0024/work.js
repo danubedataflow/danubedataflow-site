@@ -40,12 +40,12 @@ export class Work0024 extends Work {
         this.tileIterator((tile) => {
             let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
             let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-            let rectArgs = [tile.upperLeft().move(xOffset, yOffset), tile.tileDim, tile.tileDim];
+            let rectArgs = [tile.upperLeft().move(xOffset, yOffset), tile.tileDim];
             if (shouldFillArray.shift()) {
                 this.ctx.fillStyle = ArrayUtils.randomElement(palette);
-                this.fillRectForPoint(...rectArgs);
+                this.fillSquareForPoint(...rectArgs);
             }
-            this.strokeRectForPoint(...rectArgs);
+            this.strokeSquareForPoint(...rectArgs);
         });
     }
     description = `Each tile contains a randomly offset stroked square. A given ratio of squares, but at least one, is filled with a random color. Inspired by Vera Molnár.`;

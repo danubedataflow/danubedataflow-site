@@ -20,7 +20,7 @@ export class Work0027 extends Work {
             scales.forEach(s => {
                 this.ctx.scale(s, s);
                 this.ctx.fillStyle = ColorUtils.colorHSL(this.ctrl.colorAngle, 100, 40 + MathUtils.randomIntUpTo(60));
-                this.fillRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+                this.fillSquareForPoint(tile.upperLeft(), tile.tileDim);
             });
         });
     }

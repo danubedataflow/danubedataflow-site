@@ -20,7 +20,7 @@ export class Work0031 extends Work {
             this.ctx.scale(0.9, 0.9);
             // draw a border around the tile
             this.ctx.lineWidth = 1;
-            this.strokeRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            this.strokeSquareForPoint(tile.upperLeft(), tile.tileDim);
             this.ctx.lineWidth = this.ctrl.lineWidth;
             this.translateToPoint(tile.upperLeft());
             for (let i = 0; i < this.ctrl.numLines; i++) {

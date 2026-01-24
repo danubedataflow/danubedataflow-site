@@ -21,7 +21,7 @@ export class Work0013 extends Work {
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
         this.tileIterator((tile) => {
-            if (this.ctrl.hasTileBorder) this.strokeRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            if (this.ctrl.hasTileBorder) this.strokeSquareForPoint(tile.upperLeft(), tile.tileDim);
             if (MathUtils.randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
                 this.linePath(tile.middleLeft(), tile.middleRight());
                 this.ctx.stroke();

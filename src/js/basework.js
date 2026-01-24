@@ -514,6 +514,12 @@ export class Work {
     strokeRectForPoint(p, w, h) {
         this.ctx.strokeRect(...p.asArray(), w, h);
     }
+    fillSquareForPoint(p, dim) {
+        this.fillRectForPoint(p, dim, dim);
+    }
+    strokeSquareForPoint(p, dim) {
+        this.strokeRectForPoint(p, dim, dim);
+    }
     translateToPoint(p) {
         this.ctx.translate(...p.asArray());
     }

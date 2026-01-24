@@ -30,7 +30,7 @@ export class Work0012 extends Work {
             // Draw random squares around each point at 10% alpha, produces a fuzzy
             // shape.
             let dim = MathUtils.randomIntRange(...this.ctrl.squareSizeRange);
-            this.strokeRectForPoint(p, dim, dim);
+            this.strokeSquareForPoint(p, dim);
         }
     }
     description = `Rectangles are drawn along a modified sine wave.`;
