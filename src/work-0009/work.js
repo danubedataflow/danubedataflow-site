@@ -1,6 +1,9 @@
 import {
     Work
 } from '/js/basework.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0009 extends Work {
     getControls() {
         return [
@@ -26,9 +29,8 @@ export class Work0009 extends Work {
             const colorIndex = (i + palette.length) % palette.length;
             this.ctx.strokeStyle = palette[colorIndex];
             let j = i * this.ctrl.timesTable;
-            this.ctx.beginPath();
-            this.ctx.moveTo(Math.sin(this.angle(i, this.ctrl.modulus)) * radius, Math.cos(this.angle(i, this.ctrl.modulus)) * radius);
-            this.ctx.lineTo(Math.sin(this.angle(j, this.ctrl.modulus)) * radius, Math.cos(this.angle(j, this.ctrl.modulus)) * radius);
+            this.linePath(new Point(Math.sin(this.angle(i, this.ctrl.modulus)) * radius, Math.cos(this.angle(i, this.ctrl.modulus)) * radius),
+                new Point(Math.sin(this.angle(j, this.ctrl.modulus)) * radius, Math.cos(this.angle(j, this.ctrl.modulus)) * radius));
             this.ctx.stroke();
         }
     }

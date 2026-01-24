@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0011 extends Work {
     getControls() {
         return [
@@ -24,9 +27,7 @@ export class Work0011 extends Work {
         this.clearCanvas('black');
         this.ctx.strokeStyle = 'white';
         for (let i = 1; i <= this.ctrl.numLines; i++) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(x1, y1);
-            this.ctx.lineTo(x2, y2);
+            this.linePath(new Point(x1, y1), new Point(x2, y2));
             this.ctx.stroke();
             if (x1 > this.width) x1d = -this.rnd(2, offset);
             if (y1 > this.height) y1d = -this.rnd(8, offset);

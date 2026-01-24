@@ -28,7 +28,6 @@ export class Work0005 extends Work {
             // wrap around
             colorIndex = (palette.length + colorIndex + direction) % palette.length;
             this.ctx.fillStyle = palette[colorIndex];
-            this.ctx.beginPath();
             this.ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
         });
     }

@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0023 extends Work {
     getControls() {
         return [
@@ -29,9 +32,7 @@ export class Work0023 extends Work {
                 MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
             );
             // `this.ctx.scale(this.ctrl.scale, this.ctrl.scale)` instead would also change the line weight.
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.ctrl.scale * -tile.tileDim / 2, 0);
-            this.ctx.lineTo(this.ctrl.scale * tile.tileDim / 2, 0);
+            this.linePath(new Point(this.ctrl.scale * -tile.tileDim / 2, 0), new Point(this.ctrl.scale * tile.tileDim / 2, 0));
             this.ctx.stroke();
         });
     }

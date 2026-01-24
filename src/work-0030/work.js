@@ -4,7 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/utils.js';
-import { Point } from '/js/point.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0030 extends Work {
     getControls() {
         return [
@@ -32,9 +34,7 @@ export class Work0030 extends Work {
                 this.ctx.save();
                 this.translateToPoint(point);
                 this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
-                this.ctx.beginPath();
-                this.ctx.moveTo(-lineLength / 2, 0);
-                this.ctx.lineTo(lineLength / 2, 0);
+                this.linePath(new Point(-lineLength / 2, 0), new Point(lineLength / 2, 0));
                 this.ctx.stroke();
                 this.ctx.restore();
             });
