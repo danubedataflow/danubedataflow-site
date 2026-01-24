@@ -15,8 +15,7 @@ export class Work0025 extends Work {
     drawWork() {
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
-        this.scaleCanvas(0.9);  // padding
-
+        this.scaleCanvas(0.9); // padding
         this.tileIterator((tile) => {
             for (let i = 0; i < this.ctrl.numSquaresPerTile; i++) {
                 let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);

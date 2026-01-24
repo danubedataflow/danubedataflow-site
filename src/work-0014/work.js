@@ -28,7 +28,7 @@ export class Work0014 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        this.scaleCanvas(0.97);  // padding
+        this.scaleCanvas(0.97); // padding
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
         this.tileIterator((tile) => {

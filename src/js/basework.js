@@ -18,7 +18,6 @@ export class Work {
     setCanvasDimension() {
         let headerHeight = 100 * window.devicePixelRatio;
         this.width = this.height = Math.min(window.innerWidth, window.innerHeight - headerHeight);
-
         /* Set up the canvas for high-resolution drawing.
          *
          * 1. Multiply the canvas's width and height by the devicePixelRatio
@@ -35,7 +34,6 @@ export class Work {
         this.canvas.style.width = this.width + 'px';
         this.canvas.style.height = this.height + 'px';
         this.ctx.scale(ratio, ratio);
-
         // also show the canvas size on the web page
         document.getElementById('canvasSize').innerText = `${this.width} x ${this.height}`;
     }
@@ -70,7 +68,6 @@ export class Work {
             });
         });
     }
-
     /* Navigating between works:
      *
      * Each work has buttons to go to the next newer or older work. Works
@@ -435,7 +432,6 @@ export class Work {
         if (currentURL != window.location.href) {
             window.history.replaceState(null, '', currentURL);
         }
-
         // Each call of drawWork() must be independent, i.e., not depend on the
         // previous image. So surround the call with ctx.save() and
         // crtx.restore(), so the drawWork() methods don't have to do it.
@@ -453,7 +449,6 @@ export class Work {
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.restore();
     }
-
     // For works where you want some space between the canvas and the drawing,
     // or to ensure that a thicker border around the drawing is fully visible,
     // or if you draw slightly outside the canvas and want to scale it down to
@@ -463,7 +458,6 @@ export class Work {
         this.ctx.scale(scaleFactor, scaleFactor)
         this.ctx.translate(-this.width / 2, -this.height / 2);
     }
-
     tileIterator(callback, scanOrder = 'xy') {
         let tileDim = this.width / this.ctrl.numTiles;
         let handleTile = (x, y) => {
@@ -529,7 +523,6 @@ export class Work {
         this.lineToPoint(p2);
         this.ctx.closePath();
     }
-
     trianglePath(p1, p2, p3) {
         this.ctx.beginPath();
         this.moveToPoint(p1);
@@ -537,7 +530,6 @@ export class Work {
         this.lineToPoint(p3);
         this.ctx.closePath();
     }
-
     run() {
         addEventListener('keypress', (e) => {
             if (e.code == 'KeyS') this.saveCanvas();
@@ -703,43 +695,33 @@ class Tile {
         this.y = y;
         this.tileDim = tileDim;
     }
-
     // The following methods assume that the context has been translated so
     // that (0, 0) is at the center of the tile. handleTile() in tileIterator()
     // above does that.
-
     upperLeft() {
         return new Point(-this.tileDim / 2, -this.tileDim / 2);
     }
-
     upperMiddle() {
         return new Point(0, -this.tileDim / 2);
     }
-
     upperRight() {
         return new Point(this.tileDim / 2, -this.tileDim / 2);
     }
-
     middleLeft() {
         return new Point(-this.tileDim / 2, 0);
     }
-
     center() {
         return new Point(0, 0);
     }
-
     middleRight() {
         return new Point(this.tileDim / 2, 0);
     }
-
     lowerLeft() {
         return new Point(-this.tileDim / 2, this.tileDim / 2);
     }
-
     lowerMiddle() {
         return new Point(0, this.tileDim / 2);
     }
-
     lowerRight() {
         return new Point(this.tileDim / 2, this.tileDim / 2);
     }

@@ -5,7 +5,9 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
-import { Point } from '/js/point.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0034 extends Work {
     getControls() {
         return [

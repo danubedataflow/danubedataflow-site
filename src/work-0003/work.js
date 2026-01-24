@@ -18,7 +18,6 @@ export class Work0003 extends Work {
     drawWork() {
         this.clearCanvas('black');
         let colorScale = chroma.scale(this.ctrl.colorMap);
-
         this.tileIterator((tile) => {
             let radius = tile.tileDim * 0.4;
             let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);

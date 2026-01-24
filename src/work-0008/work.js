@@ -20,12 +20,12 @@ export class Work0008 extends Work {
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
         this.tileIterator((tile) => {
-                let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
-                let diameter = MathUtils.randomIntRange(...this.ctrl.diameterRange);
-                let rotationStep = MathUtils.randomIntRange(...this.ctrl.rotationStepRange);
-                let maxDepth = MathUtils.randomIntRange(...this.ctrl.maxDepthRange);
-                this.drawPolygons(numSides, diameter * tile.tileDim / 100,
-                    0, rotationStep, maxDepth);
+            let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
+            let diameter = MathUtils.randomIntRange(...this.ctrl.diameterRange);
+            let rotationStep = MathUtils.randomIntRange(...this.ctrl.rotationStepRange);
+            let maxDepth = MathUtils.randomIntRange(...this.ctrl.maxDepthRange);
+            this.drawPolygons(numSides, diameter * tile.tileDim / 100,
+                0, rotationStep, maxDepth);
         });
     }
     drawPolygons(sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {

@@ -20,7 +20,7 @@ export class Work0024 extends Work {
     drawWork() {
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
-        this.scaleCanvas(0.9);  // padding
+        this.scaleCanvas(0.9); // padding
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
         /*
          * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles

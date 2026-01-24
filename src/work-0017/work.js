@@ -17,10 +17,8 @@ export class Work0017 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-
         // Scale down to create a margin so the outermost strokes won't be clipped.
         this.scaleCanvas(this.ctrl.scale);
-
         let tileDim = this.width / this.ctrl.numTiles;
         for (let i = 0; i <= this.ctrl.numRects; i++) {
             let ulX = MathUtils.randomIntRange(0, this.ctrl.numTiles - 1);

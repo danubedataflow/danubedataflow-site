@@ -23,13 +23,11 @@ export class Work0018 extends Work {
         this.palette = ['white', '#777777', 'black'];
         this.tileIterator((tile) => {
             this.chooseColors(this.ctrl.colorStrategy);
-
             // We'll draw a diagonal from the upper left to the lower right.
             // But randomly we'll use scale() to flip along vertical axis so
             // we'll draw a diagonal from the upper left to the lower right.
             if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalOrientationChance)
                 this.ctx.scale(-1, 1);
-
             this.ctx.fillStyle = this.color1;
             this.trianglePath(tile.upperRight(), tile.lowerLeft(), tile.lowerRight());
             this.ctx.fill();

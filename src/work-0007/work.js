@@ -23,7 +23,6 @@ export class Work0007 extends Work {
             let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
             let points = MathUtils.getPointsForPolygon(numSides, tile.tileDim * 0.9, 0);
             let colorIndex = 0;
-
             // draw a line from each point to each point
             points.forEach((p, i) => {
                 points.forEach((p2, j) => {

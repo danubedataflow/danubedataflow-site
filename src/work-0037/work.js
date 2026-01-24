@@ -34,7 +34,6 @@ export class Work0037 extends Work {
         let upperRight = new Point(this.width, 0);
         let lowerLeft = new Point(0, this.height);
         let lowerRight = new Point(this.width, this.height);
-
         // a diagonal splits the canvas into two triangles
         this.drawTriangle(upperLeft, upperRight, lowerLeft, 0);
         this.drawTriangle(upperRight, lowerLeft, lowerRight, 0);
