@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     ArrayUtils
 } from '/js/utils.js';
@@ -27,34 +27,26 @@ export class Work0038 extends Work {
         const markovLineWidth = MarkovChain.makeRandomMarkovChain(ArrayUtils.arrayFromIntRange(lineWidthFrom, lineWidthTo));
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
-        for (let y = 0; y < this.ctrl.numTiles; y++) {
-            for (let x = 0; x < this.ctrl.numTiles; x++) {
-                // tile's upper left corner
-                const p = new Point(x * tileDim, y * tileDim);
-                this.ctx.lineWidth = markovLineWidth.getNextState();
-                this.ctx.beginPath();
-                const state = markovShapes.getNextState();
-                if (state == 'A') {
-                    // diagonal from the cell's upper left to lower right
-                    this.moveToPoint(p);
-                    this.lineToPoint(p.move(tileDim, tileDim));
-                } else if (state == 'B') {
-                    // diagonal from the cell's upper right to lower left
-                    this.moveToPoint(p.moveX(tileDim));
-                    this.lineToPoint(p.moveY(tileDim));
-                } else if (state == 'C') {
-                    // vertical line in the middle of the cell
-                    this.moveToPoint(p.moveX(tileDim / 2));
-                    this.lineToPoint(p.move(tileDim / 2, tileDim));
-                } else if (state == 'D') {
-                    // horizontal line in the middle of the cell
-                    this.moveToPoint(p.moveY(tileDim / 2));
-                    this.lineToPoint(p.move(tileDim, tileDim / 2));
-                }
-                this.ctx.closePath();
-                this.ctx.stroke();
+        this.tileIterator((tile) => {
+            this.ctx.lineWidth = markovLineWidth.getNextState();
+            this.ctx.beginPath();
+            const state = markovShapes.getNextState();
+            if (state == 'A') {
+                this.moveToPoint(tile.upperLeft());
+                this.lineToPoint(tile.lowerRight());
+            } else if (state == 'B') {
+                this.moveToPoint(tile.upperRight());
+                this.lineToPoint(tile.lowerLeft());
+            } else if (state == 'C') {
+                this.moveToPoint(tile.upperMiddle());
+                this.lineToPoint(tile.lowerMiddle());
+            } else if (state == 'D') {
+                this.moveToPoint(tile.middleLeft());
+                this.lineToPoint(tile.middleRight());
             }
-        }
+            this.ctx.closePath();
+            this.ctx.stroke();
+        });
     }
     description = `A finite Markov chain is evaluated once over a two-dimensional grid, assigning a line orientation to each cell according to its immediately preceding state. So the probabilistic rule that is normally applied over time is applied instead across space. See my notes on <a href="/notes/markov-chains.html">Markov chains.</a> It resembles, but is not based on, "Quatre éléments distribués au hasard" by Vera Molnár, 1959.`;
     createdDate = '2026-01-21';

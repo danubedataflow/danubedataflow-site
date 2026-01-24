@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ColorUtils
@@ -21,7 +21,6 @@ export class Work0012 extends Work {
         this.clearCanvas();
         this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, this.ctrl.alpha / 100);
         this.ctx.lineWidth = 1;
-        this.ctx.save();
         this.ctx.translate(this.width / 2, this.height / 2);
         for (let i = 0; i < 360; i += this.ctrl.angleStep) {
             let rad = i / 180 * Math.PI;
@@ -33,7 +32,6 @@ export class Work0012 extends Work {
             let dim = MathUtils.randomIntRange(...this.ctrl.squareSizeRange);
             this.strokeRectForPoint(p, dim, dim);
         }
-        this.ctx.restore();
     }
     description = `Rectangles are drawn along a modified sine wave.`;
     createdDate = '2022-11-02';

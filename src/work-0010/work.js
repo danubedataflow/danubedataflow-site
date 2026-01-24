@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';

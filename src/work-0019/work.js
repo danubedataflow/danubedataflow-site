@@ -1,11 +1,14 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ArrayUtils,
     ColorUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0019 extends Work {
     getControls() {
         return [
@@ -59,21 +62,11 @@ export class Work0019 extends Work {
                     this.ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
                     this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c2).rgb(), alpha);
                     if (MathUtils.random() < 0.5) {
-                        // draw a triangle
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(hcurrent, vcurrent);
-                        this.ctx.lineTo(hnext, vcurrent);
-                        this.ctx.lineTo(hnext, vnext);
-                        this.ctx.closePath();
+                        this.trianglePath(new Point(hcurrent, vcurrent), new Point(hnext, vcurrent), new Point(hnext, vnext));
                         this.ctx.fill();
                         this.ctx.stroke();
                     } else {
-                        // draw a triangle
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(hnext, vcurrent);
-                        this.ctx.lineTo(hnext, vnext);
-                        this.ctx.lineTo(hcurrent, vnext);
-                        this.ctx.closePath();
+                        this.trianglePath(new Point(hnext, vcurrent), new Point(hnext, vnext), new Point(hcurrent, vnext));
                         this.ctx.fill();
                         this.ctx.stroke();
                     }

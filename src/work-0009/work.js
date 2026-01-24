@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 export class Work0009 extends Work {
     getControls() {
         return [
@@ -14,7 +14,6 @@ export class Work0009 extends Work {
         this.ctx.globalCompositeOperation = 'exclusion';
         this.ctx.fillStyle = 'white';
         this.ctx.lineWidth = 1;
-        this.ctx.save();
         this.ctx.translate(this.width / 2, this.height / 2);
         this.ctx.beginPath();
         this.ctx.arc(0, 0, this.width, 0, Math.PI * 2);
@@ -32,7 +31,6 @@ export class Work0009 extends Work {
             this.ctx.lineTo(Math.sin(this.angle(j, this.ctrl.modulus)) * radius, Math.cos(this.angle(j, this.ctrl.modulus)) * radius);
             this.ctx.stroke();
         }
-        this.ctx.restore();
     }
     angle(n, modulus) {
         return n * Math.PI * 2 / modulus;

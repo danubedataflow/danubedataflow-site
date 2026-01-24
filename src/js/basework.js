@@ -5,6 +5,9 @@ import {
     MathUtils,
     ArrayUtils
 } from '/js/utils.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work {
     controls = {};
     ctrl = {};
@@ -432,7 +435,13 @@ export class Work {
         if (currentURL != window.location.href) {
             window.history.replaceState(null, '', currentURL);
         }
+
+        // Each call of drawWork() must be independent, i.e., not depend on the
+        // previous image. So surround the call with ctx.save() and
+        // crtx.restore(), so the drawWork() methods don't have to do it.
+        this.ctx.save();
         this.drawWork();
+        this.ctx.restore();
     }
     drawWork() {
         throw new Error('Unimplemented method drawWork()!');
@@ -445,6 +454,59 @@ export class Work {
         this.ctx.restore();
     }
 
+    // For works where you want some space between the canvas and the drawing,
+    // or to ensure that a thicker border around the drawing is fully visible,
+    // or if you draw slightly outside the canvas and want to scale it down to
+    // see it all.
+    scaleCanvas(scaleFactor) {
+        this.ctx.translate(this.width / 2, this.height / 2);
+        this.ctx.scale(scaleFactor, scaleFactor)
+        this.ctx.translate(-this.width / 2, -this.height / 2);
+    }
+
+    tileIterator(callback, scanOrder = 'xy') {
+        let tileDim = this.width / this.ctrl.numTiles;
+        let handleTile = (x, y) => {
+            this.ctx.save();
+            // translate to tile center so any scale() or rotate() happen there
+            this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+            callback(new Tile(x, y, tileDim));
+            this.ctx.restore();
+        };
+        if (scanOrder == 'xy') {
+            // left-to-right, from the top row to the bottom row
+            for (let y = 0; y < this.ctrl.numTiles; y++) {
+                for (let x = 0; x < this.ctrl.numTiles; x++) {
+                    handleTile(x, y);
+                }
+            }
+        } else if (scanOrder == 'yx') {
+            // top-to-bottom, from the first column to the last column
+            for (let x = 0; x < this.ctrl.numTiles; x++) {
+                for (let y = 0; y < this.ctrl.numTiles; y++) {
+                    handleTile(x, y);
+                }
+            }
+        } else if (scanOrder == 'serpentine') {
+            // rows top-to-bottom, alternating between left-to-right and
+            // right-to-left
+            for (let y = 0; y < this.ctrl.numTiles; y++) {
+                if (y % 2 == 0) {
+                    // even rows: left-to-right
+                    for (let x = 0; x < this.ctrl.numTiles; x++) {
+                        handleTile(x, y);
+                    }
+                } else {
+                    // odd rows: right-to-left
+                    for (let x = this.ctrl.numTiles - 1; x >= 0; x--) {
+                        handleTile(x, y);
+                    }
+                }
+            }
+        } else {
+            throw new Error(`tileIterator(): invalid scan order '${scanOrder}'`);
+        }
+    }
     // Context-related convenience methods for Points
     lineToPoint(p) {
         this.ctx.lineTo(...p.asArray());
@@ -460,6 +522,13 @@ export class Work {
     }
     translateToPoint(p) {
         this.ctx.translate(...p.asArray());
+    }
+    trianglePath(p1, p2, p3) {
+        this.ctx.beginPath();
+        this.moveToPoint(p1);
+        this.lineToPoint(p2);
+        this.lineToPoint(p3);
+        this.ctx.closePath();
     }
 
     run() {
@@ -619,5 +688,52 @@ class SelectControl {
     }
     getOptionValues() {
         return [...this.element.options].map(o => o.value);
+    }
+}
+class Tile {
+    constructor(x, y, tileDim) {
+        this.x = x;
+        this.y = y;
+        this.tileDim = tileDim;
+    }
+
+    // The following methods assume that the context has been translated so
+    // that (0, 0) is at the center of the tile. handleTile() in tileIterator()
+    // above does that.
+
+    upperLeft() {
+        return new Point(-this.tileDim / 2, -this.tileDim / 2);
+    }
+
+    upperMiddle() {
+        return new Point(0, -this.tileDim / 2);
+    }
+
+    upperRight() {
+        return new Point(this.tileDim / 2, -this.tileDim / 2);
+    }
+
+    middleLeft() {
+        return new Point(-this.tileDim / 2, 0);
+    }
+
+    center() {
+        return new Point(0, 0);
+    }
+
+    middleRight() {
+        return new Point(this.tileDim / 2, 0);
+    }
+
+    lowerLeft() {
+        return new Point(-this.tileDim / 2, this.tileDim / 2);
+    }
+
+    lowerMiddle() {
+        return new Point(0, this.tileDim / 2);
+    }
+
+    lowerRight() {
+        return new Point(this.tileDim / 2, this.tileDim / 2);
     }
 }

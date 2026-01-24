@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -15,7 +15,6 @@ export class Work0023 extends Work {
         ];
     }
     drawWork() {
-        this.ctx.save();
         this.clearCanvas();
         this.ctx.lineWidth = this.ctrl.lineWidth;
         this.ctx.strokeStyle = 'black';
@@ -23,26 +22,18 @@ export class Work0023 extends Work {
         this.ctx.translate(this.width / 2, this.height / 2);
         this.ctx.scale(0.97, 0.97);
         this.ctx.translate(-this.width / 2, -this.height / 2);
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                this.ctx.save();
-                // move to the tile center so rotate() and scale() happen there
-                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-                this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
-                this.ctx.translate(
-                    MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
-                    MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
-                );
-                // `this.ctx.scale(this.ctrl.scale, this.ctrl.scale)` instead would also change the line weight.
-                this.ctx.beginPath();
-                this.ctx.moveTo(this.ctrl.scale * -tileDim / 2, 0);
-                this.ctx.lineTo(this.ctrl.scale * tileDim / 2, 0);
-                this.ctx.stroke();
-                this.ctx.restore();
-            }
-        }
-        this.ctx.restore();
+        this.tileIterator((tile) => {
+            this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
+            this.ctx.translate(
+                MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
+                MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis),
+            );
+            // `this.ctx.scale(this.ctrl.scale, this.ctrl.scale)` instead would also change the line weight.
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.ctrl.scale * -tile.tileDim / 2, 0);
+            this.ctx.lineTo(this.ctrl.scale * tile.tileDim / 2, 0);
+            this.ctx.stroke();
+        });
     }
     description = `Each tile contains a randomly rotated and randomly offset line. Technically, the tile itself is rotated and offset, then a straign line is drawn. Inspired by Vera Molnár.`;
     createdDate = '2023-09-22';

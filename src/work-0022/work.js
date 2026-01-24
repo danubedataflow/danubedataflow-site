@@ -1,10 +1,12 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     ArrayUtils
 } from '/js/utils.js';
-import { Point } from '/js/point.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0022 extends Work {
     getControls() {
         return [
@@ -18,32 +20,25 @@ export class Work0022 extends Work {
     drawWork() {
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                this.ctx.save();
-                // move to the tile center so rotate() and scale() happen there
-                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-                this.ctx.scale(this.ctrl.scale, this.ctrl.scale);
-                let points = [];
-                for (let py = 0; py < this.ctrl.numPointsPerSide; py++) {
-                    for (let px = 0; px < this.ctrl.numPointsPerSide; px++) {
-                        points.push(new Point(
-                            Math.round(px * tileDim / (this.ctrl.numPointsPerSide - 1) - tileDim / 2),
-                            Math.round(py * tileDim / (this.ctrl.numPointsPerSide - 1) - tileDim / 2)
-                        ));
-                    }
+        this.tileIterator((tile) => {
+            this.ctx.scale(this.ctrl.scale, this.ctrl.scale);
+            let points = [];
+            for (let py = 0; py < this.ctrl.numPointsPerSide; py++) {
+                for (let px = 0; px < this.ctrl.numPointsPerSide; px++) {
+                    points.push(new Point(
+                        Math.round(px * tile.tileDim / (this.ctrl.numPointsPerSide - 1) - tile.tileDim / 2),
+                        Math.round(py * tile.tileDim / (this.ctrl.numPointsPerSide - 1) - tile.tileDim / 2)
+                    ));
                 }
-                points = ArrayUtils.shuffle(points);
-                ArrayUtils.pairwise(points, (p1, p2) => {
-                    this.ctx.beginPath();
-                    this.moveToPoint(p1);
-                    this.lineToPoint(p2);
-                    this.ctx.stroke();
-                });
-                this.ctx.restore();
             }
-        }
+            points = ArrayUtils.shuffle(points);
+            ArrayUtils.pairwise(points, (p1, p2) => {
+                this.ctx.beginPath();
+                this.moveToPoint(p1);
+                this.lineToPoint(p2);
+                this.ctx.stroke();
+            });
+        });
     }
     description = `In each square tile, a grid of points is randomly connected by lines. Homage to "Hommage à Dürer" by haVera Molnár, which itself was based on the magic square from Albrecht Dürer's engraving "Melencolia I".`;
     createdDate = '2023-09-21';

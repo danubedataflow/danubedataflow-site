@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ArrayUtils
@@ -18,13 +18,9 @@ export class Work0024 extends Work {
         ];
     }
     drawWork() {
-        this.ctx.save();
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
-        // pad the work
-        this.ctx.translate(this.width / 2, this.height / 2);
-        this.ctx.scale(0.9, 0.9);
-        this.ctx.translate(-this.width / 2, -this.height / 2);
+        this.scaleCanvas(0.9);  // padding
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
         /*
          * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
@@ -41,22 +37,16 @@ export class Work0024 extends Work {
          */
         let shouldFillArray = ArrayUtils.shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
             .map((el, index) => index < numFilled));
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                let tileULX = (x - 1) * tileDim;
-                let tileULY = (y - 1) * tileDim;
-                let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-                let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
-                let shouldFill = shouldFillArray.shift();
-                if (shouldFill) {
-                    this.ctx.fillStyle = ArrayUtils.randomElement(palette);
-                    this.ctx.fillRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
-                }
-                this.ctx.strokeRect(tileULX + xOffset, tileULY + yOffset, tileDim, tileDim);
+        this.tileIterator((tile) => {
+            let xOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+            let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
+            let rectArgs = [tile.upperLeft().move(xOffset, yOffset), tile.tileDim, tile.tileDim];
+            if (shouldFillArray.shift()) {
+                this.ctx.fillStyle = ArrayUtils.randomElement(palette);
+                this.fillRectForPoint(...rectArgs);
             }
-        }
-        this.ctx.restore();
+            this.strokeRectForPoint(...rectArgs);
+        });
     }
     description = `Each tile contains a randomly offset stroked square. A given ratio of squares, but at least one, is filled with a random color. Inspired by Vera Molnár.`;
     createdDate = '2023-09-28';

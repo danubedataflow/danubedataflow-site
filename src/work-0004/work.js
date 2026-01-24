@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -23,27 +23,21 @@ export class Work0004 extends Work {
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         let angle = MathUtils.random() * 2 * Math.PI;
         let colorScale = chroma.scale(this.ctrl.colorMap);
-        let tileDim = Math.floor(this.width / this.ctrl.numTiles);
-        let radius = tileDim * 0.4;
-        let p = new Point(Math.sin(angle) * radius, Math.cos(angle) * radius);
-        for (let x = 0; x < this.ctrl.numTiles; x++) {
-            for (let y = 0; y < this.ctrl.numTiles; y++) {
-                this.ctx.save();
-                this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
-                for (let i = 1; i <= numLines; i++) {
-                    this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
-                    let angle2 = MathUtils.random() * 2 * Math.PI;
-                    let p2 = new Point(Math.sin(angle2) * radius, Math.cos(angle2) * radius);
-                    this.ctx.beginPath();
-                    this.moveToPoint(p);
-                    this.lineToPoint(p2);
-                    this.ctx.stroke();
-                    p = p2;
-                }
-                this.ctx.restore();
+        this.tileIterator((tile) => {
+            let radius = tile.tileDim * 0.4;
+            let p = new Point(Math.sin(angle) * radius, Math.cos(angle) * radius);
+            let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
+            for (let i = 1; i <= numLines; i++) {
+                this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
+                let angle2 = MathUtils.random() * 2 * Math.PI;
+                let p2 = new Point(Math.sin(angle2) * radius, Math.cos(angle2) * radius);
+                this.ctx.beginPath();
+                this.moveToPoint(p);
+                this.lineToPoint(p2);
+                this.ctx.stroke();
+                p = p2;
             }
-        }
+        });
     }
     description = `A random number of lines from one point on a circle to a random point on the same circle. This becomes the starting point of the next line.`;
     createdDate = '2022-08-25';

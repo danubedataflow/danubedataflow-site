@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ColorUtils
@@ -18,6 +18,8 @@ export class Work0033 extends Work {
         let lsystem = this.makeLsystem();
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
+        // Don't use tileIterator() because we need to set spec in between y
+        // and x loops
         let tileDim = this.width / this.ctrl.numTiles;
         for (let y = 1; y <= this.ctrl.numTiles; y++) {
             let spec = lsystem.getString();

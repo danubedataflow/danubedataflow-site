@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ArrayUtils
@@ -34,6 +34,7 @@ export class Work0037 extends Work {
         let upperRight = new Point(this.width, 0);
         let lowerLeft = new Point(0, this.height);
         let lowerRight = new Point(this.width, this.height);
+
         // a diagonal splits the canvas into two triangles
         this.drawTriangle(upperLeft, upperRight, lowerLeft, 0);
         this.drawTriangle(upperRight, lowerLeft, lowerRight, 0);
@@ -55,11 +56,7 @@ export class Work0037 extends Work {
             this.drawTriangle(edge.pB, splitPoint, oppositePoint, currentDepth + 1);
         } else {
             // it's a terminal triangle
-            this.ctx.beginPath();
-            this.moveToPoint(p1);
-            this.lineToPoint(p2);
-            this.lineToPoint(p3);
-            this.ctx.closePath();
+            this.trianglePath(p1, p2, p3);
             if (MathUtils.random() < this.ctrl.chanceFill / 100) {
                 this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);
                 this.ctx.fill();

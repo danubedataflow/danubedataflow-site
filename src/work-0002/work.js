@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ColorUtils
@@ -20,21 +20,16 @@ export class Work0002 extends Work {
         this.clearCanvas();
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         let colorScale = chroma.scale(this.ctrl.colorMap);
-        let p = [];
+        let points = [];
         // + 2 because the first triangle is only drawn on the third iteration
         for (let i = 1; i <= this.ctrl.numTriangles + 2; i++) {
-            p.push(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)));
-            if (p.length == 3) {
+            points.push(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)));
+            if (points.length == 3) {
                 let color = colorScale(MathUtils.random()).rgb();
                 this.ctx.fillStyle = ColorUtils.colorRGBA(...color, MathUtils.random());
-                // draw a triangle
-                this.ctx.beginPath();
-                this.moveToPoint(p[0]);
-                this.lineToPoint(p[1]);
-                this.lineToPoint(p[2]);
-                this.ctx.closePath();
+                this.trianglePath(...points);
                 this.ctx.fill();
-                p.shift();
+                points.shift();
             }
         }
     }

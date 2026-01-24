@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ColorUtils
@@ -17,14 +17,9 @@ export class Work0017 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        // Scale down to create a margin so the outermost strokes won't be clipped.
-        let dim = this.width; // this.width == this.height because of square canvas
-        this.ctx.save();
 
-        // pad the work
-        this.ctx.translate(dim / 2, dim / 2);
-        this.ctx.scale(this.ctrl.scale, this.ctrl.scale);
-        this.ctx.translate(-dim / 2, -dim / 2);
+        // Scale down to create a margin so the outermost strokes won't be clipped.
+        this.scaleCanvas(this.ctrl.scale);
 
         let tileDim = this.width / this.ctrl.numTiles;
         for (let i = 0; i <= this.ctrl.numRects; i++) {
@@ -37,7 +32,6 @@ export class Work0017 extends Work {
             this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
             this.ctx.strokeRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
         }
-        this.ctx.restore();
     }
     description = `Random stroked rectangles. The strokes have random weights and transparencies. Each rectangle spans a random number of horizontal and vertical tiles.`;
     createdDate = '2022-11-30';

@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ArrayUtils
@@ -21,49 +21,23 @@ export class Work0018 extends Work {
     }
     drawWork() {
         this.palette = ['white', '#777777', 'black'];
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                this.ctx.save();
-                this.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-                this.chooseColors(this.ctrl.colorStrategy);
-                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalOrientationChance) {
-                    // upper left to lower right
-                    this.ctx.fillStyle = this.color1;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, 0);
-                    this.ctx.lineTo(tileDim, tileDim);
-                    this.ctx.lineTo(0, tileDim);
-                    this.ctx.closePath();
-                    this.ctx.fill();
-                    this.ctx.fillStyle = this.color2;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, 0);
-                    this.ctx.lineTo(tileDim, tileDim);
-                    this.ctx.lineTo(tileDim, 0);
-                    this.ctx.closePath();
-                    this.ctx.fill();
-                } else {
-                    // upper right to lower left
-                    this.ctx.fillStyle = this.color1;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(tileDim, 0);
-                    this.ctx.lineTo(0, tileDim);
-                    this.ctx.lineTo(0, 0);
-                    this.ctx.closePath();
-                    this.ctx.fill();
-                    this.ctx.fillStyle = this.color2;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(tileDim, 0);
-                    this.ctx.lineTo(0, tileDim);
-                    this.ctx.lineTo(tileDim, tileDim);
-                    this.ctx.closePath();
-                    this.ctx.fill();
-                }
-                this.color1 = this.color2;
-                this.ctx.restore();
-            }
-        }
+        this.tileIterator((tile) => {
+            this.chooseColors(this.ctrl.colorStrategy);
+
+            // We'll draw a diagonal from the upper left to the lower right.
+            // But randomly we'll use scale() to flip along vertical axis so
+            // we'll draw a diagonal from the upper left to the lower right.
+            if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalOrientationChance)
+                this.ctx.scale(-1, 1);
+
+            this.ctx.fillStyle = this.color1;
+            this.trianglePath(tile.upperRight(), tile.lowerLeft(), tile.lowerRight());
+            this.ctx.fill();
+            this.ctx.fillStyle = this.color2;
+            this.trianglePath(tile.upperRight(), tile.lowerLeft(), tile.upperLeft());
+            this.ctx.fill();
+            this.color1 = this.color2;
+        });
     }
     chooseColors(colorStrategy) {
         if (colorStrategy === 'random') {

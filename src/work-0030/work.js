@@ -1,9 +1,10 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
+import { Point } from '/js/point.js';
 export class Work0030 extends Work {
     getControls() {
         return [
@@ -25,11 +26,11 @@ export class Work0030 extends Work {
         const lineLength = this.ctrl.lineScale * this.width / this.ctrl.numTiles;
         let d = window.devicePixelRatio; // no idea why this is necessary
         this.gridCenters(this.ctrl.numTiles)
-            .filter(p => !this.ctx.isPointInPath(path, p[0] * d, p[1] * d))
-            .forEach(p => {
-                // Draw a line at a random angle around the center of p.
+            .filter(point => !this.ctx.isPointInPath(path, point.x * d, point.y * d))
+            .forEach(point => {
+                // Draw a line at a random angle around the center of the point.
                 this.ctx.save();
-                this.ctx.translate(...p);
+                this.translateToPoint(point);
                 this.ctx.rotate(2 * Math.PI * MathUtils.randomIntUpTo(this.ctrl.angleStep) / this.ctrl.angleStep);
                 this.ctx.beginPath();
                 this.ctx.moveTo(-lineLength / 2, 0);
@@ -39,13 +40,13 @@ export class Work0030 extends Work {
             });
     }
     gridCenters(num) {
-        let p = [];
+        let points = [];
         for (let y = 0; y < num; y++) {
             for (let x = 0; x < num; x++) {
-                p.push([(x + 0.5) * this.width / num, (y + 0.5) * this.height / num]);
+                points.push(new Point((x + 0.5) * this.width / num, (y + 0.5) * this.height / num));
             }
         }
-        return p;
+        return points;
     }
     randomPath(n, curveScale) {
         // this offset applies to the whole path

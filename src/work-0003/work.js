@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -15,24 +15,19 @@ export class Work0003 extends Work {
     drawWork() {
         this.clearCanvas('black');
         let colorScale = chroma.scale(this.ctrl.colorMap);
-        let tileDim = Math.floor(this.width / this.ctrl.numTiles);
-        let radius = tileDim * 0.4;
-        for (let x = 0; x < this.ctrl.numTiles; x++) {
-            for (let y = 0; y < this.ctrl.numTiles; y++) {
-                this.ctx.save();
-                this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
-                for (let i = 1; i <= numLines; i++) {
-                    this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, 0);
-                    let angle = MathUtils.random() * 2 * Math.PI;
-                    this.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
-                    this.ctx.stroke();
-                }
-                this.ctx.restore();
+
+        this.tileIterator((tile) => {
+            let radius = tile.tileDim * 0.4;
+            let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
+            for (let i = 1; i <= numLines; i++) {
+                this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
+                this.ctx.beginPath();
+                this.moveToPoint(tile.center());
+                let angle = MathUtils.random() * 2 * Math.PI;
+                this.ctx.lineTo(Math.sin(angle) * radius, Math.cos(angle) * radius);
+                this.ctx.stroke();
             }
-        }
+        });
     }
     description = `A random number of lines from a central point to a point on a circle at a random angle.`;
     createdDate = '2022-08-13';

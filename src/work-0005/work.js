@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -18,7 +18,6 @@ export class Work0005 extends Work {
     drawWork() {
         this.clearCanvas();
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
-        this.ctx.save();
         this.ctx.translate(this.width / 2, this.height / 2);
         let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
         let colorIndex = MathUtils.randomIntUpTo(palette.length);
@@ -32,7 +31,6 @@ export class Work0005 extends Work {
             this.ctx.beginPath();
             this.ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
         });
-        this.ctx.restore();
     }
     /* See https://math.stackexchange.com/a/4128516
      *

@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -19,20 +19,14 @@ export class Work0008 extends Work {
         this.clearCanvas();
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
-        let tileDim = Math.floor(this.width / this.ctrl.numTiles);
-        for (let x = 0; x < this.ctrl.numTiles; x++) {
-            for (let y = 0; y < this.ctrl.numTiles; y++) {
-                this.ctx.save();
-                this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
+        this.tileIterator((tile) => {
                 let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
                 let diameter = MathUtils.randomIntRange(...this.ctrl.diameterRange);
                 let rotationStep = MathUtils.randomIntRange(...this.ctrl.rotationStepRange);
                 let maxDepth = MathUtils.randomIntRange(...this.ctrl.maxDepthRange);
-                this.drawPolygons(numSides, diameter * tileDim / 100,
+                this.drawPolygons(numSides, diameter * tile.tileDim / 100,
                     0, rotationStep, maxDepth);
-                this.ctx.restore();
-            }
-        }
+        });
     }
     drawPolygons(sides, diameter, rotation, rotationStep, maxDepth = 0, depth = 0) {
         let points = MathUtils.getPointsForPolygon(sides, diameter, rotation);

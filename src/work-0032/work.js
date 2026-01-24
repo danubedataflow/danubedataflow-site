@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils,
     ArrayUtils,
@@ -132,21 +132,14 @@ export class Work0032 extends Work {
         let numColored = Math.max(1, Math.round(this.ctrl.numTiles * this.ctrl.numTiles / this.ctrl.ratioColoredTiles));
         let shouldColorArray = ArrayUtils.shuffle(Array(this.ctrl.numTiles * this.ctrl.numTiles).fill(false)
             .map((el, index) => index < numColored));
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                this.ctx.save();
-                // move to tile center to rotate
-                this.ctx.translate((x - 0.5) * tileDim, (y - 0.5) * tileDim);
-                this.ctx.scale(0.9, 0.9);
-                this.drawTile(tileDim, shouldColorArray);
-                this.ctx.restore();
-            }
-        }
+        this.tileIterator((tile) => {
+            this.ctx.scale(0.9, 0.9);
+            this.drawTile(tile, shouldColorArray);
+        });
     }
-    drawTile(tileDim, shouldColorArray) {
+    drawTile(tile, shouldColorArray) {
         // each tile consists of 5 x 5 "pixels"
-        let pixelDim = tileDim / 5;
+        let pixelDim = tile.tileDim / 5;
         // random rotation by a multiple of 90 degrees
         this.ctx.rotate(MathUtils.randomIntUpTo(4) * Math.PI / 2);
         // Use calls to random() in any case so the shapes, chosen by another

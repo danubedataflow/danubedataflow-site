@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -22,24 +22,18 @@ export class Work0001 extends Work {
     drawWork() {
         this.clearCanvas('black');
         this.ctx.strokeStyle = 'white';
-        let tileDim = Math.floor(this.width / this.ctrl.numTiles);
-        for (let x = 0; x < this.ctrl.numTiles; x++) {
-            for (let y = 0; y < this.ctrl.numTiles; y++) {
-                this.ctx.save();
-                this.ctx.translate((x + 0.5) * tileDim, (y + 0.5) * tileDim);
-                let n = noise.simplex2(
-                    this.ctrl.noiseOffsetX + x / this.ctrl.noiseDivisor,
-                    this.ctrl.noiseOffsetY + y / this.ctrl.noiseDivisor
-                );
-                let diameter = Math.floor(n * this.ctrl.polygonScaleFactor * tileDim);
-                this.ctx.beginPath();
-                let points = MathUtils.getPointsForPolygon(this.ctrl.numSides, diameter, 0);
-                points.forEach(p => this.lineToPoint(p));
-                this.ctx.closePath();
-                this.ctx.stroke();
-                this.ctx.restore();
-            }
-        }
+        this.tileIterator((tile) => {
+            let n = noise.simplex2(
+                this.ctrl.noiseOffsetX + tile.x / this.ctrl.noiseDivisor,
+                this.ctrl.noiseOffsetY + tile.y / this.ctrl.noiseDivisor
+            );
+            let diameter = Math.floor(n * this.ctrl.polygonScaleFactor * tile.tileDim);
+            this.ctx.beginPath();
+            let points = MathUtils.getPointsForPolygon(this.ctrl.numSides, diameter, 0);
+            points.forEach(p => this.lineToPoint(p));
+            this.ctx.closePath();
+            this.ctx.stroke();
+        });
     }
     description = `Draw a grid of polygons whose sizes depend on two-dimensional Perlin noise.`;
     createdDate = '2022-07-27';

@@ -1,6 +1,6 @@
 import {
     Work
-} from '/js/work.js';
+} from '/js/basework.js';
 import {
     MathUtils
 } from '/js/utils.js';
@@ -16,48 +16,37 @@ export class Work0013 extends Work {
         ];
     }
     drawWork() {
-        this.ctx.save();
         this.clearCanvas();
-        // pad the work
-        this.ctx.translate(this.width / 2, this.height / 2);
-        this.ctx.scale(0.97, 0.97);
-        this.ctx.translate(-this.width / 2, -this.height / 2);
+        this.scaleCanvas(0.97);  // padding
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';
-        let tileDim = this.width / this.ctrl.numTiles;
-        for (let y = 1; y <= this.ctrl.numTiles; y++) {
-            for (let x = 1; x <= this.ctrl.numTiles; x++) {
-                this.ctx.save();
-                this.ctx.translate((x - 1) * tileDim, (y - 1) * tileDim);
-                if (this.ctrl.hasTileBorder) this.ctx.strokeRect(0, 0, tileDim, tileDim);
-                if (MathUtils.randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, tileDim / 2);
-                    this.ctx.lineTo(tileDim, tileDim / 2);
-                    this.ctx.stroke();
-                }
-                if (MathUtils.randomIntUpTo(100) < this.ctrl.verticalLineChance) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(tileDim / 2, 0);
-                    this.ctx.lineTo(tileDim / 2, tileDim);
-                    this.ctx.stroke();
-                }
-                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, tileDim);
-                    this.ctx.lineTo(tileDim, 0);
-                    this.ctx.stroke();
-                }
-                if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, 0);
-                    this.ctx.lineTo(tileDim, tileDim);
-                    this.ctx.stroke();
-                }
-                this.ctx.restore();
+        this.tileIterator((tile) => {
+            if (this.ctrl.hasTileBorder) this.strokeRectForPoint(tile.upperLeft(), tile.tileDim, tile.tileDim);
+            if (MathUtils.randomIntUpTo(100) < this.ctrl.horizontalLineChance) {
+                this.ctx.beginPath();
+                this.moveToPoint(tile.middleLeft());
+                this.lineToPoint(tile.middleRight());
+                this.ctx.stroke();
             }
-        }
-        this.ctx.restore();
+            if (MathUtils.randomIntUpTo(100) < this.ctrl.verticalLineChance) {
+                this.ctx.beginPath();
+                this.moveToPoint(tile.upperMiddle());
+                this.lineToPoint(tile.lowerMiddle());
+                this.ctx.stroke();
+            }
+            if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalUpwardsLineChance) {
+                this.ctx.beginPath();
+                this.moveToPoint(tile.lowerLeft());
+                this.lineToPoint(tile.upperRight());
+                this.ctx.stroke();
+            }
+            if (MathUtils.randomIntUpTo(100) < this.ctrl.diagonalDownwardsLineChance) {
+                this.ctx.beginPath();
+                this.moveToPoint(tile.upperLeft());
+                this.lineToPoint(tile.lowerRight());
+                this.ctx.stroke();
+            }
+        });
     }
     description = `Each tile has separate probabilities of containing a horizontal line, a vertical line, a diagonal upwards line and a diagonal downwards line.`;
     createdDate = '2022-11-07';
