@@ -112,6 +112,14 @@ export class MathUtils {
         }
         return points;
     }
+
+    // Linearly map a value from the range (a..b) to (0..1), then to
+    // (c..d). This is a generic function; it practice it can often be
+    // simplified, e.g., when mapping from "0..b" to "0..100".
+    static mapRange(value, a, b, c, d) {
+        return ((value - a) / (b - a)) * (d - c);
+    }
+
 }
 export class ArrayUtils {
     // call a function with elements [0, 1], then [1, 2] etc.
