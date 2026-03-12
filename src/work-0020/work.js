@@ -24,7 +24,6 @@ export class Work0020 extends Work {
             // fill whole tile
             this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredTileChance ? ArrayUtils.randomElement(palette) : 'white';
             this.fillSquareForPoint(tile.upperLeft(), tile.tileDim);
-
             // quadrants, diagonally sliced, inner triangle
             let triangles = [
                 [tile.upperMiddle(), tile.center(), tile.middleLeft()], // UL quadrant
