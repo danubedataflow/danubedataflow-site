@@ -1,91 +1,23 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use 5.34.0;
+use feature 'signatures';
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
+use DanubeDataflow;
 use Path::Tiny;
 use utf8;
-my %replace;
-
-# The 'header' block
-$replace{header} = <<~BLOCK;
-    <header>
-        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
-        <h2 class="site-byline">Minimal digital algorithmic art</h2>
-        <div class="nav">
-            <a href="/">Works</a>
-            | <a href="/principles/">Principles</a>
-            | <a href="/notes/">Notes</a>
-            | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank">GitHub</a>
-        </div>
-    </header>
-    BLOCK
-
-# The 'metadata' block
-$replace{metadata} = <<~BLOCK;
-    <meta charset="utf-8">
-    <meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
-    <meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
-    <meta name="author" content="danubedataflow">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link href="/css/style.css" rel="stylesheet">
-    BLOCK
-
-# The 'scripts' block
-$replace{scripts} = <<~BLOCK;
-    <link href="/deps/nouislider.min.css" rel="stylesheet">
-    <script src="/deps/nouislider.min.js"></script>
-    <script src="/deps/jszip.min.js"></script>
-    <script src="/deps/FileSaver.min.js"></script>
-    <script src="/deps/chroma.min.js"></script>
-    <script src="/deps/lindenmayer.browser.min.js"></script>
-    <script src="/deps/perlin.js"></script>
-    BLOCK
-
-# The 'work' block
-$replace{work} = <<~BLOCK;
-    <main>
-        <section id="work-container">
-            <div id="work"><canvas></canvas></div>
-
-            <div id="controls">
-                <p>
-                    <span id="workTitle"></span>
-                    <a id="goToNewerWork" href="#"><span title="Go to newer work (left arrow)">&#x2B05;&#xFE0F;</span></a>
-                    <a id="goToOlderWork" href="#"><span title="Go to older work (right arrow)">&#x27A1;&#xFE0F;</span></a>
-                    |
-                    <span id="createdDate"></span> |
-                    <span id="canvasSize"></span> |
-                    <a id="sourceLink" href="#" target="_blank">Source code</a> |
-                    <a id="saveCanvas" href="#">Save</a> |
-                    <a id="copyLink" href="#">Copy link</a>
-                </p>
-
-                <button id="redrawWithNewSeed" class="button">New random seed</button>
-                <button id="setControlsRandomly" class="button">Random parameters</button>
-
-                <details id="description">
-                    <summary></summary>
-                </details>
-
-                <form id="controls-form">
-                </form>
-
-            </div>
-        </section>
-    </main>
-    BLOCK
 my $iter = path('src')->iterator({ recurse => 1 });
+
 while (my $next = $iter->()) {
     next unless $next =~ /.html$/;
     my @html   = $next->lines_utf8;
-    my @output = replace_blocks(\@html, \%replace);
+    my @output = replace_blocks(\@html);
     $next->spew_utf8(@output);
 }
 
-sub replace_blocks {
-    my ($lines_array, $replacement_hash) = @_;
+sub replace_blocks ($lines_array) {
     my $current;
     my @output;
     for ($lines_array->@*) {
@@ -99,14 +31,14 @@ sub replace_blocks {
 
         # detect END marker
         if (/<!--\s*END\s+(\w+)\s*-->/) {
-            push @output, $replace{$current};
+            push @output, get_block($current);
             undef $current;
             push @output, $_;
             next;
         }
 
         # inside a block: replace content
-        if ($current && exists $replace{$current}) {
+        if ($current && has_block($current)) {
             next;
         }
 

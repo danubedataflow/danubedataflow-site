@@ -1,0 +1,95 @@
+package DanubeDataflow;
+use strict;
+use warnings;
+use 5.34.0;
+use feature 'signatures';
+
+sub import {
+    my $caller = caller();
+    no strict 'refs';
+    *{"${caller}::$_"} = *{$_}{CODE} for qw(
+      get_block
+      has_block
+    );
+}
+my %blocks;
+
+# The 'header' block
+$blocks{header} = <<~BLOCK;
+    <header>
+        <h1 class="site-title"><a href="/">Danube Dataflow</a></h1>
+        <h2 class="site-byline">Minimal digital algorithmic art</h2>
+        <div class="nav">
+            <a href="/">Works</a>
+            | <a href="/principles/">Principles</a>
+            | <a href="/notes/">Notes</a>
+            | <a href="https://github.com/danubedataflow/danubedataflow-site" target="_blank">GitHub</a>
+        </div>
+    </header>
+    BLOCK
+
+# The 'metadata' block
+$blocks{metadata} = <<~BLOCK;
+    <meta charset="utf-8">
+    <meta name="keywords" content="Algorithmic art, digital art, generative design, creative programming, creative coding">
+    <meta name="description" content="Minimal algorithmic art from the Danube metropolis.">
+    <meta name="author" content="danubedataflow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="/css/style.css" rel="stylesheet">
+    BLOCK
+
+# The 'scripts' block
+$blocks{scripts} = <<~BLOCK;
+    <link href="/deps/nouislider.min.css" rel="stylesheet">
+    <script src="/deps/nouislider.min.js"></script>
+    <script src="/deps/jszip.min.js"></script>
+    <script src="/deps/FileSaver.min.js"></script>
+    <script src="/deps/chroma.min.js"></script>
+    <script src="/deps/lindenmayer.browser.min.js"></script>
+    <script src="/deps/perlin.js"></script>
+    BLOCK
+
+# The 'work' block
+$blocks{work} = <<~BLOCK;
+    <main>
+        <section id="work-container">
+            <div id="work"><canvas></canvas></div>
+
+            <div id="controls">
+                <p>
+                    <span id="workTitle"></span>
+                    <a id="goToNewerWork" href="#"><span title="Go to newer work (left arrow)">&#x2B05;&#xFE0F;</span></a>
+                    <a id="goToOlderWork" href="#"><span title="Go to older work (right arrow)">&#x27A1;&#xFE0F;</span></a>
+                    |
+                    <span id="createdDate"></span> |
+                    <span id="canvasSize"></span> |
+                    <a id="sourceLink" href="#" target="_blank">Source code</a> |
+                    <a id="saveCanvas" href="#">Save</a> |
+                    <a id="copyLink" href="#">Copy link</a>
+                </p>
+
+                <button id="redrawWithNewSeed" class="button">New random seed</button>
+                <button id="setControlsRandomly" class="button">Random parameters</button>
+
+                <details id="description">
+                    <summary></summary>
+                </details>
+
+                <form id="controls-form">
+                </form>
+
+            </div>
+        </section>
+    </main>
+    BLOCK
+
+sub get_block ($name) {
+    $blocks{$name};
+}
+
+sub has_block ($name) {
+    exists $blocks{$name};
+}

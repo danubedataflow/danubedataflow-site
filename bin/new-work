@@ -1,0 +1,112 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use 5.34.0;
+use feature 'signatures';
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
+use DanubeDataflow;
+use Getopt::Long;
+use Path::Tiny;
+use Time::Moment;
+my %opt;
+GetOptions(\%opt, qw(id=s));
+
+unless (defined($opt{id}) && $opt{id} =~ /^\d{2,4}$/) {
+    die "--id must be an integer with two to four digits\n";
+}
+my $id  = sprintf '%04d', $opt{id};
+my $dir = path("$Bin/../src/work-$id")->realpath;
+if ($dir->exists && $dir->is_dir) {
+    die "$dir exists, aborting\n";
+}
+my $tm   = Time::Moment->now;
+my $date = sprintf '%04d-%02d-%02d', $tm->year, $tm->month, $tm->day_of_month;
+my %blocks     = map { $_ => get_block($_) } qw(metadata scripts header work);
+my $index_html = <<~HTML;
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <!-- BEGIN metadata -->
+        $blocks{metadata}
+        <!-- END metadata -->
+        <title>Work $id</title>
+        <!-- BEGIN scripts -->
+        $blocks{scripts}
+        <!-- END scripts -->
+    </head>
+
+    <body>
+        <!-- BEGIN header -->
+        $blocks{header}
+        <!-- END header -->
+
+        <!-- BEGIN work -->
+        $blocks{work}
+        <!-- END work -->
+    </body>
+    <script type="module">
+        import {
+            Work$id
+        } from './work.js';
+        new Work$id().run();
+    </script>
+
+    </html>
+    HTML
+my $work_js = <<~JS;
+    import {
+        Work
+    } from '/js/basework.js';
+    import {
+        MathUtils,
+        ArrayUtils,
+        ColorUtils
+    } from '/js/utils.js';
+    import {
+        Point
+    } from '/js/point.js';
+    import {
+        MarkovChain
+    } from '/js/markov.js';
+    export class Work$id extends Work {
+        getControls() {
+            return [
+                this.makeSlider('numTiles', 'Number of tiles per axis: {0}', 10, 60, 35),
+            ];
+        }
+
+        drawWork() {
+        }
+
+        description = `...`;
+        createdDate = '$date';
+    }
+    JS
+
+# directory
+warn "creating $dir\n";
+$dir->mkdir;
+
+# index.html
+my $path_index = $dir->child('index.html');
+warn "writing $path_index\n";
+$path_index->spew_utf8($index_html);
+for my $cmd ("html-beautify -m 1 -r -q $path_index") {
+    my $rc = system $cmd;
+    if ($rc != 0) { die "system() '$cmd' returned rc $rc\n"; }
+}
+
+# work.js
+my $path_work = $dir->child('work.js');
+warn "writing $path_work\n";
+$path_work->spew_utf8($work_js);
+
+# thumbnail.png
+my $path_thumbnail = $dir->child('thumbnail.png');
+warn "creating thumbnail $path_thumbnail\n";
+for my $cmd (qq!magick -size 200x200 xc:"#777777" $path_thumbnail!) {
+    my $rc = system $cmd;
+    if ($rc != 0) { die "system() '$cmd' returned rc $rc\n"; }
+}
