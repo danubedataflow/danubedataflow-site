@@ -66,14 +66,15 @@ my $work_js = <<~JS;
         ArrayUtils
     } from '/js/array.js';
     import {
-        ColorUtils
+        ColorUtils,
+        Palette
     } from '/js/color.js';
     import {
         Point
     } from '/js/point.js';
     import {
         MarkovChain
-    } from '/js/markov.js';
+    } from '/js/markov-chain.js';
     export class Work$id extends Work {
         getControls() {
             return [
