@@ -224,6 +224,8 @@ export class Work {
         return containerDiv;
     }
     makeSelectColorMap() {
+        // Skip diverging colors like 'Red-Yellow-Green' etc.; I don't like
+        // them.
         let containerDiv = this.makeSelect(
             'colorMap', 'Color map: ', [
                 this.makeOptGroup('Sequential',
@@ -246,17 +248,6 @@ export class Work {
                     this.makeOption('Blues'),
                     this.makeOption('PuBuGn', 'Purple-Blue-Green'),
                     this.makeOption('Viridis'),
-                ),
-                this.makeOptGroup('Diverging',
-                    this.makeOption('Spectral'),
-                    this.makeOption('RdYlGn', 'Red-Yellow-Green'),
-                    this.makeOption('RdBu', 'Red-Blue'),
-                    this.makeOption('PiYG', 'Pink-Yellow-Green'),
-                    this.makeOption('PRGn', 'Purple-Green'),
-                    this.makeOption('RdYlBu', 'Red-Yellow-Blue'),
-                    this.makeOption('BrBG', 'Brown-Blue-Green'),
-                    this.makeOption('RdGy', 'Red-Gray'),
-                    this.makeOption('PuOr', 'Purple-Orange'),
                 ),
                 this.makeOptGroup('Qualitative',
                     this.makeOption('Set2', 'Set 2'),
