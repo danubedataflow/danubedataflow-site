@@ -42,4 +42,16 @@ export class Palette {
         return ArrayUtils.randomElement(this.palette);
     }
 
+    getRandomColorsDistinctNeighbors(numColors) {
+        let colors = [];
+        for (let k = 0; k < numColors; k++) {
+            colors[k] = this.getRandomColor();
+
+            // adjacent colors must be different
+            while (k > 0 && colors[k] == colors[k - 1]) {
+                colors[k] = this.getRandomColor();
+            }
+        }
+        return colors;
+    }
 }

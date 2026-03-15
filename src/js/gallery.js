@@ -1,4 +1,4 @@
-let MAX_WORK = 38;
+let MAX_WORK = 39;
 // Define the order of works, for prev/next navigation. unshift() so the newest
 // works come first.
 export let gallery = [];
