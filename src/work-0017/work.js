@@ -7,6 +7,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0017 extends Work {
     getControls() {
         return [
@@ -30,7 +33,7 @@ export class Work0017 extends Work {
             this.ctx.lineWidth = (MathUtils.randomIntRange(...this.ctrl.lineWidthRange));
             let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
             this.ctx.strokeStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
-            this.ctx.strokeRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
+            this.strokeRectForPoint(new Point(ulX * tileDim, ulY * tileDim), spanX * tileDim, spanY * tileDim);
         }
     }
     description = `Random stroked rectangles. The strokes have random weights and transparencies. Each rectangle spans a random number of horizontal and vertical tiles.`;

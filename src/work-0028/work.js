@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/math.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0028 extends Work {
     getControls() {
         return [
@@ -37,7 +40,7 @@ export class Work0028 extends Work {
                     this.ctx.scale(0.9, 0.9); // to have space between the squares
                     if (MathUtils.random() > Math.pow(yPercent, exponent)) {
                         this.ctx.fillStyle = 'black';
-                        this.ctx.fillRect(0, 0, dim, dim);
+                        this.fillRectForPoint(new Point(0, 0), dim, dim);
                     }
                     this.ctx.restore();
                 }

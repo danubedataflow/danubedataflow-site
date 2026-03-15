@@ -30,7 +30,7 @@ export class Work0036 extends Work {
         // draw outer border if enabled
         if (this.ctrl.hasBorder) {
             this.ctx.strokeStyle = 'black';
-            this.ctx.strokeRect(0, 0, this.width, this.height);
+            this.strokeRectForPoint(new Point(0, 0), this.width, this.height);
         }
         this.drawSquare(new Point(0, 0), this.width, 0);
     }

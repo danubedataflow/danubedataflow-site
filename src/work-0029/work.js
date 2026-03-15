@@ -7,6 +7,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0029 extends Work {
     getControls() {
         return [
@@ -46,7 +49,7 @@ export class Work0029 extends Work {
             this.ctx.stroke();
         }
         // draw a border
-        this.ctx.strokeRect(0, 0, tile.tileDim, tile.tileDim);
+        this.strokeRectForPoint(new Point(0, 0), tile.tileDim, tile.tileDim);
         this.ctx.restore();
     }
     description = `Each tile contains a shape that has straight borders on the left, top and right sides. The shape along the bottom follows the path of a random walker. Each shape uses a random semitransparent fill so each intersecting shape of adjacent horizontal and vertical walkers is filled by a color that is related to its neighbors. Homage to "25 croix" by Vera Molnár, 1994`;

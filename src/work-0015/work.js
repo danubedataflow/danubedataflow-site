@@ -7,6 +7,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0015 extends Work {
     getControls() {
         return [
@@ -36,13 +39,13 @@ export class Work0015 extends Work {
             let x1 = MathUtils.randomIntUpTo(this.width);
             let w = MathUtils.randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.width / 100;
             this.setRandomFillColor();
-            this.ctx.fillRect(x1, 0, w, this.height);
+            this.fillRectForPoint(new Point(x1, 0), w, this.height);
         }
         for (let i = 0; i <= this.ctrl.numVerticalLines; i++) {
             let y1 = MathUtils.randomIntUpTo(this.width);
             let h = MathUtils.randomIntRange(...this.ctrl.lineWidthRangeRelative) * this.height / 100;
             this.setRandomFillColor();
-            this.ctx.fillRect(0, y1, this.width, h);
+            this.fillRectForPoint(new Point(0, y1), this.width, h);
         }
     }
     description = `Horizontal and vertical lines with random positions and random colors.`;

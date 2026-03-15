@@ -7,6 +7,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0033 extends Work {
     getControls() {
         return [
@@ -48,7 +51,7 @@ export class Work0033 extends Work {
                 // map alpha from the range (0..this.ctrl.numSymbols - 1) to (0..100)
                 let alpha = (alphaIndex / (this.ctrl.numSymbols - 1)) * 100;
                 this.ctx.fillStyle = ColorUtils.colorRGBA(0, 0, 0, alpha / 100);
-                this.ctx.fillRect(0, 0, tileDim, tileDim);
+                this.fillRectForPoint(new Point(0, 0), tileDim, tileDim);
                 this.ctx.restore();
             }
             lsystem.iterate();

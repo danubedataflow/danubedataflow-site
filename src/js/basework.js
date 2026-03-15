@@ -448,7 +448,7 @@ export class Work {
         this.ctx.save();
         this.ctx.globalCompositeOperation = 'source-over';
         this.ctx.fillStyle = color;
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.fillRectForPoint(new Point(0, 0), this.width, this.height);
         this.ctx.restore();
     }
     // For works where you want some space between the canvas and the drawing,

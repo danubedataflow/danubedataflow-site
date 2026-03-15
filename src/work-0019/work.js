@@ -51,10 +51,11 @@ export class Work0019 extends Work {
             }
             hsegments.push(width);
             ArrayUtils.pairwise(hsegments, (hcurrent, hnext) => {
+                let p = new Point(hcurrent, vcurrent);
                 if (drawType == 'plain') {
                     this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(ArrayUtils.randomElement(palette)).rgb(), alpha);
-                    this.ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
-                    this.ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
+                    this.fillRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
+                    this.strokeRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
                 } else if ((drawType == 'diagonal')) {
                     let c1, c2;
                     c1 = ArrayUtils.randomElement(palette);
@@ -62,8 +63,8 @@ export class Work0019 extends Work {
                         c2 = ArrayUtils.randomElement(palette);
                     } while (c1 == c2);
                     this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c1).rgb(), alpha);
-                    this.ctx.fillRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
-                    this.ctx.strokeRect(hcurrent, vcurrent, hnext - hcurrent, vnext - vcurrent);
+                    this.fillRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
+                    this.strokeRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
                     this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c2).rgb(), alpha);
                     if (MathUtils.random() < 0.5) {
                         this.trianglePath(new Point(hcurrent, vcurrent), new Point(hnext, vcurrent), new Point(hnext, vnext));

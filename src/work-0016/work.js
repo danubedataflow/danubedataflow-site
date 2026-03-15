@@ -7,6 +7,9 @@ import {
 import {
     ArrayUtils
 } from '/js/array.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0016 extends Work {
     getControls() {
         return [
@@ -24,7 +27,7 @@ export class Work0016 extends Work {
             let spanX = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulX);
             let spanY = MathUtils.randomIntRange(1, this.ctrl.numTiles - ulY);
             this.ctx.fillStyle = ArrayUtils.randomElement(palette);
-            this.ctx.fillRect(ulX * tileDim, ulY * tileDim, spanX * tileDim, spanY * tileDim);
+            this.fillRectForPoint(new Point(ulX * tileDim, ulY * tileDim), spanX * tileDim, spanY * tileDim);
         }
     }
     description = `Random white, grey and black rectangles, each spanning a random number of horizontal and vertical tiles.`;

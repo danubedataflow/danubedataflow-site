@@ -10,6 +10,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0006 extends Work {
     getControls() {
         return [
@@ -36,7 +39,7 @@ export class Work0006 extends Work {
             this.ctx.fillStyle = ColorUtils.colorRGBA(...color, alpha);
             let [minLength, maxLength] = this.ctrl.squareLengthRange;
             let s = MathUtils.randomIntRange(this.width * minLength / 100, this.height * maxLength / 100);
-            this.ctx.fillRect(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height), s, s);
+            this.fillRectForPoint(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)), s, s);
         }
     }
     description = `Random rectangles in random colors, blended together.`;

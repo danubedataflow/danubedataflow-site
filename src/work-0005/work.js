@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/math.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0005 extends Work {
     getControls() {
         return [
@@ -28,7 +31,7 @@ export class Work0005 extends Work {
             // wrap around
             colorIndex = (palette.length + colorIndex + direction) % palette.length;
             this.ctx.fillStyle = palette[colorIndex];
-            this.ctx.fillRect(x * magnify, y * magnify, magnify, magnify);
+            this.fillRectForPoint(new Point(x * magnify, y * magnify), magnify, magnify);
         });
     }
     /* See https://math.stackexchange.com/a/4128516

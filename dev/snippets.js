@@ -29,12 +29,8 @@ drawWork() {
 
 ===
 
-ColorUtils and Palette classes in /js/colors.js?
-
 Refactor:
 use Palette class
-fillRect => fillRectForPoint
-strokeRect => strokeRectForPoint
 
 ===
 

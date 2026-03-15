@@ -20,8 +20,7 @@ export class Work0030 extends Work {
         ];
     }
     drawWork() {
-        this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.clearCanvas();
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 1;
         let path = this.randomPath(this.ctrl.numCurves, this.ctrl.curveScale);

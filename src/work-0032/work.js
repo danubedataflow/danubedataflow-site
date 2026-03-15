@@ -10,6 +10,9 @@ import {
 import {
     ColorUtils
 } from '/js/color.js';
+import {
+    Point
+} from '/js/point.js';
 export class Work0032 extends Work {
     shapes = [
         [
@@ -172,7 +175,7 @@ export class Work0032 extends Work {
                     // pixel (px, py).
                     let ulX = (px - 2.5) * pixelDim;
                     let ulY = (py - 2.5) * pixelDim;
-                    this.ctx.fillRect(ulX, ulY, pixelDim, pixelDim);
+                    this.fillRectForPoint(new Point(ulX, ulY), pixelDim, pixelDim);
                 }
             }
         }
