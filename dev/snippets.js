@@ -3,7 +3,7 @@ getControls() {
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
-                this.makeSlider('numColors', 'Number of colors: {0}', 1, 32, 25),
+                this.makeSlider('numColors', 'Number of colors: {0}', 2, 32, 10),
             ),
     ]
 }
@@ -25,5 +25,10 @@ drawWork() {
     path.closePath();   // optional
     this.ctx.stroke(path);
     this.ctx.fill(path, "evenodd");
+
+    // ...
+    for (let i = 0; i < 100; i++) {
+        // ...
+    }
 }
 
