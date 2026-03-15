@@ -3,10 +3,10 @@ import {
 } from '/js/basework.js';
 import {
     ArrayUtils
-} from '/js/utils.js';
+} from '/js/array.js';
 import {
     MarkovChain
-} from '/js/markov.js';
+} from '/js/markov-chain.js';
 export class Work0038 extends Work {
     getControls() {
         return [

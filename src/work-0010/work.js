@@ -3,7 +3,7 @@ import {
 } from '/js/basework.js';
 import {
     MathUtils
-} from '/js/utils.js';
+} from '/js/math.js';
 export class Work0010 extends Work {
     getControls() {
         return [
@@ -12,7 +12,7 @@ export class Work0010 extends Work {
     }
     drawWork() {
         let curves = [];
-        // each curve has two control points and an end point; see Path2D.bezierCurveTo() docs.
+        // each curve has two control points and an end point; see x.bezierCurveTo() docs.
         for (let i = 0; i < this.ctrl.numCurves; i++) {
             curves.push([
                 [MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)],

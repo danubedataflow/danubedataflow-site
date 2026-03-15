@@ -2,9 +2,11 @@ import {
     Work
 } from '/js/basework.js';
 import {
-    MathUtils,
+    MathUtils
+} from '/js/math.js';
+import {
     ColorUtils
-} from '/js/utils.js';
+} from '/js/color.js';
 export class Work0033 extends Work {
     getControls() {
         return [

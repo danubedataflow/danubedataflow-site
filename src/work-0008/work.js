@@ -3,7 +3,7 @@ import {
 } from '/js/basework.js';
 import {
     MathUtils
-} from '/js/utils.js';
+} from '/js/math.js';
 export class Work0008 extends Work {
     colors = ['#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
     getControls() {

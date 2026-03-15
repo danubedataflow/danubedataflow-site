@@ -3,7 +3,7 @@ import {
 } from '/js/basework.js';
 import {
     ArrayUtils
-} from '/js/utils.js';
+} from '/js/array.js';
 import {
     Point
 } from '/js/point.js';

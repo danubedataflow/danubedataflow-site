@@ -42,9 +42,11 @@
  * The getTransitionMatrix() method returns the current transition matrix.
  */
 import {
-    MathUtils,
+    MathUtils
+} from '/js/math.js';
+import {
     ArrayUtils
-} from '/js/utils.js';
+} from '/js/array.js';
 export class MarkovChain {
     constructor() {
         this.states = [];

@@ -2,10 +2,14 @@ import {
     Work
 } from '/js/basework.js';
 import {
-    MathUtils,
-    ArrayUtils,
+    MathUtils
+} from '/js/math.js';
+import {
+    ArrayUtils
+} from '/js/array.js';
+import {
     ColorUtils
-} from '/js/utils.js';
+} from '/js/color.js';
 export class Work0006 extends Work {
     getControls() {
         return [
