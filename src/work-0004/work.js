@@ -5,6 +5,12 @@ import {
     MathUtils
 } from '/js/math.js';
 import {
+    ArrayUtils
+} from '/js/array.js';
+import {
+    Palette
+} from '/js/color.js';
+import {
     Point
 } from '/js/point.js';
 export class Work0004 extends Work {
@@ -14,6 +20,7 @@ export class Work0004 extends Work {
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['lighter', 'source-over', 'difference', 'exclusion', 'hard-light', 'lighten', 'screen']),
+                this.makeSlider('numColors', 'Number of colors: {0}', 5, 32, 16),
             ),
             this.makeSlider('numLinesRange', 'Number of lines: {0} to {1}', 1, 500, [160, 330]),
         ];
@@ -22,13 +29,13 @@ export class Work0004 extends Work {
         this.clearCanvas('black');
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         let angle = MathUtils.random() * 2 * Math.PI;
-        let colorScale = chroma.scale(this.ctrl.colorMap);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         this.tileIterator((tile) => {
             let radius = tile.tileDim * 0.4;
             let p = new Point(Math.sin(angle) * radius, Math.cos(angle) * radius);
             let numLines = MathUtils.randomIntRange(...this.ctrl.numLinesRange);
             for (let i = 1; i <= numLines; i++) {
-                this.ctx.strokeStyle = colorScale(MathUtils.random()).toString();
+                this.ctx.strokeStyle = palette.getRandomColor();
                 let angle2 = MathUtils.random() * 2 * Math.PI;
                 let p2 = new Point(Math.sin(angle2) * radius, Math.cos(angle2) * radius);
                 this.linePath(p, p2);

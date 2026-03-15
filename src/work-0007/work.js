@@ -4,6 +4,9 @@ import {
 import {
     MathUtils
 } from '/js/math.js';
+import {
+    Palette
+} from '/js/color.js';
 export class Work0007 extends Work {
     getControls() {
         return [
@@ -19,7 +22,7 @@ export class Work0007 extends Work {
         this.clearCanvas('black');
         this.tileIterator((tile) => {
             let numColors = MathUtils.randomIntRange(...this.ctrl.numColorsRange);
-            let palette = chroma.scale(this.ctrl.colorMap).colors(numColors);
+            let palette = new Palette(this.ctrl.colorMap, numColors).getColors();
             let numSides = MathUtils.randomIntRange(...this.ctrl.numSidesRange);
             let points = MathUtils.getPointsForPolygon(numSides, tile.tileDim * 0.9, 0);
             let colorIndex = 0;

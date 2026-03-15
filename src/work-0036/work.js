@@ -8,6 +8,9 @@ import {
     ArrayUtils
 } from '/js/array.js';
 import {
+    Palette
+} from '/js/color.js';
+import {
     Point
 } from '/js/point.js';
 export class Work0036 extends Work {
@@ -26,7 +29,7 @@ export class Work0036 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        this.palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        this.palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         // draw outer border if enabled
         if (this.ctrl.hasBorder) {
             this.ctx.strokeStyle = 'black';
@@ -49,7 +52,7 @@ export class Work0036 extends Work {
         } else {
             // it's a terminal square
             if (MathUtils.random() < this.ctrl.chanceFill / 100) {
-                this.ctx.fillStyle = ArrayUtils.randomElement(this.palette);
+                this.ctx.fillStyle = this.palette.getRandomColor();
                 this.fillSquareForPoint(upperLeft, squareSize);
             }
             if (this.ctrl.hasBorder) {

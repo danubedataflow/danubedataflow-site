@@ -7,6 +7,9 @@ import {
 import {
     ArrayUtils
 } from '/js/array.js';
+import {
+    Palette
+} from '/js/color.js';
 export class Work0020 extends Work {
     getControls() {
         return [
@@ -21,10 +24,10 @@ export class Work0020 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         this.tileIterator((tile) => {
             // fill whole tile
-            this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredTileChance ? ArrayUtils.randomElement(palette) : 'white';
+            this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredTileChance ? palette.getRandomColor() : 'white';
             this.fillSquareForPoint(tile.upperLeft(), tile.tileDim);
             // quadrants, diagonally sliced, inner triangle
             let triangles = [
@@ -34,7 +37,7 @@ export class Work0020 extends Work {
                 [tile.lowerMiddle(), tile.center(), tile.middleRight()], // LR quadrant
             ];
             triangles.forEach(t => {
-                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? ArrayUtils.randomElement(palette) : 'white';
+                this.ctx.fillStyle = MathUtils.randomIntUpTo(100) < this.ctrl.coloredDiamondChance ? palette.getRandomColor() : 'white';
                 this.trianglePath(...t);
                 this.ctx.fill();
             });

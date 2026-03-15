@@ -7,6 +7,9 @@ import {
 import {
     ArrayUtils
 } from '/js/array.js';
+import {
+    Palette
+} from '/js/color.js';
 export class Work0024 extends Work {
     getControls() {
         return [
@@ -23,7 +26,7 @@ export class Work0024 extends Work {
         this.clearCanvas();
         this.ctx.strokeStyle = 'black';
         this.scaleCanvas(0.9); // padding
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         /*
          * Fill one in ratioColoredTiles tiles. For example, if ratioColoredTiles
          * is 9, we want to fill one in nine tiles.
@@ -44,7 +47,7 @@ export class Work0024 extends Work {
             let yOffset = MathUtils.randomIntPlusMinus(this.ctrl.maxOffsetPerAxis);
             let rectArgs = [tile.upperLeft().move(xOffset, yOffset), tile.tileDim];
             if (shouldFillArray.shift()) {
-                this.ctx.fillStyle = ArrayUtils.randomElement(palette);
+                this.ctx.fillStyle = palette.getRandomColor();
                 this.fillSquareForPoint(...rectArgs);
             }
             this.strokeSquareForPoint(...rectArgs);

@@ -5,7 +5,11 @@ import {
     MathUtils
 } from '/js/math.js';
 import {
-    ColorUtils
+    ArrayUtils
+} from '/js/array.js';
+import {
+    ColorUtils,
+    Palette
 } from '/js/color.js';
 import {
     Point
@@ -16,6 +20,7 @@ export class Work0002 extends Work {
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'darken', 'difference', 'hard-light', 'multiply']),
+                this.makeSlider('numColors', 'Number of colors: {0}', 5, 32, 16),
             ),
             this.makeSlider('numTriangles', 'Number of triangles: {0}', 1, 500, 100),
         ];
@@ -23,14 +28,13 @@ export class Work0002 extends Work {
     drawWork() {
         this.clearCanvas();
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
-        let colorScale = chroma.scale(this.ctrl.colorMap);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         let points = [];
         // + 2 because the first triangle is only drawn on the third iteration
         for (let i = 1; i <= this.ctrl.numTriangles + 2; i++) {
             points.push(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)));
             if (points.length == 3) {
-                let color = colorScale(MathUtils.random()).rgb();
-                this.ctx.fillStyle = ColorUtils.colorRGBA(...color, MathUtils.random());
+                this.ctx.fillStyle = ColorUtils.colorHexToRGBA(palette.getRandomColor(), MathUtils.random());
                 this.trianglePath(...points);
                 this.ctx.fill();
                 points.shift();

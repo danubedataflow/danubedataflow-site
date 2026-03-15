@@ -27,27 +27,3 @@ drawWork() {
     this.ctx.fill(path, "evenodd");
 }
 
-===
-
-Refactor:
-use Palette class
-
-===
-
-import { ArrayUtils } from '/js/array.js';
-
-export class Palette {
-
-    palette;  // an array of hex color values
-
-    constructor(colorMap, numColors) {
-        this.colorMap = colorMap;
-        this.numColors = numColors;
-        this.palette = chroma.scale(this.colorMap).colors(this.numColors);
-    }
-
-    getRandomColor() {
-        return ArrayUtils.randomElelent(this.palette);
-    }
-
-}

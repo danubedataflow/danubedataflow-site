@@ -8,7 +8,8 @@ import {
     ArrayUtils
 } from '/js/array.js';
 import {
-    ColorUtils
+    ColorUtils,
+    Palette
 } from '/js/color.js';
 import {
     Point
@@ -30,7 +31,7 @@ export class Work0019 extends Work {
         this.clearCanvas('black');
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = this.ctrl.lineWidth;
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         for (let i = 0; i < this.ctrl.numGrids; i++) {
             this.drawGrid(this.width, palette, MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100);
         }
@@ -53,14 +54,14 @@ export class Work0019 extends Work {
             ArrayUtils.pairwise(hsegments, (hcurrent, hnext) => {
                 let p = new Point(hcurrent, vcurrent);
                 if (drawType == 'plain') {
-                    this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(ArrayUtils.randomElement(palette)).rgb(), alpha);
+                    this.ctx.fillStyle = ColorUtils.colorHexToRGBA(palette.getRandomColor(), alpha);
                     this.fillRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
                     this.strokeRectForPoint(p, hnext - hcurrent, vnext - vcurrent);
                 } else if ((drawType == 'diagonal')) {
                     let c1, c2;
-                    c1 = ArrayUtils.randomElement(palette);
+                    c1 = palette.getRandomColor();
                     do {
-                        c2 = ArrayUtils.randomElement(palette);
+                        c2 = palette.getRandomColor();
                     } while (c1 == c2);
                     this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(c1).rgb(), alpha);
                     this.fillRectForPoint(p, hnext - hcurrent, vnext - vcurrent);

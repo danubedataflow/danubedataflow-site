@@ -2,6 +2,9 @@ import {
     Work
 } from '/js/basework.js';
 import {
+    Palette
+} from '/js/color.js';
+import {
     Point
 } from '/js/point.js';
 export class Work0009 extends Work {
@@ -23,7 +26,7 @@ export class Work0009 extends Work {
         this.ctx.fill();
         this.ctx.stroke();
         const radius = this.width / 2;
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.modulus);
+    let palette = new Palette(this.ctrl.colorMap, this.ctrl.modulus).getColors();
         for (let i = 0; i < this.ctrl.modulus; i++) {
             // cycle through all colors in the palette; wrap around
             const colorIndex = (i + palette.length) % palette.length;

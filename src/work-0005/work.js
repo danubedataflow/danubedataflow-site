@@ -5,6 +5,9 @@ import {
     MathUtils
 } from '/js/math.js';
 import {
+    Palette
+} from '/js/color.js';
+import {
     Point
 } from '/js/point.js';
 export class Work0005 extends Work {
@@ -13,7 +16,7 @@ export class Work0005 extends Work {
             this.makeFieldset('Colors',
                 this.makeSelectColorMap(),
                 this.makeSelectBlendMode(['source-over', 'darken', 'difference', 'exclusion', 'hard-light', 'multiply']),
-                this.makeSlider('numColors', 'Number of colors: {0}', 1, 32, 25),
+                this.makeSlider('numColors', 'Number of colors: {0}', 2, 32, 25),
             ),
             this.makeSlider('maxLength', 'Maximum length: {0}', 3, 19, 11, 2),
         ];
@@ -22,7 +25,7 @@ export class Work0005 extends Work {
         this.clearCanvas();
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         this.ctx.translate(this.width / 2, this.height / 2);
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors).getColors();
         let colorIndex = MathUtils.randomIntUpTo(palette.length);
         let magnify = Math.round(this.width / this.ctrl.maxLength);
         let numPoints = Math.pow(this.ctrl.maxLength, 2);

@@ -8,7 +8,7 @@ import {
     ArrayUtils
 } from '/js/array.js';
 import {
-    ColorUtils
+    ColorUtils, Palette
 } from '/js/color.js';
 import {
     Point
@@ -125,7 +125,7 @@ export class Work0032 extends Work {
     }
     drawWork() {
         this.clearCanvas();
-        this.palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
+        this.palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
         if (this.ctrl.useLayers) {
             for (let layer = 1; layer <= this.ctrl.numLayers; layer++) {
                 this.drawLayer();
@@ -157,7 +157,7 @@ export class Work0032 extends Work {
         if (!this.ctrl.useLayers) alpha = 1;
         if (this.ctrl.useColors) {
             if (shouldColorArray.shift()) {
-                this.ctx.fillStyle = ColorUtils.colorRGBA(...chroma(ArrayUtils.randomElement(this.palette)).rgb(), alpha);
+                this.ctx.fillStyle = ColorUtils.colorHexToRGBA(this.palette.getRandomColor(), alpha);
             } else {
                 this.ctx.fillStyle = ColorUtils.colorRGBA(0, 0, 0, alpha);
             }

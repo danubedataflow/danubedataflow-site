@@ -8,7 +8,8 @@ import {
     ArrayUtils
 } from '/js/array.js';
 import {
-    ColorUtils
+    ColorUtils,
+    Palette
 } from '/js/color.js';
 import {
     Point
@@ -27,16 +28,14 @@ export class Work0006 extends Work {
         ];
     }
     drawWork() {
-        let palette = chroma.scale(this.ctrl.colorMap).colors(this.ctrl.numColors);
-        this.clearCanvas(ArrayUtils.randomElement(palette));
+        let palette = new Palette(this.ctrl.colorMap, this.ctrl.numColors);
+        this.clearCanvas(palette.getRandomColor());
         this.ctx.globalCompositeOperation = this.ctrl.blendMode;
         for (let i = 0; i < this.ctrl.numSquares; i++) {
-            let color = ArrayUtils.randomElement(palette);
-            // turn RGB hex string into [R, G, B]
-            color = chroma(color).rgb();
+            let color = palette.getRandomColor();
             // map [0,100]% to [0, 1]
             let alpha = MathUtils.randomIntRange(...this.ctrl.alphaRange) / 100;
-            this.ctx.fillStyle = ColorUtils.colorRGBA(...color, alpha);
+            this.ctx.fillStyle = ColorUtils.colorHexToRGBA(color, alpha);
             let [minLength, maxLength] = this.ctrl.squareLengthRange;
             let s = MathUtils.randomIntRange(this.width * minLength / 100, this.height * maxLength / 100);
             this.fillRectForPoint(new Point(MathUtils.randomIntUpTo(this.width), MathUtils.randomIntUpTo(this.height)), s, s);
