@@ -61,6 +61,6 @@ export class Work0036 extends Work {
             }
         }
     }
-    description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random currentDepth. Each square has an optional border. Each terminal square has an optional fill.`;
+    description = `The canvas is subdivided into four squares. Each of these squares is recursively subdivided up to a random depth. Each square has an optional border. Each terminal square has an optional fill.`;
     createdDate = '2026-01-19';
 }

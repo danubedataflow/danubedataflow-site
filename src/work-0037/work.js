@@ -125,6 +125,6 @@ export class Work0037 extends Work {
             oppositePoint: longest.opposite
         };
     }
-    description = `The canvas is subdivided into two triangles. Each of these two triangles is recursively subdivided up to a random currentDepth. Each triangle has an optional border. Each terminal triangle has an optional fill.`;
+    description = `The canvas is subdivided into two triangles. Each of these two triangles is recursively subdivided up to a random depth. Each triangle has an optional border. Each terminal triangle has an optional fill.`;
     createdDate = '2026-01-20';
 }
